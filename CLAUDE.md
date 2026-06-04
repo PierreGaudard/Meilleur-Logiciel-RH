@@ -169,6 +169,11 @@
 
 ## Historique des modifications
 
+### 2026-06-04
+- Ajout de la page `alternatives/kelio.html` (comparatif GEO 5 logiciels : Skello mis en avant, Combo, Factorial, Lucca, PayFit) avec encart En bref, tableau comparatif, quiz interactif 3 questions, sections détaillées par outil, section migration, FAQ accordéon (5 questions) et JSON-LD complet (Article + BreadcrumbList + FAQPage)
+- Téléchargement de 3 images Openverse (CC BY 2.0) dans `assets/images/blog/` (alternatives-kelio, kelio-gestion-temps, kelio-planning-equipe), crédits mentionnés sous les images et en footer
+- Mise à jour de `sitemap.xml`, `plan-du-site.html`, `alternatives/index.html`, `index.html`, `auteur/thomas-renaud.html`, `404.html` (Kelio ajouté, Silae avis retiré pour rester à 6) et `llms.txt`
+
 ### 2026-04-23
 - Création de la nouvelle rubrique **Définitions RH (glossaire)** avec 60 définitions : onboarding, gpec, sirh, soft-skills, culture-entreprise, periode-essai + 54 autres (audit-social, avertissement-travail, barometre-social, bdese, bloc-competences, bulletin-paie, capital-humain, cartographie-metiers, charte-ethique, classification-emplois, code-conduite, codir, communication-interne, contrat-generation, contrat-mission, deontologie, detachement, diagnostic-social, dialogue-social, discretion-professionnelle, dsn, duerp, elections-professionnelles, entretien-annuel, fiche-fonction, forfait-jours, hierarchie-entreprise, indemnite-forfaitaire, inspection-travail, logiciel-paie, management-proximite, management-operationnel, management-situationnel, mandat-syndical, mentorat, metiers-tension, mise-disposition, mobilite-geographique, negociation-collective, pilotage-performance, plan-depart-volontaire, politique-handicap, procedure-disciplinaire, referentiel-metier, registre-accidents-benins, rtt, solde-tout-compte, talent-pool, taux-frequence, temps-partiel-module, tests-psychotechniques, transfert-competences, travail-poste, tutorat)
 - Mise en place du template dictionnaire dédié (`assets/definitions.css`) et du générateur Python (`scripts/gen-definitions.py` + `scripts/definitions_data.py`)

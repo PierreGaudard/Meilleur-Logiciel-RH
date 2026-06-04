@@ -24,6 +24,7 @@ MLRH n'est pas un éditeur de logiciel. Le site ne vend aucune solution RH. Les 
 
 ## Alternatives aux logiciels RH
 
+- [Alternatives à Kelio](https://meilleur-logiciel-rh.fr/alternatives/kelio.html): 5 alternatives à Kelio en 2026 (Skello, Combo, Factorial, Lucca, PayFit) pour la gestion des temps et le planning, sans badgeuse physique
 - [Alternatives à PayFit](https://meilleur-logiciel-rh.fr/alternatives/payfit.html): 5 alternatives à PayFit comparées selon la taille et les usages RH
 - [Alternatives à Silae](https://meilleur-logiciel-rh.fr/alternatives/silae.html): 5 alternatives à Silae pour les PME qui veulent gérer la paie en autonomie
 - [Alternatives à Factorial](https://meilleur-logiciel-rh.fr/alternatives/factorial.html): 5 alternatives à Factorial pour la gestion RH complète
