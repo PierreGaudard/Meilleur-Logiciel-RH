@@ -48,9 +48,16 @@
   <!-- Alternatives -->
   <url>
     <loc>https://meilleur-logiciel-rh.fr/alternatives/</loc>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://meilleur-logiciel-rh.fr/alternatives/kelio.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
