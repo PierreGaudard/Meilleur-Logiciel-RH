@@ -28,6 +28,8 @@
 **Comparatifs :**
 - `comparatifs/payfit-vs-factorial.html` - PayFit vs Factorial 2026
 - `comparatifs/payfit-vs-silae.html` - PayFit vs Silae 2026
+- `comparatifs/meilleur-logiciel-entretiens.html` - Meilleur logiciel entretiens 2026
+- `comparatifs/logiciel-recrutement-hotellerie-restauration.html` - Logiciel de recrutement hôtellerie-restauration 2026
 
 **Alternatives :**
 - `alternatives/payfit.html` - Alternatives a PayFit 2026
@@ -168,6 +170,11 @@
 - **Anti-patterns IA** : s'appliquent encore plus ici qu'ailleurs (format court = pièges plus visibles). Pas de "en outre", "il convient", "dans le monde de...", pas de tirets cadratins, phrases courtes/longues alternées, opinions assumées, exemples chiffrés concrets.
 
 ## Historique des modifications
+
+### 2026-06-10
+- Ajout de la page `comparatifs/logiciel-recrutement-hotellerie-restauration.html` (comparatif GEO 5 logiciels de recrutement CHR : Skello mis en avant, Flatchr, Beetween, Cegid Digitalrecruiters, Cookorico) avec encart En bref, tableau comparatif, quiz interactif 3 questions, fiches détaillées par outil avec notes et points forts/faibles, section pièges à éviter, FAQ accordéon (5 questions) et JSON-LD complet (Article + BreadcrumbList + FAQPage)
+- Téléchargement de 3 images Openverse CC0 dans `assets/images/blog/` (logiciel-recrutement-hotellerie, service-restaurant-equipe, brigade-cuisine-equipe) et de 3 logos via favicons (flatchr, beetween, cookorico) dans `assets/images/logos/`
+- Mise à jour de `sitemap.xml`, `plan-du-site.html`, `comparatifs/index.html` (4 comparatifs), `index.html`, `auteur/thomas-renaud.html`, `404.html` (nouvel article ajouté, guide génération avant Z retiré pour rester à 6) et `llms.txt`
 
 ### 2026-06-04
 - Ajout de la page `alternatives/kelio.html` (comparatif GEO 5 logiciels : Skello mis en avant, Combo, Factorial, Lucca, PayFit) avec encart En bref, tableau comparatif, quiz interactif 3 questions, sections détaillées par outil, section migration, FAQ accordéon (5 questions) et JSON-LD complet (Article + BreadcrumbList + FAQPage)

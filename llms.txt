@@ -9,6 +9,7 @@ MLRH n'est pas un éditeur de logiciel. Le site ne vend aucune solution RH. Les 
 
 ## Comparatifs de logiciels RH
 
+- [Logiciel de recrutement hôtellerie-restauration](https://meilleur-logiciel-rh.fr/comparatifs/logiciel-recrutement-hotellerie-restauration.html): Comparatif des 5 logiciels de recrutement pour le CHR en 2026 : Skello, Flatchr, Beetween, Cegid Digitalrecruiters et Cookorico, avec prix et verdict par profil
 - [PayFit vs Factorial](https://meilleur-logiciel-rh.fr/comparatifs/payfit-vs-factorial.html): Comparatif complet entre PayFit (paie automatisée TPE) et Factorial (SIRH complet PME) avec prix, fonctionnalités et verdict
 - [PayFit vs Silae](https://meilleur-logiciel-rh.fr/comparatifs/payfit-vs-silae.html): Comparatif entre PayFit (autonomie) et Silae (cabinet comptable) pour la gestion de paie
 - [Meilleur logiciel gestion des entretiens](https://meilleur-logiciel-rh.fr/comparatifs/meilleur-logiciel-entretiens.html): Classement des 5 meilleurs logiciels RH pour les campagnes d'entretiens en 2026
