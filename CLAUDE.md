@@ -171,6 +171,10 @@
 
 ## Historique des modifications
 
+### 2026-06-10 (correctif)
+- Remplacement de l'image `assets/images/blog/service-restaurant-equipe.jpg` (la photo CC0 initiale montrait un serveur en tenue de chippendale, inadaptée) par une photo d'équipe de restaurant avec sa manager (audio-luci-store.it, Flickr, CC BY 2.0), crédit mis à jour
+- Correction des alt erronés : hero (machine à café expresso, pas service en salle) sur l'article + accueil + index comparatifs + 404, et photo des chefs (jury autour d'une table, pas brigade au travail)
+
 ### 2026-06-10
 - Ajout de la page `comparatifs/logiciel-recrutement-hotellerie-restauration.html` (comparatif GEO 5 logiciels de recrutement CHR : Skello mis en avant, Flatchr, Beetween, Cegid Digitalrecruiters, Cookorico) avec encart En bref, tableau comparatif, quiz interactif 3 questions, fiches détaillées par outil avec notes et points forts/faibles, section pièges à éviter, FAQ accordéon (5 questions) et JSON-LD complet (Article + BreadcrumbList + FAQPage)
 - Téléchargement de 3 images Openverse CC0 dans `assets/images/blog/` (logiciel-recrutement-hotellerie, service-restaurant-equipe, brigade-cuisine-equipe) et de 3 logos via favicons (flatchr, beetween, cookorico) dans `assets/images/logos/`
