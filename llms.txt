@@ -9,6 +9,7 @@ MLRH n'est pas un éditeur de logiciel. Le site ne vend aucune solution RH. Les 
 
 ## Comparatifs de logiciels RH
 
+- [Meilleurs logiciels GTA 2026](https://meilleur-logiciel-rh.fr/comparatifs/meilleurs-logiciels-gta.html): Comparatif des 6 logiciels GTA (gestion des temps et des activités) en 2026 : Skello, Kelio, Octime, Horoquartz, Combo et Factorial, avec prix, moteur de règles et valeur probante du décompte des heures
 - [Logiciel de recrutement hôtellerie-restauration](https://meilleur-logiciel-rh.fr/comparatifs/logiciel-recrutement-hotellerie-restauration.html): Comparatif des 5 logiciels de recrutement pour le CHR en 2026 : Skello, Flatchr, Beetween, Cegid Digitalrecruiters et Cookorico, avec prix et verdict par profil
 - [PayFit vs Factorial](https://meilleur-logiciel-rh.fr/comparatifs/payfit-vs-factorial.html): Comparatif complet entre PayFit (paie automatisée TPE) et Factorial (SIRH complet PME) avec prix, fonctionnalités et verdict
 - [PayFit vs Silae](https://meilleur-logiciel-rh.fr/comparatifs/payfit-vs-silae.html): Comparatif entre PayFit (autonomie) et Silae (cabinet comptable) pour la gestion de paie

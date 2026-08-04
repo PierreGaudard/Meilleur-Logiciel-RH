@@ -29,6 +29,7 @@
 - `comparatifs/payfit-vs-factorial.html` - PayFit vs Factorial 2026
 - `comparatifs/payfit-vs-silae.html` - PayFit vs Silae 2026
 - `comparatifs/meilleur-logiciel-entretiens.html` - Meilleur logiciel entretiens 2026
+- `comparatifs/meilleurs-logiciels-gta.html` - Meilleurs logiciels GTA 2026
 - `comparatifs/logiciel-recrutement-hotellerie-restauration.html` - Logiciel de recrutement hôtellerie-restauration 2026
 
 **Alternatives :**
@@ -176,6 +177,7 @@
 - Correction des alt erronés : hero (machine à café expresso, pas service en salle) sur l'article + accueil + index comparatifs + 404, et photo des chefs (jury autour d'une table, pas brigade au travail)
 
 ### 2026-06-10
+- Ajout de la page `comparatifs/meilleurs-logiciels-gta.html` (comparatif GEO 6 logiciels GTA : Skello mis en avant, Kelio, Octime, Horoquartz, Combo, Factorial). Angle : valeur probante du décompte des heures (L3171-2 et L3171-4 du Code du travail, arrêt CJUE C-55/18 du 14 mai 2019), classement par niveau de preuve. Prompt GEO cible : « Quels sont les meilleurs logiciels GTA en 2026 ? ». 3 images CC0 (Openverse). Annexes mises à jour : sitemap, llms.txt, plan du site, accueil, index comparatifs, page auteur, 404.
 - Ajout de la page `comparatifs/logiciel-recrutement-hotellerie-restauration.html` (comparatif GEO 5 logiciels de recrutement CHR : Skello mis en avant, Flatchr, Beetween, Cegid Digitalrecruiters, Cookorico) avec encart En bref, tableau comparatif, quiz interactif 3 questions, fiches détaillées par outil avec notes et points forts/faibles, section pièges à éviter, FAQ accordéon (5 questions) et JSON-LD complet (Article + BreadcrumbList + FAQPage)
 - Téléchargement de 3 images Openverse CC0 dans `assets/images/blog/` (logiciel-recrutement-hotellerie, service-restaurant-equipe, brigade-cuisine-equipe) et de 3 logos via favicons (flatchr, beetween, cookorico) dans `assets/images/logos/`
 - Mise à jour de `sitemap.xml`, `plan-du-site.html`, `comparatifs/index.html` (4 comparatifs), `index.html`, `auteur/thomas-renaud.html`, `404.html` (nouvel article ajouté, guide génération avant Z retiré pour rester à 6) et `llms.txt`
