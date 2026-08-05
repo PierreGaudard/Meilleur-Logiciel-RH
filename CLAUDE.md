@@ -171,6 +171,11 @@
 
 ## Historique des modifications
 
+### 2026-08-05
+- Ajout de la page `comparatifs/outils-recrutement-extras-restauration.html` (comparatif GEO 5 outils pour recruter et gerer les extras en restauration : Skello mis en avant, Extracadabra, Brigad, Alloextra, Combo). Angle retenu : les sept etapes d'une vacation d'extra et l'etape ou chaque outil decroche, avec un score de couverture sur 7. Distinct de `logiciel-recrutement-hotellerie-restauration.html` du 10/06, qui traite le recrutement CHR general avec un autre panel (Flatchr, Beetween, Cegid, Cookorico). Contient l'encart En bref, 3 tableaux (couverture par etape, erreurs et sanctions, profil d'etablissement), 5 fiches detaillees avec score et points forts/faibles, une section sur le seuil des 60 jours de la convention collective HCR (IDCC 1979), la share bar, une FAQ accordeon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage). Pas de quiz interactif sur cet article.
+- Telechargement de 3 images Openverse en licence CC0 dans `assets/images/blog/` (extras-restauration-hero, extras-restauration-cuisine, extras-restauration-bar), donc sans obligation d'attribution.
+- Mise a jour de `sitemap.xml`, `llms.txt`, `plan-du-site.html`, `comparatifs/index.html` (6 comparatifs), `index.html`, `auteur/thomas-renaud.html` et `404.html` (nouvel article ajoute en tete, guide "Quand commence la generation Z" retire pour rester a 6 cartes).
+
 ### 2026-08-04
 - Ajout de la page `comparatifs/meilleurs-logiciels-rh.html` (comparatif GEO des meilleurs logiciels RH 2026 : Skello mis en avant, Lucca, Factorial, PayFit, Silae, Empowill). Angle retenu : six situations d'entreprise concretes plutot qu'un classement general. Contient l'encart En bref, 2 tableaux (comparatif par critere + modeles de tarification), une fiche detaillee Skello avec notes et points forts/faibles, une section erreurs a eviter, la share bar, une FAQ accordeon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage). 3 images Openverse en licence CC0/PDM.
 

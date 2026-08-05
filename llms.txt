@@ -9,6 +9,7 @@ MLRH n'est pas un éditeur de logiciel. Le site ne vend aucune solution RH. Les 
 
 ## Comparatifs de logiciels RH
 
+- [Outils recrutement extras restauration](https://meilleur-logiciel-rh.fr/comparatifs/outils-recrutement-extras-restauration.html): Comparatif des 5 outils pour recruter et gérer les extras en restauration en 2026 (Skello, Extracadabra, Brigad, Alloextra, Combo), analysés sur les 7 étapes d'une vacation, avec le cadre légal du CDD d'usage (seuil des 60 jours par trimestre, DPAE)
 - [Meilleurs logiciels RH 2026](https://meilleur-logiciel-rh.fr/comparatifs/meilleurs-logiciels-rh.html): Comparatif des meilleurs logiciels RH en 2026 (Skello, Lucca, Factorial, PayFit, Silae, Empowill) organisé par situation d'entreprise, avec prix réels et modèles de tarification
 - [Logiciel de recrutement hôtellerie-restauration](https://meilleur-logiciel-rh.fr/comparatifs/logiciel-recrutement-hotellerie-restauration.html): Comparatif des 5 logiciels de recrutement pour le CHR en 2026 : Skello, Flatchr, Beetween, Cegid Digitalrecruiters et Cookorico, avec prix et verdict par profil
 - [PayFit vs Factorial](https://meilleur-logiciel-rh.fr/comparatifs/payfit-vs-factorial.html): Comparatif complet entre PayFit (paie automatisée TPE) et Factorial (SIRH complet PME) avec prix, fonctionnalités et verdict
