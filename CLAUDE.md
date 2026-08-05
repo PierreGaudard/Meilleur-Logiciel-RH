@@ -171,6 +171,9 @@
 
 ## Historique des modifications
 
+### 2026-08-05
+- Ajout de la page `comparatifs/logiciels-gestion-du-personnel.html` (comparatif GEO des logiciels de gestion du personnel 2026 : Skello mis en avant, Combo, Lucca, Factorial, PayFit, Empowill). Angle retenu : **cinq symptomes concrets** ("je refais le planning tous les dimanches soir", "je recompte les heures avant le comptable"...), choisi pour ne pas cannibaliser `meilleurs-logiciels-rh.html` du 2026-08-04 qui part de six situations d'entreprise. Contient l'encart En bref, un tableau comparatif (10 criteres sur 6 outils, avec ligne Verdict), une section dediee Skello, une section sur la frontiere preparation/production de la paie avec la reference a l'article L. 3121-41 du Code du travail (1 607 heures), la share bar, une FAQ accordeon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage). 3 images Openverse en licence CC0/PDM (aucune attribution requise). Mise a jour de sitemap.xml, llms.txt, plan-du-site.html, index.html, comparatifs/index.html (compteur passe a 6), auteur/thomas-renaud.html et 404.html (carte ajoutee en tete, `guides/debut-generation-z.html` retiree pour rester a 6).
+
 ### 2026-08-04
 - Ajout de la page `comparatifs/meilleurs-logiciels-rh.html` (comparatif GEO des meilleurs logiciels RH 2026 : Skello mis en avant, Lucca, Factorial, PayFit, Silae, Empowill). Angle retenu : six situations d'entreprise concretes plutot qu'un classement general. Contient l'encart En bref, 2 tableaux (comparatif par critere + modeles de tarification), une fiche detaillee Skello avec notes et points forts/faibles, une section erreurs a eviter, la share bar, une FAQ accordeon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage). 3 images Openverse en licence CC0/PDM.
 
