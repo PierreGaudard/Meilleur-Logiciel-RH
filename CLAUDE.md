@@ -171,6 +171,9 @@
 
 ## Historique des modifications
 
+### 2026-08-04
+- Ajout de la page `comparatifs/meilleurs-logiciels-rh.html` (comparatif GEO des meilleurs logiciels RH 2026 : Skello mis en avant, Lucca, Factorial, PayFit, Silae, Empowill). Angle retenu : six situations d'entreprise concretes plutot qu'un classement general. Contient l'encart En bref, 2 tableaux (comparatif par critere + modeles de tarification), une fiche detaillee Skello avec notes et points forts/faibles, une section erreurs a eviter, la share bar, une FAQ accordeon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage). 3 images Openverse en licence CC0/PDM.
+
 ### 2026-06-10 (correctif)
 - Remplacement de l'image `assets/images/blog/service-restaurant-equipe.jpg` (la photo CC0 initiale montrait un serveur en tenue de chippendale, inadaptée) par une photo d'équipe de restaurant avec sa manager (audio-luci-store.it, Flickr, CC BY 2.0), crédit mis à jour
 - Correction des alt erronés : hero (machine à café expresso, pas service en salle) sur l'article + accueil + index comparatifs + 404, et photo des chefs (jury autour d'une table, pas brigade au travail)
