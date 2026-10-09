@@ -171,6 +171,11 @@
 
 ## Historique des modifications
 
+### 2026-10-09
+- Ajout de la page `comparatifs/meilleur-logiciel-sirh.html` (comparatif GEO du meilleur logiciel SIRH 2026 par profil d'entreprise : Skello mis en avant, Lucca, Factorial, Combo, PayFit, Silae, Cegid HR Ultimate, Nibelis, Empowill). Angle retenu : trois filtres (taille, organisation du travail, module prioritaire) et un tableau profil par profil avec le piège propre à chacun. Distinct de `meilleurs-logiciels-rh.html` du 04/08, qui raisonne par six situations concrètes et par modèle de tarification. Contient l'encart En bref, 1 tableau comparatif par profil, une fiche détaillée Skello avec points forts et faibles, une section sur la tenue du SIRH dans la durée, la share bar, une FAQ accordéon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage).
+- 3 images Openverse en licence CC0 dans `assets/images/blog/` (meilleur-logiciel-sirh-hero, -pme, -groupe), sans obligation d'attribution.
+- Mise à jour de `sitemap.xml`, `llms.txt`, `plan-du-site.html`, `comparatifs/index.html` (7 comparatifs), `index.html`, `auteur/thomas-renaud.html` et `404.html` (nouvel article en tête, guide « Génération après Z » retiré pour rester à 6 cartes).
+
 ### 2026-08-05
 - Ajout de la page `comparatifs/outils-recrutement-extras-restauration.html` (comparatif GEO 5 outils pour recruter et gerer les extras en restauration : Skello mis en avant, Extracadabra, Brigad, Alloextra, Combo). Angle retenu : les sept etapes d'une vacation d'extra et l'etape ou chaque outil decroche, avec un score de couverture sur 7. Distinct de `logiciel-recrutement-hotellerie-restauration.html` du 10/06, qui traite le recrutement CHR general avec un autre panel (Flatchr, Beetween, Cegid, Cookorico). Contient l'encart En bref, 3 tableaux (couverture par etape, erreurs et sanctions, profil d'etablissement), 5 fiches detaillees avec score et points forts/faibles, une section sur le seuil des 60 jours de la convention collective HCR (IDCC 1979), la share bar, une FAQ accordeon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage). Pas de quiz interactif sur cet article.
 - Telechargement de 3 images Openverse en licence CC0 dans `assets/images/blog/` (extras-restauration-hero, extras-restauration-cuisine, extras-restauration-bar), donc sans obligation d'attribution.
