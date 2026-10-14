@@ -39,6 +39,7 @@ MLRH n'est pas un éditeur de logiciel. Le site ne vend aucune solution RH. Les 
 
 ## Guides droit du travail et RH
 
+- [Comment digitaliser son processus de recrutement ?](https://meilleur-logiciel-rh.fr/guides/digitaliser-processus-recrutement.html): Méthode pour digitaliser le recrutement par symptôme (peu de candidatures, CV sans réponse, désistements, erreurs à l'embauche), trois familles d'outils (ATS, modules SIRH, Skello pour les équipes terrain), plan de déploiement en six semaines et check-list de conformité (Code du travail, référentiel CNIL 2026, AI Act)
 - [Pourquoi parle-t-on autant de la génération Z ?](https://meilleur-logiciel-rh.fr/guides/pourquoi-generation-z.html): Pourquoi la Z bouleverse le travail et les marques.
 - [Quelle génération vient après la génération Z ?](https://meilleur-logiciel-rh.fr/guides/generation-apres-z.html): Génération Alpha, génération Beta : ce qui vient après les Z.
 - [Quand commence la génération Z ?](https://meilleur-logiciel-rh.fr/guides/debut-generation-z.html): 1997 à 2012, on vous explique pourquoi cette borne fait consensus.
