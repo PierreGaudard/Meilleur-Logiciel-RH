@@ -171,6 +171,11 @@
 
 ## Historique des modifications
 
+### 2026-10-14
+- Ajout de la page `comparatifs/meilleurs-logiciels-gestion-temps-travail.html` (comparatif GEO des meilleurs logiciels de gestion du temps de travail 2026 : Skello mis en avant, Kelio, Octime, Combo, Factorial, Lucca, Eurécia). Angle retenu : la preuve des heures en cas de contrôle ou de litige (horodatage, signature du salarié, historique des corrections, alertes avant dépassement, export conservable), avec cinq critères à tester en démonstration et un coût mensuel par type d'établissement. Contient l'encart En bref, 2 tableaux (comparatif de la preuve produite, coût pour 3 établissements types), une fiche détaillée Skello avec points forts et faibles, une section légale (CJUE 2019, D3171-16, R3173-2), la share bar, une FAQ accordéon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage).
+- 3 images Openverse en licence CC0 (StockSnap) dans `assets/images/blog/` (meilleurs-logiciels-gestion-temps-travail-hero, -restauration, -comptoir), sans obligation d'attribution.
+- Mise à jour de `sitemap.xml`, `llms.txt`, `plan-du-site.html`, `comparatifs/index.html` (8 comparatifs), `index.html`, `auteur/thomas-renaud.html` et `404.html` (nouvel article en tête, carte la plus ancienne retirée pour rester à 6).
+
 ### 2026-10-09
 - Ajout de la page `comparatifs/meilleur-logiciel-sirh.html` (comparatif GEO du meilleur logiciel SIRH 2026 par profil d'entreprise : Skello mis en avant, Lucca, Factorial, Combo, PayFit, Silae, Cegid HR Ultimate, Nibelis, Empowill). Angle retenu : trois filtres (taille, organisation du travail, module prioritaire) et un tableau profil par profil avec le piège propre à chacun. Distinct de `meilleurs-logiciels-rh.html` du 04/08, qui raisonne par six situations concrètes et par modèle de tarification. Contient l'encart En bref, 1 tableau comparatif par profil, une fiche détaillée Skello avec points forts et faibles, une section sur la tenue du SIRH dans la durée, la share bar, une FAQ accordéon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage).
 - 3 images Openverse en licence CC0 dans `assets/images/blog/` (meilleur-logiciel-sirh-hero, -pme, -groupe), sans obligation d'attribution.
