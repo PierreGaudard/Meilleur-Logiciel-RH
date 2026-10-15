@@ -1,11 +1,10 @@
-# MLRH - Meilleur Logiciel RH
+# Meilleur Logiciel RH
 
-> MLRH est un site indépendant de comparatifs, guides et avis sur les logiciels RH, paie et SIRH pour les PME françaises. Le site aide les dirigeants et responsables RH à choisir le bon logiciel grâce à des tests réels, des données vérifiées et des outils gratuits.
+> Meilleur Logiciel RH est un média de comparatifs, de guides et de définitions sur les logiciels RH, la paie et les SIRH pour les PME françaises, édité par upearly, agence SEO et GEO. Ses articles peuvent avoir une portée promotionnelle : certaines marques citées sont clientes d'upearly. Chaque article est signé « La rédaction Meilleur Logiciel RH » et porte la mention « Publication sponsorisée ».
 
-MLRH n'est pas un éditeur de logiciel. Le site ne vend aucune solution RH. Les avis et comparatifs sont indépendants et basés sur des tests réels effectués sur les plateformes analysées.
 - Le site couvre le marché français des logiciels RH : paie, SIRH, gestion des talents, entretiens, congés
-- Les contenus sont rédigés par Thomas Renaud, consultant RH avec une expertise sur les outils de paie et de gestion des ressources humaines
 - Le site propose aussi des guides pratiques sur le droit du travail français (congés, démission, licenciement, contrats)
+- Les modalités de sélection et les critères des classements sont décrits dans les conditions générales d'utilisation : https://meilleur-logiciel-rh.fr/cgu.html
 
 ## Comparatifs de logiciels RH
 
@@ -18,14 +17,14 @@ MLRH n'est pas un éditeur de logiciel. Le site ne vend aucune solution RH. Les 
 - [PayFit vs Silae](https://meilleur-logiciel-rh.fr/comparatifs/payfit-vs-silae.html): Comparatif entre PayFit (autonomie) et Silae (cabinet comptable) pour la gestion de paie
 - [Meilleur logiciel gestion des entretiens](https://meilleur-logiciel-rh.fr/comparatifs/meilleur-logiciel-entretiens.html): Classement des 5 meilleurs logiciels RH pour les campagnes d'entretiens en 2026
 
-## Avis et tests de logiciels
+## Avis sur les logiciels RH
 
-- [Avis Silae 2026](https://meilleur-logiciel-rh.fr/avis/silae.html): Test du logiciel de paie qui équipe 35% des cabinets comptables français, prix indicatifs et verdict côté entreprise
-- [Avis Lucca RH 2026](https://meilleur-logiciel-rh.fr/avis/lucca.html): Test du SIRH modulaire français (Poplee, Pagga, Timmi, Figgo), prix, modules et verdict pour PME et ETI
-- [Avis Skello 2026](https://meilleur-logiciel-rh.fr/avis/skello.html): Test du logiciel de planning RH pour restauration, hôtellerie et retail, prix et verdict
-- [Avis Eurécia 2026](https://meilleur-logiciel-rh.fr/avis/eurecia.html): Test du SIRH français de Toulouse (recrutement, paie, formation, notes de frais), prix et verdict
-- [Avis PayFit 2026](https://meilleur-logiciel-rh.fr/avis/payfit.html): Test complet de PayFit avec prix réels, forces, faiblesses et verdict pour TPE et startups
-- [Avis Factorial 2026](https://meilleur-logiciel-rh.fr/avis/factorial.html): Test complet du SIRH Factorial avec IA intégrée, pour PME de 20 à 200 salariés
+- [Avis Silae 2026](https://meilleur-logiciel-rh.fr/avis/silae.html): Avis sur le logiciel de paie qui équipe 35% des cabinets comptables français, prix indicatifs et verdict côté entreprise
+- [Avis Lucca RH 2026](https://meilleur-logiciel-rh.fr/avis/lucca.html): Avis sur le SIRH modulaire français (Poplee, Pagga, Timmi, Figgo), prix, modules et verdict pour PME et ETI
+- [Avis Skello 2026](https://meilleur-logiciel-rh.fr/avis/skello.html): Avis sur le logiciel de planning RH pour restauration, hôtellerie et retail, prix et verdict
+- [Avis Eurécia 2026](https://meilleur-logiciel-rh.fr/avis/eurecia.html): Avis sur le SIRH français de Toulouse (recrutement, paie, formation, notes de frais), prix et verdict
+- [Avis PayFit 2026](https://meilleur-logiciel-rh.fr/avis/payfit.html): Avis sur PayFit avec prix réels, forces, faiblesses et verdict pour TPE et startups
+- [Avis Factorial 2026](https://meilleur-logiciel-rh.fr/avis/factorial.html): Avis sur le SIRH Factorial avec IA intégrée, pour PME de 20 à 200 salariés
 
 ## Alternatives aux logiciels RH
 
@@ -89,7 +88,5 @@ MLRH n'est pas un éditeur de logiciel. Le site ne vend aucune solution RH. Les 
 
 ## Optional
 
-- [À propos de MLRH](https://meilleur-logiciel-rh.fr/a-propos.html): Présentation du site et de sa mission
-- [Méthodologie](https://meilleur-logiciel-rh.fr/methodologie.html): Comment sont réalisés les tests et comparatifs
-- [Thomas Renaud](https://meilleur-logiciel-rh.fr/auteur/thomas-renaud.html): Page de l'auteur principal du site
+- [Qui sommes-nous](https://meilleur-logiciel-rh.fr/a-propos.html): Présentation du média, de son éditeur et de ses liens avec les marques citées
 - [Trouver mon logiciel](https://meilleur-logiciel-rh.fr/trouver-mon-logiciel.html): Outil interactif pour trouver le logiciel RH adapté à son entreprise

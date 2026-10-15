@@ -334,37 +334,16 @@
   <!-- Pages légales / site -->
   <url>
     <loc>https://meilleur-logiciel-rh.fr/a-propos.html</loc>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://meilleur-logiciel-rh.fr/methodologie.html</loc>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <url>
     <loc>https://meilleur-logiciel-rh.fr/contact.html</loc>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://meilleur-logiciel-rh.fr/mentions-legales.html</loc>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
-  <url>
-    <loc>https://meilleur-logiciel-rh.fr/politique-de-confidentialite.html</loc>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
   </url>
 
   <url>
@@ -373,15 +352,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
-
-  <!-- Auteur -->
-  <url>
-    <loc>https://meilleur-logiciel-rh.fr/auteur/thomas-renaud.html</loc>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
 
   <!-- Définitions RH -->
   <url>
@@ -750,8 +720,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
-
 
   <url>
     <loc>https://meilleur-logiciel-rh.fr/guides/pourquoi-generation-z.html</loc>

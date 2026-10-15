@@ -14,7 +14,6 @@ Allow: /guides/
 Allow: /avis/
 Allow: /alternatives/
 Allow: /outils/
-Allow: /auteur/
 Allow: /assets/
 
 # ======================

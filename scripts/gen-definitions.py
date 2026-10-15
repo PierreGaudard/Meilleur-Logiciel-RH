@@ -27,7 +27,7 @@ FOOTER = '''<footer class="site-footer">
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo"><img src="../assets/images/mlrh-logo.png" alt="MLRH" title="Logo Meilleur Logiciel RH" width="82" height="30" style="height:30px;width:auto"></div>
-          <p>Comparatifs indépendants et guides sur les logiciels RH, paie et SIRH pour les PME françaises.</p>
+          <p>Comparatifs et guides sur les logiciels RH, paie et SIRH pour les PME françaises.</p>
         </div>
         <div class="footer-col">
           <p class="footer-col-title">Comparatifs</p>
@@ -49,16 +49,15 @@ FOOTER = '''<footer class="site-footer">
           <p class="footer-col-title">Le site</p>
           <ul>
             <li><a href="../a-propos.html">À propos</a></li>
-            <li><a href="../methodologie.html">Méthodologie</a></li>
             <li><a href="../contact.html">Contact</a></li>
             <li><a href="../plan-du-site.html">Plan du site</a></li>
             <li><a href="../mentions-legales.html">Mentions légales</a></li>
+            <li><a href="../cgu.html">CGU</a></li>
             <li><a href="../politique-de-confidentialite.html">Politique de confidentialité</a></li>
           </ul>
         </div>
       </div>
-      <div class="footer-affiliation">Certains liens sont des liens d'affiliation. Nos avis restent indépendants et basés sur des données vérifiées.</div>
-      <div class="footer-bottom"><span>&copy; 2026 MLRH. Tous droits réservés</span><span>Données vérifiées sur les sites officiels</span></div>
+      <div class="footer-bottom"><span>&copy; 2026 MLRH. Tous droits réservés</span></div>
     </div>
   </footer>'''
 
@@ -132,7 +131,7 @@ def render(slug, d):
                 "inLanguage": "fr-FR",
                 "wordCount": word_count,
                 "timeRequired": f"PT{time_min}M",
-                "author": {"@type": "Person", "@id": f"{BASE}/auteur/thomas-renaud.html#author", "name": "Thomas Renaud", "url": f"{BASE}/auteur/thomas-renaud.html"},
+                "author": {"@type": "Organization", "name": "La rédaction Meilleur Logiciel RH", "url": f"{BASE}/"},
                 "publisher": {"@type": "Organization", "name": "MLRH", "url": BASE, "logo": {"@type": "ImageObject", "url": f"{BASE}/assets/images/mlrh-logo.png"}},
                 "mainEntityOfPage": {"@type": "WebPage", "@id": url},
                 "keywords": keywords
@@ -222,7 +221,7 @@ def render(slug, d):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content="{meta_desc}">
-  <meta name="author" content="Thomas Renaud">
+  <meta name="author" content="La rédaction Meilleur Logiciel RH">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="{url}">
   <link rel="icon" href="../assets/images/favicon-mlrh.png" type="image/png">
@@ -263,13 +262,15 @@ def render(slug, d):
   <section class="article-hero">
     <div class="article-hero-flex">
       <div class="article-hero-left">
+        <img class="sponsored-mention" src="../assets/images/mention-sponsorisee-fr.png" alt="Publication sponsorisée" width="206" height="25">
         <span class="badge">Définition RH</span>
         <h1>{h1_display}</h1>
         <p class="article-hero-sub">
           <strong>{hero_strong}</strong> {hero_rest}
         </p>
+        <!-- emplacement des disclaimers sante et finance (p.content-disclaimer) -->
         <div class="article-hero-meta">
-          <div class="author-line"><div class="author-avatar"><img src="../assets/images/thomas-renaud.jpg" alt="Thomas Renaud" title="Thomas Renaud, auteur MLRH" width="24" height="24"></div>Par <a href="../auteur/thomas-renaud.html">Thomas Renaud</a></div>
+          <div class="author-line"><div class="author-avatar" aria-hidden="true">M</div><span class="author-signature">La rédaction Meilleur Logiciel RH</span></div>
           <span>Mis à jour le 23 avril 2026</span>
           <span>Lecture : {time_min} min</span>
         </div>
@@ -292,6 +293,16 @@ def render(slug, d):
       <section class="faq-section" id="faq">
         <h2>Questions fréquentes</h2>
 {faq_items}
+      </section>
+
+      <section class="author-box" aria-label="À propos de l'auteur">
+        <div class="author-box-avatar" aria-hidden="true">M</div>
+        <div class="author-box-text">
+          <p class="author-box-label">À propos de l'auteur</p>
+          <p class="author-box-name">La rédaction Meilleur Logiciel RH</p>
+          <p class="author-box-bio">Meilleur Logiciel RH est un média sur les logiciels RH, la paie et les SIRH, édité par upearly, agence SEO et GEO. Ses articles peuvent avoir une portée promotionnelle : certaines marques citées sont clientes d'upearly.</p>
+          <a class="author-box-link" href="../a-propos.html">En savoir plus sur nous</a>
+        </div>
       </section>
 
     </main>

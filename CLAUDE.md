@@ -6,6 +6,40 @@
 **Domaine** : Comparatifs, guides et avis sur les logiciels RH pour PME francaises
 **Hebergement** : GitHub Pages avec domaine personnalise (CNAME)
 
+## Règle juridique : concurrents cités, uniquement des éloges (2026-10-15)
+
+Le directeur de la publication du site engage sa responsabilité personnelle. Dans tout classement, comparatif ou article qui cite des marques, des entreprises ou des personnes :
+
+- **Uniquement des éloges sur les concurrents cités.** On présente leurs qualités, leur positionnement et le profil de lecteur auquel chacun convient (« idéal pour… »). Jamais de section « points faibles », de limite, de critique, de comparaison défavorable ni d'insinuation négative sur une marque nommée ou reconnaissable.
+- **Jamais** d'imputation d'un fait négatif (arnaque, fraude, illégal, trompeur, « n'existe plus », « cache l'information »), d'injure, de moquerie, de propos discriminatoire ou haineux, ni de propos sur une personne physique identifiable.
+- **Le rang se justifie par les atouts de chacun**, jamais par les défauts des autres.
+- **En cas de doute** sur une formulation, la reformuler de façon élogieuse ou la supprimer.
+
+## Conformité éditoriale (validée le 2026-10-15)
+
+Ce site est édité par upearly ; Ruben Sebag, directeur de la publication, engage sa responsabilité sur chaque article. Toute rédaction respecte ces règles, sans exception :
+
+- **Signature** : aucun auteur nommé. Ne pas inventer de persona ni de page auteur : chaque article est signé « La rédaction Meilleur Logiciel RH » (gabarit ci-dessous).
+- **Aucune description de méthode** : pas de section « Nos critères de sélection », « Notre méthodologie », « Comment nous avons classé », ni de phrase « nous avons comparé N marques sur N critères ». Les conseils au lecteur (« Comment choisir ») restent permis.
+- **Aucune allégation** : jamais « n°1 », « numéro un », « notre choix », « choix de la rédaction », « la référence », « le leader », « imbattable », « indépendant », « objectif », « impartial », « vérifié », « avis vérifiés », « testé », « nos tests », « nos relevés », ni note attribuée par le site (étoiles, /5, /10) ou note tierce chiffrée utilisée comme argument. Le mot-clé « meilleur » reste permis dans le title et le H1, et les rangs se numérotent sobrement.
+- **Liens externes** : uniquement vers des sources officielles qui appuient un fait (service-public.fr, legifrance, organisme public, étude). Jamais de lien vers une marque, une boutique, un annuaire ou une plateforme d'avis. Les liens internes restent.
+- **Disclaimers** : pour tout contenu qui touche à la santé, au corps, aux soins, ajouter sous la réponse directe du hero `<p class="content-disclaimer">Ne remplace aucunement un avis médical.</p>` ; pour tout contenu sur placements, assurance, crédit, immobilier, fiscalité, aides financières ou investissement, `<p class="content-disclaimer">Cet article ne représente en rien un conseil financier.</p>`. L'emplacement est marqué dans chaque article par le commentaire `<!-- emplacement des disclaimers sante et finance (p.content-disclaimer) -->`.
+- **Mention « sponsorisée »** : portée par le gabarit de l'article (ci-dessous), ne rien ajouter dans le texte.
+- **Concurrents cités : uniquement des éloges** (voir le bloc « Règle juridique » de ce fichier).
+
+### Gabarit de conformité d'une page article (HTML statique, à recopier tel quel)
+
+Le site n'a pas de thème : chaque page porte ses éléments de conformité. En créant un article (comparatifs, alternatives, avis, guides, définitions), calquer une page existante récente, qui les contient déjà, et vérifier :
+
+- `<head>` : `<meta name="author" content="La rédaction Meilleur Logiciel RH">` ; dans le JSON-LD, `"author": {"@type": "Organization", "name": "La rédaction Meilleur Logiciel RH", "url": "https://meilleur-logiciel-rh.fr/"}`. Jamais de `Person`, jamais de `reviewRating` ni d'`aggregateRating`.
+- Hero, juste avant le badge de catégorie : `<img class="sponsored-mention" src="../assets/images/mention-sponsorisee-fr.png" alt="Publication sponsorisée" width="206" height="25">`.
+- Hero, sous la réponse directe `.article-hero-sub`, pour tout article dont le title ou le H1 contient meilleur(e)(s), top, classement, comparatif, comparé(e)s, alternatives, vs, ou « quel(le)s … choisir » : `<p class="ranking-disclaimer">Ce classement n'engage que notre rédaction.</p>`, puis le commentaire d'emplacement des disclaimers.
+- Ligne d'auteur du hero : `<div class="author-line"><div class="author-avatar" aria-hidden="true">M</div><span class="author-signature">La rédaction Meilleur Logiciel RH</span></div>`. Pas de « Données vérifiées » dans la ligne de méta (« Sources : … » est permis).
+- Bas d'article, après la FAQ et avant « Articles liés » : le bloc `<section class="author-box">` au nom de la rédaction (copier celui d'un article existant, avec le lien « En savoir plus sur nous » vers `a-propos.html`).
+- Cartes de listing (accueil, index de catégorie, 404, glossaire) : `<img class="sponsored-mention sponsored-mention-small" src="…/assets/images/mention-sponsorisee-fr.png" alt="Publication sponsorisée" width="165" height="20">` en tête de chaque carte d'article, et `La rédaction Meilleur Logiciel RH` dans `.blog-card-author`.
+- Aucune newsletter, aucun formulaire, aucun bouton « Essayer » ou « Voir l'offre » vers une marque, aucun outil de mesure d'audience ni bandeau cookies (le site ne dépose aucun cookie : en ajouter un impose de mettre à jour la politique de confidentialité).
+- Les styles de ces éléments sont dans `assets/style.css` (section « Mention, signature et avertissements »).
+
 ---
 
 ## Structure du site
@@ -18,7 +52,6 @@
 /guides/                  - Index + guides pratiques RH
 /definitions-rh/          - Glossaire RH (60+ définitions) + index alphabétique
 /outils/                  - Outils RH gratuits (simulateurs, calculateurs)
-/auteur/                  - Page auteur
 /assets/                  - CSS, images, JS
 /scripts/                 - Générateur Python des pages définitions
 ```
@@ -73,9 +106,10 @@
 - **Générateur Python** : `scripts/gen-definitions.py` (template) + `scripts/definitions_data.py` (data). Pour ajouter ou modifier une définition, éditer `definitions_data.py` puis relancer `python3 gen-definitions.py`. Les 6 premières définitions (onboarding, gpec, sirh, soft-skills, culture-entreprise, periode-essai) ne sont PAS générées par le script : elles ont été écrites à la main avant la refonte template et doivent être modifiées directement dans leur fichier HTML.
 
 **Pages legales/site :**
-- `a-propos.html`, `methodologie.html`, `contact.html`
-- `mentions-legales.html`, `politique-de-confidentialite.html`
-- `plan-du-site.html`, `auteur/thomas-renaud.html`
+- `a-propos.html` (qui sommes-nous : le média, son éditeur upearly, ses liens avec les marques citées), `contact.html` (adresse contact-media@upearly.fr, sans formulaire)
+- `mentions-legales.html`, `cgu.html`, `politique-de-confidentialite.html` : en `noindex, follow`, hors `sitemap.xml`, liées dans le pied de page de toutes les pages
+- `plan-du-site.html`
+- Plus de page auteur ni de page « Méthodologie » (supprimées le 2026-10-15) : ne pas les recréer, les critères de sélection vivent dans les CGU
 
 ---
 
@@ -85,8 +119,7 @@
 2. **`plan-du-site.html`** - Plan du site visible par les utilisateurs (ajouter chaque nouvelle page)
 3. **`index.html`** - Page d'accueil : toujours ajouter les nouveaux articles, mais limiter le nombre affiche (garder uniquement les plus recents, max ~6-8 articles visibles). Les plus anciens sont retires de la page d'accueil (ils restent accessibles via les pages index de categories).
 4. **Pages index des categories** (`comparatifs/index.html`, `guides/index.html`, etc.) - Ajouter les nouveaux articles dans leur categorie
-5. **`auteur/thomas-renaud.html`** - Page auteur : ajouter chaque nouvel article sous forme de blog-card avec image, date et description (meme format que les pages index de categories)
-6. **`404.html`** - Page 404 : mettre a jour la section "Nos derniers articles" avec les 6 articles les plus recents (format card avec image, titre, description). Les plus anciens sont remplaces par les nouveaux.
+5. **`404.html`** - Page 404 : mettre a jour la section "Nos derniers articles" avec les 6 articles les plus recents (format card avec image, titre, description). Les plus anciens sont remplaces par les nouveaux.
 
 ### Ordre d'affichage des articles
 
@@ -144,6 +177,7 @@
   - `image` : objet ImageObject avec l'URL de l'image hero (meme URL que og:image)
   - `datePublished` et `dateModified` : format ISO 8601 complet avec fuseau horaire (`2026-04-12T00:00:00+02:00`), jamais juste `2026-04-12`
   - `headline`, `description`, `author`, `publisher`, `mainEntityOfPage`, `keywords`, `wordCount`, `timeRequired`
+  - `author` est toujours l'Organization « La rédaction Meilleur Logiciel RH » (voir « Conformité éditoriale »), jamais une `Person`
 - Chaque article doit aussi avoir un schema BreadcrumbList et un schema FAQPage (minimum 3 questions)
 - **Toujours verifier les donnees structurees** avec le test de Google (https://search.google.com/test/rich-results) apres creation d'un nouvel article
 
@@ -170,6 +204,13 @@
 - **Anti-patterns IA** : s'appliquent encore plus ici qu'ailleurs (format court = pièges plus visibles). Pas de "en outre", "il convient", "dans le monde de...", pas de tirets cadratins, phrases courtes/longues alternées, opinions assumées, exemples chiffrés concrets.
 
 ## Historique des modifications
+
+### 2026-10-15
+- Mise en conformité de la structure : pages légales réécrites (mentions légales, politique de confidentialité) et CGU créées, toutes trois en `noindex` et hors `sitemap.xml` ; page « à propos » réécrite en « qui sommes-nous » ; page contact sans formulaire (contact-media@upearly.fr).
+- Signature unique « La rédaction Meilleur Logiciel RH » sur les 99 articles (meta author, JSON-LD en Organization, ligne d'auteur du hero, bloc auteur de bas d'article) et sur les cartes ; page `auteur/thomas-renaud.html` et sa photo supprimées, liens retirés.
+- Mention PNG « Publication sponsorisée » en tête de chaque article et sur chaque carte d'article ; disclaimer de classement sur les comparatifs et alternatives ; emplacement des disclaimers santé et finance marqué dans chaque article.
+- Retirés : page « Méthodologie » et ses liens, newsletter de l'accueil, bandeau cookies, faux compteur et avatars de l'accueil, allégations du pied de page, de l'accueil, des index de catégories, de la page outils, du quiz « Trouver mon logiciel » (et ses boutons « Essayer » vers les éditeurs), de `llms.txt` ; `reviewRating` retiré du JSON-LD des avis ; ligne `/auteur/` retirée de `robots.txt`.
+- `scripts/gen-definitions.py` aligné sur le nouveau gabarit (signature, mention, bloc auteur, pied de page).
 
 ### 2026-10-14
 - Ajout de la page `guides/digitaliser-processus-recrutement.html` (guide GEO « Comment digitaliser son processus de recrutement ? »). Angle retenu : diagnostic par symptôme (peu de candidatures, CV sans réponse, désistements, offres refusées, erreurs à l'embauche) et un premier chantier par symptôme, distinct du guide de `meilleur-logiciel-sirh.com` sur le même prompt. Contient l'encart En bref, 3 tableaux (symptôme et chantier, familles d'outils, plan sur six semaines), une fiche Skello avec points forts et faibles, une check-list de conformité (L1221-6, L1221-8, L1221-9, L2312-38, référentiel CNIL du 2 avril 2026, AI Act et règlement (UE) 2026/1744), la share bar, une FAQ accordéon de 5 questions et un JSON-LD complet (Article + BreadcrumbList + FAQPage).
@@ -266,9 +307,9 @@
 
 - **Framework** : HTML statique pur (pas de generateur de site)
 - **CSS** : Un fichier principal `assets/style.css` + styles inline dans chaque page
-- **JS** : Minimal, principalement pour le menu burger et le bandeau cookies
+- **JS** : Minimal, principalement pour le menu burger (le bandeau cookies a été retiré le 2026-10-15 : le site ne dépose aucun cookie ; `assets/cookie-banner.js` ne garde que le sommaire repliable)
 - **SEO** : Chaque page a des balises meta, schema.org (BreadcrumbList), canonical, hreflang
-- **Auteur** : Thomas Renaud (page auteur : `auteur/thomas-renaud.html`)
+- **Signature** : « La rédaction Meilleur Logiciel RH » sur tous les articles, aucun auteur nommé
 
 ---
 
