@@ -262,7 +262,6 @@ def render(slug, d):
   <section class="article-hero">
     <div class="article-hero-flex">
       <div class="article-hero-left">
-        <img class="sponsored-mention" src="../assets/images/mention-sponsorisee-fr.png" alt="Publication sponsorisée" width="206" height="25">
         <span class="badge">Définition RH</span>
         <h1>{h1_display}</h1>
         <p class="article-hero-sub">
