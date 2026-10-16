@@ -76,6 +76,8 @@ disclaimer_sante: "Ersetzt in keiner Weise eine ärztliche Beratung."
 disclaimer_finance: "Dieser Artikel stellt in keiner Weise eine Finanzberatung dar."
 disclaimer_sante_page: "Ersetzt in keiner Weise eine ärztliche Beratung."
 disclaimer_finance_page: "Diese Seite stellt in keiner Weise eine Finanzberatung dar."
+disclaimer_finance_renforce: "Dieser Artikel gibt ausschließlich die Analyse der Redaktion wieder, die allein dafür verantwortlich ist. Er stellt weder eine Anlageberatung noch eine persönliche Empfehlung noch eine Aufforderung zum Kauf oder Verkauf eines Finanzprodukts dar. Die Wertentwicklung der Vergangenheit lässt keine Rückschlüsse auf die künftige Wertentwicklung zu, und jede Anlage birgt das Risiko eines Kapitalverlusts. Wenden Sie sich vor jeder Entscheidung an einen zugelassenen Finanzberater."
+disclaimer_finance_renforce_page: "Diese Seite gibt ausschließlich die Analyse der Redaktion wieder, die allein dafür verantwortlich ist. Sie stellt weder eine Anlageberatung noch eine persönliche Empfehlung noch eine Aufforderung zum Kauf oder Verkauf eines Finanzprodukts dar. Die Wertentwicklung der Vergangenheit lässt keine Rückschlüsse auf die künftige Wertentwicklung zu, und jede Anlage birgt das Risiko eines Kapitalverlusts. Wenden Sie sich vor jeder Entscheidung an einen zugelassenen Finanzberater."
 group_notice: "Werblicher Inhalt, {{ .Name }} wird von upearly herausgegeben, einem Unternehmen der datashake-Gruppe"
 
 llms_about_title: "Über uns"

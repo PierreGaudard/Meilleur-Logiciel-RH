@@ -78,6 +78,8 @@ disclaimer_sante: "Ne remplace aucunement un avis médical."
 disclaimer_finance: "Cet article ne représente en rien un conseil financier."
 disclaimer_sante_page: "Ne remplace aucunement un avis médical."
 disclaimer_finance_page: "Cette page ne représente en rien un conseil financier."
+disclaimer_finance_renforce: "Cet article reflète uniquement l'analyse de la rédaction et n'engage qu'elle. Il ne constitue ni un conseil en investissement, ni une recommandation personnalisée, ni une sollicitation à acheter ou vendre un produit financier. Les performances passées ne préjugent pas des performances futures et tout investissement comporte un risque de perte en capital. Avant toute décision, rapprochez-vous d'un conseiller financier agréé."
+disclaimer_finance_renforce_page: "Cette page reflète uniquement l'analyse de la rédaction et n'engage qu'elle. Elle ne constitue ni un conseil en investissement, ni une recommandation personnalisée, ni une sollicitation à acheter ou vendre un produit financier. Les performances passées ne préjugent pas des performances futures et tout investissement comporte un risque de perte en capital. Avant toute décision, rapprochez-vous d'un conseiller financier agréé."
 group_notice: "Contenu promotionnel, {{ .Name }} est édité par upearly, société du groupe datashake"
 
 # llms.txt

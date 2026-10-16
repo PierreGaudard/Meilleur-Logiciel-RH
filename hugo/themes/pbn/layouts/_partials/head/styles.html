@@ -38,5 +38,8 @@
 color-scheme:{{ $c.scheme | default "light" | safeCSS }};}</style>
 {{- $css := slice (resources.Get "css/main.css") -}}
 {{- with resources.Get "css/site.css" }}{{ $css = $css | append . }}{{ end -}}
-{{- $bundle := $css | resources.Concat "css/pbn.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}">
+{{- /* Feuille publiée sous un nom neutre propre au site (empreinte du contenu et de l'URL du site), sans attribut
+     integrity : sa valeur, identique d'un site à l'autre quand la feuille l'est, signerait le parc. */ -}}
+{{- $bundle := $css | resources.Concat "css/style.css" | minify -}}
+{{- $bundle = $bundle | resources.Copy (printf "css/style.min.%s.css" (sha256 (printf "%s|%s" $bundle.Content site.BaseURL))) }}
+<link rel="stylesheet" href="{{ $bundle.RelPermalink }}">

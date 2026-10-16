@@ -1,0 +1,10 @@
+{{- /* Rappel de la mention financière renforcée en fin de contenu (params.pbn.disclaimerFinanceRenforce = true), sur
+     les pages qui portent `disclaimers: [finance]`. Mêmes conditions de type que conformite/disclaimers.html. */ -}}
+{{- if site.Params.pbn.disclaimerFinanceRenforce }}{{ with .Params.disclaimers }}{{ if in . "finance" }}
+{{- if or (partial "pbn/is-typeb.html" $) site.Params.pbn.disclaimersTypeA }}
+{{- $suf := cond (partial "pbn/is-article.html" $) "" "_page" }}
+<aside class="content-disclaimer disclaimer-finance disclaimer-finance-end" role="note">
+  <p>{{ i18n (printf "disclaimer_finance_renforce%s" $suf) }}</p>
+</aside>
+{{- end }}
+{{- end }}{{ end }}{{ end -}}

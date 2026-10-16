@@ -76,6 +76,8 @@ disclaimer_sante: "In no way replaces medical advice."
 disclaimer_finance: "This article in no way constitutes financial advice."
 disclaimer_sante_page: "In no way replaces medical advice."
 disclaimer_finance_page: "This page in no way constitutes financial advice."
+disclaimer_finance_renforce: "This article reflects solely the analysis of the editorial team, which alone is responsible for it. It constitutes neither investment advice, nor a personalised recommendation, nor a solicitation to buy or sell any financial product. Past performance is no indication of future performance, and any investment carries a risk of capital loss. Before making any decision, consult an authorised financial adviser."
+disclaimer_finance_renforce_page: "This page reflects solely the analysis of the editorial team, which alone is responsible for it. It constitutes neither investment advice, nor a personalised recommendation, nor a solicitation to buy or sell any financial product. Past performance is no indication of future performance, and any investment carries a risk of capital loss. Before making any decision, consult an authorised financial adviser."
 group_notice: "Promotional content, {{ .Name }} is published by upearly, a company of the datashake group"
 
 llms_about_title: "About"

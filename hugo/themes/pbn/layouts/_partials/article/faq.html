@@ -4,8 +4,8 @@
 {{- $qs := slice -}}
 {{- range .Params.faq }}{{ if reflect.IsMap . }}{{ if and .question .answer }}{{ $qs = $qs | append . }}{{ end }}{{ end }}{{ end -}}
 {{- with $qs }}
-          <section class="faq" aria-labelledby="pbn-faq-title">
-            <h2 id="pbn-faq-title">{{ i18n "faq" }}</h2>
+          <section class="faq" aria-labelledby="faq-title">
+            <h2 id="faq-title">{{ i18n "faq" }}</h2>
             {{- range . }}
             <details class="faq-item">
               <summary class="faq-question">{{ partial "pbn/annee.html" .question }}</summary>

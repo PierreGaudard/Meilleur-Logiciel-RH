@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.Locale | default site.Language.Lang }}" class="pbn-scheme-{{ site.Params.pbn.colors.scheme | default "light" }}">
+<html lang="{{ site.Language.Locale | default site.Language.Lang }}" class="scheme-{{ site.Params.pbn.colors.scheme | default "light" }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,10 @@
 {{ block "main" . }}{{ end }}
 </main>
 {{ partial "footer.html" . }}
-{{- $js := resources.Get "js/site.js" | minify | fingerprint }}
+{{- /* Script commun, publié sous un nom neutre propre au site (empreinte du contenu et de l'URL du site) : aucun nom ni
+     aucune empreinte de fichier commune aux sites qui partagent le thème. */ -}}
+{{- $js := resources.Get "js/site.js" | minify -}}
+{{- $js = $js | resources.Copy (printf "js/main.min.%s.js" (sha256 (printf "%s|%s" $js.Content site.BaseURL))) }}
 <script src="{{ $js.RelPermalink }}" defer></script>
 {{- partial "hooks/body-end.html" . }}
 </body>

@@ -21,6 +21,7 @@
     <div class="prose">
       {{ .Content }}
     </div>
+    {{- if .Params.disclaimers }}{{ partial "conformite/finance-fin.html" . }}{{ end }}
     {{- partial "hooks/page-after-content.html" . }}
   </div>
 </article>

@@ -1,4 +1,4 @@
-/* Thème pbn : feuille commune. Les couleurs, polices et réglages viennent des jetons posés dans le head. */
+/* Feuille commune. Les couleurs, polices et réglages viennent des jetons posés dans le head. */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -66,6 +66,9 @@ button, input { font: inherit; }
 .ranking-disclaimer { font-size: 0.88rem; font-style: italic; color: var(--c-muted); margin: 0.4rem 0 0.8rem; }
 .group-notice { font-size: 0.88rem; color: var(--c-muted); margin: 0.4rem 0; }
 .content-disclaimer { font-family: var(--f-ui); font-size: 0.9rem; font-weight: 600; padding: 0.7rem 1rem; margin: 0.6rem 0; border-left: 3px solid var(--c-accent); border-radius: calc(var(--radius) / 2); background: color-mix(in srgb, var(--c-accent) 10%, transparent); }
+.disclaimer-finance p { margin: 0; }
+.disclaimer-finance p + p { margin-top: 0.4rem; font-weight: 400; line-height: 1.5; }
+.disclaimer-finance-end { margin: 1.6rem 0; font-weight: 400; line-height: 1.5; }
 
 /* Héros de l'accueil */
 .hero { background: var(--c-hero-bg); color: var(--c-hero-text); }

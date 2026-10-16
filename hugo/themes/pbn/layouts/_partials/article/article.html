@@ -65,6 +65,7 @@
           </div>
           {{- if .Params.faq }}{{ partial "article/faq.html" . }}{{ end }}
           {{- if .Params.sources }}{{ partial "article/sources.html" . }}{{ end }}
+          {{- if .Params.disclaimers }}{{ partial "conformite/finance-fin.html" . }}{{ end }}
           {{ partial "hooks/article-after-content.html" . }}
           {{- with .GetTerms "tags" }}
           <ul class="post-tags">
