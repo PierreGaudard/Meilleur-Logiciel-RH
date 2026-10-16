@@ -101,7 +101,6 @@ Prix relevés sur les pages tarifs officielles des éditeurs en octobre 2026, ho
 </div>
 </div>
 <p><strong>Idéal si</strong> : vous gérez un ou plusieurs établissements dont les horaires changent chaque semaine et que le planning se fait encore en partie sur Excel à côté de Factorial.</p>
-<div style="text-align:center;margin-top:20px">Voir le site de Skello →</div>
 </div>
 
 <figure class="article-screenshot">

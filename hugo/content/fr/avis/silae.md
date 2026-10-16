@@ -52,8 +52,6 @@ Silae est un logiciel de paie utilisé par de nombreux cabinets d'expertise comp
 </div>
 </div>
 
-<div style="text-align:center;margin:16px 0">Voir Silae →</div>
-
 ## Silae, c'est quoi exactement ? {#presentation}
 
 **Silae** (prononcer « si-la-é », pas « slé ») est un logiciel de paie SaaS français édité depuis 2009 par la société Silae SAS, basée à Boulogne-Billancourt. La société a été fondée par Brice Mougenot et Charlie Vignon, et elle est passée sous la majorité du fonds américain Silver Lake en 2020. L'outil n'est pas grand public : il s'adresse aux **gestionnaires de paie** qualifiés, qu'ils travaillent en cabinet d'expertise comptable ou dans un service paie interne. C'est une nuance qui change tout pour comprendre la suite.
@@ -160,8 +158,6 @@ Le **moteur de calcul** est ce qui justifie la position dominante de Silae sur l
 La **DSN** est gérée nativement (mensuelle et événementielle), avec contrôles de cohérence avant transmission. Les retours d'organismes (URSSAF, caisses de retraite, mutuelle) sont récupérés directement dans l'outil. C'est fiable. Les **documents** sortants (bulletins PDF, attestations, soldes de tout compte) sont propres, normés, et envoyables directement aux salariés via MySilae sans étape manuelle.
 
 Silae se concentre sur le périmètre paie : le recrutement, les entretiens et la formation relèvent d'outils dédiés. C'est le **logiciel** qui assume son positionnement : faire la paie, et la faire bien. Les cabinets proposent souvent une stack hybride à leurs clients.
-
-<div style="text-align:center;margin:16px 0">Voir Silae →</div>
 
 ## Tarifs Silae 2026 : combien ça coûte vraiment ? {#tarifs}
 
@@ -384,8 +380,6 @@ Silae est pensé pour les professionnels, pas pour le grand public : la prise en
 
 Notre verdict tient en une phrase. Silae n'est pas un outil que tu choisis : c'est l'outil que ton cabinet a probablement déjà choisi pour toi. Et s'il l'a fait, il n'a pas tort. Comme alternative pour la TPE en autonomie, on recommande PayFit. Comme combo SIRH pour entreprise structurée qui veut garder Silae sur la paie, on recommande de regarder Lucca par-dessus.
 
-<div style="text-align:center;margin:16px 0">Voir Silae →</div>
-
 <div class="internal-links">
 <h3>Articles liés</h3>
 <ul>
@@ -402,7 +396,6 @@ Notre verdict tient en une phrase. Silae n'est pas un outil que tu choisis : c'e
 <h3>Silae ne te correspond pas ? Trouve le bon logiciel RH</h3>
 <p>Si tu cherches une alternative directement utilisable côté entreprise, on a un comparatif PayFit vs Silae complet, et un outil de recommandation rapide.</p>
 <div class="cta-buttons">
-Voir Silae →
 <a class="btn btn-primary" href="/trouver-mon-logiciel.html">
 Trouver mon logiciel RH
 </a>

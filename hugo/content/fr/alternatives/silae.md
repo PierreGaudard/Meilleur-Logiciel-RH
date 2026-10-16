@@ -145,14 +145,6 @@ Ce tableau résume les caractéristiques clés des **5 alternatives** face à Si
 </table>
 </div>
 
-<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0 28px">
-Essayer PayFit
-Essayer Sage Paie
-Essayer Cegid
-Essayer Nibelis
-Essayer Factorial
-</div>
-
 ## 1. PayFit : la paie automatisée tout-en-un {#payfit}
 
 <div class="alt-detail">
@@ -184,7 +176,6 @@ Essayer Factorial
 <figcaption>Interface PayFit, génération automatique des bulletins de paie</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : vous êtes une TPE ou PME de moins de 50 salariés, sans gestionnaire de paie dédié, et vous voulez produire vos bulletins sans vous former à la paie. Consultez notre <a href="/comparatifs/payfit-vs-silae.html">comparatif PayFit vs Silae</a> pour un face-à-face complet.</p>
-<div style="text-align:center;margin-top:20px">Essayer PayFit</div>
 </div>
 
 ## 2. Sage Paie : l'alternative historique {#sage}
@@ -219,7 +210,6 @@ Essayer Factorial
 <figcaption>Dashboard Sage Business Cloud Paie, module de visualisation des données</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : vous utilisez déjà Sage pour votre comptabilité ou gestion commerciale et cherchez une paie robuste qui s'intègre nativement avec vos outils existants.</p>
-<div style="text-align:center;margin-top:20px">Essayer Sage Paie</div>
 </div>
 
 ## 3. Cegid : la solution ETI et grands comptes {#cegid}
@@ -250,7 +240,6 @@ Essayer Factorial
 </div>
 </div>
 <p><strong>Idéal si</strong> : vous êtes une ETI ou un grand groupe (250+ salariés) avec des besoins multi-sociétés ou multi-pays, et vous voulez une plateforme HCM complète pour unifier paie et gestion des talents.</p>
-<div style="text-align:center;margin-top:20px">Essayer Cegid</div>
 </div>
 
 ## 4. Nibelis : l'externalisation paie haut de gamme {#nibelis}
@@ -285,7 +274,6 @@ Essayer Factorial
 <figcaption>Tableau de bord Nibelis, suivi et pilotage de la paie externalisée</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : vous avez plus de 100 salariés et vous voulez déléguer complètement la production paie à des experts. La tranquillité est totale.</p>
-<div style="text-align:center;margin-top:20px">Essayer Nibelis</div>
 </div>
 
 ## 5. Factorial : le SIRH complet avec paie intégrée {#factorial}
@@ -320,7 +308,6 @@ Essayer Factorial
 <figcaption>Interface Factorial, plateforme SIRH complète avec gestion des talents</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : vous êtes une PME de 20 à 300 salariés et vous voulez regrouper paie et SIRH dans un seul outil, avec un budget maîtrisé. Consultez notre <a href="/avis/payfit.html">avis PayFit</a> et notre <a href="/alternatives/payfit.html">page alternatives à PayFit</a> pour croiser les analyses.</p>
-<div style="text-align:center;margin-top:20px">Essayer Factorial</div>
 </div>
 
 ## Quelle alternative à Silae est faite pour vous ? {#quiz}

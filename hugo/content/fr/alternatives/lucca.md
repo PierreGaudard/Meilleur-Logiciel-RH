@@ -145,14 +145,6 @@ Avant de détailler chaque solution, voici un aperçu global des **5 alternative
 </table>
 </div>
 
-<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0 28px">
-Essayer Factorial
-Essayer PayFit
-Essayer Personio
-Essayer Eurecia
-Essayer Silae
-</div>
-
 ## 1. Factorial : le SIRH tout-en-un {#factorial}
 
 <div class="alt-detail">
@@ -186,7 +178,6 @@ Essayer Silae
 <figcaption>Interface Factorial : tableau de bord SIRH tout-en-un avec gestion des talents</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : vous utilisez actuellement 3 ou 4 modules Lucca et cherchez à simplifier votre suite RH. Retrouvez notre <a href="/comparatifs/payfit-vs-factorial.html">comparatif PayFit vs Factorial</a> et notre <a href="/avis/factorial.html">avis complet Factorial</a> pour aller plus loin.</p>
-<div style="text-align:center;margin-top:20px">Essayer Factorial</div>
 </div>
 
 ## 2. PayFit : la paie simplifiée à l'extrême {#payfit}
@@ -222,7 +213,6 @@ Essayer Silae
 <figcaption>Bulletin de paie PayFit : génération automatique en quelques clics</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : vous êtes une petite structure qui utilisait Lucca principalement pour Pagga (paie) et Figgo (congés), et qui veut un outil plus simple et autonome. Consultez notre <a href="/alternatives/payfit.html">page alternatives à PayFit</a> pour un autre angle de comparaison.</p>
-<div style="text-align:center;margin-top:20px">Essayer PayFit</div>
 </div>
 
 ## 3. Personio : le SIRH européen taillé pour l'international {#personio}
@@ -254,7 +244,6 @@ Essayer Silae
 </div>
 </div>
 <p><strong>Idéal si</strong> : vous avez des équipes dans plusieurs pays européens, vous recrutez activement, et vous cherchez un outil qui consolide vos données RH à l'échelle internationale.</p>
-<div style="text-align:center;margin-top:20px">Essayer Personio</div>
 </div>
 
 ## 4. Eurecia : le SIRH français avec un module QVT {#eurecia}
@@ -286,7 +275,6 @@ Essayer Silae
 </div>
 </div>
 <p><strong>Idéal si</strong> : vous êtes une PME française structurée, sensible à la QVT, et vous cherchez un éditeur indépendant avec un support réactif en français.</p>
-<div style="text-align:center;margin-top:20px">Essayer Eurecia</div>
 </div>
 
 ## 5. Silae : le moteur de paie expert {#silae}
@@ -322,7 +310,6 @@ Essayer Silae
 <figcaption>Interface My Silae : tableau de bord de gestion de la paie</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : votre paie est complexe (multi-CCN, multi-sites, cas spéciaux) et que vous voulez un moteur expert couplé à un SIRH tiers.</p>
-<div style="text-align:center;margin-top:20px">Essayer Silae</div>
 </div>
 
 ## Quelle alternative à Lucca est faite pour vous ? {#quiz}

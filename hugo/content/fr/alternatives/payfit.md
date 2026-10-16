@@ -154,14 +154,6 @@ Voici une vue d'ensemble des **5 alternatives** face à PayFit sur les critères
 </table>
 </div>
 
-<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0 28px">
-Essayer Factorial
-Essayer Silae
-Essayer Lucca
-Essayer Sage Paie
-Essayer Nibelis
-</div>
-
 ## 1. Factorial : le SIRH complet pour PME {#factorial}
 
 <div class="alt-detail">
@@ -196,7 +188,6 @@ Essayer Nibelis
 <figcaption>Interface Factorial, plateforme SIRH complète avec gestion des talents</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : vous avez un(e) RH dédié(e) et cherchez un outil unique pour gérer toute la chaîne RH. Consultez notre <a href="/comparatifs/payfit-vs-factorial.html">comparatif détaillé PayFit vs Factorial</a> pour un face-à-face complet.</p>
-<div style="text-align:center;margin-top:20px">Essayer Factorial →</div>
 </div>
 
 ## 2. Silae : la paie experte pour structures complexes {#silae}
@@ -233,7 +224,6 @@ Essayer Nibelis
 <figcaption>Interface My Silae, tableau de bord de gestion de la paie</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : votre paie est complexe (multi-conventions, multi-sites, cas particuliers) et que vous travaillez avec un cabinet comptable ou un gestionnaire paie expérimenté.</p>
-<div style="text-align:center;margin-top:20px">Essayer Silae →</div>
 </div>
 
 ## 3. Lucca : le SIRH modulaire français {#lucca}
@@ -266,7 +256,6 @@ Essayer Nibelis
 </div>
 </div>
 <p><strong>Idéal si</strong> : vous êtes une PME française structurée qui veut choisir ses modules à la carte, avec une excellente expérience utilisateur pour vos collaborateurs.</p>
-<div style="text-align:center;margin-top:20px">Essayer Lucca →</div>
 </div>
 
 ## 4. Sage Paie : l'option historique {#sage}
@@ -303,7 +292,6 @@ Essayer Nibelis
 <figcaption>Dashboard Sage Business Cloud Paie, module de visualisation des données</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : vous êtes déjà dans l'écosystème Sage (comptabilité, gestion commerciale) et cherchez une paie robuste qui s'intègre nativement avec vos outils existants.</p>
-<div style="text-align:center;margin-top:20px">Essayer Sage Paie →</div>
 </div>
 
 ## 5. Nibelis : l'externalisation paie haut de gamme {#nibelis}
@@ -340,7 +328,6 @@ Essayer Nibelis
 <figcaption>Tableau de bord Nibelis, suivi et pilotage de la paie externalisée</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : vous ne voulez pas gérer la paie en interne et préférez externaliser à des experts. Positionnement haut de gamme pour une tranquillité totale.</p>
-<div style="text-align:center;margin-top:20px">Essayer Nibelis →</div>
 </div>
 
 ## Comment choisir la bonne alternative ? {#choisir}

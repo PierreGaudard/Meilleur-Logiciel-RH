@@ -152,14 +152,6 @@ Voici la vue d'ensemble des **5 alternatives** face à Skello sur les critères 
 </table>
 </div>
 
-<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0 28px">
-Essayer Combo
-Essayer Snapshift
-Essayer Planday
-Essayer Factorial
-Essayer Sage Paie
-</div>
-
 ## 1. Combo : le concurrent direct {#combo}
 
 <div class="alt-detail">
@@ -190,7 +182,6 @@ Essayer Sage Paie
 </div>
 </div>
 <p><strong>Idéal si</strong> : tu veux un outil de planning complet avec une interface légère, surtout si tu es dans le retail ou les services à la personne.</p>
-<div style="text-align:center;margin-top:20px">Essayer Combo →</div>
 </div>
 
 ## 2. Snapshift : l'option économique pour TPE {#snapshift}
@@ -222,7 +213,6 @@ Essayer Sage Paie
 </div>
 </div>
 <p><strong>Idéal si</strong> : tu diriges une petite structure et que tu cherches un planning fiable au prix le plus bas, sans fonctionnalités superflues.</p>
-<div style="text-align:center;margin-top:20px">Essayer Snapshift →</div>
 </div>
 
 ## 3. Planday : le planning international {#planday}
@@ -254,7 +244,6 @@ Essayer Sage Paie
 </div>
 </div>
 <p><strong>Idéal si</strong> : tu gères des équipes dans plusieurs pays ou que tu utilises déjà Xero pour ta comptabilité.</p>
-<div style="text-align:center;margin-top:20px">Essayer Planday →</div>
 </div>
 
 ## 4. Factorial : le SIRH complet avec planning {#factorial}
@@ -291,7 +280,6 @@ Essayer Sage Paie
 <figcaption>Module de pointage et de suivi du temps de Factorial, intégré au SIRH</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : tu veux gérer le planning ET toute ta RH dans un seul outil. Consulte notre <a href="/avis/factorial.html">avis complet sur Factorial</a> pour le détail.</p>
-<div style="text-align:center;margin-top:20px">Essayer Factorial →</div>
 </div>
 
 ## 5. Sage Paie : la paie native plutôt que la pré-paie {#sage}
@@ -327,7 +315,6 @@ Essayer Sage Paie
 <figcaption>Production d'un bulletin de paie avec Sage Business Cloud Paie</figcaption>
 </figure>
 <p><strong>Idéal si</strong> : tu cherches surtout à produire la paie en interne et que tu gardes un outil de planning à côté. Voir notre <a href="/comparatifs/payfit-vs-silae.html">comparatif des solutions de paie</a> pour situer Sage.</p>
-<div style="text-align:center;margin-top:20px">Essayer Sage Paie →</div>
 </div>
 
 ## Comment choisir la bonne alternative ? {#choisir}

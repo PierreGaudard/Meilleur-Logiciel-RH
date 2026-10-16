@@ -163,7 +163,6 @@ Voici le panorama des cinq solutions. Les tarifs sont indicatifs et s'entendent 
 </div>
 </div>
 <p><strong>Idéal si</strong> : vous gérez des équipes postées et que vous préférez un pointage sur smartphone sans matériel dédié. Skello couvre le même besoin de pointage, sans matériel, avec une interface utilisée chaque jour par des équipes non administratives.</p>
-<div style="text-align:center;margin-top:20px">Découvrir Skello →</div>
 </div>
 
 ## 2. Combo : le planning des petits commerces {#combo}

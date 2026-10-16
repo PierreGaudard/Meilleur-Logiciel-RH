@@ -53,11 +53,6 @@ Deux solutions très populaires sur le marché français, mais des positionnemen
 </div>
 </div>
 
-<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0 32px">
-Essayer PayFit
-Essayer Factorial
-</div>
-
 ## Présentation des deux outils {#presentation}
 
 **PayFit** et **Factorial** sont nés la même année, en 2016, mais dans deux pays différents. PayFit a été fondé à Paris par des ingénieurs français, avec pour ambition de **simplifier la paie**, perçue comme un enfer administratif par les dirigeants de TPE. Factorial est né à Barcelone, avec une vision plus large : numériser l'ensemble des processus RH d'une PME, de l'embauche au départ.
@@ -81,9 +76,6 @@ Essayer Factorial
 <li>Gestion des bulletins multi-conventions</li>
 <li>Support francophone réactif</li>
 </ul>
-<div style="margin-top:16px;text-align:center">
-Essayer PayFit
-</div>
 </div>
 <div class="tool-card">
 <div class="tool-card-header">
@@ -103,9 +95,6 @@ Essayer PayFit
 <li>Tarif compétitif à partir de 20 salariés</li>
 <li>Intégrations avec les outils RH courants</li>
 </ul>
-<div style="margin-top:16px;text-align:center">
-Essayer Factorial
-</div>
 </div>
 </div>
 
@@ -249,11 +238,6 @@ Les données de paie sont parmi les plus sensibles qu'une entreprise manipule. S
 </tr>
 </tbody>
 </table>
-</div>
-
-<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0 32px">
-Essayer PayFit
-Essayer Factorial
 </div>
 
 ## Tarifs et coûts réels {#prix}
@@ -418,10 +402,6 @@ Si nous devions trancher : choisissez **PayFit si vous avez moins de 20 salarié
 <div class="cta-box">
 <h3>Pas encore décidé ?</h3>
 <p>Les deux outils proposent des démos gratuites. Testez avant de vous engager.</p>
-<div class="cta-buttons">
-Essayer PayFit →
-Essayer Factorial →
-</div>
 </div>
 
 <div class="internal-links">

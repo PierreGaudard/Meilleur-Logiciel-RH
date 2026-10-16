@@ -52,8 +52,6 @@ En 2026, Factorial est un <a href="https://www.service-public.gouv.fr/profession
 </div>
 </div>
 
-<div style="text-align:center;margin:16px 0">Essayer Factorial gratuitement</div>
-
 ## Factorial, c'est quoi ? {#presentation}
 
 On va être direct : si vous cherchez un SIRH qui fait tout (ou presque) sans vous ruiner, **Factorial** mérite sérieusement votre attention. Fondé en 2016 à Barcelone par Jordi Romero, Bernat Farrero et Pau Ramon Revilla, ce logiciel a été pensé dès le départ pour les PME qui n'ont ni le budget ni la patience de jongler entre 5 outils différents. Et visiblement, ça a marché.
@@ -178,8 +176,6 @@ Le **recrutement** est intégré à Factorial. L'ATS intégré permet de publier
 Côté **performance**, c'est aussi bien fait. Campagnes d'entretiens annuels, objectifs OKR, évaluations 360, 1-on-1 entre managers et collaborateurs... Le module performance de Factorial couvre les besoins courants d'entretiens et d'objectifs, sans coût supplémentaire.
 
 Maintenant, un point d'attention : la **paie française**. Factorial prépare les variables (heures, absences, primes, notes de frais) mais ne produit pas les bulletins. Il faut exporter vers **Silae** ou votre cabinet comptable. La paie native existe en Espagne et au Portugal.
-
-<div style="text-align:center;margin:16px 0">Essayer Factorial gratuitement</div>
 
 ## Tarifs Factorial 2026 : combien ça coûte vraiment ? {#tarifs}
 
@@ -435,15 +431,12 @@ Le point d'attention principal, c'est la **paie**. Si vous n'avez pas de solutio
 
 <div class="info-box">
 <strong>Envie de voir l'outil en vrai ?</strong> Factorial propose des démos vidéo complètes sur son site. Vous pouvez aussi demander une <strong>démo personnalisée gratuite</strong> pour voir comment ça s'applique à votre boîte. C'est le meilleur moyen de se faire un avis avant de s'engager.
-<br/><br/>
-Demander une démo gratuite sur factorialhr.com
 </div>
 
 <div class="cta-box">
 <h3>Testez Factorial gratuitement pendant 14 jours</h3>
 <p>Essai gratuit, sans carte bancaire, sans engagement. Jugez par vous-même.</p>
 <div class="cta-buttons">
-Essayer Factorial
 <a class="btn btn-outline-white" href="/trouver-mon-logiciel.html" style="border-radius:99px">Comparer les logiciels RH</a>
 </div>
 </div>

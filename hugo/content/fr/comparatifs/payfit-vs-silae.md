@@ -53,11 +53,6 @@ D'un côté la startup qui a démocratisé la paie en ligne. De l'autre, le mote
 </div>
 </div>
 
-<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0 32px">
-Essayer PayFit
-Découvrir Silae
-</div>
-
 ## Présentation des deux outils {#presentation}
 
 On compare souvent PayFit et Silae comme s’ils étaient interchangeables. En réalité, ces deux logiciels ne jouent pas dans la même catégorie. **PayFit** a été créé en 2016 à Paris par des ingénieurs qui voulaient permettre à n’importe quel dirigeant de gérer sa paie sans passer par un cabinet comptable. Le pari était audacieux : transformer un sujet réputé imbuvable en quelque chose d’aussi simple qu’une déclaration d’impôts en ligne.
@@ -83,9 +78,6 @@ On compare souvent PayFit et Silae comme s’ils étaient interchangeables. En r
 <li>Support francophone réactif par chat</li>
 <li>Modules RH intégrés (congés, notes de frais)</li>
 </ul>
-<div style="margin-top:16px;text-align:center">
-Essayer PayFit
-</div>
 </div>
 <div class="tool-card">
 <div class="tool-card-header">
@@ -105,9 +97,6 @@ Essayer PayFit
 <li>7,5 millions de bulletins édités par mois</li>
 <li>Coffre-fort numérique et dématérialisation</li>
 </ul>
-<div style="margin-top:16px;text-align:center">
-Découvrir Silae
-</div>
 </div>
 </div>
 
@@ -266,11 +255,6 @@ Les deux éditeurs prennent la sécurité des données au sérieux. **PayFit** h
 </tr>
 </tbody>
 </table>
-</div>
-
-<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:24px 0 32px">
-Essayer PayFit
-Découvrir Silae
 </div>
 
 ## Tarifs et coûts réels {#prix}
@@ -435,10 +419,6 @@ Notre recommandation tient en une phrase : **choisissez PayFit si vous gérez la
 <div class="cta-box">
 <h3>Prêt à choisir ?</h3>
 <p>Testez PayFit en démo ou contactez un partenaire Silae certifié près de chez vous.</p>
-<div class="cta-buttons">
-Essayer PayFit →
-Découvrir Silae →
-</div>
 </div>
 
 <div class="internal-links">

@@ -52,8 +52,6 @@ PayFit est en 2026 un logiciel de paie automatisé idéal pour les TPE et startu
 </div>
 </div>
 
-<div style="text-align:center;margin:16px 0">Essayer PayFit</div>
-
 ## PayFit, c'est quoi ? {#presentation}
 
 **PayFit** est un logiciel de paie et de gestion RH fondé en 2015 par Firmin Zocchetto, Ghislain de Fontenay et Florian Fournier. L'idée fondatrice est simple : rendre la paie accessible à n'importe quel dirigeant de TPE ou de startup, sans passer par un expert-comptable ni une formation longue. Le siège de l'entreprise est à Paris, et l'outil est aujourd'hui utilisé par **plus de 10 000 entreprises** en France, en Espagne, au Royaume-Uni et en Allemagne.
@@ -156,8 +154,6 @@ La **paie automatisée** est le point fort de PayFit. Les bulletins de salaire s
 Le **module congés** est fonctionnel et bien intégré : les salariés soumettent leurs demandes depuis leur espace personnel, le manager valide, et les absences sont automatiquement répercutées sur le bulletin de paie. Les **notes de frais** suivent le même principe avec un scan par photo des justificatifs et un remboursement directement sur le bulletin du mois.
 
 PayFit est idéalement adapté aux structures jusqu'à 50 salariés et peut être complété par des outils RH dédiés (recrutement, formation, **GPEC**) au-delà. Ce **logiciel de paie** excelle dans son domaine et s'intègre à des outils spécialisés.
-
-<div style="text-align:center;margin:16px 0">Essayer PayFit</div>
 
 ## Tarifs PayFit 2026 : combien ça coûte vraiment ? {#tarifs}
 
@@ -357,11 +353,7 @@ Comment PayFit se positionne-t-il face aux principales alternatives du **marché
 </table>
 </div>
 
-<div style="text-align:center;margin:16px 0">Essayer PayFit</div>
-
 En résumé, PayFit se positionne sur le segment de la **paie automatisée** pour les petites structures. Si votre priorité est la paie et que vous avez moins de 50 salariés, c'est une solution très adaptée. Si vous cherchez un **SIRH complet** avec recrutement, formation et gestion des talents, Factorial ou Lucca proposent un périmètre plus large. Si vous travaillez déjà avec un expert-comptable sur une paie très complexe, **Silae** est une solution historique reconnue.
-
-<div style="text-align:center;margin:16px 0">Essayer PayFit</div>
 
 <div class="info-box">
 Pour un comparatif détaillé, consultez notre <a href="/comparatifs/payfit-vs-factorial.html" style="color:#15803d;font-weight:600">PayFit vs Factorial 2026</a> ou notre guide des <a href="/alternatives/payfit.html" style="color:#15803d;font-weight:600">alternatives à PayFit</a>.
@@ -431,7 +423,6 @@ Notre verdict est clair : si vous êtes une TPE, une startup ou une PME de moins
 <h3>Trouvez le logiciel RH adapté à votre entreprise</h3>
 <p>PayFit ne correspond pas à votre profil ? Utilisez notre outil de recommandation pour trouver la solution idéale en quelques clics.</p>
 <div class="cta-buttons">
-Essayer PayFit →
 <a class="btn btn-primary" href="/trouver-mon-logiciel.html">
 Trouver mon logiciel RH
 </a>

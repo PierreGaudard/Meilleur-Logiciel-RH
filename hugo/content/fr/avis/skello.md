@@ -52,8 +52,6 @@ Skello est un logiciel français de planning RH pour les équipes terrain. Calib
 </div>
 </div>
 
-<div style="text-align:center;margin:16px 0">Voir Skello →</div>
-
 ## Skello, c'est quoi exactement ? {#presentation}
 
 **Skello** est un éditeur français de logiciel de planning RH, fondé en 2016 par Quitterie Mathelin-Moreau et Emmanuelle Fauchier-Magnan. La société est basée à Paris et compte plus de 250 collaborateurs en 2026. Skello équipe aujourd'hui plus de 13 000 entreprises et environ 250 000 **employés** au quotidien, principalement dans la restauration, l'hôtellerie, le retail et la santé.
@@ -158,8 +156,6 @@ Voici le détail de Skello module par module.
 Le vrai point fort de Skello, c'est l'**efficace** gestion des contraintes spécifiques aux secteurs terrain. Pour un restaurateur, le logiciel comprend qu'un service du dimanche soir avec coupure midi-soir mérite une majoration et une indemnité de coupure. Pour un retail, il sait qu'un employé étudiant avec un plafond de 24h hebdomadaires ne peut pas être planifié au-delà. Ce niveau de précision sectorielle, c'est ce qui fait la différence avec un planning Excel ou un outil généraliste.
 
 L'**application** mobile est l'autre force majeure. Les serveurs, cuisiniers, vendeurs s'en servent vraiment. Ils consultent leur planning, demandent à échanger un créneau avec un collègue (workflow validé par le manager), reçoivent les annonces de la direction. L'adoption tourne autour de 80-90% selon les retours qu'on a recueillis, ce qui est très élevé pour des outils RH dans ces secteurs.
-
-<div style="text-align:center;margin:16px 0">Voir Skello →</div>
 
 ## Skello prix 2026 : combien ça coûte vraiment ? {#tarifs}
 
@@ -396,8 +392,6 @@ Skello brille sur tout ce qui touche au **planning** et aux contraintes sectorie
 
 Skello se concentre sur le planning et le temps de travail. Pour couvrir un périmètre RH plus large (paie, recrutement, entretiens), tu peux l'associer à un autre outil : Skello + Silae via cabinet, ou Skello + Factorial pour le SIRH siège. C'est une combinaison qui marche très bien et qui colle à la réalité opérationnelle des secteurs terrain.
 
-<div style="text-align:center;margin:16px 0">Voir Skello →</div>
-
 <div class="internal-links">
 <h3>Articles liés</h3>
 <ul>
@@ -414,7 +408,6 @@ Skello se concentre sur le planning et le temps de travail. Pour couvrir un pér
 <h3>Skello ne te correspond pas ? Trouve le bon logiciel</h3>
 <p>Si tu cherches un planning RH plus généraliste ou un SIRH complet, on a un outil de recommandation rapide et un guide complet des alternatives.</p>
 <div class="cta-buttons">
-Voir Skello →
 <a class="btn btn-primary" href="/trouver-mon-logiciel.html">
 Trouver mon logiciel RH
 </a>

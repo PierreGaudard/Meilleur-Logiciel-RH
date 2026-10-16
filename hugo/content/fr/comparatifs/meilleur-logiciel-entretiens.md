@@ -139,7 +139,6 @@ Empowill est classé en première position grâce à la boucle entretiens → co
 </div>
 </div>
 <p><strong>Pour qui ?</strong> Les DRH et responsables RH qui veulent un outil taillé pour les campagnes d'entretiens. Si votre priorité c'est la gestion des talents (entretiens, compétences, formation, revue du personnel), Empowill est un choix pertinent en 2026.</p>
-<div style="text-align:center;margin-top:20px">Découvrir Empowill</div>
 </div>
 
 ## <span class="ranking-badge silver">2</span> Lucca : le SIRH modulaire avec un bon module entretiens {#lucca}
@@ -170,7 +169,6 @@ Empowill est classé en première position grâce à la boucle entretiens → co
 </div>
 </div>
 <p><strong>Pour qui ?</strong> Les PME qui utilisent déjà Lucca pour d'autres briques (congés, frais) et veulent ajouter la gestion des entretiens dans le même environnement. Notre <a href="/alternatives/lucca.html">page alternatives à Lucca</a> donne un autre éclairage.</p>
-<div style="text-align:center;margin-top:20px">Voir Lucca</div>
 </div>
 
 ## <span class="ranking-badge bronze">3</span> Elevo : la performance continue et les entretiens 360 {#elevo}
@@ -201,7 +199,6 @@ Empowill est classé en première position grâce à la boucle entretiens → co
 </div>
 </div>
 <p><strong>Pour qui ?</strong> Les entreprises avec une culture de feedback continu, qui veulent aller au-delà de l'entretien annuel classique.</p>
-<div style="text-align:center;margin-top:20px">Voir Elevo</div>
 </div>
 
 ## <span class="ranking-badge rank4">4</span> Factorial : le SIRH tout-en-un avec un module entretiens {#factorial}
@@ -232,7 +229,6 @@ Empowill est classé en première position grâce à la boucle entretiens → co
 </div>
 </div>
 <p><strong>Pour qui ?</strong> Les PME qui veulent un SIRH complet dont les entretiens ne sont pas la priorité absolue. Si vous avez surtout besoin de paie + congés + des entretiens intégrés, Factorial coche les cases.</p>
-<div style="text-align:center;margin-top:20px">Essayer Factorial</div>
 </div>
 
 ## <span class="ranking-badge rank5">5</span> Skillup : la formation d'abord, les entretiens en complément {#skillup}
@@ -262,7 +258,6 @@ Empowill est classé en première position grâce à la boucle entretiens → co
 </div>
 </div>
 <p><strong>Pour qui ?</strong> Les responsables formation qui veulent un outil de formation complet avec un volet entretiens intégré. Si votre priorité c'est d'abord la formation et ensuite les entretiens, Skillup a du sens.</p>
-<div style="text-align:center;margin-top:20px">Voir Skillup</div>
 </div>
 
 <div class="cta-box">
