@@ -1,0 +1,17 @@
+{{- /* FAQ visible (params.pbn.faqVisible = true) : questions du champ `faq` (question, answer) en sections repliables,
+     en fin d'article. Le JSON-LD FAQPage est produit dans tous les cas (head/jsonld.html). */ -}}
+{{- if site.Params.pbn.faqVisible }}
+{{- $qs := slice -}}
+{{- range .Params.faq }}{{ if reflect.IsMap . }}{{ if and .question .answer }}{{ $qs = $qs | append . }}{{ end }}{{ end }}{{ end -}}
+{{- with $qs }}
+          <section class="faq" aria-labelledby="pbn-faq-title">
+            <h2 id="pbn-faq-title">{{ i18n "faq" }}</h2>
+            {{- range . }}
+            <details class="faq-item">
+              <summary class="faq-question">{{ partial "pbn/annee.html" .question }}</summary>
+              <div class="faq-answer">{{ partial "pbn/annee.html" .answer | markdownify }}</div>
+            </details>
+            {{- end }}
+          </section>
+{{- end }}
+{{- end -}}

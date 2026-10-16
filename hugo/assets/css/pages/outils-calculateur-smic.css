@@ -1,0 +1,183 @@
+.prose .smic-hero .mlrh-container {max-width: 1100px; margin: 0 auto;}
+.prose .smic-info-card {background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);}
+.prose .smic-info-card h2 {font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--primary-light);}
+.prose .smic-values-grid {display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;}
+.prose .smic-value-item {background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      text-align: center;}
+.prose .smic-value-item .value-label {font-size: .8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 6px;}
+.prose .smic-value-item .value-amount {font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);}
+.prose .smic-value-item .value-note {font-size: .75rem;
+      color: var(--text-muted);
+      margin-top: 4px;}
+.prose .smic-calculator {background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);}
+.prose .smic-calculator h2 {font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 24px;}
+.prose .calc-inputs {display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);}
+.prose .calc-field label {display: block;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;}
+.prose .calc-field input,
+.prose .calc-field select {width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: .95rem;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color .15s;}
+.prose .calc-field input:focus,
+.prose .calc-field select:focus {border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(22,163,74,.1);}
+.prose .calc-field .field-help {font-size: .75rem;
+      color: var(--text-muted);
+      margin-top: 4px;}
+.prose .calc-results {display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;}
+.prose .result-item {background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;}
+.prose .result-item .result-label {font-size: .78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 4px;}
+.prose .result-item .result-value {font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);}
+.prose .result-item.result-highlight {background: var(--primary-light);
+      border-color: #bbf7d0;}
+.prose .result-item.result-highlight .result-value {color: var(--primary-dark);}
+.prose .smic-content {padding: 56px 24px;}
+.prose .smic-content .mlrh-container {max-width: 800px;}
+.prose .smic-content h2 {font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 48px 0 16px;
+      letter-spacing: -.01em;}
+.prose .smic-content h2:first-child {margin-top: 0;}
+.prose .smic-content h3 {font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 28px 0 10px;}
+.prose .smic-content p {color: var(--text-muted);
+      font-size: .95rem;
+      line-height: 1.75;
+      margin-bottom: 16px;}
+.prose .smic-content ul,
+.prose .smic-content ol {color: var(--text-muted);
+      font-size: .95rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      padding-left: 24px;}
+.prose .smic-content li {margin-bottom: 6px;}
+.prose .smic-content strong {color: var(--text);}
+.prose .smic-table-wrap {overflow-x: auto;
+      margin: 20px 0 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);}
+.prose .smic-table {width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;}
+.prose .smic-table thead {background: var(--primary-light);}
+.prose .smic-table th {padding: 12px 16px;
+      text-align: left;
+      font-weight: 700;
+      font-size: .8rem;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      border-bottom: 2px solid #bbf7d0;}
+.prose .smic-table td {padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);}
+.prose .smic-table tbody tr:last-child td {border-bottom: none;}
+.prose .smic-table tbody tr:hover {background: var(--bg);}
+.prose .smic-table .highlight-row {background: var(--primary-light);
+      font-weight: 700;}
+.prose .smic-faq {margin-top: 40px;}
+.prose .mlrh-faq-item {background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 8px;}
+.prose .mlrh-faq-question {padding: 16px 20px;
+      font-weight: 700;
+      font-size: .92rem;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;}
+.prose .mlrh-faq-question:hover {color: var(--primary);}
+.prose .mlrh-faq-item.open .faq-toggle {transform: rotate(45deg);}
+.prose .mlrh-faq-answer {display: none;
+      padding: 0 20px 16px;
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.75;}
+.prose .mlrh-faq-item.open .mlrh-faq-answer {display: block;}
+.prose .smic-tool-section {background: var(--bg);
+      padding: 48px 24px;}
+.prose .smic-tool-section .mlrh-container {max-width: 900px;}
+@media (max-width: 768px) {
+.prose .smic-values-grid {grid-template-columns: 1fr 1fr; gap: 12px;}
+.prose .smic-value-item .value-amount {font-size: 1.2rem;}
+.prose .smic-calculator {padding: 20px;}
+.prose .calc-inputs {grid-template-columns: 1fr; gap: 14px;}
+.prose .calc-results {grid-template-columns: 1fr 1fr; gap: 10px;}
+.prose .smic-tool-section {padding: 32px 16px;}
+.prose .smic-content {padding: 40px 16px;}
+.prose .smic-content h2 {font-size: 1.2rem; margin-top: 36px;}
+.prose .smic-info-card {padding: 20px;}
+}
+@media (max-width: 480px) {
+.prose .smic-values-grid {grid-template-columns: 1fr;}
+.prose .calc-results {grid-template-columns: 1fr;}
+.prose .smic-table {font-size: .8rem;}
+.prose .smic-table th,
+.prose .smic-table td {padding: 8px 10px;}
+}

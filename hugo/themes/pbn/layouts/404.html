@@ -1,0 +1,15 @@
+{{ define "main" }}
+<section class="error-page">
+  <div class="container container-narrow">
+    <p class="error-code">404</p>
+    <h1 class="page-title">{{ i18n "error_404_title" }}</h1>
+    <p>{{ i18n "error_404_text" }}</p>
+    <p class="error-links">
+      <a href="{{ site.Home.RelPermalink }}" class="btn btn-primary">{{ i18n "error_404_home" }}</a>
+      {{- with partial "pbn/blog-page.html" . }}
+      <a href="{{ .RelPermalink }}" class="btn btn-ghost">{{ i18n "error_404_blog" }}</a>
+      {{- end }}
+    </p>
+  </div>
+</section>
+{{ end }}

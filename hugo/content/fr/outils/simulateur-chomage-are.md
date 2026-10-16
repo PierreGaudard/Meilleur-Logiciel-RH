@@ -1,0 +1,253 @@
+---
+title: "Simulateur allocation chômage (ARE) 2026"
+seoTitle: "Simulateur chômage ARE 2026 : calcul allocations gratuit"
+description: "Simulateur gratuit d'allocation chômage ARE 2026. Calculez en ligne le montant et la durée de vos allocations chômage selon les règles France Travail en vigueur."
+lastmod: "2026-10-15T16:49:03+02:00"
+css: "outils-simulateur-chomage-are"
+js:
+  - "outils-simulateur-chomage-are"
+jsonldExtra:
+  - "{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"La démission ouvre-t-elle droit au chômage ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"En principe, la démission ne donne pas droit aux allocations chômage. Cependant, certaines démissions dites légitimes ouvrent des droits : démission pour suivre un conjoint, démission suite à un non-paiement de salaire, ou démission pour création d'entreprise après 5 ans d'activité salariée. Depuis 2019, les salariés ayant au moins 5 ans d'ancienneté et porteurs d'un projet professionnel réel et sérieux peuvent également bénéficier de l'ARE après démission, sous réserve de validation par une commission paritaire.\"}}, {\"@type\": \"Question\", \"name\": \"Peut-on cumuler ARE et activité partielle ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Oui, il est possible de cumuler partiellement l'ARE avec une activité salariée. France Travail applique un mécanisme de cumul : les revenus d'activité sont partiellement déduits de l'allocation. Concrètement, 70% du salaire brut mensuel est soustrait du montant mensuel de l'ARE. Le cumul total (salaire + allocation) ne peut pas dépasser l'ancien salaire brut. Les jours non indemnisés repoussent d'autant la fin de droits.\"}}, {\"@type\": \"Question\", \"name\": \"Les allocations chômage sont-elles imposables ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Oui, les allocations chômage sont soumises à l'impôt sur le revenu. Elles doivent être déclarées dans la catégorie des traitements et salaires. France Travail prélève directement le prélèvement à la source sur le montant brut de l'ARE. En revanche, les allocations chômage ne sont pas soumises aux cotisations sociales classiques, mais à une contribution de 3% pour la retraite complémentaire et à la CSG/CRDS.\"}}, {\"@type\": \"Question\", \"name\": \"Quand commence le versement des allocations ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Le versement de l'ARE ne commence pas immédiatement après l'inscription à France Travail. Il faut respecter un délai de carence incompressible de 7 jours calendaires, auquel s'ajoute un différé congés payés (correspondant aux indemnités compensatrices de congés payés) et éventuellement un différé spécifique lié aux indemnités supra-légales de rupture. En général, comptez entre 10 et 30 jours avant le premier versement.\"}}, {\"@type\": \"Question\", \"name\": \"Comment est calculé le différé d'indemnisation ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Le différé d'indemnisation se compose de trois éléments : le délai d'attente de 7 jours (systématique), le différé congés payés (indemnité compensatrice de congés payés divisée par le salaire journalier de référence) et le différé spécifique (indemnités supra-légales de rupture divisées par 102.4, plafonné à 150 jours). Ces délais se cumulent et repoussent la date de début de versement de l'ARE.\"}}]}"
+  - "{\"@context\": \"https://schema.org\", \"@type\": \"WebApplication\", \"name\": \"Simulateur allocation chômage ARE 2026\", \"url\": \"https://meilleur-logiciel-rh.fr/outils/simulateur-chomage-are.html\", \"applicationCategory\": \"FinanceApplication\", \"operatingSystem\": \"Web\", \"offers\": {\"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"EUR\"}, \"description\": \"Calculez gratuitement le montant et la durée de vos allocations chômage ARE selon les règles France Travail 2026.\", \"inLanguage\": \"fr-FR\", \"provider\": {\"@type\": \"Organization\", \"name\": \"MLRH\", \"url\": \"https://meilleur-logiciel-rh.fr\"}}"
+---
+
+Estimez le montant et la durée de vos allocations chômage en quelques clics. Calcul basé sur les règles France Travail en vigueur.
+
+<section class="calc-section">
+<div class="calc-wrap">
+<div class="calc-card">
+<h2>Calculez vos allocations chômage</h2>
+<div class="calc-grid">
+<div class="calc-field">
+<label for="calc-age">Votre âge à la date de fin de contrat</label>
+<input id="calc-age" max="67" min="16" placeholder="Ex : 35" type="number" value=""/>
+</div>
+<div class="calc-field">
+<label for="calc-salaire">Salaire brut mensuel moyen (12 derniers mois)</label>
+<div class="input-wrap">
+<input id="calc-salaire" min="0" placeholder="Ex : 2800" step="100" type="number" value=""/>
+<span class="suffix">EUR</span>
+</div>
+</div>
+<div class="calc-field">
+<label for="calc-motif">Type de fin de contrat</label>
+<select id="calc-motif">
+<option disabled="" selected="" value="">Sélectionnez un motif</option>
+<option value="licenciement">Licenciement</option>
+<option value="rupture-conv">Rupture conventionnelle</option>
+<option value="fin-cdd">Fin de CDD</option>
+<option value="demission-leg">Démission légitime</option>
+</select>
+</div>
+<div class="calc-field">
+<label for="calc-duree">Durée d'emploi sur les 24 derniers mois</label>
+<select id="calc-duree">
+<option disabled="" selected="" value="">Durée d'emploi</option>
+<option value="6">6 mois</option>
+<option value="7">7 mois</option>
+<option value="8">8 mois</option>
+<option value="9">9 mois</option>
+<option value="10">10 mois</option>
+<option value="11">11 mois</option>
+<option value="12">12 mois</option>
+<option value="13">13 mois</option>
+<option value="14">14 mois</option>
+<option value="15">15 mois</option>
+<option value="16">16 mois</option>
+<option value="17">17 mois</option>
+<option value="18">18 mois</option>
+<option value="19">19 mois</option>
+<option value="20">20 mois</option>
+<option value="21">21 mois</option>
+<option value="22">22 mois</option>
+<option value="23">23 mois</option>
+<option value="24">24 mois</option>
+</select>
+</div>
+<div class="calc-field full">
+<label>Avez-vous déjà perçu des allocations chômage ?</label>
+<div class="calc-radio-group">
+<label><input checked="" name="calc-already" type="radio" value="non"/> Non</label>
+<label><input name="calc-already" type="radio" value="oui"/> Oui</label>
+</div>
+</div>
+<div class="calc-field full">
+<button class="calc-btn" id="calc-submit" type="button">Calculer mes allocations</button>
+</div>
+</div>
+<div class="calc-results" id="calc-results">
+<h3>Résultat de votre simulation</h3>
+<div style="background:var(--primary-light);border-radius:12px;padding:28px;text-align:center;margin-bottom:20px">
+<div style="font-size:.85rem;font-weight:600;color:var(--primary-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Allocation mensuelle nette estimée</div>
+<div id="res-mensuel" style="font-size:2.4rem;font-weight:900;color:var(--primary-dark)">--</div>
+<div style="font-size:.85rem;color:var(--text-muted);margin-top:8px">par mois (30 jours)</div>
+</div>
+<div style="text-align:center;margin-bottom:16px">
+<button onclick="var d=document.getElementById('are-detail');d.style.display=d.style.display==='none'?'block':'none';this.textContent=d.style.display==='none'?'Voir le détail du calcul':'Masquer le détail'" style="background:none;border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-size:.85rem;font-weight:600;color:var(--primary);cursor:pointer;font-family:inherit" type="button">Voir le détail du calcul</button>
+</div>
+<div id="are-detail" style="display:none">
+<div class="result-grid">
+<div class="result-item">
+<div class="result-label">Salaire journalier de référence (SJR)</div>
+<div class="result-value" id="res-sjr">--</div>
+</div>
+<div class="result-item">
+<div class="result-label">Allocation journalière brute</div>
+<div class="result-value" id="res-are-brut">--</div>
+</div>
+<div class="result-item">
+<div class="result-label">Allocation journalière nette</div>
+<div class="result-value" id="res-are-net">--</div>
+</div>
+<div class="result-item">
+<div class="result-label">Durée d'indemnisation maximale</div>
+<div class="result-value" id="res-duree">--</div>
+</div>
+<div class="result-item">
+<div class="result-label">Différé d'indemnisation (délai de carence)</div>
+<div class="result-value" id="res-carence">--</div>
+<div class="result-note">7 jours incompressibles + différé congés payés</div>
+</div>
+<div class="result-item full">
+<div class="salary-bar-wrap">
+<div class="salary-bar-label">
+<span>Pourcentage du salaire net maintenu</span>
+<strong id="res-pourcent">--%</strong>
+</div>
+<div class="salary-bar">
+<div class="salary-bar-fill" id="res-bar" style="width:0%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="degres-warning" id="degres-warning">
+<strong>Dégressivité applicable :</strong> Votre salaire brut dépasse 4 915 EUR/mois et vous avez moins de 57 ans. Après 6 mois d'indemnisation, votre allocation journalière sera réduite de 30%. Le montant après dégressivité ne peut toutefois pas descendre en dessous de 92,12 EUR/jour.
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="content-section">
+<div class="content-wrap">
+<h2>Comment est calculée l'allocation chômage en 2026 ?</h2>
+<p>Le calcul de l'allocation d'aide au retour à l'emploi (ARE) repose sur un mécanisme précis défini par France Travail (anciennement Pôle emploi). Comprendre ce mécanisme est essentiel pour anticiper ses revenus pendant une période de chômage. Voici comment fonctionne le calcul, étape par étape.</p>
+<p><strong>Le salaire journalier de référence (SJR)</strong> constitue la base de tout le calcul. Il s'obtient en divisant la totalité des salaires bruts perçus au cours des 24 derniers mois (ou 36 mois pour les plus de 53 ans) par le nombre de jours calendaires de la période de référence. Pour simplifier, si vous connaissez votre salaire brut mensuel moyen, on peut utiliser la formule suivante : SJR = (salaire brut mensuel x 12) / 365. Ce calcul donne un SJR quotidien qui servira de point de départ pour déterminer votre allocation.</p>
+<p><strong>Deux formules de calcul</strong> sont ensuite appliquées en parallèle, et France Travail retient la plus avantageuse pour le demandeur d'emploi :</p>
+<ul>
+<li><strong>Formule 1 :</strong> 40,4 % du SJR + 13,18 EUR de part fixe journalière (montant 2026). Cette formule est généralement plus favorable pour les salaires moyens et bas.</li>
+<li><strong>Formule 2 :</strong> 57 % du SJR. Cette formule bénéficie davantage aux salaires modestes, car elle représente un pourcentage plus élevé du salaire de référence.</li>
+</ul>
+<p>Le montant retenu est le plus élevé des deux, avec deux garde-fous importants. D'une part, un <strong>plancher à 31,97 EUR par jour</strong> garantit un minimum d'indemnisation. D'autre part, un <strong>plafond à 75 % du SJR</strong> empêche l'allocation de dépasser les trois quarts du salaire de référence quotidien. En pratique, ce plafond ne s'applique que rarement, car les formules de calcul aboutissent généralement à un montant inférieur.</p>
+<p>Pour obtenir le montant net, il faut déduire environ <strong>3 % de cotisation retraite complémentaire</strong> (prélevée sur l'ARE brute). Le prélèvement à la source de l'impôt sur le revenu peut également s'appliquer selon votre taux d'imposition. Le simulateur ci-dessus vous donne une estimation du montant net avant impôt sur le revenu.</p>
+<p>Prenons un exemple concret : un salarié qui percevait 2 500 EUR bruts par mois. Son SJR est de (2 500 x 12) / 365 = 82,19 EUR. La formule 1 donne : 82,19 x 0,404 + 13,18 = 46,38 EUR. La formule 2 donne : 82,19 x 0,57 = 46,85 EUR. On retient 46,85 EUR (la plus favorable). Le plafond est de 82,19 x 0,75 = 61,64 EUR : on est bien en dessous. Après déduction de la cotisation retraite (environ 3 %), l'allocation nette quotidienne s'établit autour de 45,44 EUR, soit environ 1 363 EUR par mois.</p>
+<h2>Tableau des allocations chômage selon le salaire</h2>
+<p>Pour vous donner une vision rapide, voici un tableau récapitulatif des allocations estimées selon différents niveaux de salaire brut mensuel. Ces montants sont calculés pour un salarié de moins de 53 ans, sans dégressivité, sur la base des règles en vigueur en 2026.</p>
+<div class="table-wrap">
+<table class="content-table">
+<thead>
+<tr>
+<th>Salaire brut mensuel</th>
+<th>SJR</th>
+<th>ARE journalière brute</th>
+<th>ARE mensuelle nette (30 j.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 500 EUR</td>
+<td>49,32 EUR</td>
+<td>31,97 EUR</td>
+<td>930 EUR</td>
+</tr>
+<tr>
+<td>2 000 EUR</td>
+<td>65,75 EUR</td>
+<td>39,75 EUR</td>
+<td>1 157 EUR</td>
+</tr>
+<tr>
+<td>2 500 EUR</td>
+<td>82,19 EUR</td>
+<td>46,85 EUR</td>
+<td>1 363 EUR</td>
+</tr>
+<tr>
+<td>3 000 EUR</td>
+<td>98,63 EUR</td>
+<td>53,04 EUR</td>
+<td>1 543 EUR</td>
+</tr>
+<tr>
+<td>3 500 EUR</td>
+<td>115,07 EUR</td>
+<td>59,67 EUR</td>
+<td>1 736 EUR</td>
+</tr>
+<tr>
+<td>4 000 EUR</td>
+<td>131,51 EUR</td>
+<td>66,31 EUR</td>
+<td>1 930 EUR</td>
+</tr>
+<tr>
+<td>4 500 EUR</td>
+<td>147,95 EUR</td>
+<td>72,95 EUR</td>
+<td>2 123 EUR</td>
+</tr>
+<tr>
+<td>5 000 EUR</td>
+<td>164,38 EUR</td>
+<td>79,59 EUR</td>
+<td>2 316 EUR</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ces chiffres sont des estimations. Le montant réel peut varier en fonction de votre situation personnelle, du nombre exact de jours travaillés et des primes éventuellement incluses dans le calcul du salaire de référence. Les montants nets sont calculés après déduction de la cotisation retraite complémentaire d'environ 3 %, mais avant prélèvement à la source.</p>
+<h2>Durée d'indemnisation : combien de temps touche-t-on le chômage ?</h2>
+<p>La durée d'indemnisation au chômage dépend de deux facteurs principaux : la durée d'emploi au cours de la période de référence et l'âge du demandeur d'emploi à la date de fin de contrat. Le principe de base est simple : <strong>un jour travaillé équivaut à un jour indemnisé</strong>, dans la limite d'un plafond qui varie selon l'âge.</p>
+<p><strong>Pour les moins de 53 ans :</strong> la durée maximale d'indemnisation est de 18 mois, soit 548 jours calendaires. Ainsi, un salarié de 40 ans ayant travaillé 14 mois sur les 24 derniers mois bénéficiera de 14 mois d'indemnisation. S'il a travaillé 24 mois, il sera plafonné à 18 mois. Il faut avoir travaillé au minimum 6 mois (soit 130 jours ou 910 heures) pour ouvrir des droits.</p>
+<p><strong>Pour les 53-54 ans :</strong> le plafond est relevé à 22,5 mois, soit 685 jours. Cette extension reconnaît la difficulté accrue de retrouver un emploi passé la cinquantaine. Un cadre de 53 ans ayant travaillé 20 mois pourra ainsi être indemnisé pendant 20 mois, contre 18 mois maximum s'il avait 52 ans.</p>
+<p><strong>Pour les 55 ans et plus :</strong> la durée maximale atteint 27 mois, soit 822 jours. Ce plafond plus généreux tient compte des réalités du marché de l'emploi pour les seniors. Cela représente plus de deux ans d'indemnisation, ce qui laisse davantage de temps pour retrouver un poste ou préparer une transition vers la retraite.</p>
+<p>Prenons un exemple parlant : Marie, 45 ans, a travaillé 16 mois en CDI avant un licenciement économique. Elle aura droit à 16 mois d'indemnisation. Son collègue Philippe, 56 ans, licencié dans les mêmes conditions après 24 mois de travail, bénéficiera de 24 mois d'indemnisation (sous le plafond de 27 mois pour sa tranche d'âge).</p>
+<h2>La dégressivité des allocations chômage</h2>
+<p>Depuis 2021, un mécanisme de dégressivité s'applique aux demandeurs d'emploi dont les revenus antérieurs étaient élevés. Cette règle, confirmée et maintenue en 2026, vise à inciter les cadres et profils bien rémunérés à rechercher activement un emploi.</p>
+<p><strong>Les conditions de déclenchement :</strong> la dégressivité s'applique lorsque deux conditions sont réunies simultanément. Premièrement, le demandeur d'emploi percevait un <strong>salaire brut mensuel supérieur à 4 915 EUR</strong> (soit environ 3 800 EUR nets). Deuxièmement, il a <strong>moins de 57 ans</strong> à la date de fin de contrat. Les seniors de 57 ans et plus sont exonérés de cette mesure.</p>
+<p><strong>Le mécanisme :</strong> après 6 mois d'indemnisation (soit 182 jours), l'allocation journalière est <strong>réduite de 30 %</strong>. Cette baisse est significative mais encadrée par un plancher : le montant après réduction ne peut pas descendre en dessous de 92,12 EUR par jour. Concrètement, un cadre percevant 120 EUR d'allocation journalière verra son montant passer à 92,12 EUR (et non 84 EUR) grâce à ce filet de sécurité.</p>
+<p>Pour un ancien salarié à 5 500 EUR bruts par mois, l'ARE brute initiale est d'environ 93,78 EUR par jour (soit environ 2 730 EUR nets par mois). Après 6 mois, la dégressivité de 30 % ramènerait théoriquement ce montant à 65,65 EUR, mais le plancher de 92,12 EUR s'applique, donc le montant reste à 92,12 EUR. En revanche, pour un salaire brut de 8 000 EUR, l'ARE initiale d'environ 135 EUR serait réduite à 94,50 EUR après dégressivité, au-dessus du plancher.</p>
+<p>Cette mesure touche en pratique environ 10 % des demandeurs d'emploi, essentiellement des cadres supérieurs et des profils très qualifiés. Si vous êtes concerné, anticipez cette baisse dans votre budget dès le début de votre période de chômage.</p>
+<h2>Cas particuliers : démission, CDD, rupture conventionnelle</h2>
+<p>Toutes les fins de contrat n'ouvrent pas automatiquement droit aux allocations chômage. Voici les principales situations et leurs conséquences sur l'éligibilité à l'ARE.</p>
+<p><strong>Le licenciement</strong> (qu'il soit économique, pour faute simple, ou pour inaptitude) ouvre systématiquement droit aux allocations chômage, à condition de remplir les conditions de durée d'emploi minimale. Même un licenciement pour faute grave ou lourde donne droit à l'ARE, contrairement à une idée reçue très répandue. La seule différence concerne les indemnités de licenciement, qui ne sont pas versées en cas de faute grave ou lourde, mais l'ARE elle-même n'est pas affectée.</p>
+<p><strong>La rupture conventionnelle</strong> est l'un des modes de rupture les plus utilisés en France, justement parce qu'elle permet de percevoir les allocations chômage. Le salarié et l'employeur se mettent d'accord sur les conditions de départ, incluant généralement une indemnité de rupture au moins égale à l'indemnité légale de licenciement. L'ARE est versée après un différé d'indemnisation qui peut être allongé par les indemnités supra-légales éventuellement perçues.</p>
+<p><strong>La fin de CDD</strong> ouvre droit à l'ARE dans les mêmes conditions qu'un licenciement. À l'arrivée du terme du contrat, le salarié est considéré comme involontairement privé d'emploi. Il perçoit en plus une indemnité de précarité (10 % de la rémunération brute totale perçue pendant le CDD), qui peut néanmoins générer un différé d'indemnisation.</p>
+<p><strong>La démission</strong> ne donne en principe pas droit au chômage, puisqu'il s'agit d'un départ volontaire. Cependant, plusieurs exceptions existent. Les démissions dites "légitimes" ouvrent droit à l'ARE : déménagement pour suivre un conjoint, non-paiement des salaires par l'employeur, actes délictueux subis sur le lieu de travail, ou encore démission pour création d'entreprise après 5 ans d'activité salariée continue. Depuis la réforme de 2019, un dispositif spécifique permet également aux salariés ayant au moins 5 ans d'ancienneté et porteurs d'un projet de reconversion professionnelle sérieux de démissionner et de percevoir l'ARE, après validation par une commission paritaire interprofessionnelle régionale.</p>
+<p>Si vous avez démissionné sans motif légitime, vous pouvez tout de même demander un réexamen de votre situation après 121 jours (4 mois) de chômage. France Travail peut alors vous accorder l'ARE si vous prouvez des recherches d'emploi actives.</p>
+</div>
+</section>
+
+<section class="faq-section">
+<div class="faq-wrap">
+<h2>Questions fréquentes sur l'allocation chômage ARE</h2>
+<div class="faq-list">
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">La démission ouvre-t-elle droit au chômage ?</summary><div class="mlrh-faq-answer">
+<p>En principe non, la démission est un départ volontaire qui n'ouvre pas droit à l'ARE. Toutefois, il existe des exceptions importantes. Les démissions dites "légitimes" permettent de percevoir les allocations chômage : déménagement pour suivre son conjoint, non-paiement des salaires, violences au travail, ou encore démission pour créer une entreprise après 5 ans d'ancienneté. Depuis 2019, les salariés ayant au moins 5 ans d'activité et un projet de reconversion professionnel sérieux peuvent également bénéficier de l'ARE, après validation par une commission paritaire. En cas de démission classique, un réexamen est possible après 121 jours si vous prouvez des recherches d'emploi actives.</p>
+</div></details>
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">Peut-on cumuler ARE et activité partielle ?</summary><div class="mlrh-faq-answer">
+<p>Oui, le cumul entre l'ARE et une activité salariée partielle est tout à fait possible et même encouragé par France Travail. Le mécanisme est le suivant : 70 % de votre salaire brut mensuel d'activité est soustrait du montant mensuel de votre ARE. Le total de vos revenus (salaire + allocation) ne peut pas dépasser votre ancien salaire brut mensuel de référence. Les jours non indemnisés du fait de cette déduction ne sont pas perdus : ils prolongent d'autant votre durée de droits. Ce dispositif vous permet donc de reprendre progressivement une activité tout en conservant un complément d'allocation.</p>
+</div></details>
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">Les allocations chômage sont-elles imposables ?</summary><div class="mlrh-faq-answer">
+<p>Oui, les allocations chômage sont intégralement soumises à l'impôt sur le revenu. Elles doivent être déclarées dans la catégorie des traitements et salaires. Depuis le 1er janvier 2019, le prélèvement à la source s'applique directement sur le montant brut de l'ARE : France Travail prélève votre taux d'imposition personnalisé avant de vous verser l'allocation nette. En plus de l'impôt, l'ARE supporte une cotisation retraite complémentaire d'environ 3 %. En revanche, les allocations ne sont pas soumises aux cotisations sociales classiques (sécurité sociale, assurance chômage), ce qui explique l'écart relativement faible entre brut et net.</p>
+</div></details>
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">Quand commence le versement des allocations ?</summary><div class="mlrh-faq-answer">
+<p>Le versement de l'ARE ne débute jamais immédiatement après l'inscription à France Travail. Un délai de carence incompressible de 7 jours calendaires s'applique systématiquement. À ce délai s'ajoute un différé congés payés, calculé en divisant le montant de l'indemnité compensatrice de congés payés par votre SJR. Si vous avez perçu des indemnités de rupture supérieures au minimum légal (indemnités "supra-légales"), un différé spécifique supplémentaire peut s'appliquer (plafonné à 150 jours). En pratique, pour un salarié classique sans indemnités supra-légales, comptez entre 10 et 15 jours entre l'inscription et le premier versement. Pour une rupture conventionnelle avec indemnités élevées, ce délai peut atteindre plusieurs mois.</p>
+</div></details>
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">Comment est calculé le différé d'indemnisation ?</summary><div class="mlrh-faq-answer">
+<p>Le différé d'indemnisation se décompose en trois éléments distincts qui se cumulent. Le <strong>délai d'attente</strong> de 7 jours est systématique et s'applique à tous les demandeurs d'emploi. Le <strong>différé congés payés</strong> est calculé en divisant le montant de l'indemnité compensatrice de congés payés par votre salaire journalier de référence : le résultat donne le nombre de jours de différé. Le <strong>différé spécifique</strong> concerne uniquement les personnes ayant perçu des indemnités supra-légales de rupture (au-delà du minimum légal) : ces indemnités sont divisées par 102,4 pour obtenir un nombre de jours, plafonné à 150 jours. Exemple : un salarié percevant 3 000 EUR d'indemnité de congés payés avec un SJR de 80 EUR aura un différé congés payés de 37 jours, auquel s'ajoutent les 7 jours de délai d'attente, soit un démarrage de l'ARE après 44 jours.</p>
+</div></details>
+</div>
+</div>
+</section>

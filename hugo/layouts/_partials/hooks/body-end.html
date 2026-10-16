@@ -1,0 +1,5 @@
+{{- /* Propre au site : scripts d'une page (quiz, simulateurs, générateurs), front matter js, fichiers assets/js/pages/<nom>.js.
+     Aucun script tiers, aucun traceur. */ -}}
+{{- range .Params.js }}{{ with resources.Get (printf "js/pages/%s.js" .) }}{{ $j := . | fingerprint }}
+<script src="{{ $j.RelPermalink }}"></script>
+{{- end }}{{ end }}

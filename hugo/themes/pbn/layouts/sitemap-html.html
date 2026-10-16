@@ -1,0 +1,47 @@
+{{ define "main" }}
+{{- $cats := partialCached "pbn/categories.html" . site.Language.Lang -}}
+{{- $articles := partialCached "pbn/articles.html" . site.Language.Lang -}}
+<article class="page sitemap-page">
+  <div class="container">
+    {{ partial "breadcrumb.html" . }}
+    <header class="page-header">
+      <h1 class="page-title">{{ partial "pbn/titre.html" . }}</h1>
+      {{- with partial "pbn/desc.html" . }}<p class="page-desc">{{ . }}</p>{{ end }}
+    </header>
+    <div class="sitemap-grid">
+      <section>
+        <h2>{{ i18n "sitemap_main_pages" }}</h2>
+        <ul>
+          <li><a href="{{ site.Home.RelPermalink }}">{{ i18n "home" }}</a></li>
+          {{- $cs := site.Params.pbn.categorySections | default slice }}
+          {{- range site.Params.pbn.articleSections | default (slice "blog") }}{{ if not (in $cs .) }}{{ with site.GetPage . }}<li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre.html" . }}</a></li>{{ end }}{{ end }}{{ end }}
+          {{- with site.GetPage (printf "/%s" (site.Params.pbn.categoryTaxonomy | default "categories")) }}<li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre.html" . }}</a></li>{{ end }}
+        </ul>
+        {{- $info := where (where site.RegularPages "Section" "") "RelPermalink" "ne" $.RelPermalink }}
+        {{- with $info }}
+        <h2>{{ i18n "sitemap_info_pages" }}</h2>
+        <ul>
+          {{- range .ByTitle }}<li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}</a></li>{{ end }}
+        </ul>
+        {{- end }}
+      </section>
+      {{- if $cats }}
+        {{- range $cats }}
+      <section>
+        <h2><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}</a></h2>
+        <ul>
+          {{- range (partial "pbn/cat-articles.html" .).ByDate.Reverse }}<li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}</a></li>{{ end }}
+        </ul>
+      </section>
+        {{- end }}
+      {{- end }}
+      <section>
+        <h2>{{ i18n "sitemap_all_articles" }}</h2>
+        <ul>
+          {{- range $articles }}<li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}</a></li>{{ end }}
+        </ul>
+      </section>
+    </div>
+  </div>
+</article>
+{{ end }}

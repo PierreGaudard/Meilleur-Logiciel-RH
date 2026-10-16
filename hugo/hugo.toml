@@ -1,0 +1,166 @@
+# Meilleur Logiciel RH, configuration Hugo (thème commun pbn)
+# Le site est servi par GitHub Pages en build « legacy » depuis la racine de la branche main : la sortie de Hugo est
+# recopiée à la racine du dépôt par ../build.sh (en local) ou par le workflow .github/workflows/hugo.yml.
+baseURL = "https://meilleur-logiciel-rh.fr/"
+title = "Meilleur Logiciel RH"
+theme = "pbn"
+
+defaultContentLanguage = "fr"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+enableEmoji = false
+summaryLength = 30
+disableKinds = ["taxonomy", "term"]
+
+# Mêmes URL qu'avant la conversion : articles et outils en .html, index de rubrique en /rubrique/
+[uglyURLs]
+  comparatifs = true
+  alternatives = true
+  avis = true
+  guides = true
+  definitions-rh = true
+  outils = true
+
+[outputs]
+  home = ["HTML", "RSS", "SearchIndex", "LLMS"]
+  section = ["HTML", "RSS"]
+
+[taxonomies]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.extensions]
+      typographer = false
+      linkify = false
+    [markup.goldmark.parser]
+      autoHeadingIDType = "github"
+      [markup.goldmark.parser.attribute]
+        title = true
+        block = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 2
+    ordered = false
+
+[related]
+  includeNewer = true
+  threshold = 20
+  toLower = true
+  [[related.indices]]
+    name = "section"
+    weight = 100
+  [[related.indices]]
+    name = "keywords"
+    weight = 80
+
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+[params]
+  description = "Comparatifs et guides sur les logiciels RH, paie et SIRH pour les PME françaises."
+  default_og_image = "/assets/images/blog/payfit-vs-factorial.jpg"
+  founding_year = "2026"
+  expertise = ["Logiciels RH", "Logiciels de paie", "SIRH", "Gestion des temps", "Droit du travail", "Recrutement"]
+
+# Thème commun pbn : identité du site (voir le README du thème)
+[params.pbn]
+  type = "B"
+  name = "Meilleur Logiciel RH"
+  articleSections = ["comparatifs", "alternatives", "avis", "guides", "definitions-rh"]
+  categorySections = ["comparatifs", "alternatives", "avis", "guides", "definitions-rh"]
+  categoryCardText = true
+  home = "search"
+  cards = "image"
+  article = "split"
+  search = true
+  share = true
+  faqVisible = true
+  homeIntro = true
+  logo = "/assets/images/mlrh-logo.png"
+  logoWidth = 82
+  logoHeight = 30
+  logoText = false
+  favicon = "assets/images/favicon-mlrh.png"
+  robotsExtra = """
+User-agent: *
+Disallow: /hugo/"""
+  [params.pbn.colors]
+    scheme = "light"
+    background = "#FFFFFF"
+    surface = "#F8FAFC"
+    surfaceAlt = "#F0FDF4"
+    text = "#1A1A2E"
+    muted = "#5A6478"
+    border = "#E2E8F0"
+    primary = "#15803D"
+    onPrimary = "#FFFFFF"
+    accent = "#15803D"
+    onAccent = "#FFFFFF"
+    link = "#15803D"
+    headerBackground = "#FFFFFF"
+    headerText = "#1A1A2E"
+    heroBackground = "#071A0E"
+    heroText = "#F0FDF4"
+    heroAccent = "#22C55E"
+    footerBackground = "#0F1F17"
+    footerText = "#9CA3AF"
+  [params.pbn.fonts]
+    google = ""
+    heading = "Segoe UI"
+    body = "Segoe UI"
+  [params.pbn.style]
+    radius = "10px"
+    headingWeight = "800"
+    headingTracking = "-0.02em"
+    logoTracking = "0"
+
+[languages]
+  [languages.fr]
+    contentDir = "content/fr"
+    locale = "fr-FR"
+    label = "Français"
+    weight = 1
+    title = "Meilleur Logiciel RH"
+    [languages.fr.params]
+      description = "Comparatifs et guides sur les logiciels RH, paie et SIRH pour les PME françaises."
+      [languages.fr.params.pbn]
+        topic = "sur les logiciels RH, la paie et les SIRH,"
+        bio = "Meilleur Logiciel RH est un média sur les logiciels RH, la paie et les SIRH, édité par upearly, agence SEO et GEO. Ses articles peuvent avoir une portée promotionnelle : certaines marques citées sont clientes d'upearly."
+        llmsNote = "Il publie des comparatifs, des alternatives, des avis et des guides sur les logiciels RH et de paie, un glossaire de définitions RH et des outils de calcul (salaire brut et net, rupture conventionnelle, allocation chômage, indemnité de licenciement, SMIC, coût d'un salarié)."
+        [languages.fr.params.pbn.hero]
+          titlePre = "Tous les logiciels RH"
+          accent = "comparés pour vous"
+          description = "MLRH analyse les meilleurs outils RH et paie du marché français. Pas besoin de chercher pendant des heures : on compare, vous choisissez."
+
+[[languages.fr.menus.main]]
+  name = "Comparatifs"
+  url = "/comparatifs/"
+  weight = 1
+[[languages.fr.menus.main]]
+  name = "Guides"
+  url = "/guides/"
+  weight = 2
+[[languages.fr.menus.main]]
+  name = "Définitions"
+  url = "/definitions-rh/"
+  weight = 3
+[[languages.fr.menus.main]]
+  name = "Alternatives"
+  url = "/alternatives/"
+  weight = 4
+[[languages.fr.menus.main]]
+  name = "Avis"
+  url = "/avis/"
+  weight = 5
+[[languages.fr.menus.main]]
+  name = "Outils"
+  url = "/outils/"
+  weight = 6
+[[languages.fr.menus.main]]
+  name = "Trouver mon logiciel"
+  url = "/trouver-mon-logiciel.html"
+  weight = 7

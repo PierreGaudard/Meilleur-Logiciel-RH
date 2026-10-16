@@ -1,0 +1,32 @@
+{{- /* Flux RSS : articles signés par la rédaction (jamais d'auteur individuel). */ -}}
+{{- $pages := .RegularPages -}}
+{{- if .IsHome }}{{ $pages = partialCached "pbn/articles.html" . site.Language.Lang }}{{ end -}}
+{{- $limit := site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 }}{{ $pages = first $limit $pages.ByDate.Reverse }}{{ else }}{{ $pages = $pages.ByDate.Reverse }}{{ end -}}
+{{- $sig := partial "pbn/signature.html" . -}}
+{{- $showSig := or (partial "pbn/is-typeb.html" .) site.Params.pbn.signature -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ partial "pbn/titre.html" . }} | {{ site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ partial "pbn/desc.html" . | default site.Params.description }}</description>
+    <language>{{ site.Language.Locale | default site.Language.Lang }}</language>
+    {{- with $pages }}<lastBuildDate>{{ (index . 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
+    {{- with .OutputFormats.Get "RSS" }}
+    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{- end }}
+    {{- range $pages }}
+    <item>
+      <title>{{ partial "pbn/titre.html" . }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <guid>{{ .Permalink }}</guid>
+      {{- if $showSig }}
+      <dc:creator>{{ $sig }}</dc:creator>
+      {{- end }}
+      <description>{{ partial "pbn/desc.html" . | default .Summary | plainify | html }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

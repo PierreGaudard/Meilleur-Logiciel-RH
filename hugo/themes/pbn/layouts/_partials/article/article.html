@@ -1,0 +1,82 @@
+{{- $lang := .Language.Lang -}}
+{{- $typeB := partial "pbn/is-typeb.html" . -}}
+{{- $ranking := partial "conformite/ranking.html" . -}}
+{{- $mention := or $ranking (partial "pbn/mention-section.html" .) -}}
+{{- $showSig := or $typeB site.Params.pbn.signature -}}
+{{- $sig := partial "pbn/signature.html" . -}}
+{{- $cat := partial "pbn/categorie.html" . -}}
+<article class="post">
+  <div class="container">{{ partial "breadcrumb.html" . }}</div>
+  <div class="container post-shell">
+    <div class="post-paper">
+      <header class="post-header{{ if .Params.image }} has-image{{ end }}">
+        <div class="post-header-text">
+          <div class="post-meta">
+            {{- if $mention }}{{ partial "conformite/mention.html" (dict "lang" $lang "small" false) }}{{ end }}
+            {{- with $cat }}<a href="{{ .RelPermalink }}" class="post-cat">{{ partial "pbn/titre-lien.html" . }}</a>{{ end }}
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "pbn/date.html" .Date }}</time>
+            {{- if ne .Params.readingTime false }}<span class="post-reading">{{ i18n "reading_time" (dict "Count" .ReadingTime) }}</span>{{ end }}
+          </div>
+          <h1 class="post-title">{{ partial "pbn/h1.html" . }}</h1>
+          {{- with partial "pbn/desc.html" . }}<p class="post-desc">{{ . }}</p>{{ end }}
+          {{- if $ranking }}{{ partial "conformite/ranking-block.html" . }}{{ end }}
+          {{ partial "conformite/disclaimers.html" . }}
+          <div class="post-byline">
+            {{- if $showSig }}
+            <span class="byline-avatar" aria-hidden="true">{{ substr (partial "pbn/name.html" .) 0 1 }}</span>
+            <span class="byline-name">{{ $sig }}</span>
+            {{- end }}
+            {{- if ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02") }}
+            <span class="byline-updated">{{ i18n "updated_on" }} {{ partial "pbn/date.html" .Lastmod }}</span>
+            {{- end }}
+          </div>
+        </div>
+        {{- with .Params.image }}
+        <figure class="post-image">
+          <img src="{{ partial "pbn/img-src.html" (dict "src" . "page" $) }}" alt="{{ $.Params.imageAlt | default $.Params.image_alt | default (partial "pbn/titre.html" $) }}" width="1200" height="675" fetchpriority="high">
+          {{- $credit := cond (eq site.Params.pbn.imageCredit false) "" ($.Params.imageCredit | default "") -}}
+          {{- with $.Params.image_caption }}<figcaption>{{ . }}{{ with $credit }} <span class="image-credit">{{ . }}</span>{{ end }}</figcaption>
+          {{- else }}{{ with $credit }}<figcaption>{{ . }}</figcaption>{{ end }}{{ end }}
+        </figure>
+        {{- end }}
+      </header>
+
+      {{- $toc := .TableOfContents }}
+      {{- $hasToc := and (ne .Params.toc false) (in $toc "<li>") }}
+      <div class="post-layout{{ if $hasToc }} has-toc{{ end }}">
+        {{- if $hasToc }}
+        <aside class="post-toc">
+          <details class="toc" open>
+            <summary>{{ i18n "toc" }}</summary>
+            {{ $toc }}
+          </details>
+        </aside>
+        {{- end }}
+        <div class="post-main">
+          {{- with .Params.tldr | default .Params.bref }}
+          <aside class="tldr">
+            <p class="tldr-title">{{ i18n "in_brief" }}</p>
+            {{- if reflect.IsSlice . }}<ul>{{ range . }}<li>{{ partial "pbn/annee.html" . | markdownify }}</li>{{ end }}</ul>{{ else }}<p>{{ partial "pbn/annee.html" . | markdownify }}</p>{{ end }}
+          </aside>
+          {{- end }}
+          {{ partial "hooks/article-before-content.html" . }}
+          <div class="prose post-content">
+            {{ .Content }}
+          </div>
+          {{- if .Params.faq }}{{ partial "article/faq.html" . }}{{ end }}
+          {{- if .Params.sources }}{{ partial "article/sources.html" . }}{{ end }}
+          {{ partial "hooks/article-after-content.html" . }}
+          {{- with .GetTerms "tags" }}
+          <ul class="post-tags">
+            {{- range . }}<li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}
+          </ul>
+          {{- end }}
+          {{- if site.Params.pbn.share }}{{ partial "article/share.html" . }}{{ end }}
+          {{- if $showSig }}{{ partial "article/author-box.html" . }}{{ end }}
+          {{ partial "article/related.html" . }}
+          {{ partial "article/prev-next.html" . }}
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

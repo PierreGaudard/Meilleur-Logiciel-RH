@@ -1,0 +1,28 @@
+{{ define "main" }}
+{{- if partial "pbn/is-article.html" . }}
+  {{ partial "article/article.html" . }}
+{{- else }}
+{{- $ms := partial "pbn/mention-section.html" . }}
+<article class="page{{ if $ms }} page-mention{{ end }}">
+  <div class="container container-narrow">
+    {{ partial "breadcrumb.html" . }}
+    <header class="page-header">
+      {{- if $ms }}{{ partial "conformite/mention.html" (dict "lang" .Language.Lang "small" false) }}{{ end }}
+      <h1 class="page-title">{{ partial "pbn/h1.html" . }}</h1>
+      {{- with partial "pbn/desc.html" . }}<p class="page-desc">{{ . }}</p>{{ end }}
+      {{- if .Params.disclaimers }}{{ partial "conformite/disclaimers.html" . }}{{ end }}
+    </header>
+    {{- if $ms }}{{ with .Params.image }}
+    <figure class="page-image">
+      <img src="{{ partial "pbn/img-src.html" (dict "src" . "page" $) }}" alt="{{ $.Params.imageAlt | default $.Params.image_alt | default (partial "pbn/titre.html" $) }}" width="1200" height="675" fetchpriority="high">
+    </figure>
+    {{- end }}{{ end }}
+    {{- partial "hooks/page-before-content.html" . }}
+    <div class="prose">
+      {{ .Content }}
+    </div>
+    {{- partial "hooks/page-after-content.html" . }}
+  </div>
+</article>
+{{- end }}
+{{ end }}

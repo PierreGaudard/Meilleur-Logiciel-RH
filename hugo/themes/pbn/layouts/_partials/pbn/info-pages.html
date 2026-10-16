@@ -1,0 +1,21 @@
+{{- /* Pages d'information de la langue courante, repérées par leur slug : dict about, contact, legal, privacy, terms, cookies, sitemap. */ -}}
+{{- $slugs := dict
+  "about" (slice "a-propos" "qui-sommes-nous" "about" "about-us" "uber-uns" "ueber-uns" "quienes-somos" "sobre-nosotros" "chi-siamo")
+  "contact" (slice "contact" "kontakt" "contacto" "contatti")
+  "legal" (slice "mentions-legales" "legal-notice" "impressum" "aviso-legal" "note-legali" "informazioni-legali")
+  "privacy" (slice "politique-de-confidentialite" "privacy-policy" "privacy" "datenschutz" "datenschutzerklaerung" "politica-de-privacidad" "informativa-sulla-privacy")
+  "terms" (slice "cgu" "terms-of-service" "terms" "terms-of-use" "conditions-generales-dutilisation" "agb" "nutzungsbedingungen" "condiciones-de-uso" "condizioni-di-utilizzo")
+  "cookies" (slice "cookies" "politique-de-cookies" "politique-cookies" "cookie-policy")
+-}}
+{{- $out := dict -}}
+{{- range site.RegularPages -}}
+  {{- if eq .Section "" -}}
+    {{- $p := . -}}
+    {{- $slug := path.Base (strings.TrimSuffix "/" .RelPermalink) | strings.TrimSuffix ".html" -}}
+    {{- range $k, $v := $slugs -}}
+      {{- if and (in $v $slug) (not (index $out $k)) }}{{ $out = merge $out (dict $k $p) }}{{ end -}}
+    {{- end -}}
+    {{- if or (eq .Layout "sitemap-html") (eq .Params.translationKey "sitemap") }}{{ $out = merge $out (dict "sitemap" $p) }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

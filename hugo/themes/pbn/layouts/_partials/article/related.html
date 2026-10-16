@@ -1,0 +1,14 @@
+{{- $sections := site.Params.pbn.articleSections | default (slice "blog") -}}
+{{- $related := where (site.RegularPages.Related .) "Section" "in" $sections -}}
+{{- with .Params.relatedExclude -}}
+  {{- $ex := . }}{{ $keep := slice -}}
+  {{- range $related }}{{ if not (partial "pbn/exclu.html" (dict "page" . "liste" $ex)) }}{{ $keep = $keep | append . }}{{ end }}{{ end -}}
+  {{- $related = $keep -}}
+{{- end -}}
+{{- $related = first 3 $related -}}
+{{- with $related }}
+<aside class="related">
+  <h2 class="related-title">{{ i18n "related_articles" }}</h2>
+  {{ partial "cards/grid.html" (dict "pages" . "variant" "text" "heading" "h3") }}
+</aside>
+{{- end }}

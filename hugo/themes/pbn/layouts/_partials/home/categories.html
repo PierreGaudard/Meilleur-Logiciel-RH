@@ -1,0 +1,14 @@
+{{- with partialCached "pbn/categories.html" . site.Language.Lang }}
+<section class="home-section home-categories">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">{{ i18n "explore_categories" }}</h2>
+    </div>
+    <div class="cat-grid">
+      {{- range . }}
+      {{ partial "cards/category.html" . }}
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{- end }}

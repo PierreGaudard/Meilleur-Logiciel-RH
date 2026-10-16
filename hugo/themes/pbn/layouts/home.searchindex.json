@@ -1,0 +1,8 @@
+{{- $out := slice -}}
+{{- range partialCached "pbn/articles.html" . site.Language.Lang -}}
+  {{- $cats := slice -}}
+  {{- if site.Params.pbn.categorySections }}{{ with partial "pbn/categorie.html" . }}{{ $cats = $cats | append (partial "pbn/titre-lien.html" .) }}{{ end -}}
+  {{- else }}{{ range .GetTerms (site.Params.pbn.categoryTaxonomy | default "categories") }}{{ $cats = $cats | append .LinkTitle }}{{ end }}{{ end -}}
+  {{- $out = $out | append (dict "title" (partial "pbn/titre.html" .) "description" (partial "pbn/desc.html" . | plainify) "url" .RelPermalink "date" (.Date.Format "2006-01-02") "categories" $cats "tags" (.Params.tags | default slice)) -}}
+{{- end -}}
+{{- $out | jsonify -}}

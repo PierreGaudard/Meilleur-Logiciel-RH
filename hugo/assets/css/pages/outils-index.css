@@ -1,0 +1,58 @@
+.prose .seo-section {padding: 0 24px 56px;}
+.prose .seo-content {max-width: 800px;
+      margin: 0 auto;}
+.prose .seo-content h2 {font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 48px 0 16px;
+      line-height: 1.3;}
+.prose .seo-content h2:first-child {margin-top: 0;}
+.prose .seo-content h3 {font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 32px 0 12px;}
+.prose .seo-content p {font-size: .95rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 16px;}
+.prose .seo-content ul,
+.prose .seo-content ol {margin: 12px 0 20px 20px;
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--text);}
+.prose .seo-content li {margin-bottom: 8px;}
+.prose .seo-content strong {font-weight: 700;}
+.prose .methodology-box {background: var(--bg);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 24px 28px;
+      margin: 24px 0 32px;}
+.prose .methodology-box p {margin-bottom: 12px;}
+.prose .methodology-box ul {margin-left: 16px;}
+.prose .faq-list {margin: 24px 0;}
+.prose .mlrh-faq-item {border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;}
+.prose .mlrh-faq-question {padding: 18px 20px;
+      font-weight: 700;
+      font-size: .95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      user-select: none;}
+.prose .mlrh-faq-question:hover {background: var(--bg);}
+.prose .faq-chevron {flex-shrink: 0;
+      transition: transform .25s;}
+.prose .mlrh-faq-item.open .faq-chevron {transform: rotate(180deg);}
+.prose .mlrh-faq-answer {display: none;
+      padding: 0 20px 18px;
+      font-size: .93rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      background: white;}
+.prose .mlrh-faq-item.open .mlrh-faq-answer {display: block;}

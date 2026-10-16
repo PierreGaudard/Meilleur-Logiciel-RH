@@ -1,0 +1,8 @@
+{{- /* Page « tous les articles » (lien « Voir tout ») : la première section d'articles qui n'est pas une rubrique
+     (params.pbn.categorySections). Renvoie la page, ou une chaîne vide. */ -}}
+{{- $out := "" -}}
+{{- $cs := site.Params.pbn.categorySections | default slice -}}
+{{- range site.Params.pbn.articleSections | default (slice "blog") -}}
+  {{- if and (not $out) (not (in $cs .)) }}{{ with site.GetPage . }}{{ $out = . }}{{ end }}{{ end -}}
+{{- end -}}
+{{- return $out -}}

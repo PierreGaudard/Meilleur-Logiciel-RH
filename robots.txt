@@ -1,39 +1,43 @@
-# MLRH — Meilleur Logiciel RH
-# https://meilleur-logiciel-rh.fr
-# robots.txt — Derniere mise a jour : 2026-02-20
-
-# ======================
-# Tous les robots
-# ======================
 User-agent: *
 Allow: /
-Disallow:
 
-Allow: /comparatifs/
-Allow: /guides/
-Allow: /avis/
-Allow: /alternatives/
-Allow: /outils/
-Allow: /assets/
-
-# ======================
-# Googlebot
-# ======================
-User-agent: Googlebot
+User-agent: GPTBot
 Allow: /
 
-# ======================
-# Bingbot
-# ======================
-User-agent: Bingbot
+User-agent: ChatGPT-User
 Allow: /
 
-# ======================
-# Sitemap
-# ======================
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: *
+Disallow: /hugo/
+
 Sitemap: https://meilleur-logiciel-rh.fr/sitemap.xml
-
-# ======================
-# llms.txt pour les LLMs
-# ======================
-# https://meilleur-logiciel-rh.fr/llms.txt

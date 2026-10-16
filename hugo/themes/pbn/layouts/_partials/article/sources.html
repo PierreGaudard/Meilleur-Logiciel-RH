@@ -1,0 +1,38 @@
+{{- /* Sources de l'article (champ `sources`). Chaque entrée : une chaîne (Markdown), ou un dictionnaire avec name (ou
+     title, ou organisme et titre), note, url, date, consulte. Tout s'affiche en texte ; le lien n'est rendu que pour une
+     source officielle (pbn/source-lien.html). Une entrée sans texte n'est pas affichée, ni la section si rien ne reste. */ -}}
+{{- $lis := slice -}}
+{{- range .Params.sources -}}
+  {{- if reflect.IsMap . -}}
+    {{- $label := .name | default .title | default "" -}}
+    {{- if not $label }}{{ $label = delimit (slice (.organisme | default "") (.titre | default "") | complement (slice "")) ", " }}{{ end -}}
+    {{- $label = partial "pbn/annee.html" $label -}}
+    {{- $url := strings.TrimSpace (string (.url | default "")) -}}
+    {{- $lien := and $url (partial "pbn/source-lien.html" $url) -}}
+    {{- if and (not $label) $url }}{{ $label = strings.TrimPrefix "www." (urls.Parse $url).Hostname }}{{ end -}}
+    {{- if $label -}}
+      {{- $t := $label | htmlEscape -}}
+      {{- if $lien }}{{ $t = printf `<a href="%s" rel="nofollow noopener">%s</a>` ($url | htmlEscape) $t }}{{ end -}}
+      {{- with .note }}{{ $t = printf "%s%s%s" $t (i18n "source_sep") (partial "pbn/annee.html" . | htmlEscape) }}{{ end -}}
+      {{- with .date }}{{ $t = printf "%s (%s)" $t (string . | htmlEscape) }}{{ end -}}
+      {{- with .consulte -}}
+        {{- $d := printf "(%s)" (string . | htmlEscape) -}}
+        {{- with try (time.AsTime .) }}{{ if not .Err }}{{ $d = printf "(%s)" (i18n "source_consulted" (dict "Date" (time.Format ":date_long" .Value)) | htmlEscape) }}{{ end }}{{ end -}}
+        {{- $t = printf "%s %s" $t $d -}}
+      {{- end -}}
+      {{- $lis = $lis | append $t -}}
+    {{- end -}}
+  {{- else -}}
+    {{- with partial "pbn/source-texte.html" . }}{{ $lis = $lis | append . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- with $lis }}
+          <section class="sources">
+            <h2>{{ i18n "sources" }}</h2>
+            <ol>
+              {{- range . }}
+              <li>{{ . | safeHTML }}</li>
+              {{- end }}
+            </ol>
+          </section>
+{{- end -}}

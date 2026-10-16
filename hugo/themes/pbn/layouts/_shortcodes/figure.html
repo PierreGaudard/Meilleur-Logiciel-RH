@@ -1,0 +1,11 @@
+{{- /* Figure, mêmes paramètres que le shortcode natif : src, alt, caption, title, link, width, height, class. */ -}}
+{{- $src := .Get "src" -}}
+{{- if not (or (hasPrefix $src "http") (hasPrefix $src "//")) }}{{ $src = strings.TrimPrefix "/" $src | relURL }}{{ end -}}
+<figure{{ with .Get "class" }} class="{{ . }}"{{ end }}>
+  {{- with .Get "link" }}<a href="{{ . }}">{{ end -}}
+  <img src="{{ $src }}" alt="{{ .Get "alt" | default (.Get "caption") | plainify }}" loading="lazy"{{ with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }}>
+  {{- with .Get "link" }}</a>{{ end -}}
+  {{- if or (.Get "title") (.Get "caption") }}
+  <figcaption>{{ with .Get "title" }}<strong>{{ . }}</strong> {{ end }}{{ .Get "caption" | markdownify }}</figcaption>
+  {{- end }}
+</figure>

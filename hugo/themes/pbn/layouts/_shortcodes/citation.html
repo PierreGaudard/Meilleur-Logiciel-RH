@@ -1,0 +1,7 @@
+{{- /* Citation mise en avant. {{< citation >}}texte{{< /citation >}} ; attribution à une personne réelle : auteur="..." role="...". */ -}}
+<figure class="quote">
+  <blockquote>{{ .Inner | .Page.RenderString (dict "display" "block") }}</blockquote>
+  {{- with .Get "auteur" | default (.Get "author") }}
+  <figcaption><span class="quote-name">{{ . }}</span>{{ with $.Get "role" }}<span class="quote-role">{{ . }}</span>{{ end }}</figcaption>
+  {{- end }}
+</figure>

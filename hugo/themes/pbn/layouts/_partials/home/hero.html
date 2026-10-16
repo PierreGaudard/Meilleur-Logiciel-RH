@@ -1,0 +1,28 @@
+{{- $h := site.Params.pbn.hero | default dict -}}
+{{- $badge := .Params.heroBadge | default $h.badge -}}
+{{- $desc := .Params.heroDescription | default $h.description | default site.Params.description -}}
+{{- $variant := site.Params.pbn.home | default "magazine" -}}
+{{- $articles := partialCached "pbn/articles.html" . site.Language.Lang -}}
+{{- $cats := partialCached "pbn/categories.html" . site.Language.Lang -}}
+<section class="hero hero-{{ $variant }}">
+  <div class="container hero-inner">
+    <div class="hero-text">
+      {{- with $badge }}<span class="hero-badge">{{ . }}</span>{{ end }}
+      {{ partial "home/hero-title.html" . }}
+      {{- with $desc }}<p class="hero-desc">{{ partial "pbn/annee.html" . }}</p>{{ end }}
+      {{- if eq $variant "magazine" }}
+        {{- with partial "pbn/blog-page.html" . }}
+      <a href="{{ .RelPermalink }}" class="btn btn-accent">{{ $h.cta | default (i18n "view_all") }}</a>
+        {{- end }}
+      {{- else }}
+      {{ partial "search.html" . }}
+      <p class="hero-stats"><span>{{ i18n "articles_count" (dict "Count" (len $articles)) }}</span><span>{{ i18n "categories_count" (dict "Count" (len $cats)) }}</span></p>
+      {{- end }}
+    </div>
+    {{- if eq $variant "editorial" }}{{ with partial "home/featured.html" . }}
+    <div class="hero-featured">
+      {{ partial "cards/card.html" (dict "page" . "variant" "image" "heading" "h2") }}
+    </div>
+    {{- end }}{{ end }}
+  </div>
+</section>

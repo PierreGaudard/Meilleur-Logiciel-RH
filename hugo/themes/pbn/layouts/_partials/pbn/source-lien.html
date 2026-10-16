@@ -1,0 +1,14 @@
+{{- /* Lien de source autorisé ? Renvoie un booléen. Contexte : l'URL. Lien interne (chemin du site) ou domaine de la
+     liste blanche (pbn/sources-liens.html), sous-domaines compris. params.pbn.sourcesSansLien = true : jamais de lien. */ -}}
+{{- $u := strings.TrimSpace (string (. | default "")) -}}
+{{- $ok := false -}}
+{{- if site.Params.pbn.sourcesSansLien -}}
+{{- else if and (hasPrefix $u "/") (not (hasPrefix $u "//")) -}}
+  {{- $ok = true -}}
+{{- else if or (hasPrefix (lower $u) "http://") (hasPrefix (lower $u) "https://") -}}
+  {{- $host := lower (strings.TrimPrefix "www." (urls.Parse $u).Hostname) -}}
+  {{- range partialCached "pbn/sources-liens.html" site site.Language.Lang -}}
+    {{- if or (eq $host .) (hasSuffix $host (printf ".%s" .)) }}{{ $ok = true }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $ok -}}

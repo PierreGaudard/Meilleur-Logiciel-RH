@@ -1,0 +1,38 @@
+{{- /* Entrées de navigation : menu main du site s'il existe, sinon catégories et blog. Contexte : la page. */ -}}
+{{- $page := . -}}
+{{- if site.Menus.main -}}
+  {{- range site.Menus.main -}}
+    {{- if .HasChildren }}
+    <details class="nav-group">
+      <summary class="nav-link">{{ .Name }}</summary>
+      <div class="nav-dropdown">
+        {{- range .Children }}
+        <a href="{{ .URL }}" class="nav-dropdown-link">{{ .Name }}{{ with .Params.description }}<small>{{ . }}</small>{{ end }}</a>
+        {{- end }}
+      </div>
+    </details>
+    {{- else }}
+    <a href="{{ .URL }}" class="nav-link{{ if or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }} is-active{{ end }}">{{ .Name }}</a>
+    {{- end -}}
+  {{- end -}}
+{{- else if site.Params.pbn.categorySections -}}
+  {{- /* Rubriques en sections : index des rubriques s'il existe, sinon chaque rubrique ; puis les autres sections d'articles. */ -}}
+  {{- $cs := site.Params.pbn.categorySections }}
+  {{- range $cs }}{{ with site.GetPage (string .) }}
+    {{- if .Sections }}
+    <a href="{{ .RelPermalink }}" class="nav-link">{{ i18n "our_categories" }}</a>
+    {{- else }}
+    <a href="{{ .RelPermalink }}" class="nav-link{{ if or (eq $page.RelPermalink .RelPermalink) ($page.IsDescendant .) }} is-active{{ end }}">{{ partial "pbn/titre-lien.html" . }}</a>
+    {{- end }}
+  {{- end }}{{ end }}
+  {{- range site.Params.pbn.articleSections | default (slice "blog") }}{{ if not (in $cs .) }}{{ with site.GetPage . }}
+    <a href="{{ .RelPermalink }}" class="nav-link">{{ partial "pbn/titre.html" . }}</a>
+  {{- end }}{{ end }}{{ end }}
+{{- else -}}
+  {{- with site.GetPage (printf "/%s" (site.Params.pbn.categoryTaxonomy | default "categories")) }}
+    <a href="{{ .RelPermalink }}" class="nav-link">{{ i18n "our_categories" }}</a>
+  {{- end }}
+  {{- range site.Params.pbn.articleSections | default (slice "blog") }}{{ with site.GetPage . }}
+    <a href="{{ .RelPermalink }}" class="nav-link">{{ partial "pbn/titre.html" . }}</a>
+  {{- end }}{{ end }}
+{{- end -}}

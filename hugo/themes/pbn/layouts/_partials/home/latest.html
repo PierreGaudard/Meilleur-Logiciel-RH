@@ -1,0 +1,16 @@
+{{- /* Derniers articles. Contexte : dict "page" <accueil> "skip" <n> "count" <n> "variant" <variante>. */ -}}
+{{- $articles := partialCached "pbn/articles.html" .page site.Language.Lang -}}
+{{- $list := first (.count | default 6) (after (.skip | default 0) $articles) -}}
+{{- with $list }}
+<section class="home-section home-latest">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">{{ i18n "latest_articles" }}</h2>
+      {{- with partial "pbn/blog-page.html" . }}
+      <a href="{{ .RelPermalink }}" class="section-link">{{ i18n "view_all" }}</a>
+      {{- end }}
+    </div>
+    {{ partial "cards/grid.html" (dict "pages" . "variant" ($.variant | default "image") "heading" "h3") }}
+  </div>
+</section>
+{{- end }}

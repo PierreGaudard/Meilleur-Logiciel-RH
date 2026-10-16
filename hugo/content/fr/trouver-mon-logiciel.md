@@ -1,0 +1,403 @@
+---
+title: "Trouvez votre logiciel RH en 2 minutes chrono"
+seoTitle: "Trouver mon logiciel RH : Recommandation personnalisée : MLRH"
+description: "Répondez à 8 questions et obtenez en 2 minutes une recommandation personnalisée de logiciel RH ou de paie, adaptée à votre entreprise et votre budget."
+lastmod: "2026-10-15T18:47:31+02:00"
+url: "/trouver-mon-logiciel.html"
+css: "trouver-mon-logiciel"
+js:
+  - "trouver-mon-logiciel"
+jsonldExtra:
+  - "{\"@context\": \"https://schema.org\", \"@type\": \"WebApplication\", \"name\": \"Outil de recommandation logiciel RH\", \"description\": \"Quiz interactif pour trouver le logiciel RH ou paie le mieux adapté à votre PME\", \"url\": \"https://meilleur-logiciel-rh.fr/trouver-mon-logiciel.html\", \"applicationCategory\": \"UtilitiesApplication\", \"inLanguage\": \"fr-FR\", \"publisher\": {\"@type\": \"Organization\", \"name\": \"MLRH\"}}"
+---
+
+8 questions pour une recommandation sur mesure : gratuit, sans email requis.
+
+<div class="quiz-wrap">
+<div class="progress-wrap" id="progressWrap">
+<div class="progress-top">
+<span id="progressLabel">Question 1 sur 8</span>
+<span id="progressPct">13%</span>
+</div>
+<div class="progress-track">
+<div class="progress-fill" id="progressFill" style="width:13%"></div>
+</div>
+<div class="progress-steps">
+<div class="ps-item">
+<div class="ps-dot current" id="psDot1">1</div>
+<div class="ps-label">Taille</div>
+</div>
+<div class="ps-item">
+<div class="ps-dot" id="psDot2">2</div>
+<div class="ps-label">Logiciel actuel</div>
+</div>
+<div class="ps-item">
+<div class="ps-dot" id="psDot3">3</div>
+<div class="ps-label">Gestion RH</div>
+</div>
+<div class="ps-item">
+<div class="ps-dot" id="psDot4">4</div>
+<div class="ps-label">Besoin</div>
+</div>
+<div class="ps-item">
+<div class="ps-dot" id="psDot5">5</div>
+<div class="ps-label">Budget</div>
+</div>
+<div class="ps-item">
+<div class="ps-dot" id="psDot6">6</div>
+<div class="ps-label">Structure</div>
+</div>
+<div class="ps-item">
+<div class="ps-dot" id="psDot7">7</div>
+<div class="ps-label">Secteur</div>
+</div>
+<div class="ps-item">
+<div class="ps-dot" id="psDot8">8</div>
+<div class="ps-label">Délai</div>
+</div>
+</div>
+</div>
+<div class="step active" id="step1">
+<div class="step-header">
+<div class="step-num">Question 1 / 8 : Votre entreprise</div>
+<h2>Combien de salariés compte votre entreprise ?</h2>
+<p>Le nombre de salariés est le premier critère de choix : il détermine la complexité de la paie, le besoin en SIRH et l'enveloppe budgétaire raisonnable.</p>
+</div>
+<div class="options-grid">
+<button class="option-btn" data-val="1-9" onclick="goToStep(2, this)">
+<div class="opt-text">
+<strong>1 à 9 salariés</strong>
+<span>TPE, auto-entrepreneur avec salariés, micro-structure</span>
+</div>
+</button>
+<button class="option-btn" data-val="10-49" onclick="goToStep(2, this)">
+<div class="opt-text">
+<strong>10 à 49 salariés</strong>
+<span>Petite entreprise, PME naissante</span>
+</div>
+</button>
+<button class="option-btn" data-val="50-199" onclick="goToStep(2, this)">
+<div class="opt-text">
+<strong>50 à 199 salariés</strong>
+<span>PME avec service RH structuré</span>
+</div>
+</button>
+<button class="option-btn" data-val="200+" onclick="goToStep(2, this)">
+<div class="opt-text">
+<strong>200 salariés et plus</strong>
+<span>Grande PME, ETI ou groupe</span>
+</div>
+</button>
+</div>
+</div>
+<div class="step" id="step2">
+<div class="step-header">
+<div class="step-num">Question 2 / 8 : Situation actuelle</div>
+<h2>Quel logiciel de paie ou RH utilisez-vous actuellement ?</h2>
+<p>Connaître votre point de départ nous permet de mieux cibler les outils compatibles avec une migration et d'identifier les doublons à éviter.</p>
+</div>
+<div class="options-col">
+<button class="option-btn" data-val="none" onclick="goToStep(3, this)">
+<div class="opt-text">
+<strong>Aucun logiciel : gestion manuelle ou Excel</strong>
+<span>Vous partez de zéro ou d'un processus non automatisé</span>
+</div>
+</button>
+<button class="option-btn" data-val="payfit" onclick="goToStep(3, this)">
+<div class="opt-text">
+<strong>PayFit</strong>
+<span>Vous utilisez PayFit et souhaitez comparer ou migrer</span>
+</div>
+</button>
+<button class="option-btn" data-val="silae" onclick="goToStep(3, this)">
+<div class="opt-text">
+<strong>Silae / Cabinet comptable</strong>
+<span>La paie est gérée par votre cabinet comptable via Silae</span>
+</div>
+</button>
+<button class="option-btn" data-val="sage" onclick="goToStep(3, this)">
+<div class="opt-text">
+<strong>Sage Paie / outil on-premise</strong>
+<span>Vous avez un logiciel installé localement et souhaitez passer au cloud</span>
+</div>
+</button>
+<button class="option-btn" data-val="other" onclick="goToStep(3, this)">
+<div class="opt-text">
+<strong>Un autre outil (Factorial, Lucca, Nibelis…)</strong>
+<span>Vous êtes sur un autre logiciel et souhaitez comparer</span>
+</div>
+</button>
+</div>
+<div class="step-nav">
+<button class="btn-back-q" onclick="goToStep(1)">← Retour</button>
+</div>
+</div>
+<div class="step" id="step3">
+<div class="step-header">
+<div class="step-num">Question 3 / 8 : Organisation interne</div>
+<h2>Qui gère la paie et les ressources humaines dans votre entreprise ?</h2>
+<p>La complexité de l'outil à choisir dépend fortement de qui l'utilisera au quotidien et de son niveau d'expertise.</p>
+</div>
+<div class="options-col">
+<button class="option-btn" data-val="founder" onclick="goToStep(4, this)">
+<div class="opt-text">
+<strong>Le dirigeant lui-même (sans expertise RH/paie)</strong>
+<span>Pas de spécialiste en interne, le fondateur fait tout</span>
+</div>
+</button>
+<button class="option-btn" data-val="admin" onclick="goToStep(4, this)">
+<div class="opt-text">
+<strong>Un assistant(e) administratif(ve) ou office manager</strong>
+<span>Quelqu'un en charge de l'admin, sans expertise paie dédiée</span>
+</div>
+</button>
+<button class="option-btn" data-val="rh" onclick="goToStep(4, this)">
+<div class="opt-text">
+<strong>Un RH ou DRH dédié</strong>
+<span>Un professionnel RH à plein temps ou à mi-temps</span>
+</div>
+</button>
+<button class="option-btn" data-val="compta" onclick="goToStep(4, this)">
+<div class="opt-text">
+<strong>Un expert-comptable ou cabinet externe</strong>
+<span>La paie est externalisée, vous cherchez à internaliser</span>
+</div>
+</button>
+</div>
+<div class="step-nav">
+<button class="btn-back-q" onclick="goToStep(2)">← Retour</button>
+</div>
+</div>
+<div class="step" id="step4">
+<div class="step-header">
+<div class="step-num">Question 4 / 8 : Vos priorités</div>
+<h2>Quels sont vos besoins principaux ? <span style="font-size:.8rem;color:var(--text-muted);font-weight:400">(plusieurs choix possibles)</span></h2>
+<p>Sélectionnez tout ce qui vous correspond : nous pondérerons chaque critère dans notre recommandation finale.</p>
+</div>
+<div class="multi-hint">Sélectionnez toutes les cases qui vous correspondent, puis cliquez sur "Continuer".</div>
+<div class="options-grid" id="needsGrid">
+<button class="option-btn multi" data-val="paie">
+<div class="opt-text">
+<strong>Automatiser la paie</strong>
+<span>Bulletins, DSN, charges sociales</span>
+</div>
+</button>
+<button class="option-btn multi" data-val="conges">
+<div class="opt-text">
+<strong>Gestion des congés et absences</strong>
+<span>Pose de congés, suivi RTT, absences</span>
+</div>
+</button>
+<button class="option-btn multi" data-val="recrutement">
+<div class="opt-text">
+<strong>Recrutement</strong>
+<span>Annonces, candidatures, pipeline de recrutement</span>
+</div>
+</button>
+<button class="option-btn multi" data-val="temps">
+<div class="opt-text">
+<strong>Suivi du temps et présences</strong>
+<span>Pointage, heures supplémentaires, modulation</span>
+</div>
+</button>
+<button class="option-btn multi" data-val="onboarding">
+<div class="opt-text">
+<strong>Onboarding &amp; formation</strong>
+<span>Intégration des nouveaux, plan de formation</span>
+</div>
+</button>
+<button class="option-btn multi" data-val="frais">
+<div class="opt-text">
+<strong>Notes de frais</strong>
+<span>Remboursements, justificatifs, virements</span>
+</div>
+</button>
+</div>
+<div class="step-nav">
+<button class="btn-back-q" onclick="goToStep(3)">← Retour</button>
+<button class="btn-next-q" id="btnNext4" onclick="goToStep(5)">Continuer →</button>
+</div>
+</div>
+<div class="step" id="step5">
+<div class="step-header">
+<div class="step-num">Question 5 / 8 : Budget</div>
+<h2>Quel est votre budget mensuel par salarié ?</h2>
+<p>Les tarifs affichés sont hors taxes, hors frais de setup et hors options complémentaires. Les prix réels se négocient souvent.</p>
+</div>
+<div class="options-col">
+<button class="option-btn" data-val="&lt;5" onclick="goToStep(6, this)">
+<div class="opt-text">
+<strong>Moins de 5 €/salarié/mois</strong>
+<span>Budget serré : fonctionnalités de base suffisent</span>
+</div>
+</button>
+<button class="option-btn" data-val="5-10" onclick="goToStep(6, this)">
+<div class="opt-text">
+<strong>5 à 10 €/salarié/mois</strong>
+<span>Budget standard pour une PME : couvre la majorité des besoins</span>
+</div>
+</button>
+<button class="option-btn" data-val="10-20" onclick="goToStep(6, this)">
+<div class="opt-text">
+<strong>10 à 20 €/salarié/mois</strong>
+<span>Budget confortable : accès aux fonctionnalités avancées</span>
+</div>
+</button>
+<button class="option-btn" data-val="&gt;20" onclick="goToStep(6, this)">
+<div class="opt-text">
+<strong>Plus de 20 €/salarié/mois</strong>
+<span>Budget premium : solution enterprise avec accompagnement complet</span>
+</div>
+</button>
+</div>
+<div class="step-nav">
+<button class="btn-back-q" onclick="goToStep(4)">← Retour</button>
+</div>
+</div>
+<div class="step" id="step6">
+<div class="step-header">
+<div class="step-num">Question 6 / 8 : Structure</div>
+<h2>Votre entreprise a-t-elle plusieurs établissements ou des conventions collectives multiples ?</h2>
+<p>La complexité de la paie (multi-sites, multi-CCN) élimine certains outils et en favorise d'autres comme Silae ou Nibelis.</p>
+</div>
+<div class="options-col">
+<button class="option-btn" data-val="simple" onclick="goToStep(7, this)">
+<div class="opt-text">
+<strong>Un seul établissement, une seule convention collective</strong>
+<span>Situation standard pour une majorité de PME</span>
+</div>
+</button>
+<button class="option-btn" data-val="multi-site" onclick="goToStep(7, this)">
+<div class="opt-text">
+<strong>Plusieurs établissements (mêmes CCN)</strong>
+<span>Multi-sites mais sans complexité de conventions collectives</span>
+</div>
+</button>
+<button class="option-btn" data-val="multi-ccn" onclick="goToStep(7, this)">
+<div class="opt-text">
+<strong>Plusieurs conventions collectives différentes</strong>
+<span>Paie complexe nécessitant une gestion multi-CCN</span>
+</div>
+</button>
+<button class="option-btn" data-val="multi-pays" onclick="goToStep(7, this)">
+<div class="opt-text">
+<strong>Présence dans plusieurs pays</strong>
+<span>Salariés en France et à l'étranger : multi-législations</span>
+</div>
+</button>
+</div>
+<div class="step-nav">
+<button class="btn-back-q" onclick="goToStep(5)">← Retour</button>
+</div>
+</div>
+<div class="step" id="step7">
+<div class="step-header">
+<div class="step-num">Question 7 / 8 : Secteur d'activité</div>
+<h2>Dans quel secteur évolue votre entreprise ?</h2>
+<p>Certains logiciels sont spécialisés ou particulièrement bien adaptés à des secteurs précis.</p>
+</div>
+<div class="options-grid">
+<button class="option-btn" data-val="tech" onclick="goToStep(8, this)">
+<div class="opt-text">
+<strong>Tech / Startup / Numérique</strong>
+<span>SaaS, ESN, agences digitales</span>
+</div>
+</button>
+<button class="option-btn" data-val="chr" onclick="goToStep(8, this)">
+<div class="opt-text">
+<strong>CHR / Commerce / Retail</strong>
+<span>Hôtellerie, restauration, commerce de détail</span>
+</div>
+</button>
+<button class="option-btn" data-val="industrie" onclick="goToStep(8, this)">
+<div class="opt-text">
+<strong>Industrie / BTP / Logistique</strong>
+<span>Fabrication, construction, transport</span>
+</div>
+</button>
+<button class="option-btn" data-val="sante" onclick="goToStep(8, this)">
+<div class="opt-text">
+<strong>Santé / Médico-social</strong>
+<span>Cliniques, EHPAD, cabinets médicaux, associations</span>
+</div>
+</button>
+<button class="option-btn" data-val="conseil" onclick="goToStep(8, this)">
+<div class="opt-text">
+<strong>Conseil / Services aux entreprises</strong>
+<span>Cabinets conseil, juridique, comptabilité</span>
+</div>
+</button>
+<button class="option-btn" data-val="autre" onclick="goToStep(8, this)">
+<div class="opt-text">
+<strong>Autre secteur</strong>
+<span>Association, collectivité, éducation…</span>
+</div>
+</button>
+</div>
+<div class="step-nav">
+<button class="btn-back-q" onclick="goToStep(6)">← Retour</button>
+</div>
+</div>
+<div class="step" id="step8">
+<div class="step-header">
+<div class="step-num">Question 8 / 8 : Votre calendrier</div>
+<h2>Quel est votre délai de mise en place souhaité ?</h2>
+<p>Certains outils s'implémentent en quelques jours, d'autres nécessitent un projet de 2 à 3 mois. Votre calendrier influe sur le choix.</p>
+</div>
+<div class="options-col">
+<button class="option-btn" data-val="urgent" onclick="computeResult(this)">
+<div class="opt-text">
+<strong>Urgent : moins d'un mois</strong>
+<span>Besoin immédiat, première paie à lancer rapidement</span>
+</div>
+</button>
+<button class="option-btn" data-val="1-3m" onclick="computeResult(this)">
+<div class="opt-text">
+<strong>Dans 1 à 3 mois</strong>
+<span>Vous avez le temps de bien paramétrer et former les équipes</span>
+</div>
+</button>
+<button class="option-btn" data-val="6m+" onclick="computeResult(this)">
+<div class="opt-text">
+<strong>Dans 3 à 6 mois ou plus</strong>
+<span>Déploiement stratégique avec un projet structuré</span>
+</div>
+</button>
+<button class="option-btn" data-val="recherche" onclick="computeResult(this)">
+<div class="opt-text">
+<strong>Je fais juste des recherches pour l'instant</strong>
+<span>Benchmarking en cours, pas de décision imminente</span>
+</div>
+</button>
+</div>
+<div class="step-nav">
+<button class="btn-back-q" onclick="goToStep(7)">← Retour</button>
+</div>
+</div>
+<div class="result-wrap" id="resultWrap">
+<div class="result-main">
+<div class="result-badge-top">Recommandation personnalisée</div>
+<div class="result-logo" id="rLogo"></div>
+<h2 id="rName" style="color:var(--primary)">, </h2>
+<p class="result-tagline" id="rTagline">, </p>
+<p id="rDesc" style="font-size:.92rem;color:var(--text-muted);line-height:1.65;margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto">, </p>
+<div class="result-why" id="rWhy">
+<h3>Pourquoi ce choix ?</h3>
+<ul id="rWhyList"></ul>
+</div>
+<div class="result-actions">
+<a class="btn btn-primary" href="/comparatifs/payfit-vs-factorial.html" id="rCta">Lire notre analyse complète →</a>
+<button class="btn-restart-q" onclick="restartQuiz()">↺ Recommencer</button>
+</div>
+</div>
+<div class="alts-section">
+<h3>Autres solutions à explorer</h3>
+<div class="alts-grid" id="rAlts"></div>
+</div>
+</div>
+</div>
+
+<section style="max-width:760px;margin:0 auto;padding:0 24px 56px">
+<h2 style="font-size:1.2rem;font-weight:800;margin-bottom:12px;color:var(--text)">Comment choisir le bon logiciel RH pour votre PME ?</h2>
+<p style="font-size:.92rem;color:var(--text-muted);line-height:1.7;margin:0">Choisir un logiciel RH adapté est un enjeu stratégique pour toute PME. Entre les solutions de paie automatisée comme PayFit, les SIRH complets comme Factorial ou Lucca, et les outils spécialisés comme Silae pour les paies complexes, l'offre est vaste. Notre outil de recommandation analyse votre taille d'entreprise, vos besoins fonctionnels, votre budget et votre secteur d'activité pour vous orienter vers la solution la plus pertinente. Les critères de sélection des logiciels présentés sont décrits dans nos <a href="/cgu.html" style="color:var(--primary)">conditions générales d'utilisation</a>.</p>
+</section>

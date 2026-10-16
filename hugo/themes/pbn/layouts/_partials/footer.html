@@ -1,0 +1,54 @@
+{{- $info := partialCached "pbn/info-pages.html" . site.Language.Lang -}}
+{{- $cats := partialCached "pbn/categories.html" . site.Language.Lang -}}
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-about">
+        <p class="footer-title">{{ partial "pbn/name.html" . }}</p>
+        <p>{{ site.Params.description }}</p>
+      </div>
+      {{- if $cats }}
+      <div class="footer-col">
+        <p class="footer-title">{{ i18n "categories" }}</p>
+        <ul>
+          {{- range $cats }}
+          <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}</a></li>
+          {{- end }}
+        </ul>
+      </div>
+      {{- end }}
+      <div class="footer-col">
+        <p class="footer-title">{{ i18n "navigation" }}</p>
+        <nav aria-label="{{ i18n "nav_footer" }}">
+          <ul>
+            <li><a href="{{ site.Home.RelPermalink }}">{{ i18n "home" }}</a></li>
+            {{- $cs := site.Params.pbn.categorySections | default slice }}
+            {{- range site.Params.pbn.articleSections | default (slice "blog") }}{{ if not (in $cs .) }}{{ with site.GetPage . }}
+            <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre.html" . }}</a></li>
+            {{- end }}{{ end }}{{ end }}
+            {{- with $info.sitemap }}
+            <li><a href="{{ .RelPermalink }}">{{ i18n "sitemap" }}</a></li>
+            {{- end }}
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <ul>
+        {{- with site.Params.pbn.legalLinks }}
+          {{- range . }}
+        <li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a></li>
+          {{- end }}
+        {{- else }}
+          {{- range $k := slice "about" "contact" "legal" "privacy" "terms" "cookies" }}
+            {{- with index $info $k }}
+        <li><a href="{{ .RelPermalink }}">{{ i18n (index (dict "about" "about" "contact" "contact" "legal" "legal_notice" "privacy" "privacy_policy" "terms" "terms" "cookies" "cookies") $k) }}</a></li>
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      </ul>
+      {{ partial "hooks/footer-extra.html" . }}
+      <p class="footer-copy">&copy; {{ now.Year }} {{ site.Title }}. {{ i18n "all_rights_reserved" }}</p>
+    </div>
+  </div>
+</footer>

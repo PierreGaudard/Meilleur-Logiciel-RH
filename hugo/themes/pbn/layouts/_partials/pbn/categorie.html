@@ -1,0 +1,28 @@
+{{- /* Catégorie d'une page (cartes, fil d'Ariane, JSON-LD, index de recherche). Avec params.pbn.categorySections : la
+     rubrique parente, sinon la rubrique nommée par le champ categories (ou category, rubrique) du front matter, reconnue
+     par son titre, son linkTitle, son navLabel, ses categoryKeys ou son slug. Sinon : premier terme de la taxonomie des
+     catégories. Renvoie la page, ou une chaîne vide. Contexte : la page. */ -}}
+{{- $p := . -}}
+{{- $out := "" -}}
+{{- $rub := partialCached "pbn/rubriques.html" site site.Language.Lang -}}
+{{- if $rub -}}
+  {{- range $rub }}{{ if and (not $out) ($p.IsDescendant .) }}{{ $out = . }}{{ end }}{{ end -}}
+  {{- if not $out -}}
+    {{- $v := $p.Params.categories | default $p.Params.category | default $p.Params.rubrique | default "" -}}
+    {{- if reflect.IsSlice $v }}{{ $v = index ($v | append "") 0 }}{{ end -}}
+    {{- $k := lower (strings.TrimSpace (string $v)) -}}
+    {{- if $k -}}
+      {{- range $rub -}}
+        {{- if not $out -}}
+          {{- $names := slice (lower .Title) (lower .LinkTitle) (lower (string (.Params.navLabel | default ""))) (path.Base (strings.TrimSuffix "/" .RelPermalink)) -}}
+          {{- range .Params.categoryKeys }}{{ $names = $names | append (lower (string .)) }}{{ end -}}
+          {{- if or (in $names $k) (in $names (urlize $k)) }}{{ $out = . }}{{ end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $out -}}
+  {{- with $p.GetTerms (site.Params.pbn.categoryTaxonomy | default "categories") }}{{ $out = index . 0 }}{{ end -}}
+{{- end -}}
+{{- return $out -}}

@@ -1,0 +1,15 @@
+{{- if gt (len hugo.Sites) 1 -}}
+{{- $page := . -}}
+{{- $cur := site.Language.Lang -}}
+<details class="lang-switcher">
+  <summary aria-label="{{ i18n "language" }}">{{ upper $cur }}</summary>
+  <ul>
+  {{- range hugo.Sites }}
+    {{- $l := .Language.Lang -}}
+    {{- $target := .Home.RelPermalink -}}
+    {{- range $page.AllTranslations }}{{ if eq .Language.Lang $l }}{{ $target = .RelPermalink }}{{ end }}{{ end }}
+    <li><a href="{{ $target }}" hreflang="{{ $l }}" lang="{{ $l }}"{{ if eq $l $cur }} aria-current="true" class="is-current"{{ end }}>{{ upper $l }}</a></li>
+  {{- end }}
+  </ul>
+</details>
+{{- end -}}

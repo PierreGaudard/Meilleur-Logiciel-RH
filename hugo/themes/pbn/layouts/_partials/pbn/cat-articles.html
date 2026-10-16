@@ -1,0 +1,15 @@
+{{- /* Articles d'une catégorie (liste de pages). Contexte : la page de terme ou de rubrique. Rubrique
+     (params.pbn.categorySections) : les articles dont la catégorie (pbn/categorie.html) est cette rubrique. Sinon (terme
+     de taxonomie) : ses pages. */ -}}
+{{- $c := . -}}
+{{- $out := where .Pages "Kind" "page" -}}
+{{- if partial "pbn/is-rubrique.html" . -}}
+  {{- $articles := partialCached "pbn/articles.html" site site.Language.Lang -}}
+  {{- $keep := slice -}}
+  {{- range $articles -}}
+    {{- $a := . -}}
+    {{- with partialCached "pbn/categorie.html" $a $a.RelPermalink }}{{ if eq .RelPermalink $c.RelPermalink }}{{ $keep = $keep | append $a.RelPermalink }}{{ end }}{{ end -}}
+  {{- end -}}
+  {{- $out = where $articles "RelPermalink" "in" $keep -}}
+{{- end -}}
+{{- return $out -}}

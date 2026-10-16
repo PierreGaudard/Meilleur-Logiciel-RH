@@ -1,0 +1,16 @@
+{{- /* Article précédent et suivant de la section, en sautant les pages du champ relatedExclude. */ -}}
+{{- $ex := .Params.relatedExclude -}}
+{{- $prev := .PrevInSection -}}
+{{- $next := .NextInSection -}}
+{{- if $ex -}}
+  {{- range seq 50 -}}
+    {{- if and $prev (partial "pbn/exclu.html" (dict "page" $prev "liste" $ex)) }}{{ $prev = $prev.PrevInSection }}{{ end -}}
+    {{- if and $next (partial "pbn/exclu.html" (dict "page" $next "liste" $ex)) }}{{ $next = $next.NextInSection }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- if or $prev $next }}
+<nav class="prev-next" aria-label="{{ i18n "nav_articles" }}">
+  {{- with $prev }}<a href="{{ .RelPermalink }}" class="prev"><span>{{ i18n "prev_article" }}</span>{{ partial "pbn/titre-lien.html" . }}</a>{{ end }}
+  {{- with $next }}<a href="{{ .RelPermalink }}" class="next"><span>{{ i18n "next_article" }}</span>{{ partial "pbn/titre-lien.html" . }}</a>{{ end }}
+</nav>
+{{- end }}

@@ -1,0 +1,22 @@
+{{- /* Chemin d'une image du front matter. Contexte : la chaîne, ou dict "src" <chaîne> "page" <page> "abs" <bool>.
+     URL absolue gardée telle quelle ; sinon ressource de la page (bundle) ou de assets/ si elle existe (elle est alors
+     publiée) ; sinon chemin du site (static/), relatif ou absolu selon "abs". */ -}}
+{{- $s := . -}}
+{{- $page := "" -}}
+{{- $abs := false -}}
+{{- if reflect.IsMap . }}{{ $s = .src }}{{ $page = .page }}{{ $abs = .abs }}{{ end -}}
+{{- $s = string $s -}}
+{{- $out := $s -}}
+{{- if not (or (hasPrefix $s "http://") (hasPrefix $s "https://") (hasPrefix $s "//")) -}}
+  {{- $r := "" -}}
+  {{- with $page }}{{ with .Resources.Get $s }}{{ $r = . }}{{ end }}{{ end -}}
+  {{- if not $r }}{{ with resources.Get (strings.TrimPrefix "/" $s) }}{{ $r = . }}{{ end }}{{ end -}}
+  {{- if $r -}}
+    {{- $out = cond $abs $r.Permalink $r.RelPermalink -}}
+  {{- else if $abs -}}
+    {{- $out = strings.TrimPrefix "/" $s | absURL -}}
+  {{- else -}}
+    {{- $out = strings.TrimPrefix "/" $s | relURL -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

@@ -1,0 +1,19 @@
+{{- if site.Params.pbn.noindexSite -}}
+User-agent: *
+Disallow: /
+{{ else -}}
+User-agent: *
+Allow: /
+{{- $extra := site.Params.pbn.robotsExtra | default "" }}
+{{- range slice "GPTBot" "ChatGPT-User" "OAI-SearchBot" "ClaudeBot" "Claude-SearchBot" "PerplexityBot" "Perplexity-User" "Google-Extended" "Applebot-Extended" "CCBot" "meta-externalagent" "Amazonbot" }}
+{{- if not (findRE (printf `(?im)^\s*user-agent:\s*%s\s*$` .) $extra 1) }}
+
+User-agent: {{ . }}
+Allow: /
+{{- end }}
+{{- end }}
+{{ with $extra }}
+{{ . }}
+{{ end }}
+Sitemap: {{ "sitemap.xml" | absURL }}
+{{- end }}

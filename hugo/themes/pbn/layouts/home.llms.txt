@@ -1,0 +1,34 @@
+{{- $name := partial "pbn/name.html" . -}}
+{{- $info := partialCached "pbn/info-pages.html" . site.Language.Lang -}}
+{{- $cats := partialCached "pbn/categories.html" . site.Language.Lang -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+## {{ i18n "llms_about_title" }}
+
+{{ $about := site.Params.pbn.llmsAbout | default "" -}}
+{{- if and (not $about) (partial "pbn/is-typeb.html" .) site.Params.pbn.topic }}{{ $about = i18n "llms_about" (dict "Name" $name "Topic" site.Params.pbn.topic "Legal" (cond (isset $info "legal") (index $info "legal").Permalink site.Home.Permalink) "Signature" (partial "pbn/signature.html" .)) }}{{ end -}}
+{{- with site.Params.pbn.llmsNote }}{{ $about = trim (printf "%s %s" $about .) " " }}{{ end -}}
+{{ $about }}
+{{ with $cats }}
+## {{ i18n "llms_categories" }}
+{{ range . }}
+- [{{ partial "pbn/titre-lien.html" . }}]({{ .Permalink }}){{ with partial "pbn/desc.html" . }} : {{ . | plainify }}{{ end }}
+{{- end }}
+{{ end }}
+## {{ i18n "llms_articles" }}
+{{ range partialCached "pbn/articles.html" . site.Language.Lang }}
+- [{{ partial "pbn/titre.html" . }}]({{ .Permalink }}){{ with partial "pbn/desc.html" . }} : {{ . | plainify }}{{ end }}
+{{- end }}
+{{ with where (where site.RegularPages "Section" "") "Params.noindex" "ne" true }}
+## {{ i18n "llms_pages" }}
+{{ range . }}
+- [{{ partial "pbn/titre.html" . }}]({{ .Permalink }})
+{{- end }}
+{{ end }}
+## {{ i18n "llms_technical" }}
+
+- {{ i18n "llms_languages" }} : {{ range $i, $s := hugo.Sites }}{{ if $i }}, {{ end }}{{ $s.Language.Lang }}{{ end }}
+- Sitemap : {{ "sitemap.xml" | absURL }}
+- RSS : {{ with .OutputFormats.Get "RSS" }}{{ .Permalink }}{{ end }}

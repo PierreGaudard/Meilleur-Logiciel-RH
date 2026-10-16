@@ -1,0 +1,9 @@
+{{- /* Titre du héros : front matter de l'accueil (heroTitle, ou heroTitlePre + heroAccent + heroTitlePost), sinon params.pbn.hero. */ -}}
+{{- $h := site.Params.pbn.hero | default dict -}}
+{{- $title := .Params.heroTitle | default $h.title -}}
+{{- $pre := .Params.heroTitlePre | default $h.titlePre -}}
+{{- $acc := .Params.heroAccent | default $h.accent -}}
+{{- $post := .Params.heroTitlePost | default $h.titlePost -}}
+<h1 class="hero-title">
+{{- if $title }}{{ partial "pbn/annee.html" $title }}{{ else if or $pre $acc $post }}{{ with $pre }}{{ partial "pbn/annee.html" . }} {{ end }}{{ with $acc }}<span class="hero-accent">{{ partial "pbn/annee.html" . }}</span>{{ end }}{{ with $post }} {{ partial "pbn/annee.html" . }}{{ end }}{{ else }}{{ site.Title }}{{ end -}}
+</h1>

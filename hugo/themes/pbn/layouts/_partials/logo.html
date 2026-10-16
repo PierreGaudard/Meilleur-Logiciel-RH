@@ -1,0 +1,7 @@
+{{- /* Logo : image params.pbn.logo (fichier du site dans static/), ou pastille params.pbn.logoMark, suivie du nom si params.pbn.logoText (défaut true). */ -}}
+{{- $p := site.Params.pbn -}}
+<a href="{{ site.Home.RelPermalink }}" class="site-logo" aria-label="{{ site.Title }}">
+{{- if $p.logoMark }}<span class="site-logo-mark" aria-hidden="true"></span>{{ end -}}
+{{- with $p.logo }}<img class="site-logo-img" src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" width="{{ $p.logoWidth | default 32 }}" height="{{ $p.logoHeight | default 32 }}">{{ end -}}
+{{- if ne $p.logoText false }}<span class="site-logo-text">{{ partial "pbn/name.html" . }}</span>{{ end -}}
+</a>

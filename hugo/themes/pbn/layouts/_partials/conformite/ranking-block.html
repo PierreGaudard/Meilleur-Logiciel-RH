@@ -1,0 +1,7 @@
+{{- /* Sous la description d'un classement : mention complémentaire du groupe (params.pbn.mentionGroupe) et disclaimer de classement. */ -}}
+{{- if partial "pbn/is-typeb.html" . }}
+{{- if site.Params.pbn.mentionGroupe }}
+<p class="group-notice">{{ i18n "group_notice" (dict "Name" (partial "pbn/name.html" .)) }}</p>
+{{- end }}
+<p class="ranking-disclaimer">{{ i18n "ranking_disclaimer" }}</p>
+{{- end }}

@@ -1,0 +1,10 @@
+{{- /* Source donnée en chaîne : rendue en Markdown, chaque lien qui n'est pas une source officielle (pbn/source-lien.html)
+     ramené à son texte. Contexte : la chaîne. Renvoie du HTML (chaîne vide si rien à afficher). */ -}}
+{{- $h := string (partial "pbn/annee.html" . | markdownify) -}}
+{{- range findRESubmatch `(?s)<a\s[^>]*?href="([^"]*)"[^>]*>(.*?)</a>` $h -}}
+  {{- $url := htmlUnescape (index . 1) -}}
+  {{- $new := index . 2 -}}
+  {{- if partial "pbn/source-lien.html" $url }}{{ $new = printf `<a href="%s" rel="nofollow noopener">%s</a>` (index . 1) (index . 2) }}{{ end -}}
+  {{- $h = replace $h (index . 0) $new -}}
+{{- end -}}
+{{- return (trim $h " \n") -}}

@@ -1,0 +1,17 @@
+{{- /* Domaines dont un lien de source est rendu (règle Type B : aucun lien vers une marque, une boutique ou un tiers
+     commercial). params.pbn.sourcesLiens remplace la liste par défaut (une liste vide : aucun lien). Type A : le
+     domaine de la marque éditrice s'ajoute (params.pbn.sourcesMarque, sinon le domaine des legalLinks). */ -}}
+{{- $p := site.Params.pbn | default dict -}}
+{{- $l := slice "gouv.fr" "legifrance.gouv.fr" "service-public.fr" "service-public.gouv.fr" "europa.eu" "insee.fr" "ademe.fr" "has-sante.fr" "ansm.sante.fr" "inrs.fr" "who.int" "iso.org" "afnor.org" "ameli.fr" "anses.fr" "santepubliquefrance.fr" "inserm.fr" "cnil.fr" "urssaf.fr" "banque-france.fr" "amf-france.org" -}}
+{{- if isset $p "sourcesliens" }}{{ $l = slice }}{{ range $p.sourcesLiens }}{{ $l = $l | append (string .) }}{{ end }}{{ end -}}
+{{- if not (partial "pbn/is-typeb.html" .) -}}
+  {{- with $p.sourcesMarque -}}
+    {{- if reflect.IsSlice . }}{{ range . }}{{ $l = $l | append (string .) }}{{ end }}{{ else }}{{ $l = $l | append (string .) }}{{ end -}}
+  {{- else -}}
+    {{- range $p.legalLinks }}{{ with .url }}{{ if hasPrefix . "http" }}{{ $l = $l | append (urls.Parse .).Hostname }}{{ end }}{{ end }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- $l = $l | append (urls.Parse site.Home.Permalink).Hostname -}}
+{{- $out := slice -}}
+{{- range $l }}{{ with lower (strings.TrimPrefix "www." (strings.TrimSpace .)) }}{{ $out = $out | append . }}{{ end }}{{ end -}}
+{{- return ($out | uniq) -}}

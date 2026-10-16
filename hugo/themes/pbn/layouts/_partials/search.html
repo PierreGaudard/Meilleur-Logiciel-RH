@@ -1,0 +1,14 @@
+{{- /* Recherche sur l'index search-index.json de la langue (params.pbn.search). */ -}}
+{{- if site.Params.pbn.search }}{{ with site.Home.OutputFormats.Get "searchindex" }}
+<div class="search" data-search="{{ .RelPermalink }}">
+  <form class="search-form" role="search" action="{{ site.Home.RelPermalink }}">
+    <label for="search-{{ $.Kind }}" class="sr-only">{{ i18n "search_label" }}</label>
+    <input id="search-{{ $.Kind }}" type="search" name="q" placeholder="{{ i18n "search_placeholder" }}" autocomplete="off" data-search-input>
+    <button type="submit">{{ i18n "search_button" }}</button>
+  </form>
+  <div class="search-results" data-search-results hidden>
+    <ul data-search-list></ul>
+    <p data-search-empty hidden>{{ i18n "search_no_results" }}</p>
+  </div>
+</div>
+{{- end }}{{ end -}}

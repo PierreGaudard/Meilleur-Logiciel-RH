@@ -1,0 +1,11 @@
+{{- if not .IsHome }}
+<nav class="breadcrumb" aria-label="{{ i18n "breadcrumb" }}">
+  <ol>
+    <li><a href="{{ site.Home.RelPermalink }}">{{ i18n "home" }}</a></li>
+    {{- $cat := "" }}{{ if partial "pbn/is-article.html" . }}{{ $cat = partial "pbn/categorie.html" . }}{{ end }}
+    {{- with .Parent }}{{ if and (not .IsHome) (not (and $cat (eq .RelPermalink $cat.RelPermalink))) }}<li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}</a></li>{{ end }}{{ end }}
+    {{- with $cat }}<li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}</a></li>{{ end }}
+    <li><span aria-current="page">{{ partial "pbn/titre-lien.html" . }}</span></li>
+  </ol>
+</nav>
+{{- end }}

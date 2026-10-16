@@ -1,0 +1,3 @@
+{{- $articles := partialCached "pbn/articles.html" . site.Language.Lang -}}
+{{- $f := where $articles "Params.featured" true -}}
+{{- return (index (cond (gt (len $f) 0) $f $articles) 0) -}}

@@ -1,0 +1,3 @@
+{{- /* Articles de la langue courante, du plus récent au plus ancien. */ -}}
+{{- $sections := site.Params.pbn.articleSections | default (slice "blog") -}}
+{{- return (where site.RegularPages "Section" "in" $sections).ByDate.Reverse -}}

@@ -1,0 +1,3 @@
+{{- /* Article du blog ? Renvoie un booléen. Sections d'articles : params.pbn.articleSections (défaut : blog). */ -}}
+{{- $sections := site.Params.pbn.articleSections | default (slice "blog") -}}
+{{- return (and .IsPage (in $sections .Section)) -}}

@@ -1,0 +1,292 @@
+---
+title: "Convertisseur salaire brut en net 2026"
+seoTitle: "Convertisseur salaire brut en net 2026 : simulateur gratuit - MLRH"
+description: "Convertissez votre salaire brut en net en 2026. Cadre, non-cadre, fonction publique. Calcul instantané avec taux réels, prélèvement à la source inclus."
+lastmod: "2026-10-15T16:49:03+02:00"
+css: "outils-convertisseur-brut-net"
+js:
+  - "outils-convertisseur-brut-net"
+jsonldExtra:
+  - "{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Quelle différence entre net et net imposable ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Le salaire net est le montant versé sur votre compte bancaire après déduction de toutes les cotisations sociales. Le net imposable est légèrement supérieur car il inclut une partie de la CSG non déductible et de la CRDS. C'est le net imposable qui sert de base au calcul de votre impôt sur le revenu et qui apparaît sur votre déclaration fiscale.\"}}, {\"@type\": \"Question\", \"name\": \"Le 13e mois est-il calculé de la même façon ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Oui, le 13e mois est soumis aux mêmes cotisations sociales qu'un salaire mensuel classique. Les taux de cotisation s'appliquent de la même manière. Toutefois, si le cumul de vos revenus annuels dépasse les plafonds de la Sécurité sociale, certaines cotisations plafonnées ne s'appliqueront plus sur la totalité du 13e mois.\"}}, {\"@type\": \"Question\", \"name\": \"Comment sont imposées les heures supplémentaires ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"En 2026, les heures supplémentaires bénéficient d'une exonération de cotisations salariales (dans la limite de 11,31% du salaire brut) et d'une exonération d'impôt sur le revenu jusqu'à 7 500 euros nets par an. Au-delà de ce seuil, les heures supplémentaires sont imposées normalement. Cette exonération s'applique aux salariés du secteur privé comme aux agents publics.\"}}, {\"@type\": \"Question\", \"name\": \"Mon employeur peut-il me payer moins que le SMIC net ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Non, aucun salarié à temps plein ne peut percevoir un salaire inférieur au SMIC. En 2026, le SMIC brut mensuel est d'environ 1 802 euros pour 35 heures hebdomadaires, ce qui correspond à un net d'environ 1 426 euros avant prélèvement à la source. Votre convention collective peut prévoir un minimum supérieur au SMIC.\"}}, {\"@type\": \"Question\", \"name\": \"Le prélèvement à la source change-t-il mon net ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Le prélèvement à la source est une avance sur votre impôt sur le revenu, prélevée directement sur votre salaire net. Il ne modifie pas votre salaire net au sens strict (le net avant impôt reste le même), mais il réduit le montant effectivement versé sur votre compte bancaire. Le taux de prélèvement est communiqué par l'administration fiscale à votre employeur et peut être modifié en ligne sur impots.gouv.fr.\"}}]}"
+  - "{\"@context\": \"https://schema.org\", \"@type\": \"WebApplication\", \"name\": \"Convertisseur salaire brut en net 2026\", \"url\": \"https://meilleur-logiciel-rh.fr/outils/convertisseur-brut-net.html\", \"applicationCategory\": \"FinanceApplication\", \"operatingSystem\": \"Web\", \"offers\": {\"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"EUR\"}, \"description\": \"Simulateur gratuit pour convertir votre salaire brut en net en France en 2026. Cadre, non-cadre, fonction publique, apprenti, stagiaire.\", \"inLanguage\": \"fr-FR\", \"provider\": {\"@type\": \"Organization\", \"name\": \"MLRH\", \"url\": \"https://meilleur-logiciel-rh.fr\"}}"
+---
+
+Calculez instantanément votre salaire net à partir du brut. Taux officiels 2026, tous statuts (cadre, non-cadre, fonction publique), prélèvement à la source inclus.
+
+<section class="calc-section">
+<div class="calc-card">
+<div class="calc-header">
+<div class="calc-header-title">Simulateur brut / net</div>
+<div class="calc-header-sub">Saisissez vos informations, le calcul se met à jour automatiquement</div>
+</div>
+<div class="calc-body">
+<div class="calc-grid">
+<div class="calc-field">
+<label for="salaire-brut">Salaire brut mensuel</label>
+<div class="calc-input-wrap">
+<input class="has-suffix" id="salaire-brut" min="0" placeholder="2 500" step="50" type="number" value=""/>
+<span class="input-suffix">€</span>
+</div>
+</div>
+<div class="calc-field">
+<label for="statut">Statut</label>
+<div class="calc-input-wrap">
+<select id="statut">
+<option value="non-cadre">Non-cadre</option>
+<option value="cadre">Cadre</option>
+<option value="public">Fonction publique</option>
+<option value="apprenti">Apprenti</option>
+<option value="stage">Stagiaire</option>
+</select>
+</div>
+</div>
+<div class="calc-field">
+<label for="temps-travail">Temps de travail</label>
+<div class="calc-input-wrap">
+<select id="temps-travail">
+<option value="plein">Temps plein (35h)</option>
+<option value="partiel">Temps partiel</option>
+</select>
+</div>
+<div class="partial-hours" id="partial-hours-wrap">
+<label for="heures-partiel">Nombre d'heures par semaine</label>
+<input id="heures-partiel" max="34" min="1" placeholder="28" type="number" value=""/>
+</div>
+</div>
+<div class="calc-field">
+<label for="heures-sup">Heures supplémentaires / mois <span class="field-hint">(facultatif)</span></label>
+<div class="calc-input-wrap">
+<input class="has-suffix" id="heures-sup" max="60" min="0" placeholder="0" type="number" value=""/>
+<span class="input-suffix">h</span>
+</div>
+</div>
+</div>
+<div class="calc-btn-wrap">
+<button class="calc-btn" id="btn-calculer" type="button">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="18"><path d="M4 4h16v16H4z"></path><path d="M8 8h2v2H8zm0 4h2v2H8zm0 4h2v2H8zm4-8h2v2h-2zm0 4h2v2h-2zm0 4h4v2h-4zm4-8h2v2h-2zm0 4h2v2h-2z"></path></svg>
+Calculer
+</button>
+</div>
+<div class="calc-results" id="calc-results">
+<div class="results-title">Résultat de la simulation</div>
+<div class="result-main" style="background:var(--primary-light);border-radius:12px;padding:24px;text-align:center;margin-bottom:20px">
+<div style="font-size:.82rem;font-weight:600;color:var(--primary-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Salaire net avant impôt</div>
+<div id="res-net-avant" style="font-size:2.4rem;font-weight:900;color:var(--primary-dark)">-</div>
+<div style="font-size:.85rem;color:var(--text-muted);margin-top:8px">par mois</div>
+</div>
+<button onclick="document.getElementById('detail-results').style.display=document.getElementById('detail-results').style.display==='none'?'block':'none';this.textContent=document.getElementById('detail-results').style.display==='none'?'Voir le détail du calcul':'Masquer le détail'" style="display:flex;align-items:center;gap:6px;background:none;border:1px solid var(--border);border-radius:8px;padding:10px 18px;font-size:.85rem;font-weight:600;color:var(--primary);cursor:pointer;margin:0 auto 16px;font-family:inherit" type="button">Voir le détail du calcul</button>
+<div id="detail-results" style="display:none">
+<div class="result-lines">
+<div class="result-line">
+<span class="rl-label">Salaire brut mensuel</span>
+<span class="rl-value" id="res-brut">-</span>
+</div>
+<div class="result-line deduction">
+<span class="rl-label">Cotisations salariales <span class="rl-pct" id="res-cotis-pct">-</span></span>
+<span class="rl-value" id="res-cotis">-</span>
+</div>
+<div class="result-line deduction">
+<span class="rl-label">
+<span class="rl-tax-select">
+Prélèvement à la source
+<select id="taux-pas">
+<option value="0">0 %</option>
+<option selected="" value="5">5 %</option>
+<option value="10">10 %</option>
+<option value="15">15 %</option>
+<option value="20">20 %</option>
+<option value="30">30 %</option>
+</select>
+</span>
+</span>
+<span class="rl-value" id="res-pas">-</span>
+</div>
+<div class="result-line">
+<span class="rl-label">Salaire net après impôt</span>
+<span class="rl-value" id="res-net-apres">-</span>
+</div>
+<div class="result-group-title">Récapitulatif annuel</div>
+<div class="result-line">
+<span class="rl-label">Salaire net annuel (avant impôt)</span>
+<span class="rl-value" id="res-net-annuel">-</span>
+</div>
+<div class="result-line">
+<span class="rl-label">Coût total employeur <span class="rl-pct" id="res-emp-pct">-</span></span>
+<span class="rl-value" id="res-cout-employeur">-</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="content-section">
+<h2>Comment passer du salaire brut au net en 2026 ?</h2>
+<p>La différence entre salaire brut et salaire net est une question qui revient systématiquement lors d'une embauche, d'une négociation salariale ou simplement en lisant sa fiche de paie. En France, le montant inscrit dans votre contrat de travail est toujours exprimé en brut. Pourtant, ce n'est pas cette somme que vous recevez sur votre compte bancaire chaque mois. Entre les deux, les cotisations sociales viennent réduire le montant, et depuis 2019, le prélèvement à la source s'ajoute à l'équation.</p>
+<p>Le salaire brut correspond à la rémunération totale avant toute déduction. Il comprend le salaire de base, les éventuelles primes, les heures supplémentaires et les avantages en nature valorisés. À partir de ce montant, l'employeur prélève les <strong>cotisations salariales</strong> : assurance maladie, retraite de base, retraite complémentaire, assurance chômage, CSG et CRDS. Le solde après déduction de ces cotisations constitue le <strong>salaire net avant impôt</strong>.</p>
+<p>En 2026, les taux de cotisations salariales varient sensiblement selon votre statut professionnel. Un salarié non-cadre du secteur privé voit environ <strong>22 % de son salaire brut</strong> prélevé en cotisations. Pour un cadre, ce taux monte à environ <strong>25 %</strong>, principalement en raison de la cotisation APEC et d'une tranche 2 de retraite complémentaire plus élevée. Dans la fonction publique, les règles sont différentes : les cotisations s'élèvent à environ <strong>17 %</strong>, avec une pension civile de 11,10 % comme poste principal.</p>
+<p>Pour convertir votre salaire brut en net, la formule simplifiée est la suivante :</p>
+<div class="info-box">
+<strong>Formule :</strong> Salaire net = Salaire brut - (Salaire brut x Taux de cotisations salariales)<br/>
+Exemple pour un non-cadre à 2 500 EUR brut : 2 500 - (2 500 x 0,22) = <strong>1 950 EUR net avant impôt</strong>
+</div>
+<p>Cette formule donne une estimation fiable pour la grande majorité des situations. Toutefois, le calcul réel est légèrement plus complexe car certaines cotisations sont plafonnées au plafond mensuel de la Sécurité sociale (PMSS), fixé à <strong>3 864 EUR en 2026</strong>. Au-delà de ce plafond, les cotisations de retraite de base et de chômage ne s'appliquent plus de la même manière, ce qui modifie légèrement le taux effectif pour les hauts salaires.</p>
+<div class="compare-table-wrap">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Statut</th>
+<th>Taux de cotisations salariales</th>
+<th>Exemple : 2 500 EUR brut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-cadre</td>
+<td>~22 %</td>
+<td>1 950 EUR net</td>
+</tr>
+<tr>
+<td>Cadre</td>
+<td>~25 %</td>
+<td>1 875 EUR net</td>
+</tr>
+<tr>
+<td>Fonction publique</td>
+<td>~17 %</td>
+<td>2 075 EUR net</td>
+</tr>
+<tr>
+<td>Apprenti (sous 79% SMIC)</td>
+<td>Exonéré</td>
+<td>Brut = Net</td>
+</tr>
+<tr>
+<td>Stagiaire (sous seuil légal)</td>
+<td>Exonéré</td>
+<td>Gratification nette</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Le prélèvement à la source, mis en place depuis le 1er janvier 2019, est un impôt directement retenu sur votre salaire net. Il ne constitue pas une cotisation sociale à proprement parler : c'est une avance sur votre impôt sur le revenu. Le taux varie d'un contribuable à l'autre, en fonction de vos revenus de l'année précédente, de votre situation familiale et des éventuels crédits ou réductions d'impôt dont vous bénéficiez. Vous pouvez ajuster votre taux à tout moment sur le site impots.gouv.fr.</p>
+<h2>Tableau de conversion brut/net 2026</h2>
+<p>Voici un tableau de référence pour convertir rapidement les salaires bruts les plus courants en net. Ces montants sont calculés avec les taux moyens de cotisations salariales 2026 et ne tiennent pas compte du prélèvement à la source, qui varie selon votre situation fiscale personnelle.</p>
+<div class="compare-table-wrap">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Brut mensuel</th>
+<th>Net non-cadre (~22%)</th>
+<th>Net cadre (~25%)</th>
+<th>Net fonction publique (~17%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 500 EUR</td>
+<td>1 170 EUR</td>
+<td>1 125 EUR</td>
+<td>1 245 EUR</td>
+</tr>
+<tr>
+<td>1 802 EUR (SMIC)</td>
+<td>1 406 EUR</td>
+<td>1 352 EUR</td>
+<td>1 496 EUR</td>
+</tr>
+<tr>
+<td>2 000 EUR</td>
+<td>1 560 EUR</td>
+<td>1 500 EUR</td>
+<td>1 660 EUR</td>
+</tr>
+<tr>
+<td>2 500 EUR</td>
+<td>1 950 EUR</td>
+<td>1 875 EUR</td>
+<td>2 075 EUR</td>
+</tr>
+<tr>
+<td>3 000 EUR</td>
+<td>2 340 EUR</td>
+<td>2 250 EUR</td>
+<td>2 490 EUR</td>
+</tr>
+<tr>
+<td>3 500 EUR</td>
+<td>2 730 EUR</td>
+<td>2 625 EUR</td>
+<td>2 905 EUR</td>
+</tr>
+<tr>
+<td>4 000 EUR</td>
+<td>3 120 EUR</td>
+<td>3 000 EUR</td>
+<td>3 320 EUR</td>
+</tr>
+<tr>
+<td>4 500 EUR</td>
+<td>3 510 EUR</td>
+<td>3 375 EUR</td>
+<td>3 735 EUR</td>
+</tr>
+<tr>
+<td>5 000 EUR</td>
+<td>3 900 EUR</td>
+<td>3 750 EUR</td>
+<td>4 150 EUR</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ces montants sont des estimations basées sur les taux moyens de cotisations salariales. Le montant exact peut varier de quelques euros en fonction de votre convention collective, de votre mutuelle d'entreprise et de votre tranche de cotisation retraite complémentaire. Pour un calcul précis adapté à votre situation, utilisez le simulateur en haut de cette page.</p>
+<h2>Les cotisations sociales détaillées</h2>
+<p>Pour bien comprendre la différence entre votre salaire brut et votre salaire net, il est utile de connaître les principales cotisations qui sont prélevées chaque mois. Chacune finance un pan de la protection sociale française.</p>
+<h3>Assurance maladie</h3>
+<p>La cotisation salariale d'assurance maladie a été supprimée pour la plupart des salariés depuis 2018. En revanche, la <strong>CSG (Contribution Sociale Généralisée)</strong> inclut une part destinée au financement de l'assurance maladie. L'employeur continue de payer sa part patronale d'environ 7 % à 13 % selon le niveau de salaire. Pour les salariés dont la rémunération dépasse 2,5 fois le SMIC, une cotisation salariale complémentaire de 0,13 % s'applique toujours.</p>
+<h3>Retraite de base (Sécurité sociale)</h3>
+<p>La cotisation de retraite de base est assise sur le salaire dans la limite du plafond de la Sécurité sociale (3 864 EUR/mois en 2026). Le taux salarial est de <strong>6,90 %</strong> sur la tranche 1 (jusqu'au plafond) et de <strong>0,40 %</strong> sur la totalité du salaire pour la cotisation déplafonnée. Cette cotisation vous ouvre des droits à la retraite du régime général gérée par la CNAV.</p>
+<h3>Retraite complémentaire (AGIRC-ARRCO)</h3>
+<p>Tous les salariés du secteur privé cotisent à l'AGIRC-ARRCO pour leur retraite complémentaire. Le taux salarial est de <strong>3,15 %</strong> sur la tranche 1 (jusqu'au plafond SS) et de <strong>8,64 %</strong> sur la tranche 2 (entre 1 et 8 plafonds SS). Pour les cadres, la cotisation APEC (Association Pour l'Emploi des Cadres) s'ajoute à hauteur de 0,024 %, ce qui explique en partie le taux de cotisations plus élevé pour les cadres.</p>
+<h3>Assurance chômage</h3>
+<p>Depuis le 1er octobre 2018, la cotisation salariale d'assurance chômage a été supprimée pour les salariés du secteur privé. Cette suppression a été compensée par une hausse de la CSG. En pratique, les salariés ne paient plus de cotisation chômage sur leur bulletin de paie. L'employeur continue de cotiser à hauteur de 4,05 % du salaire brut, dans la limite de 4 plafonds de la Sécurité sociale.</p>
+<h3>CSG et CRDS</h3>
+<p>La <strong>CSG (9,20 %)</strong> et la <strong>CRDS (0,50 %)</strong> sont calculées sur 98,25 % du salaire brut (un abattement de 1,75 % pour frais professionnels s'applique dans la limite de 4 plafonds SS). La CSG se décompose en une part déductible de l'impôt sur le revenu (6,80 %) et une part non déductible (2,40 %). La CRDS est intégralement non déductible. À elles seules, la CSG et la CRDS représentent près de la moitié des cotisations salariales prélevées sur votre bulletin de paie.</p>
+<h3>Autres cotisations</h3>
+<p>Selon votre entreprise et votre convention collective, d'autres prélèvements peuvent apparaître sur votre bulletin de paie : la cotisation de prévoyance (obligatoire pour les cadres, variable pour les non-cadres), la mutuelle d'entreprise (obligatoire depuis 2016, avec une part salariale et une part patronale) et d'éventuelles cotisations spécifiques liées à votre branche professionnelle. Ces prélèvements complémentaires expliquent pourquoi le taux effectif de cotisations peut varier de 1 à 2 points d'un salarié à l'autre au sein de la même catégorie.</p>
+<h2>Cas particuliers</h2>
+<h3>Temps partiel</h3>
+<p>Si vous travaillez à temps partiel, votre salaire brut est proportionnel à votre durée de travail. Un temps partiel à 28 heures par semaine (80 %) correspond à un salaire brut égal à 80 % du brut temps plein. Les taux de cotisations restent identiques : un non-cadre à temps partiel verra toujours environ 22 % de son brut prélevé en cotisations salariales. Toutefois, si votre salaire brut passe sous le plafond de la Sécurité sociale, certaines cotisations plafonnées seront calculées sur la totalité de votre brut, ce qui ne change pas fondamentalement le ratio net/brut pour les salaires courants.</p>
+<h3>Heures supplémentaires</h3>
+<p>Les heures supplémentaires bénéficient d'un traitement fiscal et social avantageux en 2026. Du côté social, elles sont exonérées de cotisations salariales dans la limite de 11,31 % du salaire brut correspondant. Du côté fiscal, les revenus issus des heures supplémentaires sont exonérés d'impôt sur le revenu <strong>jusqu'à 7 500 EUR nets par an</strong>. En pratique, cela signifie qu'une heure supplémentaire majorée à 25 % vous rapporte davantage en net qu'une heure normale, grâce à cette double exonération. Notre simulateur intègre automatiquement cette exonération dans le calcul.</p>
+<h3>Primes et 13e mois</h3>
+<p>Les primes exceptionnelles, les primes d'ancienneté, le 13e mois et les bonus sont soumis aux mêmes cotisations sociales que le salaire de base. Ils s'ajoutent à votre rémunération brute mensuelle et sont convertis en net selon les mêmes taux. Attention toutefois : le mois où vous percevez une prime, votre bulletin affichera un brut supérieur à l'habitude, ce qui peut faire basculer une partie de votre rémunération dans la tranche 2 de l'AGIRC-ARRCO et donc modifier légèrement le taux effectif de cotisations pour ce mois-là. Pour la prime de partage de la valeur (ancienne "prime Macron"), une exonération de cotisations et d'impôt s'applique sous certaines conditions et plafonds.</p>
+<h2>Questions fréquentes</h2>
+<div class="faq-list">
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">Quelle différence entre net et net imposable ?</summary><div class="mlrh-faq-answer">
+Le salaire net est le montant versé sur votre compte bancaire après déduction de toutes les cotisations sociales obligatoires. Le net imposable, lui, est légèrement supérieur car il intègre la part non déductible de la CSG (2,40 %) et la CRDS (0,50 %) qui, bien que prélevées sur votre bulletin, ne réduisent pas votre base imposable. C'est le net imposable qui sert de référence pour le calcul de votre impôt sur le revenu et qui apparaît sur votre déclaration fiscale annuelle. La différence entre net et net imposable représente généralement entre 2 et 3 % du salaire net.
+</div></details>
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">Le 13e mois est-il calculé de la même façon ?</summary><div class="mlrh-faq-answer">
+Oui, le 13e mois est traité comme un élément de salaire classique et supporte les mêmes cotisations sociales. Le taux de conversion brut/net est donc identique. Toutefois, le mois où le 13e mois est versé, le cumul de rémunération peut dépasser le plafond mensuel de la Sécurité sociale, ce qui modifie le calcul de certaines cotisations plafonnées. En pratique, cette variation est marginale pour les salaires inférieurs à 3 800 EUR brut mensuel. Au-delà, vous pourriez constater un léger écart de cotisations sur le bulletin du mois de versement.
+</div></details>
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">Comment sont imposées les heures supplémentaires ?</summary><div class="mlrh-faq-answer">
+Les heures supplémentaires bénéficient d'un double avantage en 2026. D'abord, elles sont exonérées de cotisations salariales à hauteur de 11,31 % du brut, ce qui augmente directement le net perçu. Ensuite, les revenus nets issus des heures supplémentaires sont exonérés d'impôt sur le revenu dans la limite de 7 500 EUR par an. Au-delà de ce seuil, les heures supplémentaires sont intégrées à votre revenu imposable et soumises au barème progressif de l'impôt. Cette exonération s'applique à tous les salariés du secteur privé ainsi qu'aux agents de la fonction publique.
+</div></details>
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">Mon employeur peut-il me payer moins que le SMIC net ?</summary><div class="mlrh-faq-answer">
+Non, le SMIC est un plancher légal que tout employeur doit respecter. En 2026, le SMIC brut mensuel s'élève à environ 1 802 EUR pour un temps plein de 35 heures par semaine, soit un SMIC net d'environ 1 426 EUR avant prélèvement à la source. Si votre convention collective prévoit un minimum conventionnel supérieur au SMIC, c'est ce minimum qui s'applique. En cas de manquement, le salarié peut saisir le Conseil de prud'hommes pour obtenir un rappel de salaire. Les apprentis et les stagiaires sont soumis à des règles spécifiques : l'apprenti perçoit un pourcentage du SMIC selon son âge et son année de contrat, tandis que le stagiaire reçoit une gratification minimale de 4,35 EUR par heure.
+</div></details>
+<details class="mlrh-faq-item"><summary class="mlrh-faq-question">Le prélèvement à la source change-t-il mon net ?</summary><div class="mlrh-faq-answer">
+Le prélèvement à la source ne modifie pas votre salaire net au sens strict du terme. Votre salaire net avant impôt reste identique, quels que soient vos paramètres fiscaux. En revanche, le montant effectivement versé sur votre compte bancaire est bien réduit par le prélèvement à la source. Il s'agit d'une avance sur votre impôt annuel sur le revenu, et non d'une cotisation supplémentaire. Le taux est communiqué par l'administration fiscale à votre employeur et peut être ajusté à tout moment sur votre espace personnel impots.gouv.fr. Vous pouvez notamment opter pour un taux individualisé si vous êtes en couple, ou demander un taux neutre si vous ne souhaitez pas que votre employeur connaisse votre taux réel.
+</div></details>
+</div>
+<div class="cta-box">
+<h3>Gérez la paie de votre entreprise sans erreur</h3>
+<p>Trouvez le logiciel de paie adapté à votre PME en 2 minutes.</p>
+<div class="cta-buttons">
+<a class="btn btn-orange" href="/trouver-mon-logiciel.html">Trouver mon logiciel</a>
+<a class="btn btn-secondary" href="/comparatifs/" style="background:rgba(255,255,255,.1);color:white;border-color:rgba(255,255,255,.3)">Voir les comparatifs</a>
+</div>
+</div>
+</section>

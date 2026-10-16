@@ -1,0 +1,12 @@
+{{- /* Partage par simples liens : aucun script tiers chargé. */ -}}
+{{- /* Pas de urlquery ici : dans un href, html/template encode déjà la valeur de la requête (sinon double encodage). */ -}}
+{{- $u := .Permalink -}}
+{{- $t := partial "pbn/titre.html" . | plainify -}}
+<div class="share">
+  <span class="share-label">{{ i18n "share" }}</span>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $u }}" rel="noopener nofollow" target="_blank">LinkedIn</a>
+  <a href="https://twitter.com/intent/tweet?url={{ $u }}&amp;text={{ $t }}" rel="noopener nofollow" target="_blank">X</a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u={{ $u }}" rel="noopener nofollow" target="_blank">Facebook</a>
+  <a href="mailto:?subject={{ $t }}&amp;body={{ $u }}">E-mail</a>
+  <button type="button" data-copy="{{ .Permalink }}" data-copied="{{ i18n "share_copied" }}">{{ i18n "share_copy" }}</button>
+</div>

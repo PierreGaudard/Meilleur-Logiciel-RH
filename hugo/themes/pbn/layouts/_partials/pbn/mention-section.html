@@ -1,0 +1,3 @@
+{{- /* Page d'une section entière sous mention (params.pbn.mentionSections) ? Renvoie un booléen. La mention « Publication
+     sponsorisée » s'y affiche sans condition, sans le disclaimer de classement. Contexte : la page. */ -}}
+{{- return (and .IsPage (in (site.Params.pbn.mentionSections | default slice) .Section)) -}}

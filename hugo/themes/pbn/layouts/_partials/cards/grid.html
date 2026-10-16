@@ -1,0 +1,7 @@
+{{- /* Grille de cartes. Contexte : dict "pages" <liste> "variant" <variante> "heading" <h2|h3>. */ -}}
+{{- $v := .variant | default (site.Params.pbn.cards | default "image") -}}
+<div class="cards cards-{{ $v }}">
+{{- range .pages }}
+{{ partial "cards/card.html" (dict "page" . "variant" $v "heading" $.heading) }}
+{{- end }}
+</div>

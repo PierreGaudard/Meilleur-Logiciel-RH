@@ -1,0 +1,8 @@
+{{- /* Jetons d'année : {annee}, {year} et {{< year >}} (ou {{% year %}}) laissés dans un champ du front matter sont
+     remplacés par l'année courante du build. Contexte : une chaîne. Toujours appeler ce partial (ou titre, titre-lien,
+     h1, desc) là où un titre ou une description s'affiche. */ -}}
+{{- $s := string (. | default "") -}}
+{{- if in $s "{" -}}
+  {{- $s = replaceRE `\{annee\}|\{year\}|\{\{[<%]\s*year\s*[>%]\}\}` (string now.Year) $s -}}
+{{- end -}}
+{{- return $s -}}

@@ -1,0 +1,29 @@
+{{- /* Carte d'article. Contexte : dict "page" <page> "variant" image|horizontal|text "heading" <h2|h3>.
+     La mention se décide sur la page annoncée par la carte. */ -}}
+{{- $p := .page -}}
+{{- $v := .variant | default (site.Params.pbn.cards | default "image") -}}
+{{- $h := .heading | default "h3" -}}
+{{- $cat := "" }}{{ with partial "pbn/categorie.html" $p }}{{ $cat = partial "pbn/titre-lien.html" . }}{{ end -}}
+<article class="card card-{{ $v }}" data-tags="{{ delimit ($p.Params.tags | default slice) "," }}"{{ with $cat }} data-cat="{{ . }}"{{ end }}>
+  {{- if ne $v "text" }}
+  <a href="{{ $p.RelPermalink }}" class="card-media" tabindex="-1" aria-hidden="true">
+    {{- with $p.Params.image }}
+    <img src="{{ partial "pbn/img-src.html" (dict "src" . "page" $p) }}" alt="" loading="lazy" width="600" height="400">
+    {{- else }}
+    <span class="card-placeholder">{{ substr (partial "pbn/titre.html" $p) 0 1 }}</span>
+    {{- end }}
+  </a>
+  {{- end }}
+  <div class="card-body">
+    <div class="card-meta">
+      {{- if or (partial "conformite/ranking.html" $p) (partial "pbn/mention-section.html" $p) }}{{ partial "conformite/mention.html" (dict "lang" $p.Language.Lang "small" true) }}{{ end }}
+      {{- with $cat }}<span class="card-cat">{{ . }}</span>{{ end }}
+      {{- if partial "pbn/is-article.html" $p }}<time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ partial "pbn/date.html" $p.Date }}</time>{{ end }}
+    </div>
+    {{ printf "<%s class=\"card-title\">" $h | safeHTML }}<a href="{{ $p.RelPermalink }}">{{ partial "pbn/titre-lien.html" $p }}</a>{{ printf "</%s>" $h | safeHTML }}
+    {{- with partial "pbn/desc.html" $p }}
+    <p class="card-desc">{{ . | plainify }}</p>
+    {{- end }}
+    {{- if eq $v "horizontal" }}<a href="{{ $p.RelPermalink }}" class="card-more" aria-hidden="true" tabindex="-1">{{ i18n "read_more" }}</a>{{ end }}
+  </div>
+</article>

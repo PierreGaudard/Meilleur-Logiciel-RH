@@ -1,0 +1,10 @@
+{{- /* Rubriques gérées en sections de contenu (params.pbn.categorySections) : chaque section listée est une rubrique,
+     sauf si elle a des sous-sections, qui sont alors les rubriques (ex. content/<langue>/categories/<rubrique>/_index.md).
+     Renvoie la liste des pages de rubrique de la langue courante (vide sans categorySections). */ -}}
+{{- $out := slice -}}
+{{- range site.Params.pbn.categorySections -}}
+  {{- with site.GetPage (string .) -}}
+    {{- if .Sections }}{{ range .Sections }}{{ $out = $out | append . }}{{ end }}{{ else }}{{ $out = $out | append . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

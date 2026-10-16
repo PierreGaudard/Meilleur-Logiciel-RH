@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale | default site.Language.Lang }}" class="pbn-scheme-{{ site.Params.pbn.colors.scheme | default "light" }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="{{ site.Params.pbn.colors.headerBackground | default site.Params.pbn.colors.background | default "#FFFFFF" }}">
+<title>{{ partial "pbn/title.html" . }}</title>
+{{- partial "head/meta.html" . }}
+{{- partial "head/jsonld.html" . }}
+{{- partial "head/styles.html" . }}
+{{- partial "hooks/head-end.html" . }}
+</head>
+<body class="kind-{{ .Kind }}{{ with .Section }} section-{{ . | urlize }}{{ end }} home-{{ site.Params.pbn.home | default "magazine" }} cards-{{ site.Params.pbn.cards | default "image" }} article-{{ site.Params.pbn.article | default "classic" }}">
+<a href="#main-content" class="skip-link">{{ i18n "skip_to_content" }}</a>
+{{ partial "header.html" . }}
+<main id="main-content">
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "footer.html" . }}
+{{- $js := resources.Get "js/site.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{- partial "hooks/body-end.html" . }}
+</body>
+</html>

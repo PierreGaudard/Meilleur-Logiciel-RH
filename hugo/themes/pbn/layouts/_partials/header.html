@@ -1,0 +1,17 @@
+<header class="site-header">
+  <div class="container header-inner">
+    {{ partial "logo.html" . }}
+    <nav class="site-nav" aria-label="{{ i18n "nav_main" }}">
+      {{ partial "nav-items.html" . }}
+    </nav>
+    <div class="header-tools">
+      {{ partial "lang-switcher.html" . }}
+      <details class="mobile-menu">
+        <summary aria-label="{{ i18n "menu" }}"><span class="burger" aria-hidden="true"></span></summary>
+        <nav class="mobile-nav" aria-label="{{ i18n "menu" }}">
+          {{ partial "nav-items.html" . }}
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>

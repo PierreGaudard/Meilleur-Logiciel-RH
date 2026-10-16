@@ -1,0 +1,9 @@
+{{- /* Propre au site : feuille de styles d'une page (front matter css, fichier assets/css/pages/<nom>.css) et données
+     structurées complémentaires (front matter jsonldExtra : DefinedTerm des définitions, WebApplication et FAQPage des
+     outils), chaque entrée étant un objet JSON complet. */ -}}
+{{- with .Params.css }}{{ with resources.Get (printf "css/pages/%s.css" .) }}{{ $c := . | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $c.RelPermalink }}">
+{{- end }}{{ end }}
+{{- range .Params.jsonldExtra }}
+<script type="application/ld+json">{{ . | safeJS }}</script>
+{{- end }}

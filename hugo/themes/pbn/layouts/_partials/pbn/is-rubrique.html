@@ -1,0 +1,5 @@
+{{- /* Page de rubrique (params.pbn.categorySections) ? Renvoie un booléen. Contexte : la page. */ -}}
+{{- $p := . -}}
+{{- $r := false -}}
+{{- range partialCached "pbn/rubriques.html" site site.Language.Lang }}{{ if eq .RelPermalink $p.RelPermalink }}{{ $r = true }}{{ end }}{{ end -}}
+{{- return $r -}}

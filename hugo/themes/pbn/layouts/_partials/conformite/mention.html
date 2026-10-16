@@ -1,0 +1,11 @@
+{{- /* Mention « Publication sponsorisée » (sites de type B). Contexte : dict "lang" <code> "small" <bool>.
+     À n'appeler que sur un classement. PNG en @2x : hauteur 25 en tête d'article, 20 sur les cartes. */ -}}
+{{- if partial "pbn/is-typeb.html" . -}}
+{{- $lang := .lang | default "fr" -}}
+{{- $sizes := dict "fr" (slice 412 50) "en" (slice 339 50) "es" (slice 407 50) "it" (slice 448 50) "de" (slice 370 50) -}}
+{{- if not (index $sizes $lang) }}{{ $lang = "en" }}{{ end -}}
+{{- $px := index $sizes $lang -}}
+{{- $h := cond .small 20 25 -}}
+{{- $w := math.Round (div (mul (float (index $px 0)) $h) (float (index $px 1))) -}}
+<img class="sponsored-mention{{ if .small }} sponsored-mention-small{{ end }}" src="{{ printf "images/mention-sponsorisee-%s.png" $lang | relURL }}" alt="{{ i18n "sponsored_alt" }}" width="{{ int $w }}" height="{{ $h }}">
+{{- end -}}

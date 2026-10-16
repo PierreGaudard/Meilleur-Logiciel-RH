@@ -1,0 +1,9 @@
+{{- /* Page exclue par une liste relatedExclude (chemins, URL ou slugs) ? Contexte : dict "page" <page> "liste" <liste>.
+     Renvoie un booléen. */ -}}
+{{- $p := .page -}}
+{{- $r := false -}}
+{{- $cands := slice (strings.Trim $p.RelPermalink "/") (path.Base (strings.Trim $p.RelPermalink "/")) (strings.Trim $p.Path "/") (strings.Trim $p.Permalink "/") -}}
+{{- with $p.File }}{{ $cands = $cands | append .ContentBaseName }}{{ end -}}
+{{- with $p.Params.slug }}{{ $cands = $cands | append (string .) }}{{ end -}}
+{{- range .liste }}{{ $e := strings.Trim (strings.TrimSpace (string .)) "/" }}{{ if and $e (in $cands $e) }}{{ $r = true }}{{ end }}{{ end -}}
+{{- return $r -}}

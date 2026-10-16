@@ -1,0 +1,56 @@
+{{ define "main" }}
+{{- $variant := site.Params.pbn.home | default "magazine" -}}
+{{- $articles := partialCached "pbn/articles.html" . site.Language.Lang -}}
+{{ partial "home/hero.html" . }}
+{{ partial "hooks/home-after-hero.html" . }}
+{{- if site.Params.pbn.homeIntro }}{{ with .Content }}
+<section class="list-intro home-intro"><div class="container prose">{{ . }}</div></section>
+{{- end }}{{ end }}
+{{- if eq $variant "editorial" }}
+<section class="home-section home-latest home-editorial">
+  <div class="container editorial-grid">
+    <div>
+      <div class="section-head"><h2 class="section-title">{{ i18n "latest_articles" }}</h2>
+      {{- with partial "pbn/blog-page.html" . }}<a href="{{ .RelPermalink }}" class="section-link">{{ i18n "view_all" }}</a>{{ end }}</div>
+      {{ partial "cards/grid.html" (dict "pages" (first 8 (after 1 $articles)) "variant" "horizontal" "heading" "h3") }}
+    </div>
+    <aside class="editorial-aside">
+      <p class="aside-title">{{ i18n "categories" }}</p>
+      <ul class="cat-list">
+        {{- range partialCached "pbn/categories.html" . site.Language.Lang }}
+        <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}<span>{{ len (partial "pbn/cat-articles.html" .) }}</span></a></li>
+        {{- end }}
+      </ul>
+    </aside>
+  </div>
+</section>
+{{ partial "hooks/home-after-categories.html" . }}
+{{- else if eq $variant "search" }}
+{{ partial "home/categories.html" . }}
+{{ partial "hooks/home-after-categories.html" . }}
+{{ partial "home/features.html" . }}
+<section class="home-section home-latest">
+  <div class="container home-split">
+    <div>
+      <div class="section-head"><h2 class="section-title">{{ i18n "latest_articles" }}</h2>
+      {{- with partial "pbn/blog-page.html" . }}<a href="{{ .RelPermalink }}" class="section-link">{{ i18n "view_all" }}</a>{{ end }}</div>
+      {{ partial "cards/grid.html" (dict "pages" (first 6 (after 1 $articles)) "variant" "image" "heading" "h3") }}
+    </div>
+    <aside class="home-aside">
+      {{- with partial "home/featured.html" . }}
+      <p class="aside-title">{{ i18n "featured" }}</p>
+      {{ partial "cards/card.html" (dict "page" . "variant" "image" "heading" "h3") }}
+      {{- end }}
+    </aside>
+  </div>
+</section>
+{{- else }}
+{{ partial "home/categories.html" . }}
+{{ partial "hooks/home-after-categories.html" . }}
+{{ partial "home/latest.html" (dict "page" . "count" 6 "variant" "image") }}
+{{ partial "home/features.html" . }}
+{{- end }}
+{{- if ne $variant "search" }}{{ if eq $variant "editorial" }}{{ partial "home/features.html" . }}{{ end }}{{ end }}
+{{ partial "home/cta.html" . }}
+{{ partial "hooks/home-end.html" . }}
+{{ end }}

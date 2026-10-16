@@ -1,0 +1,16 @@
+{{- /* Pages de catégories de la langue courante. Seules les catégories documentées (_index.md) si elles existent. */ -}}
+{{- $tax := site.Params.pbn.categoryTaxonomy | default "categories" -}}
+{{- $out := slice -}}
+{{- /* Rubriques gérées en sections (params.pbn.categorySections) : elles priment sur la taxonomie, triées par poids puis titre. */ -}}
+{{- $rub := partial "pbn/rubriques.html" . -}}
+{{- if gt (len $rub) 0 -}}
+  {{- $out = sort (sort $rub "Title") "Weight" -}}
+{{- else -}}
+{{- with site.GetPage (printf "/%s" $tax) -}}
+  {{- $all := .Pages -}}
+  {{- $doc := slice -}}
+  {{- range $all }}{{ if .File }}{{ $doc = $doc | append . }}{{ end }}{{ end -}}
+  {{- $out = cond (gt (len $doc) 0) $doc $all -}}
+{{- end -}}
+{{- end -}}
+{{- return $out -}}

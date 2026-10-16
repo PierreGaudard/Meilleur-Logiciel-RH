@@ -1,0 +1,9 @@
+{{- /* Vidéo YouTube en mode confidentialité renforcée (youtube-nocookie.com).
+     {{< youtube ID >}} ou {{< youtube id="ID" title="..." start="30" >}} */ -}}
+{{- $id := .Get "id" | default (.Get 0) -}}
+{{- $title := .Get "title" | default "YouTube" -}}
+{{- with $id }}
+<div class="video-embed">
+  <iframe src="https://www.youtube-nocookie.com/embed/{{ . }}{{ with $.Get "start" }}?start={{ . }}{{ end }}" title="{{ $title }}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+{{- end }}

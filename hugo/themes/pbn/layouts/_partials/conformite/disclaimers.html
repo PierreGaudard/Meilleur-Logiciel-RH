@@ -1,0 +1,10 @@
+{{- /* Disclaimers santé et argent : champ `disclaimers` du front matter (liste : sante, finance), posé page par page.
+     Type A : seulement si params.pbn.disclaimersTypeA = true (la recette n'en prévoit pas). */ -}}
+{{- if or (partial "pbn/is-typeb.html" .) site.Params.pbn.disclaimersTypeA }}{{ with .Params.disclaimers }}
+{{- if in . "sante" }}
+<p class="content-disclaimer">{{ i18n "disclaimer_sante" }}</p>
+{{- end }}
+{{- if in . "finance" }}
+<p class="content-disclaimer">{{ i18n "disclaimer_finance" }}</p>
+{{- end }}
+{{- end }}{{ end }}

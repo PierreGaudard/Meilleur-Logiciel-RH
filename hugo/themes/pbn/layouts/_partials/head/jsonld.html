@@ -1,0 +1,74 @@
+{{- /* Données structurées, construites en dictionnaires puis sérialisées (JSON toujours valide).
+     Jamais d'auteur individuel : l'auteur d'un article est l'Organization de la rédaction. */ -}}
+{{- $base := site.Home.Permalink -}}
+{{- $orgID := printf "%s#organization" $base -}}
+{{- $lang := site.Language.Locale | default site.Language.Lang -}}
+{{- $isArticle := partial "pbn/is-article.html" . -}}
+{{- $org := dict "@context" "https://schema.org" "@type" "Organization" "@id" $orgID "name" site.Title "url" $base -}}
+{{- with site.Params.description }}{{ $org = merge $org (dict "description" .) }}{{ end -}}
+{{- with site.Params.pbn.logo | default site.Params.logo }}{{ $org = merge $org (dict "logo" (dict "@type" "ImageObject" "url" (strings.TrimPrefix "/" . | absURL))) }}{{ end -}}
+{{- with site.Params.founding_year }}{{ $org = merge $org (dict "foundingDate" (string .)) }}{{ end -}}
+{{- with site.Params.expertise }}{{ $org = merge $org (dict "knowsAbout" .) }}{{ end -}}
+{{- $graph := slice $org -}}
+{{- $crumbs := slice (dict "name" (i18n "home") "item" site.Home.Permalink) -}}
+
+{{- if .IsHome -}}
+  {{- $ws := dict "@context" "https://schema.org" "@type" "WebSite" "@id" (printf "%s#website" $base) "name" site.Title "url" site.Home.Permalink "inLanguage" $lang "publisher" (dict "@id" $orgID) -}}
+  {{- with site.Params.description }}{{ $ws = merge $ws (dict "description" .) }}{{ end -}}
+  {{- $graph = $graph | append $ws -}}
+{{- else if $isArticle -}}
+  {{- $sig := partial "pbn/signature.html" . -}}
+  {{- $art := dict "@context" "https://schema.org" "@type" "Article"
+      "headline" (partial "pbn/h1.html" . | plainify)
+      "description" (partial "pbn/desc.html" . | plainify)
+      "inLanguage" $lang
+      "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+      "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+      "wordCount" .WordCount
+      "author" (dict "@type" "Organization" "name" $sig "url" $base)
+      "publisher" (dict "@type" "Organization" "@id" $orgID "name" site.Title)
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) -}}
+  {{- with .Params.image }}{{ $art = merge $art (dict "image" (dict "@type" "ImageObject" "url" (partial "pbn/img-src.html" (dict "src" . "page" $ "abs" true)))) }}{{ end -}}
+  {{- with .Params.tags }}{{ $art = merge $art (dict "keywords" .) }}{{ end -}}
+  {{- $graph = $graph | append $art -}}
+  {{- $cat := partial "pbn/categorie.html" . -}}
+  {{- with .Parent }}{{ if and (not .IsHome) (not (and $cat (eq .RelPermalink $cat.RelPermalink))) }}{{ $crumbs = $crumbs | append (dict "name" (partial "pbn/titre.html" .) "item" .Permalink) }}{{ end }}{{ end -}}
+  {{- with $cat }}{{ $crumbs = $crumbs | append (dict "name" (partial "pbn/titre-lien.html" .) "item" .Permalink) }}{{ end -}}
+  {{- with .Params.faq -}}
+    {{- $q := slice -}}
+    {{- range . }}{{ if and .question .answer }}{{ $q = $q | append (dict "@type" "Question" "name" (partial "pbn/annee.html" .question | plainify) "acceptedAnswer" (dict "@type" "Answer" "text" (partial "pbn/annee.html" .answer | plainify))) }}{{ end }}{{ end -}}
+    {{- if $q }}{{ $graph = $graph | append (dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $q) }}{{ end -}}
+  {{- end -}}
+  {{- /* Liste classée (champ items) : position, nom, et URL seulement si elle est interne au site. */ -}}
+  {{- with .Params.items -}}
+    {{- $host := strings.TrimPrefix "www." (urls.Parse site.Home.Permalink).Hostname -}}
+    {{- $li := slice -}}
+    {{- range . -}}
+      {{- $name := "" }}{{ $u := "" -}}
+      {{- if reflect.IsMap . }}{{ $name = .name | default .title | default "" }}{{ $u = strings.TrimSpace (string (.url | default "")) }}{{ else }}{{ $name = . }}{{ end -}}
+      {{- $name = partial "pbn/annee.html" $name | plainify -}}
+      {{- if $name -}}
+        {{- $e := dict "@type" "ListItem" "position" (add (len $li) 1) "name" $name -}}
+        {{- if and (hasPrefix $u "/") (not (hasPrefix $u "//")) }}{{ $e = merge $e (dict "url" (strings.TrimPrefix "/" $u | absURL)) }}
+        {{- else if or (hasPrefix $u "http://") (hasPrefix $u "https://") }}{{ if eq (strings.TrimPrefix "www." (urls.Parse $u).Hostname) $host }}{{ $e = merge $e (dict "url" $u) }}{{ end }}{{ end -}}
+        {{- $li = $li | append $e -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $li }}{{ $graph = $graph | append (dict "@context" "https://schema.org" "@type" "ItemList" "name" (partial "pbn/h1.html" $ | plainify) "numberOfItems" (len $li) "itemListElement" $li) }}{{ end -}}
+  {{- end -}}
+{{- else if .IsNode -}}
+  {{- $items := slice -}}
+  {{- range $i, $p := first 50 .Pages }}{{ $items = $items | append (dict "@type" "ListItem" "position" (add $i 1) "url" $p.Permalink "name" (partial "pbn/titre-lien.html" $p | plainify)) }}{{ end -}}
+  {{- $graph = $graph | append (dict "@context" "https://schema.org" "@type" "CollectionPage" "name" (partial "pbn/titre.html" .) "url" .Permalink "inLanguage" $lang "isPartOf" (dict "@id" (printf "%s#website" $base)) "mainEntity" (dict "@type" "ItemList" "numberOfItems" (len .Pages) "itemListElement" $items)) -}}
+  {{- with .Parent }}{{ if not .IsHome }}{{ $crumbs = $crumbs | append (dict "name" (partial "pbn/titre.html" .) "item" .Permalink) }}{{ end }}{{ end -}}
+{{- end -}}
+
+{{- if not .IsHome -}}
+  {{- $crumbs = $crumbs | append (dict "name" (partial "pbn/titre-lien.html" . | plainify) "item" .Permalink) -}}
+  {{- $list := slice -}}
+  {{- range $i, $c := $crumbs }}{{ $list = $list | append (dict "@type" "ListItem" "position" (add $i 1) "name" $c.name "item" $c.item) }}{{ end -}}
+  {{- $graph = $graph | append (dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $list) -}}
+{{- end -}}
+{{- range $graph }}
+<script type="application/ld+json">{{ . | jsonify | safeJS }}</script>
+{{- end }}

@@ -1,0 +1,3 @@
+{{- /* Signature unique de la rédaction. Surcharge possible par langue : params.pbn.signature. */ -}}
+{{- $name := partial "pbn/name.html" . -}}
+{{- return (site.Params.pbn.signature | default (i18n "signature" (dict "Name" $name))) -}}

@@ -1,0 +1,6 @@
+{{- /* Encart « Bon à savoir ». {{< bon-a-savoir >}}texte en markdown{{< /bon-a-savoir >}} ; titre : titre="..." ou title="...". */ -}}
+{{- $default := dict "fr" "Bon à savoir" "en" "Good to know" "de" "Gut zu wissen" "es" "Conviene saber" "it" "Da sapere" -}}
+<aside class="callout callout-tip">
+  <p class="callout-label">{{ .Get "titre" | default (.Get "title") | default (index $default .Page.Language.Lang) | default "Bon à savoir" }}</p>
+  <div class="callout-body">{{ .Inner | .Page.RenderString (dict "display" "block") }}</div>
+</aside>

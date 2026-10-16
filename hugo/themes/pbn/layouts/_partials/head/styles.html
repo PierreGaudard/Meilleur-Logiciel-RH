@@ -1,0 +1,42 @@
+{{- /* Identité visuelle du site : jetons CSS tirés de params.pbn (colors, fonts, style), polices, feuille du thème
+     et feuille propre au site (assets/css/site.css, facultative). */ -}}
+{{- $c := site.Params.pbn.colors | default dict -}}
+{{- $f := site.Params.pbn.fonts | default dict -}}
+{{- $s := site.Params.pbn.style | default dict -}}
+{{- $bg := $c.background | default "#FFFFFF" -}}
+{{- $text := $c.text | default "#1B1F24" -}}
+{{- $surface := $c.surface | default $bg -}}
+{{- $primary := $c.primary | default "#1F3A5F" -}}
+{{- $accent := $c.accent | default $primary -}}
+{{- $paper := $c.paper | default $bg -}}
+{{- $paperText := $c.paperText | default $text -}}
+{{- $stack := `system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` -}}
+{{- $fBody := cond (ne ($f.body | default "") "") (printf `"%s", %s` $f.body $stack) $stack -}}
+{{- $fHeading := cond (ne ($f.heading | default "") "") (printf `"%s", %s` $f.heading $stack) $fBody -}}
+{{- $fUi := cond (ne ($f.ui | default "") "") (printf `"%s", %s` $f.ui $stack) $fBody -}}
+{{- $fAccent := cond (ne ($f.accent | default "") "") (printf `"%s", %s` $f.accent $stack) $fHeading -}}
+{{- with $f.google }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ . | safeURL }}&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?{{ . | safeURL }}&display=swap"></noscript>
+{{- end }}
+<style>:root{
+--c-bg:{{ $bg | safeCSS }};--c-text:{{ $text | safeCSS }};--c-surface:{{ $surface | safeCSS }};--c-surface-alt:{{ $c.surfaceAlt | default $surface | safeCSS }};
+--c-muted:{{ $c.muted | default "#5E6772" | safeCSS }};--c-border:{{ $c.border | default "#E3E6EA" | safeCSS }};
+--c-primary:{{ $primary | safeCSS }};--c-on-primary:{{ $c.onPrimary | default "#FFFFFF" | safeCSS }};
+--c-accent:{{ $accent | safeCSS }};--c-on-accent:{{ $c.onAccent | default "#FFFFFF" | safeCSS }};--c-link:{{ $c.link | default $primary | safeCSS }};
+--c-hero-bg:{{ $c.heroBackground | default $c.surfaceAlt | default $surface | safeCSS }};--c-hero-text:{{ $c.heroText | default $text | safeCSS }};--c-hero-accent:{{ $c.heroAccent | default $accent | safeCSS }};
+--c-header-bg:{{ $c.headerBackground | default $bg | safeCSS }};--c-header-text:{{ $c.headerText | default $text | safeCSS }};
+--c-paper:{{ $paper | safeCSS }};--c-paper-text:{{ $paperText | safeCSS }};--c-paper-muted:{{ $c.paperMuted | default $c.muted | default "#5E6772" | safeCSS }};--c-paper-border:{{ $c.paperBorder | default $c.border | default "#E3E6EA" | safeCSS }};--c-paper-link:{{ $c.paperLink | default $c.link | default $primary | safeCSS }};
+--c-footer-bg:{{ $c.footerBackground | default $c.surface | default $bg | safeCSS }};--c-footer-text:{{ $c.footerText | default $text | safeCSS }};
+--f-body:{{ $fBody | safeCSS }};--f-heading:{{ $fHeading | safeCSS }};--f-ui:{{ $fUi | safeCSS }};--f-accent:{{ $fAccent | safeCSS }};
+--radius:{{ $s.radius | default "12px" | safeCSS }};--h-transform:{{ $s.headingCase | default "none" | safeCSS }};--h-tracking:{{ $s.headingTracking | default "-0.01em" | safeCSS }};--h-weight:{{ $s.headingWeight | default "700" | safeCSS }};
+--nav-transform:{{ $s.navCase | default "none" | safeCSS }};--nav-tracking:{{ $s.navTracking | default "0" | safeCSS }};
+--logo-transform:{{ $s.logoCase | default "none" | safeCSS }};--logo-tracking:{{ $s.logoTracking | default "-0.01em" | safeCSS }};
+--accent-style:{{ $s.accentStyle | default "normal" | safeCSS }};
+color-scheme:{{ $c.scheme | default "light" | safeCSS }};}</style>
+{{- $css := slice (resources.Get "css/main.css") -}}
+{{- with resources.Get "css/site.css" }}{{ $css = $css | append . }}{{ end -}}
+{{- $bundle := $css | resources.Concat "css/pbn.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}">

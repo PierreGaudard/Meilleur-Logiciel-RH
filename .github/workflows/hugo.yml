@@ -1,0 +1,57 @@
+name: Construire le site Hugo (GitHub Pages, build legacy depuis main)
+
+# Le dépôt est servi par GitHub Pages en build « legacy » depuis la racine de main : ce workflow construit hugo/ et
+# recopie le site construit à la racine (build.sh), puis le committe. Il tourne à chaque modification de hugo/, à la
+# main, et une fois par jour pour publier les articles dont la date de publication (publishDate) est arrivée.
+on:
+  push:
+    branches: ["main"]
+    paths: ["hugo/**", "build.sh", ".github/workflows/hugo.yml"]
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: "hugo-build"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Installer Hugo
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.165.0/hugo_extended_0.165.0_linux-amd64.deb
+          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Construire et recopier à la racine
+        env:
+          HUGO_ENVIRONMENT: production
+        run: ./build.sh
+
+      - name: Committer le site construit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Site construit inchangé."; exit 0; fi
+          git commit -m "Site construit par Hugo ($(date -u +%Y-%m-%d))"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "PUSHED=1" >> "$GITHUB_ENV"
+
+      - name: Demander la publication GitHub Pages
+        if: env.PUSHED == '1'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"

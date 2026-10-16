@@ -1,10 +1,66 @@
-# CLAUDE.md - Historique et contexte du projet
+# CLAUDE.md - Meilleur Logiciel RH (meilleur-logiciel-rh.fr)
 
 ## Projet
-**Site** : meilleur-logiciel-rh.fr
-**Type** : Site statique HTML (GitHub Pages)
-**Domaine** : Comparatifs, guides et avis sur les logiciels RH pour PME francaises
-**Hebergement** : GitHub Pages avec domaine personnalise (CNAME)
+
+**Site** : meilleur-logiciel-rh.fr, média de comparatifs, alternatives, avis, guides et définitions sur les logiciels RH, la paie et les SIRH pour les PME françaises, plus des outils de calcul RH gratuits.
+**Éditeur** : upearly (type B du parc PBN GEO), directeur de la publication Ruben Sebag.
+**Moteur** : Hugo (0.165.0 extended) et le thème commun du parc `pbn`, depuis le 2026-10-16 (avant : HTML écrit à la main).
+**Hébergement** : GitHub Pages, dépôt `PierreGaudard/Meilleur-Logiciel-RH`, domaine personnalisé (CNAME), build « legacy » depuis la racine de la branche `main`.
+
+## Comment le site est construit (à lire avant toute modification)
+
+- **Les sources sont dans `hugo/`** : `hugo/hugo.toml`, `hugo/content/fr/` (pages en Markdown), `hugo/layouts/` (points d'extension du site), `hugo/assets/` (styles et scripts propres au site), `hugo/static/` (images, CNAME, fichiers de vérification), `hugo/themes/pbn/` (thème commun).
+- **La racine du dépôt contient le site construit** (les `.html`, `sitemap.xml`, `robots.txt`, `llms.txt`, `assets/images/`, `css/`, `js/`...). Elle est produite par `./build.sh` : **ne jamais éditer un fichier HTML de la racine**, il serait écrasé au prochain build. On modifie `hugo/`, puis on construit.
+- Pourquoi ce montage : GitHub Pages sert ce dépôt en build « legacy » depuis la racine de `main`, et seul le propriétaire du dépôt peut passer la source Pages sur GitHub Actions. Si c'est fait un jour (`Settings > Pages > Source : GitHub Actions`), le site construit pourra sortir du dépôt.
+- **Construction automatique** : le workflow `.github/workflows/hugo.yml` lance `build.sh` à chaque push qui touche `hugo/`, une fois par jour à 5 h UTC et à la main, puis committe le site construit à la racine. Un push de Markdown suffit donc à publier ; `./build.sh` en local fait la même chose (Hugo 0.165.0 extended requis).
+- **Thème commun `hugo/themes/pbn/`** : copie du thème du parc, synchronisée par `~/code/sites/_pbn-theme/sync.sh hugo` (version dans `hugo/themes/pbn/VERSION`). **Ne jamais l'éditer dans ce dépôt** : la prochaine synchronisation l'écraserait. Un besoin commun se règle dans `~/code/sites/_pbn-theme/`.
+
+### Commandes
+
+```bash
+./build.sh                                  # construit hugo/ et recopie le site à la racine
+hugo server --source hugo                   # aperçu local sur http://localhost:1313/
+~/code/sites/_pbn-theme/sync.sh hugo        # met à jour le thème commun
+bash ~/code/sites/_conformite/verifier.sh hugo B   # contrôle de conformité (zéro KO attendu)
+```
+
+### Publier un article
+
+1. Créer le fichier Markdown dans la rubrique : `hugo/content/fr/<rubrique>/<slug>.md`, rubriques `comparatifs`, `alternatives`, `avis`, `guides`, `definitions-rh`. L'URL sera `/<rubrique>/<slug>.html` (règle `uglyURLs` de `hugo.toml`) : les URL en `.html` du site sont gardées, ne jamais les changer.
+2. Front matter (YAML) :
+   ```yaml
+   ---
+   title: "H1 de l'article"                 # titre affiché (H1, cartes, fil d'Ariane)
+   seoTitle: "Balise title complète"        # facultatif, sinon « Titre | Meilleur Logiciel RH »
+   description: "Meta description"
+   date: "2026-10-20T00:00:00+02:00"
+   lastmod: "2026-10-20T00:00:00+02:00"
+   publishDate: "2026-10-22T06:00:00+02:00" # facultatif : article programmé, publié par le build quotidien
+   image: "/assets/images/blog/<slug>-hero.jpg"
+   imageAlt: "Description de l'image"
+   classement: true                         # true sur les comparatifs et les alternatives (classements de marques), false sinon
+   disclaimers: ["sante"]                   # facultatif : sante et/ou finance
+   tldr:                                    # encadré « En bref »
+     - "Point clé 1"
+   faq:                                     # FAQ affichée en fin d'article et JSON-LD FAQPage
+     - question: "Question ?"
+       answer: "Réponse (Markdown ou HTML simple)."
+   keywords: ["mot-clé 1", "mot-clé 2"]     # articles liés
+   ---
+   ```
+   Pour une définition, ajouter `toc: false` (pas de sommaire) et, si besoin, `jsonldExtra` (objet `DefinedTerm` complet en JSON, voir une définition existante).
+3. Corps en Markdown : intertitres `##` (ils font le sommaire), paragraphes, listes, liens internes en chemin absolu (`/guides/promesse-embauche.html`). Les encadrés propres au site (`info-box`, `warning-box`, `case-box`, `legal-box`, `cta-box`, `compare-table-wrap`, `related-terms`, `internal-links`...) s'écrivent en HTML brut, sur des lignes sans ligne vide à l'intérieur du bloc ; leurs styles sont dans `hugo/assets/css/site.css`.
+4. Le thème fait seul : mention « Publication sponsorisée » et disclaimer de classement (champ `classement`), signature et bloc de la rédaction, sommaire, temps de lecture, boutons de partage, articles liés, cartes de l'accueil et de la rubrique, `sitemap.xml`, plan du site, `llms.txt`, flux RSS, JSON-LD (Article, BreadcrumbList, FAQPage). **Plus rien à mettre à jour à la main** dans l'accueil, les index, la 404, le plan du site, le sitemap ou `llms.txt`.
+5. Images dans `hugo/static/assets/images/blog/` (ou `definitions/`), servies sous `/assets/images/...`.
+
+### Ce qui est propre au site
+
+- **Styles** : `hugo/assets/css/site.css` (variables de l'ancien site, composants de contenu portés par `.prose`) et, pour les pages qui avaient leurs propres styles, `hugo/assets/css/pages/<nom>.css`, chargé par le champ `css: "<nom>"` du front matter (point d'extension `layouts/_partials/hooks/head-end.html`).
+- **Scripts** (quiz des comparatifs et alternatives, générateur de promesse d'embauche, simulateurs des outils, questionnaire « Trouver mon logiciel », recherche du glossaire) : `hugo/assets/js/pages/<nom>.js`, chargés par le champ `js: ["<nom>"]` (point d'extension `hooks/body-end.html`). Le HTML qu'ils pilotent est dans le corps de la page. Aucun script tiers, aucun traceur.
+- **Données structurées complémentaires** : champ `jsonldExtra` (liste d'objets JSON complets) pour `DefinedTerm` des définitions, `WebApplication` et `FAQPage` des outils, FAQ de l'accueil.
+- **Accueil** : héros et couleurs dans `hugo.toml`, appel vers le questionnaire dans `hooks/home-after-hero.html`, tableau comparatif, « Pourquoi MLRH » et FAQ dans `hugo/content/fr/_index.md`.
+- **Outils** (`hugo/content/fr/outils/`) et **questionnaire** (`trouver-mon-logiciel.md`) : pages hors articles, sans signature ni mention.
+- `scripts/` (ancien générateur des pages définitions) ne sert plus : les définitions s'écrivent en Markdown comme les autres articles.
 
 ## Règle juridique : concurrents cités, uniquement des éloges (2026-10-15)
 
@@ -19,191 +75,42 @@ Le directeur de la publication du site engage sa responsabilité personnelle. Da
 
 Ce site est édité par upearly ; Ruben Sebag, directeur de la publication, engage sa responsabilité sur chaque article. Toute rédaction respecte ces règles, sans exception :
 
-- **Signature** : aucun auteur nommé. Ne pas inventer de persona ni de page auteur : chaque article est signé « La rédaction Meilleur Logiciel RH » (gabarit ci-dessous).
+- **Signature** : aucun auteur nommé, aucun champ `author`. Le thème signe chaque article « La rédaction Meilleur Logiciel RH » (barre d'auteur, bloc de la rédaction, meta author, JSON-LD en Organization).
 - **Aucune description de méthode** : pas de section « Nos critères de sélection », « Notre méthodologie », « Comment nous avons classé », ni de phrase « nous avons comparé N marques sur N critères ». Les conseils au lecteur (« Comment choisir ») restent permis.
 - **Aucune allégation** : jamais « n°1 », « numéro un », « notre choix », « choix de la rédaction », « la référence », « le leader », « imbattable », « indépendant », « objectif », « impartial », « vérifié », « avis vérifiés », « testé », « nos tests », « nos relevés », ni note attribuée par le site (étoiles, /5, /10) ou note tierce chiffrée utilisée comme argument. Le mot-clé « meilleur » reste permis dans le title et le H1, et les rangs se numérotent sobrement.
 - **Liens externes** : uniquement vers des sources officielles qui appuient un fait (service-public.fr, legifrance, organisme public, étude). Aucun lien vers une marque ou un client, y compris la marque mise en avant : la citer sans lien, ni vers une boutique, un annuaire ou une plateforme d'avis. Les liens internes restent.
-- **Disclaimers** : pour tout contenu qui touche à la santé, au corps, aux soins, ajouter sous la réponse directe du hero `<p class="content-disclaimer">Ne remplace aucunement un avis médical.</p>` ; pour tout contenu sur placements, assurance, crédit, immobilier, fiscalité, aides financières ou investissement, `<p class="content-disclaimer">Cet article ne représente en rien un conseil financier.</p>`. L'emplacement est marqué dans chaque article par le commentaire `<!-- emplacement des disclaimers sante et finance (p.content-disclaimer) -->`.
-- **Mention « sponsorisée »** : portée par le gabarit de l'article (ci-dessous) sur les seuls classements, ne rien ajouter dans le texte. Un article de classement ou de comparatif (comparatifs, alternatives, « meilleurs », « X vs Y ») porte la mention ET le disclaimer de classement ; un article evergreen (guide, définition, avis, conseil, actualité) ne porte ni l'un ni l'autre (décision de Damien du 2026-10-15).
-- **Concurrents cités : uniquement des éloges** (voir le bloc « Règle juridique » de ce fichier).
-
-### Gabarit de conformité d'une page article (HTML statique, à recopier tel quel)
-
-Le site n'a pas de thème : chaque page porte ses éléments de conformité. En créant un article (comparatifs, alternatives, avis, guides, définitions), calquer une page existante récente, qui les contient déjà, et vérifier :
-
-- `<head>` : `<meta name="author" content="La rédaction Meilleur Logiciel RH">` ; dans le JSON-LD, `"author": {"@type": "Organization", "name": "La rédaction Meilleur Logiciel RH", "url": "https://meilleur-logiciel-rh.fr/"}`. Jamais de `Person`, jamais de `reviewRating` ni d'`aggregateRating`.
-- Hero, juste avant le badge de catégorie, **sur les seuls classements** (même condition que le disclaimer de classement ci-dessous, les deux vont ensemble) : `<img class="sponsored-mention" src="../assets/images/mention-sponsorisee-fr.png" alt="Publication sponsorisée" width="206" height="25">`. Jamais sur un guide, une définition ou un avis.
-- Hero, sous la réponse directe `.article-hero-sub`, pour tout article dont le title ou le H1 contient meilleur(e)(s), top, classement, comparatif, comparé(e)s, alternatives, vs, ou « quel(le)s … choisir » : `<p class="ranking-disclaimer">Ce classement n'engage que notre rédaction.</p>`, puis le commentaire d'emplacement des disclaimers.
-- Ligne d'auteur du hero : `<div class="author-line"><div class="author-avatar" aria-hidden="true">M</div><span class="author-signature">La rédaction Meilleur Logiciel RH</span></div>`. Pas de « Données vérifiées » dans la ligne de méta (« Sources : … » est permis).
-- Bas d'article, après la FAQ et avant « Articles liés » : le bloc `<section class="author-box">` au nom de la rédaction (copier celui d'un article existant, avec le lien « En savoir plus sur nous » vers `a-propos.html`).
-- Cartes de listing (accueil, index de catégorie, 404, glossaire) : `<img class="sponsored-mention sponsored-mention-small" src="…/assets/images/mention-sponsorisee-fr.png" alt="Publication sponsorisée" width="165" height="20">` en tête de la carte d'un classement seulement (la carte suit la page qu'elle annonce : mention si cette page porte le disclaimer de classement), et `La rédaction Meilleur Logiciel RH` dans `.blog-card-author`.
+- **Disclaimers** : champ `disclaimers: ["sante"]` pour tout contenu qui touche à la santé, au corps, aux soins ; `disclaimers: ["finance"]` pour tout contenu sur placements, assurance, crédit, immobilier, fiscalité, aides financières ou investissement. Le thème les affiche sous le chapeau.
+- **Mention « sponsorisée »** : portée par le thème, ne rien ajouter dans le texte. Un classement ou un comparatif de marques (comparatifs, alternatives, « meilleurs », « X vs Y ») porte `classement: true`, ce qui affiche ensemble la mention et le disclaimer de classement, en tête d'article et sur ses cartes ; un article evergreen (guide, définition, avis, conseil, actualité) porte `classement: false` (décision de Damien du 2026-10-15).
+- **Concurrents cités : uniquement des éloges** (voir le bloc « Règle juridique » ci-dessus).
 - Aucune newsletter, aucun formulaire, aucun bouton « Essayer » ou « Voir l'offre » vers une marque, aucun outil de mesure d'audience ni bandeau cookies (le site ne dépose aucun cookie : en ajouter un impose de mettre à jour la politique de confidentialité).
-- Les styles de ces éléments sont dans `assets/style.css` (section « Mention, signature et avertissements »).
 
----
+## Pages légales et d'information
 
-## Structure du site
+`hugo/content/fr/` : `a-propos.md`, `contact.md` (contact-media@upearly.fr, sans formulaire), `mentions-legales.md`, `cgu.md`, `politique-de-confidentialite.md` (ces trois-là en `noindex: true`, donc hors `sitemap.xml`), `plan-du-site.md` (gabarit `sitemap-html` du thème). URL gardées en `.html` par le champ `url`. Plus de page auteur ni de page « Méthodologie » : ne pas les recréer, les critères de sélection vivent dans les CGU.
 
-```
-/                         - Page d'accueil
-/comparatifs/             - Index + articles comparatifs
-/alternatives/            - Index + alternatives logiciels
-/avis/                    - Index + avis logiciels
-/guides/                  - Index + guides pratiques RH
-/definitions-rh/          - Glossaire RH (60+ définitions) + index alphabétique
-/outils/                  - Outils RH gratuits (simulateurs, calculateurs)
-/assets/                  - CSS, images, JS
-/scripts/                 - Générateur Python des pages définitions
-```
+## Règles de rédaction propres au site
 
-### Pages existantes
+- **Accents obligatoires** partout (titres, meta, texte, FAQ, alt). Jamais de tiret cadratin ni demi-cadratin, jamais de point médian.
+- **Maillage interne** : chaque article pointe vers au moins 2 ou 3 autres pages du site avec des ancres exactes, de préférence dans le corps du texte.
+- **Images** : une image d'en-tête (`image`) et au moins 2 images différentes dans le corps, avec `alt` descriptif et `loading="lazy"`.
+- **Encadré « En bref »** : champ `tldr`, sans gras ni lien externe dans les points.
+- **Réponse directe** : le premier paragraphe du corps répond directement à la question du H1 (en gras pour la phrase clé).
+- **FAQ** : champ `faq`, au moins 3 questions.
 
-**Comparatifs :**
-- `comparatifs/payfit-vs-factorial.html` - PayFit vs Factorial 2026
-- `comparatifs/payfit-vs-silae.html` - PayFit vs Silae 2026
-- `comparatifs/meilleur-logiciel-entretiens.html` - Meilleur logiciel entretiens 2026
-- `comparatifs/logiciel-recrutement-hotellerie-restauration.html` - Logiciel de recrutement hôtellerie-restauration 2026
+## Rubrique Définitions RH : règles spécifiques
 
-**Alternatives :**
-- `alternatives/payfit.html` - Alternatives a PayFit 2026
-- `alternatives/silae.html` - Alternatives a Silae 2026
-- `alternatives/factorial.html` - Alternatives a Factorial 2026
-- `alternatives/lucca.html` - Alternatives a Lucca 2026
-- `alternatives/elevo.html` - Alternatives a Elevo 2026
-
-**Avis :**
-- `avis/payfit.html` - Avis PayFit 2026
-- `avis/factorial.html` - Avis Factorial 2026
-
-**Guides :**
-- `guides/choisir-logiciel-paie.html` - Choisir son logiciel de paie
-- `guides/travailler-ressources-humaines.html` - Travailler dans les RH en 2026
-- `guides/combien-gagne-rh.html` - Combien gagne un RH en 2026
-- `guides/parcours-directeur-rh.html` - Parcours pour devenir DRH
-- `guides/formation-rh-sans-bac.html` - Formation RH sans bac
-- `guides/image-negative-rh-entreprise.html` - Image des RH en entreprise
-- `guides/promesse-embauche.html` - Promesse d'embauche : guide juridique 2026
-- `guides/conges-imposes-employeur.html` - Congés imposés par l'employeur : combien de semaines ?
-- `guides/quitter-cdi-sans-perdre-droits.html` - Comment quitter un CDI sans perdre ses droits ?
-- `guides/jours-fractionnement-conges.html` - Comment obtenir les 2 jours de fractionnement ?
-- `guides/avertissements-avant-licenciement.html` - Combien d'avertissements avant un licenciement ?
-- `guides/demission-arret-maladie.html` - Peut-on démissionner pendant un arrêt maladie ?
-
-**Outils :**
-- `outils/convertisseur-brut-net.html`
-- `outils/simulateur-rupture-conventionnelle.html`
-- `outils/simulateur-chomage-are.html`
-- `outils/calculateur-indemnite-licenciement.html`
-- `outils/calculateur-smic.html`
-- `outils/simulateur-cout-salarie.html`
-
-**Définitions RH (glossaire) :**
-- `definitions-rh/index.html` - Page index du glossaire avec recherche live + nav A-Z + 3 cards "À la une"
-- 60 pages définitions individuelles dans `definitions-rh/*.html` (onboarding, gpec, sirh, soft-skills, culture-entreprise, periode-essai + 54 autres couvrant paie, droit du travail, management, recrutement, dialogue social)
-- Template différent des guides : mono-colonne, plus court (400-650 mots), orienté dictionnaire
-- CSS dédié : `assets/definitions.css`
-- Images dédiées : `assets/images/definitions/`
-- **Générateur Python** : `scripts/gen-definitions.py` (template) + `scripts/definitions_data.py` (data). Pour ajouter ou modifier une définition, éditer `definitions_data.py` puis relancer `python3 gen-definitions.py`. Les 6 premières définitions (onboarding, gpec, sirh, soft-skills, culture-entreprise, periode-essai) ne sont PAS générées par le script : elles ont été écrites à la main avant la refonte template et doivent être modifiées directement dans leur fichier HTML.
-
-**Pages legales/site :**
-- `a-propos.html` (qui sommes-nous : le média, son éditeur upearly, ses liens avec les marques citées), `contact.html` (adresse contact-media@upearly.fr, sans formulaire)
-- `mentions-legales.html`, `cgu.html`, `politique-de-confidentialite.html` : en `noindex, follow`, hors `sitemap.xml`, liées dans le pied de page de toutes les pages
-- `plan-du-site.html`
-- Plus de page auteur ni de page « Méthodologie » (supprimées le 2026-10-15) : ne pas les recréer, les critères de sélection vivent dans les CGU
-
----
-
-## Fichiers importants a mettre a jour lors d'ajouts
-
-1. **`sitemap.xml`** - Sitemap XML pour Google (ajouter chaque nouvelle page)
-2. **`plan-du-site.html`** - Plan du site visible par les utilisateurs (ajouter chaque nouvelle page)
-3. **`index.html`** - Page d'accueil : toujours ajouter les nouveaux articles, mais limiter le nombre affiche (garder uniquement les plus recents, max ~6-8 articles visibles). Les plus anciens sont retires de la page d'accueil (ils restent accessibles via les pages index de categories).
-4. **Pages index des categories** (`comparatifs/index.html`, `guides/index.html`, etc.) - Ajouter les nouveaux articles dans leur categorie
-5. **`404.html`** - Page 404 : mettre a jour la section "Nos derniers articles" avec les 6 articles les plus recents (format card avec image, titre, description). Les plus anciens sont remplaces par les nouveaux.
-
-### Ordre d'affichage des articles
-
-- **Les articles les plus recents sont toujours en haut**, les plus anciens en bas (ordre ante-chronologique)
-- Cette regle s'applique sur la page d'accueil ET sur les pages index de categories
-
-### Maillage interne
-
-- **Chaque article doit contenir du maillage interne coherent** : liens vers d'autres pages du site avec des ancres exactes (le texte du lien = le sujet de la page cible)
-- Privilegier les liens contextuels dans le corps du texte plutot que des blocs de liens isoles
-- Chaque article doit pointer vers au moins 2-3 autres pages du site de maniere logique (ex: un guide vers un comparatif, un avis vers une alternative, etc.)
-
-### Images dans les articles
-
-- Chaque page article contient une **image hero/thumb** dans le bandeau vert (classe `.hero-thumb`)
-- **Minimum 2 images supplementaires** dans le corps de l'article (pas de reutilisation de l'image hero)
-- Les images dans le contenu utilisent la classe `.article-img` ou un div avec `border-radius: 12px; aspect-ratio: 16/9; object-fit: cover`
-- Toutes les images du contenu doivent avoir `loading="lazy"`, un `alt` descriptif et un `title`
-- Ne jamais dupliquer l'image hero dans le corps de l'article : utiliser des images differentes
-- Images stockees dans `assets/images/blog/`
-
-### Date de creation sur les cards
-
-- Chaque blog-card affiche la date de creation dans le span `.blog-card-time` au format : `"21 mars 2026 · 12 min de lecture"`
-- Toujours ajouter la date lors de la creation d'un nouvel article
-
-### Accents obligatoires
-
-- **Toujours ecrire avec les accents francais** (e, a, e, u, c, etc.) dans TOUT le contenu HTML : titres, meta tags, paragraphes, tableaux, FAQ, JSON-LD, alt images, etc.
-- Ne jamais omettre les accents. Un texte sans accents est un bug.
-
-### Encart "En bref" sous le hero
-
-- Chaque article contient un encart `.tldr` juste apres le debut du contenu principal
-- Le titre de cet encart est **"En bref"** (pas "Ce qu'il faut retenir", pas "Resume")
-- CSS class : `.tldr-title` avec le texte "En bref"
-- **JAMAIS de `<strong>` dans les `<li>` de l'encart** : le CSS `display: flex` sur les items casse le rendu quand il y a du gras. Ecrire le texte en clair, sans balise strong.
-- **JAMAIS de liens externes dans l'encart En bref** : les liens vers des sources officielles (Legifrance, service-public.fr, etc.) doivent etre places dans le corps du texte uniquement, pas dans le resume.
-
-### Reponse directe sous le H1 du hero
-
-- Le paragraphe `.article-hero-sub` descriptif est **remplace** par la reponse directe en gras (pas les deux en meme temps)
-- Un seul `<p class="article-hero-sub">` avec `font-weight:700` et `<strong>` qui repond directement a la question du H1
-
-### Sommaire (table des matieres)
-
-- Le sommaire dans la colonne gauche (`aside.toc`) doit reprendre **exactement les textes des H2** de l'article
-- Ne pas raccourcir, ne pas reformuler : copier-coller le texte du H2 dans le lien du sommaire
-- Le premier item du sommaire est toujours "En bref" (lien vers l'encart tldr)
-- Le dernier item est toujours "Questions frequentes" (lien vers la section FAQ)
-
-### Donnees structurees (JSON-LD)
-
-- Chaque article doit avoir un schema Article complet avec ces champs obligatoires :
-  - `image` : objet ImageObject avec l'URL de l'image hero (meme URL que og:image)
-  - `datePublished` et `dateModified` : format ISO 8601 complet avec fuseau horaire (`2026-04-12T00:00:00+02:00`), jamais juste `2026-04-12`
-  - `headline`, `description`, `author`, `publisher`, `mainEntityOfPage`, `keywords`, `wordCount`, `timeRequired`
-  - `author` est toujours l'Organization « La rédaction Meilleur Logiciel RH » (voir « Conformité éditoriale »), jamais une `Person`
-- Chaque article doit aussi avoir un schema BreadcrumbList et un schema FAQPage (minimum 3 questions)
-- **Toujours verifier les donnees structurees** avec le test de Google (https://search.google.com/test/rich-results) apres creation d'un nouvel article
-
-### GEO (Generative Engine Optimization)
-
-- Le site dispose d'un fichier `llms.txt` a la racine, conforme a la spec llmstxt.org
-- A chaque nouvel article, ajouter l'URL et la description dans le `llms.txt` (dans la section correspondante)
-- Le `robots.txt` reference le `llms.txt` en commentaire
-- Chaque article contient des boutons de partage (LinkedIn, X, Facebook, Reddit) places juste avant la section FAQ
-- Les boutons utilisent les classes CSS `.share-bar`, `.share-btn-linkedin`, `.share-btn-x`, `.share-btn-facebook`, `.share-btn-reddit` definies dans `assets/style.css`
-- Les URLs dans les boutons doivent etre encodees (URL encoding)
-
----
-
-## Rubrique Définitions RH — règles spécifiques
-
-- Les pages définitions ont un **template distinct** des guides : pas de TOC sticky en colonne gauche, contenu mono-colonne, hero vert dégradé, encart "En bref" en haut, développement court, encart "Cas concret" (fond jaune), encart "Cadre légal" bleu pour les définitions juridiques, 3 stats chiffrées, cards "Termes liés", bloc "Pour aller plus loin", share bar, FAQ accordéon.
-- **Longueur cible** : 400-650 mots de contenu (vs 2000-3000 pour un guide). Sharp et concis, pas de bla-bla.
-- **JSON-LD** : chaque page contient un `DefinedTerm` + Article + BreadcrumbList + FAQPage. Le `DefinedTerm.inDefinedTermSet` pointe vers `/definitions-rh/`.
-- **Maillage** : chaque définition liste 4 "Termes liés" (cards pointant vers d'autres définitions) et 2-3 "Pour aller plus loin" (guides, comparatifs, outils existants). Les termes liés doivent tous pointer vers des slugs qui existent vraiment dans le glossaire (éviter les liens cassés).
-- **Images** : les 60 images sont dans `assets/images/definitions/<slug>.jpg`, téléchargées depuis Pexels, au format 1200×800 environ. Quand on ajoute une définition, télécharger une image Pexels cohérente et la nommer selon le slug.
-- **Lien menu** : le menu header de TOUTES les pages du site inclut `Définitions` entre Guides et Alternatives. Idem pour le footer (section Ressources, lien "Définitions RH").
-- **Sitemap, plan-du-site, llms.txt** : à chaque nouvelle définition, mettre à jour ces 3 fichiers (sitemap.xml, plan-du-site.html section "Définitions RH (glossaire)", et llms.txt section "Définitions RH (glossaire)" si la définition est stratégique).
-- **Anti-patterns IA** : s'appliquent encore plus ici qu'ailleurs (format court = pièges plus visibles). Pas de "en outre", "il convient", "dans le monde de...", pas de tirets cadratins, phrases courtes/longues alternées, opinions assumées, exemples chiffrés concrets.
+- Format court : 400 à 650 mots, encadré « En bref » (`tldr`), développement court, encadré « Cas concret » (`<div class="case-box">`), « Cadre légal » (`<div class="legal-box">`) pour les définitions juridiques, chiffres clés (`stat-row`), cartes « Termes liés » (`related-terms`, 4 définitions qui existent vraiment) et « Pour aller plus loin » (`next-steps`, 2 ou 3 guides, comparatifs ou outils). Copier une définition existante comme modèle.
+- `toc: false`, `jsonldExtra` avec le `DefinedTerm` (dont `inDefinedTermSet` vers `/definitions-rh/`).
+- **Images** : `hugo/static/assets/images/definitions/<slug>.jpg`, Pexels, environ 1200 x 800.
+- **Glossaire** (`hugo/content/fr/definitions-rh/_index.md`) : l'index alphabétique et les cartes « À la une » sont écrits à la main dans ce fichier ; ajouter chaque nouvelle définition dans le bloc de sa lettre (`<a href="/definitions-rh/<slug>.html" class="def-item" data-name="...">`).
+- **Anti-patterns IA** : s'appliquent encore plus ici qu'ailleurs (format court = pièges plus visibles). Pas de « en outre », « il convient », « dans le monde de... », phrases courtes et longues alternées, opinions assumées, exemples chiffrés concrets.
 
 ## Historique des modifications
+
+### 2026-10-16
+- Conversion vers Hugo et le thème commun du parc (`pbn`) : les 119 pages publiées gardent leur URL (contrôle avant et après : zéro manquante), leur texte (comparaison mot à mot), leurs images, leurs liens, leurs quiz, simulateurs et générateur. Sources dans `hugo/`, site construit à la racine par `build.sh` et le workflow `hugo.yml` (GitHub Pages reste en build legacy).
+- Mention « Publication sponsorisée » et disclaimer de classement sur les mêmes 15 classements qu'avant (champ `classement`), signature et bloc de la rédaction par le thème ; FAQ en fin d'article (champ `faq`), encadrés « Ce qu'il faut retenir » rendus sous le titre « En bref ».
+- Retirés : `_drafts/` et le workflow `scheduled-publish.yml` (remplacés par `publishDate` et le build quotidien), `assets/style.css`, `assets/definitions.css`, `assets/cookie-banner.js`, `_config.yml`, `.htaccess` (inutile sur GitHub Pages) ; `sitemap.xml`, `robots.txt`, `llms.txt` et le plan du site sont générés.
 
 ### 2026-10-15
 - Mise en conformité de la structure : pages légales réécrites (mentions légales, politique de confidentialité) et CGU créées, toutes trois en `noindex` et hors `sitemap.xml` ; page « à propos » réécrite en « qui sommes-nous » ; page contact sans formulaire (contact-media@upearly.fr).
@@ -301,32 +208,17 @@ Le site n'a pas de thème : chaque page porte ses éléments de conformité. En 
 - Ajout des 5 nouvelles pages guides au `sitemap.xml` et `plan-du-site.html`
 - Ajout de vraies videos YouTube verifiees dans les 5 articles
 
----
-
-## Conventions
-
-- **Framework** : HTML statique pur (pas de generateur de site)
-- **CSS** : Un fichier principal `assets/style.css` + styles inline dans chaque page
-- **JS** : Minimal, principalement pour le menu burger (le bandeau cookies a été retiré le 2026-10-15 : le site ne dépose aucun cookie ; `assets/cookie-banner.js` ne garde que le sommaire repliable)
-- **SEO** : Chaque page a des balises meta, schema.org (BreadcrumbList), canonical, hreflang
-- **Signature** : « La rédaction Meilleur Logiciel RH » sur tous les articles, aucun auteur nommé
-
----
-
 ## Objectif et concurrent principal
 
 - **Concurrent principal** : [culture-rh.com](https://culture-rh.com/) - Site WordPress d'actualité RH très complet avec des centaines d'articles, des avis logiciels, des guides pratiques, des outils et une forte autorité SEO
-- **Objectif** : Atteindre le même niveau de puissance et de couverture que culture-rh.com, en se différenciant par des comparatifs plus détaillés, des outils interactifs gratuits et un design moderne en HTML statique (plus rapide, pas de WordPress)
+- **Objectif** : Atteindre le même niveau de puissance et de couverture que culture-rh.com, en se différenciant par des comparatifs plus détaillés, des outils interactifs gratuits et un design moderne en site statique (Hugo, plus rapide, pas de WordPress)
 - **Stratégie** : Continuer à étoffer le catalogue d'avis, de comparatifs, de guides et d'outils pour couvrir l'ensemble du marché des logiciels RH français
-
----
 
 ## Rappels pour Claude
 
 - **Toujours lire ce fichier en debut de session** pour connaitre l'etat actuel du site
 - **Mettre a jour ce fichier** apres chaque modification significative
-- **Ne pas oublier** d'ajouter les nouvelles pages au `sitemap.xml` ET au `plan-du-site.html`
-- **Verifier** que les pages index des categories referencing les nouveaux articles
+- **Ne jamais éditer les HTML de la racine** : modifier `hugo/`, puis `./build.sh` ou laisser le workflow construire
 
   SEO Humaniser : Réécriture Experte de Contenu IA en Texte Humain
 Pourquoi ce skill existe

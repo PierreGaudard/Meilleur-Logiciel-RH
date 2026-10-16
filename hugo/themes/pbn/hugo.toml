@@ -1,0 +1,57 @@
+# Configuration par défaut du thème pbn. Le hugo.toml du site la complète et l'emporte.
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.158.0"
+
+[outputFormats]
+  [outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "search-index"
+    isPlainText = true
+    notAlternative = true
+  [outputFormats.LLMS]
+    mediaType = "text/plain"
+    baseName = "llms"
+    isPlainText = true
+    notAlternative = true
+
+[outputs]
+  home = ["HTML", "RSS", "SearchIndex", "LLMS"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+[privacy]
+  [privacy.youTube]
+    privacyEnhanced = true
+
+[params]
+  [params.pbn]
+    # B : site édité par upearly (mention, signature, pages légales locales). A : site d'un client.
+    type = "B"
+    articleSections = ["blog"]
+    # Variantes de mise en page : home = search | magazine | editorial ; cards = image | horizontal | text ;
+    # article = paper | split | classic
+    home = "magazine"
+    cards = "image"
+    article = "classic"
+    search = true
+    share = true
+    noindexTags = true
+    paginate = 0
+    mentionGroupe = false
+    [params.pbn.colors]
+      scheme = "light"
+      primary = "#1F3A5F"
+      accent = "#E0663A"
+      background = "#FFFFFF"
+      surface = "#F6F7F9"
+      text = "#1B1F24"
+      muted = "#5E6772"
+      border = "#E3E6EA"
+    [params.pbn.fonts]
+      google = "family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Instrument+Sans:wght@400..600"
+      heading = "Bricolage Grotesque"
+      body = "Instrument Sans"

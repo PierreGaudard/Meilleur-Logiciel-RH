@@ -1,0 +1,58 @@
+{{ define "main" }}
+{{- $isArticles := in (site.Params.pbn.articleSections | default (slice "blog")) .Section -}}
+{{- $isRub := partial "pbn/is-rubrique.html" . -}}
+{{- /* Index de rubriques : section de params.pbn.categorySections dont les sous-sections sont les rubriques. */ -}}
+{{- $rubIndex := and (eq .Kind "section") (in (site.Params.pbn.categorySections | default slice) (strings.TrimPrefix "/" .Path)) (gt (len .Sections) 0) -}}
+{{- $size := int (site.Params.pbn.paginate | default 0) -}}
+{{- with site.Params.pbn.paginateSections }}{{ if not (in . $.Section) }}{{ $size = 0 }}{{ end }}{{ end -}}
+<section class="list-head">
+  <div class="container">
+    {{ partial "breadcrumb.html" . }}
+    <h1 class="list-title">{{ partial "pbn/titre.html" . }}</h1>
+    {{- with partial "pbn/desc.html" . }}<p class="list-desc">{{ . }}</p>{{ end }}
+    {{- if eq .Kind "taxonomy" }}
+    <p class="list-count">{{ i18n "categories_count" (dict "Count" (len .Pages)) }}</p>
+    {{- else if $rubIndex }}
+    <p class="list-count">{{ i18n "categories_count" (dict "Count" (len .Sections)) }}</p>
+    {{- else if $isRub }}
+    <p class="list-count">{{ i18n "articles_count" (dict "Count" (len (partial "pbn/cat-articles.html" .))) }}</p>
+    {{- else }}
+    <p class="list-count">{{ i18n "articles_count" (dict "Count" (len .RegularPages)) }}</p>
+    {{- end }}
+    {{- if and (eq .Kind "section") $isArticles }}{{ partial "search.html" . }}{{ end }}
+  </div>
+</section>
+{{- with .Content }}
+<section class="list-intro"><div class="container prose">{{ . }}</div></section>
+{{- end }}
+<section class="list-body">
+  <div class="container">
+  {{ partial "hooks/list-before-cards.html" . }}
+  {{- if or (eq .Kind "taxonomy") $rubIndex }}
+    {{- $terms := cond $rubIndex .Sections .Pages -}}
+    {{- if and (gt $size 0) site.Params.pbn.paginateSections }}
+      {{- $pag := .Paginate $terms $size }}
+    <div class="cat-grid">
+      {{- range $pag.Pages }}{{ partial "cards/category.html" . }}{{ end }}
+    </div>
+      {{ partial "pagination.html" $pag }}
+    {{- else }}
+    <div class="cat-grid">
+      {{- range $terms }}{{ partial "cards/category.html" . }}{{ end }}
+    </div>
+    {{- end }}
+  {{- else }}
+    {{- $pages := .RegularPages.ByDate.Reverse -}}
+    {{- if $isRub }}{{ $pages = (partial "pbn/cat-articles.html" .).ByDate.Reverse }}{{ end -}}
+    {{- if gt $size 0 }}
+      {{- $pag := .Paginate $pages $size }}
+      {{ partial "cards/grid.html" (dict "pages" $pag.Pages "heading" "h2") }}
+      {{ partial "pagination.html" $pag }}
+    {{- else }}
+      {{ partial "cards/grid.html" (dict "pages" $pages "heading" "h2") }}
+    {{- end }}
+  {{- end }}
+  {{- partial "hooks/list-after-cards.html" . }}
+  </div>
+</section>
+{{ end }}

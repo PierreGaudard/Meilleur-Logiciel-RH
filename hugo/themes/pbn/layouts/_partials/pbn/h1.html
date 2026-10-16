@@ -1,0 +1,5 @@
+{{- /* Titre affiché en h1 (champ h1, sinon .Title), jetons d'année remplacés, suivi de l'année si yearSuffix: true.
+     Contexte : la page. */ -}}
+{{- $t := partial "pbn/annee.html" (.Params.h1 | default .Title) -}}
+{{- if .Params.yearSuffix }}{{ $t = printf "%s %d" $t now.Year }}{{ end -}}
+{{- return $t -}}

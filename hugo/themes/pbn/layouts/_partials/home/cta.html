@@ -1,0 +1,13 @@
+{{- /* Appel final facultatif : params.pbn.cta (title, text, button). */ -}}
+{{- with site.Params.pbn.cta }}
+<section class="home-section home-cta">
+  <div class="container cta-inner">
+    {{- with .title }}<h2 class="section-title">{{ . }}</h2>{{ end }}
+    {{- with .text }}<p>{{ . }}</p>{{ end }}
+    {{- $b := .button -}}
+    {{- with partial "pbn/blog-page.html" . }}
+    <a href="{{ .RelPermalink }}" class="btn btn-primary">{{ $b | default (i18n "view_all") }}</a>
+    {{- end }}
+  </div>
+</section>
+{{- end }}

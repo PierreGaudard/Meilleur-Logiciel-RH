@@ -1,0 +1,14 @@
+{{- /* Bloc de la rédaction : signature, bio (params.pbn.bio, sinon i18n author_bio avec params.pbn.topic), lien vers la page à propos. */ -}}
+{{- $name := partial "pbn/name.html" . -}}
+{{- $bio := site.Params.pbn.bio -}}
+{{- if and (not $bio) site.Params.pbn.topic }}{{ $bio = i18n "author_bio" (dict "Name" $name "Topic" site.Params.pbn.topic) }}{{ end -}}
+{{- $info := partialCached "pbn/info-pages.html" . site.Language.Lang -}}
+<aside class="author-box" aria-label="{{ i18n "about_editorial" }}">
+  <span class="author-box-avatar" aria-hidden="true">{{ substr $name 0 1 }}</span>
+  <div>
+    <p class="author-box-label">{{ i18n "about_editorial" }}</p>
+    <p class="author-box-name">{{ partial "pbn/signature.html" . }}</p>
+    {{- with $bio }}<p class="author-box-bio">{{ . }}</p>{{ end }}
+    {{- with $info.about }}<a class="author-box-link" href="{{ .RelPermalink }}">{{ i18n "about_link" }}</a>{{ end }}
+  </div>
+</aside>
