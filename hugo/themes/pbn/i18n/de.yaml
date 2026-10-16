@@ -74,6 +74,8 @@ sponsored_alt: "Gesponserter Inhalt"
 ranking_disclaimer: "Diese Rangliste gibt ausschließlich die Meinung unserer Redaktion wieder."
 disclaimer_sante: "Ersetzt in keiner Weise eine ärztliche Beratung."
 disclaimer_finance: "Dieser Artikel stellt in keiner Weise eine Finanzberatung dar."
+disclaimer_sante_page: "Ersetzt in keiner Weise eine ärztliche Beratung."
+disclaimer_finance_page: "Diese Seite stellt in keiner Weise eine Finanzberatung dar."
 group_notice: "Werblicher Inhalt, {{ .Name }} wird von upearly herausgegeben, einem Unternehmen der datashake-Gruppe"
 
 llms_about_title: "Über uns"
@@ -83,3 +85,8 @@ llms_articles: "Artikel"
 llms_pages: "Seiten"
 llms_technical: "Technische Informationen"
 llms_languages: "Sprachen"
+
+# Libellé de compteur propre à une section (params.pbn.compteurs)
+fiches_count:
+  one: "{{ .Count }} Produktblatt"
+  other: "{{ .Count }} Produktblätter"

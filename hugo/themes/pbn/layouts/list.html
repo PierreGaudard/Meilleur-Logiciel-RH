@@ -5,6 +5,12 @@
 {{- $rubIndex := and (eq .Kind "section") (in (site.Params.pbn.categorySections | default slice) (strings.TrimPrefix "/" .Path)) (gt (len .Sections) 0) -}}
 {{- $size := int (site.Params.pbn.paginate | default 0) -}}
 {{- with site.Params.pbn.paginateSections }}{{ if not (in . $.Section) }}{{ $size = 0 }}{{ end }}{{ end -}}
+{{- /* Index des rubriques : sa section figure dans paginateSections pour paginer les rubriques elles-mêmes ; il n'est
+     paginé que s'il a plus de rubriques qu'une page n'en montre (sinon /<section>/page/1/ serait produite pour rien). */ -}}
+{{- if and $rubIndex (le (len .Sections) $size) }}{{ $size = 0 }}{{ end -}}
+{{- /* Libellé du compteur : params.pbn.compteurs (section = clé i18n, ex. produits = "fiches_count"), sinon articles_count. */ -}}
+{{- $cle := "articles_count" -}}
+{{- with site.Params.pbn.compteurs }}{{ with index . (lower $.Section) }}{{ $cle = . }}{{ end }}{{ end -}}
 <section class="list-head">
   <div class="container">
     {{ partial "breadcrumb.html" . }}
@@ -15,9 +21,9 @@
     {{- else if $rubIndex }}
     <p class="list-count">{{ i18n "categories_count" (dict "Count" (len .Sections)) }}</p>
     {{- else if $isRub }}
-    <p class="list-count">{{ i18n "articles_count" (dict "Count" (len (partial "pbn/cat-articles.html" .))) }}</p>
+    <p class="list-count">{{ i18n $cle (dict "Count" (len (partial "pbn/cat-articles.html" .))) }}</p>
     {{- else }}
-    <p class="list-count">{{ i18n "articles_count" (dict "Count" (len .RegularPages)) }}</p>
+    <p class="list-count">{{ i18n $cle (dict "Count" (len .RegularPages)) }}</p>
     {{- end }}
     {{- if and (eq .Kind "section") $isArticles }}{{ partial "search.html" . }}{{ end }}
   </div>

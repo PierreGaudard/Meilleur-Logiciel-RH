@@ -66,7 +66,8 @@
 {{- if not .IsHome -}}
   {{- $crumbs = $crumbs | append (dict "name" (partial "pbn/titre-lien.html" . | plainify) "item" .Permalink) -}}
   {{- $list := slice -}}
-  {{- range $i, $c := $crumbs }}{{ $list = $list | append (dict "@type" "ListItem" "position" (add $i 1) "name" $c.name "item" $c.item) }}{{ end -}}
+  {{- /* Une étape sans URL (page d'un type désactivé par disableKinds, ex. index de taxonomie) est sautée. */ -}}
+  {{- range $crumbs }}{{ if .item }}{{ $list = $list | append (dict "@type" "ListItem" "position" (add (len $list) 1) "name" .name "item" .item) }}{{ end }}{{ end -}}
   {{- $graph = $graph | append (dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $list) -}}
 {{- end -}}
 {{- range $graph }}

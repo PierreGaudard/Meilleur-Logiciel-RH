@@ -1,9 +1,28 @@
-{{- /* Page exclue par une liste relatedExclude (chemins, URL ou slugs) ? Contexte : dict "page" <page> "liste" <liste>.
+{{- /* Page exclue par une liste relatedExclude ? Une entrée désigne un chemin, une URL ou un slug, ou un terme : étiquette
+     ou catégorie de la page (comparaison sans casse, nom ou slug du terme). Contexte : dict "page" <page> "liste" <liste>.
      Renvoie un booléen. */ -}}
 {{- $p := .page -}}
 {{- $r := false -}}
 {{- $cands := slice (strings.Trim $p.RelPermalink "/") (path.Base (strings.Trim $p.RelPermalink "/")) (strings.Trim $p.Path "/") (strings.Trim $p.Permalink "/") -}}
 {{- with $p.File }}{{ $cands = $cands | append .ContentBaseName }}{{ end -}}
 {{- with $p.Params.slug }}{{ $cands = $cands | append (string .) }}{{ end -}}
-{{- range .liste }}{{ $e := strings.Trim (strings.TrimSpace (string .)) "/" }}{{ if and $e (in $cands $e) }}{{ $r = true }}{{ end }}{{ end -}}
+{{- $terms := slice -}}
+{{- $tax := site.Params.pbn.categoryTaxonomy | default "categories" -}}
+{{- range slice "tags" "categories" $tax -}}
+  {{- $v := index $p.Params . -}}
+  {{- if reflect.IsSlice $v }}{{ range $v }}{{ $terms = $terms | append (lower (string .)) }}{{ end }}{{ else if $v }}{{ $terms = $terms | append (lower (string $v)) }}{{ end -}}
+{{- end -}}
+{{- /* params.pbn.relatedExcludeTexte = true : un terme exclut aussi la page dont le titre, la description, le contenu ou la
+     FAQ le citent (test de l'ancien thème de quel-placement). */ -}}
+{{- $txt := "" -}}
+{{- if site.Params.pbn.relatedExcludeTexte }}{{ $txt = lower (printf "%s %s %s %v" $p.Title $p.Description $p.RawContent $p.Params.faq) }}{{ end -}}
+{{- range .liste -}}
+  {{- $e := strings.Trim (strings.TrimSpace (string .)) "/" -}}
+  {{- if $e -}}
+    {{- if in $cands $e }}{{ $r = true }}{{ end -}}
+    {{- $l := lower $e -}}
+    {{- range $terms }}{{ if or (eq . $l) (eq (urlize .) (urlize $l)) }}{{ $r = true }}{{ end }}{{ end -}}
+    {{- if and $txt (in $txt $l) }}{{ $r = true }}{{ end -}}
+  {{- end -}}
+{{- end -}}
 {{- return $r -}}

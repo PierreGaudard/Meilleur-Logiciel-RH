@@ -12,7 +12,7 @@
 {{- end }}
 <link rel="alternate" hreflang="x-default" href="{{ $xDefault | default .Permalink }}">
 {{- end }}
-{{- $noindex := or .Params.noindex site.Params.pbn.noindexSite (and site.Params.pbn.noindexTags (in (slice "taxonomy" "term") .Kind) (eq .Data.Plural "tags")) }}
+{{- $noindex := partial "pbn/noindex.html" . }}
 {{- if $noindex }}
 <meta name="robots" content="noindex, follow">
 {{- else }}

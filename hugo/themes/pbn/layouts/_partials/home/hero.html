@@ -11,8 +11,12 @@
       {{ partial "home/hero-title.html" . }}
       {{- with $desc }}<p class="hero-desc">{{ partial "pbn/annee.html" . }}</p>{{ end }}
       {{- if eq $variant "magazine" }}
-        {{- with partial "pbn/blog-page.html" . }}
-      <a href="{{ .RelPermalink }}" class="btn btn-accent">{{ $h.cta | default (i18n "view_all") }}</a>
+        {{- /* Lien du bouton : la page de tous les articles, sinon (site sans section blog) la première rubrique. */ -}}
+        {{- $cible := partial "pbn/blog-page.html" . -}}
+        {{- $libelle := i18n "view_all" -}}
+        {{- if not $cible }}{{ with $cats }}{{ $cible = index . 0 }}{{ $libelle = i18n "discover" }}{{ end }}{{ end -}}
+        {{- with $cible }}
+      <a href="{{ .RelPermalink }}" class="btn btn-accent">{{ $h.cta | default $libelle }}</a>
         {{- end }}
       {{- else }}
       {{ partial "search.html" . }}

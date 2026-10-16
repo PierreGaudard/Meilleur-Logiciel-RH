@@ -1,6 +1,8 @@
 {{- /* Chemin d'une image du front matter. Contexte : la chaîne, ou dict "src" <chaîne> "page" <page> "abs" <bool>.
      URL absolue gardée telle quelle ; sinon ressource de la page (bundle) ou de assets/ si elle existe (elle est alors
-     publiée) ; sinon chemin du site (static/), relatif ou absolu selon "abs". */ -}}
+     publiée) ; sinon, avec params.pbn.imageParNom (ex. "images/%s.jpg"), le fichier de assets/ que ce modèle donne pour
+     la valeur (champ `image: "plan-formation"`) ; sinon chemin du site (static/), relatif ou absolu selon "abs".
+     params.pbn.imageRecadrage (ex. "1200x675 webp Smart q80") recadre une image matricielle trouvée en ressource. */ -}}
 {{- $s := . -}}
 {{- $page := "" -}}
 {{- $abs := false -}}
@@ -11,7 +13,9 @@
   {{- $r := "" -}}
   {{- with $page }}{{ with .Resources.Get $s }}{{ $r = . }}{{ end }}{{ end -}}
   {{- if not $r }}{{ with resources.Get (strings.TrimPrefix "/" $s) }}{{ $r = . }}{{ end }}{{ end -}}
+  {{- if not $r }}{{ with site.Params.pbn.imageParNom }}{{ with resources.Get (printf . (strings.TrimPrefix "/" $s)) }}{{ $r = . }}{{ end }}{{ end }}{{ end -}}
   {{- if $r -}}
+    {{- with site.Params.pbn.imageRecadrage }}{{ if eq $r.ResourceType "image" }}{{ if not (eq $r.MediaType.SubType "svg") }}{{ $r = $r.Fill . }}{{ end }}{{ end }}{{ end -}}
     {{- $out = cond $abs $r.Permalink $r.RelPermalink -}}
   {{- else if $abs -}}
     {{- $out = strings.TrimPrefix "/" $s | absURL -}}

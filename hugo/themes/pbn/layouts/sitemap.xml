@@ -1,10 +1,9 @@
 {{- /* Sitemap XML de la langue : <lastmod> = lastmod du front matter (la veille juridique ne relit que les pages modifiées).
-     Exclus : pages noindex (toutes si params.pbn.noindexSite), sitemap.disable, étiquettes si params.pbn.noindexTags, termes de catégorie non documentés. */ -}}
+     Exclus : pages noindex (toutes si params.pbn.noindexSite), sitemap.disable, taxonomies en noindex (pbn/noindex.html : noindexTaxonomies, ou étiquettes si noindexTags), termes de catégorie non documentés. */ -}}
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 {{- range where .Pages "Sitemap.Disable" "ne" true }}
-  {{- $keep := not (or .Params.noindex site.Params.pbn.noindexSite) -}}
-  {{- if and (in (slice "taxonomy" "term") .Kind) (eq .Data.Plural "tags") site.Params.pbn.noindexTags }}{{ $keep = false }}{{ end -}}
+  {{- $keep := not (partial "pbn/noindex.html" .) -}}
   {{- if and (eq .Kind "term") (not .File) (ne .Data.Plural "tags") }}{{ $keep = false }}{{ end -}}
   {{- if and $keep .Permalink }}
   <url>

@@ -1,9 +1,27 @@
-{{- /* Titre du héros : front matter de l'accueil (heroTitle, ou heroTitlePre + heroAccent + heroTitlePost), sinon params.pbn.hero. */ -}}
+{{- /* Titre du héros : front matter de l'accueil (heroTitle, ou heroTitlePre + heroAccent + heroTitlePost), sinon params.pbn.hero.
+     Une espace sépare les morceaux, sauf si le morceau suivant commence par une ponctuation qui se colle au mot
+     précédent (virgule, point, point-virgule, points de suspension, parenthèse ou crochet fermant, apostrophe, trait
+     d'union ; aussi ! ? : hors français) ou par une espace, et sauf si le morceau précédent finit par une apostrophe,
+     une parenthèse ou un crochet ouvrant, un trait d'union ou une espace. Ex. accent "Désir", titlePost ", sans tabou". */ -}}
 {{- $h := site.Params.pbn.hero | default dict -}}
 {{- $title := .Params.heroTitle | default $h.title -}}
 {{- $pre := .Params.heroTitlePre | default $h.titlePre -}}
 {{- $acc := .Params.heroAccent | default $h.accent -}}
 {{- $post := .Params.heroTitlePost | default $h.titlePost -}}
+{{- $colle := `^[\s,.;…)\]'’/-]` -}}
+{{- if ne site.Language.Lang "fr" }}{{ $colle = `^[\s,.;…)\]'’/!?:-]` }}{{ end -}}
+{{- $finit := `[\s'’(\[/-]$` -}}
+{{- $parts := slice -}}
+{{- with $pre }}{{ $parts = $parts | append (dict "t" (partial "pbn/annee.html" .) "acc" false) }}{{ end -}}
+{{- with $acc }}{{ $parts = $parts | append (dict "t" (partial "pbn/annee.html" .) "acc" true) }}{{ end -}}
+{{- with $post }}{{ $parts = $parts | append (dict "t" (partial "pbn/annee.html" .) "acc" false) }}{{ end -}}
 <h1 class="hero-title">
-{{- if $title }}{{ partial "pbn/annee.html" $title }}{{ else if or $pre $acc $post }}{{ with $pre }}{{ partial "pbn/annee.html" . }} {{ end }}{{ with $acc }}<span class="hero-accent">{{ partial "pbn/annee.html" . }}</span>{{ end }}{{ with $post }} {{ partial "pbn/annee.html" . }}{{ end }}{{ else }}{{ site.Title }}{{ end -}}
+{{- if $title }}{{ partial "pbn/annee.html" $title }}{{ else if $parts }}
+  {{- $prev := "" -}}
+  {{- range $i, $p := $parts -}}
+    {{- if and (gt $i 0) (not (findRE $colle $p.t 1)) (not (findRE $finit $prev 1)) }} {{ end -}}
+    {{- if $p.acc }}<span class="hero-accent">{{ $p.t }}</span>{{ else }}{{ $p.t }}{{ end -}}
+    {{- $prev = $p.t -}}
+  {{- end -}}
+{{- else }}{{ site.Title }}{{ end -}}
 </h1>

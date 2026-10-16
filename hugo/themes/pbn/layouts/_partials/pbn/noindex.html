@@ -1,0 +1,10 @@
+{{- /* Page en noindex (et hors sitemap XML) ? Renvoie un booléen. Champ noindex du front matter, site en préparation
+     (params.pbn.noindexSite), page 404, index et termes des taxonomies de params.pbn.noindexTaxonomies (ex. ["tags",
+     "formats"]) ; sans ce réglage, la taxonomie tags si params.pbn.noindexTags (défaut du thème : true). Contexte : la page. */ -}}
+{{- $p := site.Params.pbn | default dict -}}
+{{- $tax := slice -}}
+{{- if isset $p "noindextaxonomies" }}{{ range $p.noindexTaxonomies }}{{ $tax = $tax | append (string .) }}{{ end -}}
+{{- else if $p.noindexTags }}{{ $tax = slice "tags" }}{{ end -}}
+{{- $r := or .Params.noindex $p.noindexSite (eq .Kind "404") -}}
+{{- if and (in (slice "taxonomy" "term") .Kind) (in $tax .Data.Plural) }}{{ $r = true }}{{ end -}}
+{{- return $r -}}

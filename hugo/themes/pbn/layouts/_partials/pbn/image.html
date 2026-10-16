@@ -1,0 +1,13 @@
+{{- /* Image d'une page pour sa carte : champ `image`, sinon, avec params.pbn.imageParCle (ex. "images/%s.jpg"), le
+     fichier que ce modèle donne pour le translationKey de l'article (à défaut, le nom de son fichier), s'il existe dans
+     static/ ou assets/. Renvoie la chaîne (à passer à pbn/img-src.html), ou une chaîne vide. Contexte : la page. */ -}}
+{{- $out := .Params.image | default "" -}}
+{{- if and (not $out) site.Params.pbn.imageParCle .IsPage -}}
+  {{- $key := .Params.translationKey | default "" -}}
+  {{- if not $key }}{{ with .File }}{{ $key = .ContentBaseName }}{{ end }}{{ end -}}
+  {{- with $key -}}
+    {{- $c := strings.TrimPrefix "/" (printf site.Params.pbn.imageParCle .) -}}
+    {{- if or (fileExists (printf "static/%s" $c)) (resources.Get $c) }}{{ $out = $c }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

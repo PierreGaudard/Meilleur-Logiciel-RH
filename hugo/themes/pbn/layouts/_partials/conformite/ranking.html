@@ -1,6 +1,7 @@
 {{- /* Classement ? Renvoie un booléen, qui commande ensemble la mention « sponsorisée » et le disclaimer de classement.
      Ordre : champ `classement` du front matter (true ou false, prioritaire) ; sinon title, h1 ou seoTitle qui
-     correspond au motif de classement de la langue ; sinon liste de marques classées (`items`). Articles seulement. */ -}}
+     correspond au motif de classement de la langue ; sinon liste de marques classées (`items`) ou `format: "top"`.
+     Articles seulement. */ -}}
 {{- $p := . -}}
 {{- $r := false -}}
 {{- if partial "pbn/is-article.html" $p -}}
@@ -15,7 +16,7 @@
       {{- $re = printf `(?i)(%s|mejores|comparativa|alternativas|migliori|classifica|confronto|alternative|beste|vergleich|test)` $base -}}
     {{- end -}}
     {{- $txt := delimit (slice $p.Title ($p.Params.h1 | default "") ($p.Params.seoTitle | default $p.Params.seo_title | default "")) " | " -}}
-    {{- $r = or (gt (len (findRE $re $txt 1)) 0) (gt (len ($p.Params.items | default slice)) 0) -}}
+    {{- $r = or (gt (len (findRE $re $txt 1)) 0) (gt (len ($p.Params.items | default slice)) 0) (eq (lower (string ($p.Params.format | default ""))) "top") -}}
   {{- end -}}
 {{- end -}}
 {{- return $r -}}

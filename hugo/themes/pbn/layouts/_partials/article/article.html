@@ -53,12 +53,12 @@
         </aside>
         {{- end }}
         <div class="post-main">
-          {{- with .Params.tldr | default .Params.bref }}
+          {{- if ne site.Params.pbn.tldrAffiche false }}{{ with .Params.tldr | default .Params.bref }}
           <aside class="tldr">
             <p class="tldr-title">{{ i18n "in_brief" }}</p>
             {{- if reflect.IsSlice . }}<ul>{{ range . }}<li>{{ partial "pbn/annee.html" . | markdownify }}</li>{{ end }}</ul>{{ else }}<p>{{ partial "pbn/annee.html" . | markdownify }}</p>{{ end }}
           </aside>
-          {{- end }}
+          {{- end }}{{ end }}
           {{ partial "hooks/article-before-content.html" . }}
           <div class="prose post-content">
             {{ .Content }}

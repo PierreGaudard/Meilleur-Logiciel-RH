@@ -1,10 +1,12 @@
 {{- /* Disclaimers santé et argent : champ `disclaimers` du front matter (liste : sante, finance), posé page par page.
-     Type A : seulement si params.pbn.disclaimersTypeA = true (la recette n'en prévoit pas). */ -}}
+     Libellés « article » sur un article, « page » ailleurs (simulateurs, rubriques, hubs) : clés disclaimer_<x> et
+     disclaimer_<x>_page. Type A : seulement si params.pbn.disclaimersTypeA = true (la recette n'en prévoit pas). */ -}}
 {{- if or (partial "pbn/is-typeb.html" .) site.Params.pbn.disclaimersTypeA }}{{ with .Params.disclaimers }}
+{{- $suf := cond (partial "pbn/is-article.html" $) "" "_page" -}}
 {{- if in . "sante" }}
-<p class="content-disclaimer">{{ i18n "disclaimer_sante" }}</p>
+<p class="content-disclaimer">{{ i18n (printf "disclaimer_sante%s" $suf) }}</p>
 {{- end }}
 {{- if in . "finance" }}
-<p class="content-disclaimer">{{ i18n "disclaimer_finance" }}</p>
+<p class="content-disclaimer">{{ i18n (printf "disclaimer_finance%s" $suf) }}</p>
 {{- end }}
-{{- end }}{{ end }}
+{{- end }}{{ end -}}

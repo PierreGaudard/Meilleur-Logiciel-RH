@@ -2,6 +2,8 @@
      (params icon), sinon initiale ; avec params.pbn.categoryCardText = true, une catégorie sans image ni icône a une
      carte texte (titre en avant, description). */ -}}
 {{- $n := len (partial "pbn/cat-articles.html" .) -}}
+{{- /* Rubrique qui classe des marques (classement: true dans son _index.md) : mention « Publication sponsorisée » sur sa carte. */ -}}
+{{- $mention := eq (printf "%v" .Params.classement) "true" -}}
 {{- $img := .Params.image | default .Params.cover -}}
 {{- if or $img .Params.icon (not site.Params.pbn.categoryCardText) -}}
 <a href="{{ .RelPermalink }}" class="cat-card">
@@ -10,6 +12,7 @@
     {{- else }}<span class="cat-icon" aria-hidden="true">{{ .Params.icon | default (substr (partial "pbn/titre-lien.html" .) 0 1) }}</span>{{ end }}
   </span>
   <span class="cat-body">
+    {{- if $mention }}{{ partial "conformite/mention.html" (dict "lang" .Language.Lang "small" true) }}{{ end }}
     <span class="cat-title">{{ partial "pbn/titre-lien.html" . }}</span>
     {{- with partial "pbn/desc.html" . }}<span class="cat-desc">{{ . | plainify }}</span>{{ end }}
     {{- if gt $n 0 }}<span class="cat-count">{{ i18n "articles_count" (dict "Count" $n) }}</span>{{ end }}
@@ -18,6 +21,7 @@
 {{- else -}}
 <a href="{{ .RelPermalink }}" class="cat-card cat-card-text">
   <span class="cat-body">
+    {{- if $mention }}{{ partial "conformite/mention.html" (dict "lang" .Language.Lang "small" true) }}{{ end }}
     <span class="cat-title">{{ partial "pbn/titre-lien.html" . }}</span>
     {{- with partial "pbn/desc.html" . }}<span class="cat-desc">{{ . | plainify }}</span>{{ end }}
     {{- if gt $n 0 }}<span class="cat-count">{{ i18n "articles_count" (dict "Count" $n) }}</span>{{ end }}

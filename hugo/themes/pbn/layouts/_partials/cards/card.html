@@ -7,7 +7,7 @@
 <article class="card card-{{ $v }}" data-tags="{{ delimit ($p.Params.tags | default slice) "," }}"{{ with $cat }} data-cat="{{ . }}"{{ end }}>
   {{- if ne $v "text" }}
   <a href="{{ $p.RelPermalink }}" class="card-media" tabindex="-1" aria-hidden="true">
-    {{- with $p.Params.image }}
+    {{- with partial "pbn/image.html" $p }}
     <img src="{{ partial "pbn/img-src.html" (dict "src" . "page" $p) }}" alt="" loading="lazy" width="600" height="400">
     {{- else }}
     <span class="card-placeholder">{{ substr (partial "pbn/titre.html" $p) 0 1 }}</span>

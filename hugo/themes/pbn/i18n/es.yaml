@@ -74,6 +74,8 @@ sponsored_alt: "Contenido patrocinado"
 ranking_disclaimer: "Esta clasificación solo compromete a nuestra redacción."
 disclaimer_sante: "No sustituye en ningún caso el consejo médico."
 disclaimer_finance: "Este artículo no constituye en ningún caso un asesoramiento financiero."
+disclaimer_sante_page: "No sustituye en ningún caso el consejo médico."
+disclaimer_finance_page: "Esta página no constituye en ningún caso un asesoramiento financiero."
 group_notice: "Contenido promocional, {{ .Name }} está editado por upearly, empresa del grupo datashake"
 
 llms_about_title: "Quiénes somos"
@@ -83,3 +85,8 @@ llms_articles: "Artículos"
 llms_pages: "Páginas"
 llms_technical: "Información técnica"
 llms_languages: "Idiomas"
+
+# Libellé de compteur propre à une section (params.pbn.compteurs)
+fiches_count:
+  one: "{{ .Count }} ficha"
+  other: "{{ .Count }} fichas"
