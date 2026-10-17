@@ -1,0 +1,20 @@
+{{- /* Bloc FAQ : questions repliables. Champs : items (liste de question, answer en Markdown ; défaut : champ faq du
+     front matter de l'accueil), title (défaut « Questions fréquentes »), kicker, text, fond, align. Le JSON-LD FAQPage
+     de l'accueil est produit à partir des mêmes questions. Contexte : dict "page" "bloc". */ -}}
+{{- $b := .bloc -}}
+{{- $page := .page -}}
+{{- $qs := slice -}}
+{{- range ($b.items | default $page.Params.faq) }}{{ if reflect.IsMap . }}{{ if and .question .answer }}{{ $qs = $qs | append . }}{{ end }}{{ end }}{{ end -}}
+{{- with $qs }}
+{{- $s := partial "home/bloc/section.html" (dict "bloc" $b "page" $page "titreDefaut" (i18n "faq") "intro" $b.text) -}}
+{{ $s.open | safeHTML }}
+  <div class="faq faq-bloc">
+    {{- range . }}
+    <details class="faq-item">
+      <summary class="faq-question">{{ partial "pbn/annee.html" .question }}</summary>
+      <div class="faq-answer">{{ $page.RenderString (dict "display" "block") (partial "pbn/annee.html" .answer) }}</div>
+    </details>
+    {{- end }}
+  </div>
+</div></section>
+{{- end }}

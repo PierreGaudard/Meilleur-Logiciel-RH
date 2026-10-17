@@ -1,0 +1,4 @@
+{{- /* Le thème sait-il compter les articles de cette catégorie ? Oui pour un terme de taxonomie et pour une rubrique de
+     params.pbn.categorySections ; non pour une page de catégorie gérée par le site lui-même (section de contenu non
+     déclarée, ex. carnet-vegetal) : ni compteur ni masquage pour elle. Renvoie un booléen. Contexte : la page. */ -}}
+{{- return (or (eq .Kind "term") (partial "pbn/is-rubrique.html" .)) -}}

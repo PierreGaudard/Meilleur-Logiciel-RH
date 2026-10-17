@@ -1,0 +1,18 @@
+{{- /* Titre d'une page générée par Hugo sans fichier (index ou terme de taxonomie), à la place du titre automatique mis
+     en capitales à chaque mot (« Matières Et Tissus ») ou laissé en anglais (« Categories »). Terme : titre de sa page
+     documentée (pbn/cat-doc.html), sinon le terme tel qu'écrit dans le front matter. Index : libellé traduit
+     (i18n categories ou tags). Renvoie dict "title" "link", ou une chaîne vide si la page a un fichier.
+     Appel : partialCached "pbn/titre-auto.html" . .Path. */ -}}
+{{- $out := "" -}}
+{{- if not .File -}}
+  {{- if eq .Kind "term" -}}
+    {{- with partial "pbn/cat-doc.html" . }}{{ $out = dict "title" .Title "link" .LinkTitle }}
+    {{- else }}{{ with .Data.Term }}{{ $out = dict "title" (string .) "link" (string .) }}{{ end }}{{ end -}}
+  {{- else if eq .Kind "taxonomy" -}}
+    {{- $l := "" -}}
+    {{- if eq .Data.Plural (site.Params.pbn.categoryTaxonomy | default "categories") }}{{ $l = i18n "categories" }}
+    {{- else if eq .Data.Plural "tags" }}{{ $l = i18n "tags" }}{{ end -}}
+    {{- with $l }}{{ $out = dict "title" . "link" . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

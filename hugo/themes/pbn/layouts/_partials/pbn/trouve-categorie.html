@@ -1,0 +1,16 @@
+{{- /* Page de catégorie ou de rubrique désignée par un nom, un titre ou un slug (comparaison par pbn/cle.html, donc sans
+     souci d'accent, d'apostrophe ni de casse) ; chaîne vide si rien ne correspond. Contexte : la chaîne. */ -}}
+{{- $k := partial "pbn/cle.html" . -}}
+{{- $out := "" -}}
+{{- if $k -}}
+  {{- $cands := partial "pbn/rubriques.html" site -}}
+  {{- with site.GetPage (printf "/%s" (site.Params.pbn.categoryTaxonomy | default "categories")) }}{{ $cands = $cands | append .Pages }}{{ end -}}
+  {{- range $cands -}}
+    {{- if not $out -}}
+      {{- $noms := slice (partial "pbn/cle.html" .Title) (partial "pbn/cle.html" .LinkTitle) (partial "pbn/cle.html" (path.Base .Path)) -}}
+      {{- if eq .Kind "term" }}{{ $noms = $noms | append (partial "pbn/cle.html" (string .Data.Term)) }}{{ end -}}
+      {{- if in $noms $k }}{{ $out = partial "pbn/cat-doc.html" . | default . }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

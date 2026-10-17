@@ -1,0 +1,8 @@
+{{- /* Page documentée (_index.md) d'un terme de catégorie sans fichier, rapprochée par pbn/cle.html (accents,
+     apostrophes) ; sinon chaîne vide. Contexte : la page de terme. */ -}}
+{{- $out := "" -}}
+{{- if and (eq .Kind "term") (not .File) (eq .Data.Plural (site.Params.pbn.categoryTaxonomy | default "categories")) -}}
+  {{- $idx := partialCached "pbn/cat-index.html" site site.Language.Lang -}}
+  {{- with index $idx.docs (partial "pbn/cle.html" (string .Data.Term)) }}{{ $out = . }}{{ end -}}
+{{- end -}}
+{{- return $out -}}

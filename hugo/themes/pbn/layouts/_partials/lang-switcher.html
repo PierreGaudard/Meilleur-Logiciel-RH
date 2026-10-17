@@ -1,15 +1,19 @@
-{{- if gt (len hugo.Sites) 1 -}}
+{{- /* Sélecteur de langue : toutes les langues du site, visibles d'un coup d'œil (FR EN ES IT), la langue courante
+     marquée. Chaque lien mène à la traduction de la page si elle existe, sinon à l'accueil de la langue.
+     Contexte : la page, ou dict "page" <page> "class" <classe en plus> (menu mobile). */ -}}
 {{- $page := . -}}
+{{- $class := "" -}}
+{{- if reflect.IsMap . }}{{ $page = .page }}{{ $class = .class }}{{ end -}}
+{{- if gt (len hugo.Sites) 1 -}}
 {{- $cur := site.Language.Lang -}}
-<details class="lang-switcher">
-  <summary aria-label="{{ i18n "language" }}">{{ upper $cur }}</summary>
+<nav class="lang-switcher lang-n-{{ len hugo.Sites }}{{ with $class }} {{ . }}{{ end }}" aria-label="{{ i18n "language" }}">
   <ul>
   {{- range hugo.Sites }}
     {{- $l := .Language.Lang -}}
     {{- $target := .Home.RelPermalink -}}
     {{- range $page.AllTranslations }}{{ if eq .Language.Lang $l }}{{ $target = .RelPermalink }}{{ end }}{{ end }}
-    <li><a href="{{ $target }}" hreflang="{{ $l }}" lang="{{ $l }}"{{ if eq $l $cur }} aria-current="true" class="is-current"{{ end }}>{{ upper $l }}</a></li>
+    <li><a href="{{ $target }}" hreflang="{{ $l }}" lang="{{ $l }}"{{ with .Language.Label }} title="{{ . }}"{{ end }}{{ if eq $l $cur }} aria-current="true" class="is-current"{{ end }}>{{ upper $l }}</a></li>
   {{- end }}
   </ul>
-</details>
+</nav>
 {{- end -}}

@@ -1,0 +1,16 @@
+{{- /* Luminance relative (WCAG) d'une couleur #rgb ou #rrggbb ; -1 pour une autre écriture (nom, rgb(), var()).
+     Contexte : la chaîne. */ -}}
+{{- $s := lower (strings.TrimPrefix "#" (strings.TrimSpace (string (. | default "")))) -}}
+{{- if eq (len $s) 3 }}{{ $s = printf "%s%s%s%s%s%s" (substr $s 0 1) (substr $s 0 1) (substr $s 1 1) (substr $s 1 1) (substr $s 2 1) (substr $s 2 1) }}{{ end -}}
+{{- $out := -1.0 -}}
+{{- if findRE `^[0-9a-f]{6}$` $s 1 -}}
+  {{- $hex := dict "0" 0 "1" 1 "2" 2 "3" 3 "4" 4 "5" 5 "6" 6 "7" 7 "8" 8 "9" 9 "a" 10 "b" 11 "c" 12 "d" 13 "e" 14 "f" 15 -}}
+  {{- $lin := slice -}}
+  {{- range slice 0 2 4 -}}
+    {{- $v := div (float (add (mul (index $hex (substr $s . 1)) 16) (index $hex (substr $s (add . 1) 1)))) 255.0 -}}
+    {{- if le $v 0.04045 }}{{ $v = div $v 12.92 }}{{ else }}{{ $v = math.Pow (div (add $v 0.055) 1.055) 2.4 }}{{ end -}}
+    {{- $lin = $lin | append $v -}}
+  {{- end -}}
+  {{- $out = add (add (mul 0.2126 (index $lin 0)) (mul 0.7152 (index $lin 1))) (mul 0.0722 (index $lin 2)) -}}
+{{- end -}}
+{{- return $out -}}

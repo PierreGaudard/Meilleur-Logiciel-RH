@@ -1,12 +1,60 @@
+{{- /* Pied de page. Sans params.pbn.footer : nom et description du média, catégories, navigation, liens légaux.
+     params.pbn.footer (par langue possible) : logo (chemin dans static/, ou true pour le logo de l'en-tête), logoWidth,
+     logoHeight, text (remplace la description), columns (liste de colonnes title + type : links (liste name, url),
+     text (Markdown), categories (count facultatif), navigation, legal). Les liens légaux restent toujours en bas. */ -}}
 {{- $info := partialCached "pbn/info-pages.html" . site.Language.Lang -}}
 {{- $cats := partialCached "pbn/categories.html" . site.Language.Lang -}}
+{{- $f := site.Params.pbn.footer | default dict -}}
+{{- $page := . -}}
+{{- $legaux := slice -}}
+{{- with site.Params.pbn.legalLinks }}{{ range . }}{{ $legaux = $legaux | append (dict "url" .url "name" .name "ext" (hasPrefix .url "http")) }}{{ end -}}
+{{- else -}}
+  {{- range $k := slice "about" "contact" "legal" "privacy" "terms" "cookies" }}{{ with index $info $k -}}
+    {{- $legaux = $legaux | append (dict "url" .RelPermalink "name" (i18n (index (dict "about" "about" "contact" "contact" "legal" "legal_notice" "privacy" "privacy_policy" "terms" "terms" "cookies" "cookies") $k)) "ext" false) -}}
+  {{- end }}{{ end -}}
+{{- end -}}
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-grid">
+    {{- $cols := $f.columns | default slice }}
+    <div class="footer-grid{{ if $cols }} footer-grid-custom{{ end }}"{{ with $cols }} style="--cols:{{ len . }}"{{ end }}>
       <div class="footer-col footer-about">
+        {{- with $f.logo }}
+        {{- $src := . }}{{ if eq (printf "%v" .) "true" }}{{ $src = site.Params.pbn.logo }}{{ end }}
+        {{- with $src }}
+        <a href="{{ site.Home.RelPermalink }}" class="footer-logo" aria-label="{{ site.Title }}"><img src="{{ strings.TrimPrefix "/" (string .) | relURL }}" alt="{{ partial "pbn/name.html" $page }}" width="{{ $f.logoWidth | default site.Params.pbn.logoWidth | default 140 }}" height="{{ $f.logoHeight | default site.Params.pbn.logoHeight | default 40 }}" loading="lazy"></a>
+        {{- end }}
+        {{- else }}
         <p class="footer-title">{{ partial "pbn/name.html" . }}</p>
-        <p>{{ site.Params.description }}</p>
+        {{- end }}
+        <p>{{ $f.text | default site.Params.description }}</p>
       </div>
+      {{- if $cols }}
+        {{- range $cols }}
+        {{- $t := lower (string (.type | default "links")) }}
+      <div class="footer-col footer-col-{{ $t }}">
+        {{- with .title }}<p class="footer-title">{{ . }}</p>{{ end }}
+        {{- if eq $t "text" }}
+        <div class="footer-text">{{ $page.RenderString (dict "display" "block") (string (.text | default "")) }}</div>
+        {{- else if eq $t "categories" }}
+        <ul>
+          {{- range (cond (gt (int (.count | default 0)) 0) (first (int (.count | default 0)) $cats) $cats) }}
+          <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}</a></li>
+          {{- end }}
+        </ul>
+        {{- else if eq $t "navigation" }}
+        {{ partial "footer-nav.html" (dict "page" $page "info" $info) }}
+        {{- else if eq $t "legal" }}
+        <ul>
+          {{- range $legaux }}<li><a href="{{ .url }}"{{ if .ext }} rel="noopener"{{ end }}>{{ .name }}</a></li>{{ end }}
+        </ul>
+        {{- else }}
+        <ul>
+          {{- range .links }}<li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a></li>{{ end }}
+        </ul>
+        {{- end }}
+      </div>
+        {{- end }}
+      {{- else }}
       {{- if $cats }}
       <div class="footer-col">
         <p class="footer-title">{{ i18n "categories" }}</p>
@@ -19,32 +67,14 @@
       {{- end }}
       <div class="footer-col">
         <p class="footer-title">{{ i18n "navigation" }}</p>
-        <nav aria-label="{{ i18n "nav_footer" }}">
-          <ul>
-            <li><a href="{{ site.Home.RelPermalink }}">{{ i18n "home" }}</a></li>
-            {{- $cs := site.Params.pbn.categorySections | default slice }}
-            {{- range site.Params.pbn.articleSections | default (slice "blog") }}{{ if not (in $cs .) }}{{ with site.GetPage . }}
-            <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre.html" . }}</a></li>
-            {{- end }}{{ end }}{{ end }}
-            {{- with $info.sitemap }}
-            <li><a href="{{ .RelPermalink }}">{{ i18n "sitemap" }}</a></li>
-            {{- end }}
-          </ul>
-        </nav>
+        {{ partial "footer-nav.html" (dict "page" . "info" $info) }}
       </div>
+      {{- end }}
     </div>
     <div class="footer-legal">
       <ul>
-        {{- with site.Params.pbn.legalLinks }}
-          {{- range . }}
-        <li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a></li>
-          {{- end }}
-        {{- else }}
-          {{- range $k := slice "about" "contact" "legal" "privacy" "terms" "cookies" }}
-            {{- with index $info $k }}
-        <li><a href="{{ .RelPermalink }}">{{ i18n (index (dict "about" "about" "contact" "contact" "legal" "legal_notice" "privacy" "privacy_policy" "terms" "terms" "cookies" "cookies") $k) }}</a></li>
-            {{- end }}
-          {{- end }}
+        {{- range $legaux }}
+        <li><a href="{{ .url }}"{{ if .ext }} rel="noopener"{{ end }}>{{ .name }}</a></li>
         {{- end }}
       </ul>
       {{ partial "hooks/footer-extra.html" . }}

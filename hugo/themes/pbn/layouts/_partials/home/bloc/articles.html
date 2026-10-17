@@ -1,0 +1,15 @@
+{{- /* Bloc d'articles : derniers articles du site, d'une rubrique (rubrique : nom, titre ou slug) ou d'une section.
+     Champs : title (défaut : nom de la rubrique, sinon « Derniers articles »), kicker, text, count (défaut 6), skip
+     (articles sautés), variant (image | horizontal | text, défaut : cards du site, image si text), featured, lien (défaut
+     true : « Voir tout »), fond, align. Contexte : dict "page" "bloc". */ -}}
+{{- $b := .bloc -}}
+{{- $sel := partial "pbn/bloc-articles.html" (dict "bloc" $b "page" .page) -}}
+{{- $list := first (int ($b.count | default 6)) (after (int ($b.skip | default 0)) $sel.pages) -}}
+{{- with $list }}
+{{- $titre := i18n "latest_articles" }}{{ with $sel.rubrique }}{{ $titre = partial "pbn/titre-lien.html" . }}{{ end -}}
+{{- $lien := "" }}{{ if ne $b.lien false }}{{ $lien = $sel.rubrique | default (partial "pbn/blog-page.html" $.page) }}{{ end -}}
+{{- $s := partial "home/bloc/section.html" (dict "bloc" $b "page" $.page "lien" $lien "titreDefaut" $titre "intro" $b.text) -}}
+{{ $s.open | safeHTML }}
+  {{ partial "cards/grid.html" (dict "pages" . "variant" ($b.variant | default (site.Params.pbn.cards | default "image")) "heading" "h3") }}
+</div></section>
+{{- end }}

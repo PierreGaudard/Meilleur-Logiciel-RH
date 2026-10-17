@@ -1,0 +1,19 @@
+{{- /* Tuile d'article (mosaïque) : photo plein cadre, voile en dégradé, rubrique, titre et date en surimpression ;
+     mention « Publication sponsorisée » si l'article est un classement (type B). Sans image : image par défaut du site,
+     sinon aplat de la couleur principale. Contexte : dict "page" <article> "heading" <h2|h3> "grand" <bool>. */ -}}
+{{- $p := .page -}}
+{{- $h := .heading | default "h3" -}}
+{{- $img := partial "pbn/image.html" $p | default (partialCached "pbn/image-defaut.html" site) -}}
+{{- $cat := "" }}{{ with partial "pbn/categorie.html" $p }}{{ $cat = partial "pbn/titre-lien.html" . }}{{ end -}}
+<article class="tuile{{ if .grand }} tuile-grande{{ end }}{{ if not $img }} tuile-sans-image{{ end }}">
+  {{- with $img }}<img src="{{ partial "pbn/img-src.html" (dict "src" . "page" $p) }}" alt="" loading="lazy" width="800" height="600">{{ end }}
+  <div class="tuile-body">
+    <div class="tuile-meta">
+      {{- if or (partial "conformite/ranking.html" $p) (partial "pbn/mention-section.html" $p) }}{{ partial "conformite/mention.html" (dict "lang" $p.Language.Lang "small" true) }}{{ end }}
+      {{- with $cat }}<span class="tuile-cat">{{ . }}</span>{{ end }}
+    </div>
+    {{ printf "<%s class=\"tuile-title\">" $h | safeHTML }}<a href="{{ $p.RelPermalink }}">{{ partial "pbn/titre-lien.html" $p }}</a>{{ printf "</%s>" $h | safeHTML }}
+    {{- if .grand }}{{ with partial "pbn/desc.html" $p }}<p class="tuile-desc">{{ . | plainify }}</p>{{ end }}{{ end }}
+    {{- if partial "pbn/is-article.html" $p }}<time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ partial "pbn/date.html" $p.Date }}</time>{{ end }}
+  </div>
+</article>

@@ -34,7 +34,7 @@
         {{- with .Params.image }}
         <figure class="post-image">
           <img src="{{ partial "pbn/img-src.html" (dict "src" . "page" $) }}" alt="{{ $.Params.imageAlt | default $.Params.image_alt | default (partial "pbn/titre.html" $) }}" width="1200" height="675" fetchpriority="high">
-          {{- $credit := cond (eq site.Params.pbn.imageCredit false) "" ($.Params.imageCredit | default "") -}}
+          {{- $credit := cond (eq site.Params.pbn.imageCredit false) "" (partial "pbn/credit.html" ($.Params.imageCredit | default "")) -}}
           {{- with $.Params.image_caption }}<figcaption>{{ . }}{{ with $credit }} <span class="image-credit">{{ . }}</span>{{ end }}</figcaption>
           {{- else }}{{ with $credit }}<figcaption>{{ . }}</figcaption>{{ end }}{{ end }}
         </figure>
@@ -42,11 +42,15 @@
       </header>
 
       {{- $toc := .TableOfContents }}
-      {{- $hasToc := and (ne .Params.toc false) (in $toc "<li>") }}
+      {{- /* Sommaire automatique : absent avec toc: false, ou quand l'article porte déjà son propre sommaire (intertitre
+           « Sommaire », « Table des matières », « Contents »… ou bloc de classe ou d'identifiant toc, sommaire). */ -}}
+      {{- $hasToc := and (ne .Params.toc false) (in $toc "<li>") (not (partial "pbn/sommaire-redige.html" .)) }}
+      {{- /* Intertitres déjà numérotés (« 1. … », « 2) … ») : pas de numérotation de liste en plus. */ -}}
+      {{- $tocNum := and (in $toc "<ol>") (not (findRE `<a href="#[^"]*">\s*\d+\s*[.)\-:]` $toc 1)) }}
       <div class="post-layout{{ if $hasToc }} has-toc{{ end }}">
         {{- if $hasToc }}
         <aside class="post-toc">
-          <details class="toc" open>
+          <details class="toc{{ if $tocNum }} toc-num{{ else }} toc-plain{{ end }}" open>
             <summary>{{ i18n "toc" }}</summary>
             {{ $toc }}
           </details>

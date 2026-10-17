@@ -1,0 +1,17 @@
+{{- /* Visuel d'une catégorie ou d'une rubrique, URL résolue : image de sa page (params image ou cover), sinon (sauf
+     params.pbn.categoryCardText = true, ou dict "texte" true) l'image de son article le plus récent qui en a une ;
+     chaîne vide sinon (carte texte). L'image par défaut du site n'est pas reprise ici : la même image sur toutes les
+     cartes de catégorie ne distingue rien. Contexte : la page de catégorie, ou dict "page" <page> "texte" <bool>.
+     Appel conseillé : partialCached "pbn/visuel-categorie.html" . .RelPermalink. */ -}}
+{{- $c := . -}}
+{{- $texte := site.Params.pbn.categoryCardText -}}
+{{- if reflect.IsMap . }}{{ $c = .page }}{{ $texte = .texte }}{{ end -}}
+{{- $src := "" -}}
+{{- with $c.Params.image | default $c.Params.cover }}{{ $src = partial "pbn/img-src.html" (dict "src" . "page" $c) }}{{ end -}}
+{{- if and (not $src) (not $texte) -}}
+  {{- range (partial "pbn/cat-articles.html" $c).ByDate.Reverse -}}
+    {{- $a := . -}}
+    {{- if not $src }}{{ with partial "pbn/image.html" $a }}{{ $src = partial "pbn/img-src.html" (dict "src" . "page" $a) }}{{ end }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $src -}}

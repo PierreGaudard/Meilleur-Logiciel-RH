@@ -1,0 +1,13 @@
+{{- /* Bloc d'arguments : items (liste de title, text ; défaut params.pbn.features), title (défaut
+     params.pbn.featuresTitle), kicker, text, fond, align. Aucune allégation. Contexte : dict "page" "bloc". */ -}}
+{{- $b := .bloc -}}
+{{- with $b.items | default site.Params.pbn.features }}
+{{- $s := partial "home/bloc/section.html" (dict "bloc" $b "page" $.page "titreDefaut" (site.Params.pbn.featuresTitle | default "") "intro" $b.text) -}}
+{{ $s.open | safeHTML }}
+  <div class="features">
+    {{- range . }}
+    <div class="feature"><h3>{{ .title }}</h3><p>{{ .text }}</p></div>
+    {{- end }}
+  </div>
+</div></section>
+{{- end }}

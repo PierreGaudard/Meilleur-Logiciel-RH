@@ -1,0 +1,13 @@
+{{- /* Navigation du pied de page : accueil, sections d'articles hors rubriques, plan du site. Contexte : dict "page" "info". */ -}}
+<nav aria-label="{{ i18n "nav_footer" }}">
+  <ul>
+    <li><a href="{{ site.Home.RelPermalink }}">{{ i18n "home" }}</a></li>
+    {{- $cs := site.Params.pbn.categorySections | default slice }}
+    {{- range site.Params.pbn.articleSections | default (slice "blog") }}{{ if not (in $cs .) }}{{ with site.GetPage . }}
+    <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre.html" . }}</a></li>
+    {{- end }}{{ end }}{{ end }}
+    {{- with $.info.sitemap }}
+    <li><a href="{{ .RelPermalink }}">{{ i18n "sitemap" }}</a></li>
+    {{- end }}
+  </ul>
+</nav>

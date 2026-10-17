@@ -1,6 +1,7 @@
 {{- /* Articles d'une catégorie (liste de pages). Contexte : la page de terme ou de rubrique. Rubrique
-     (params.pbn.categorySections) : les articles dont la catégorie (pbn/categorie.html) est cette rubrique. Sinon (terme
-     de taxonomie) : ses pages. */ -}}
+     (params.pbn.categorySections) : les articles dont la catégorie (pbn/categorie.html) est cette rubrique. Terme de la
+     taxonomie des catégories : ses pages, plus celles des pages du même nom que Hugo a séparées (accent ou apostrophe
+     entre le front matter et le dossier _index.md, rapprochés par pbn/cle.html). */ -}}
 {{- $c := . -}}
 {{- $out := where .Pages "Kind" "page" -}}
 {{- if partial "pbn/is-rubrique.html" . -}}
@@ -11,5 +12,16 @@
     {{- with partialCached "pbn/categorie.html" $a $a.RelPermalink }}{{ if eq .RelPermalink $c.RelPermalink }}{{ $keep = $keep | append $a.RelPermalink }}{{ end }}{{ end -}}
   {{- end -}}
   {{- $out = where $articles "RelPermalink" "in" $keep -}}
+{{- else if and (eq .Kind "term") (eq .Data.Plural (site.Params.pbn.categoryTaxonomy | default "categories")) -}}
+  {{- $idx := partialCached "pbn/cat-index.html" site site.Language.Lang -}}
+  {{- $cles := slice -}}
+  {{- if .File }}{{ $cles = slice (partial "pbn/cle.html" (path.Base .Path)) (partial "pbn/cle.html" .Title) }}
+  {{- else }}{{ $cles = slice (partial "pbn/cle.html" (string .Data.Term)) }}{{ end -}}
+  {{- $all := .Pages -}}
+  {{- range uniq $cles -}}
+    {{- range index $idx.termes . }}{{ $all = $all | union .Pages }}{{ end -}}
+    {{- with index $idx.docs . }}{{ $all = $all | union .Pages }}{{ end -}}
+  {{- end -}}
+  {{- $out = where $all "Kind" "page" -}}
 {{- end -}}
 {{- return $out -}}

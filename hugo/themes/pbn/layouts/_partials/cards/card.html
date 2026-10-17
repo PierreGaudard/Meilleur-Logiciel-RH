@@ -1,17 +1,16 @@
 {{- /* Carte d'article. Contexte : dict "page" <page> "variant" image|horizontal|text "heading" <h2|h3>.
-     La mention se décide sur la page annoncée par la carte. */ -}}
+     La mention se décide sur la page annoncée par la carte. Sans image, la carte prend l'image par défaut du site
+     (pbn/image-defaut.html), sinon elle est rendue sans zone image (jamais de grosse lettre seule). */ -}}
 {{- $p := .page -}}
 {{- $v := .variant | default (site.Params.pbn.cards | default "image") -}}
 {{- $h := .heading | default "h3" -}}
 {{- $cat := "" }}{{ with partial "pbn/categorie.html" $p }}{{ $cat = partial "pbn/titre-lien.html" . }}{{ end -}}
-<article class="card card-{{ $v }}" data-tags="{{ delimit ($p.Params.tags | default slice) "," }}"{{ with $cat }} data-cat="{{ . }}"{{ end }}>
-  {{- if ne $v "text" }}
+{{- $img := "" -}}
+{{- if ne $v "text" }}{{ $img = partial "pbn/image.html" $p | default (partialCached "pbn/image-defaut.html" site) }}{{ end -}}
+<article class="card card-{{ $v }}{{ if and (ne $v "text") (not $img) }} card-noimg{{ end }}" data-tags="{{ delimit ($p.Params.tags | default slice) "," }}"{{ with $cat }} data-cat="{{ . }}"{{ end }}>
+  {{- with $img }}
   <a href="{{ $p.RelPermalink }}" class="card-media" tabindex="-1" aria-hidden="true">
-    {{- with partial "pbn/image.html" $p }}
     <img src="{{ partial "pbn/img-src.html" (dict "src" . "page" $p) }}" alt="" loading="lazy" width="600" height="400">
-    {{- else }}
-    <span class="card-placeholder">{{ substr (partial "pbn/titre.html" $p) 0 1 }}</span>
-    {{- end }}
   </a>
   {{- end }}
   <div class="card-body">

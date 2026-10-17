@@ -1,0 +1,17 @@
+{{- /* Bloc de texte libre : text (Markdown, shortcodes compris), ou contenu = true pour le texte de
+     content/<langue>/_index.md. Champs : title, kicker, image (à côté du texte), imageAlt, imagePosition (left | right,
+     défaut right), fond, align, largeur (etroite | large, défaut etroite). Contexte : dict "page" "bloc". */ -}}
+{{- $b := .bloc -}}
+{{- $page := .page -}}
+{{- $corps := "" -}}
+{{- if $b.contenu }}{{ $corps = $page.Content }}{{ else }}{{ with $b.text }}{{ $corps = $page.RenderString (dict "display" "block") (partial "pbn/annee.html" .) }}{{ end }}{{ end -}}
+{{- $img := "" }}{{ with $b.image }}{{ $img = partial "pbn/img-src.html" (dict "src" . "page" $page) }}{{ end -}}
+{{- if or $corps $img }}
+{{- $s := partial "home/bloc/section.html" (dict "bloc" $b "page" $page) -}}
+{{ $s.open | safeHTML }}
+  <div class="texte-bloc{{ if $img }} texte-image texte-image-{{ $b.imagePosition | default "right" }}{{ end }} texte-{{ $b.largeur | default "etroite" }}">
+    {{- with $corps }}<div class="prose">{{ . }}</div>{{ end }}
+    {{- with $img }}<img class="texte-img" src="{{ . }}" alt="{{ $b.imageAlt | default "" }}" loading="lazy">{{ end }}
+  </div>
+</div></section>
+{{- end }}

@@ -1,0 +1,47 @@
+{{- /* Bloc héros. Champs : title (ou titlePre, accent, titlePost), badge, text, image (fond), imageAlt, voile (0 à 1,
+     défaut 0.55), hauteur (normale | grande | plein), align (center | left), fond, buttons (liste de name, url, style),
+     search (champ de recherche), stats (nombre d'articles et de catégories), featured (carte de l'article à la une).
+     Sans champ de titre, le titre vient du front matter de l'accueil ou de params.pbn.hero. Contexte : dict "page" "bloc" "h1". */ -}}
+{{- $b := .bloc -}}
+{{- $page := .page -}}
+{{- $h := site.Params.pbn.hero | default dict -}}
+{{- $badge := $b.badge | default $page.Params.heroBadge | default $h.badge -}}
+{{- $desc := $b.text | default $page.Params.heroDescription | default $h.description | default site.Params.description -}}
+{{- $img := "" }}{{ with $b.image }}{{ $img = partial "pbn/img-src.html" (dict "src" . "page" $page) }}{{ end -}}
+{{- $haut := lower (string ($b.hauteur | default "normale")) -}}
+{{- $align := lower (string ($b.align | default "center")) -}}
+{{- $fond := lower (string ($b.fond | default "auto")) -}}
+{{- $voile := float ($b.voile | default 0.55) -}}
+{{- $feat := "" }}{{ if $b.featured }}{{ $feat = partial "home/featured.html" $page }}{{ end -}}
+{{- $articles := partialCached "pbn/articles.html" $page site.Language.Lang -}}
+{{- $cats := partialCached "pbn/categories.html" $page site.Language.Lang -}}
+<section class="hero hero-bloc bloc hero-h-{{ $haut }} align-{{ $align }} fond-{{ $fond }}{{ if $img }} hero-image{{ end }}{{ if $feat }} hero-cols{{ end }}{{ with $b.class }} {{ . }}{{ end }}"{{ with $b.id }} id="{{ anchorize . }}"{{ end }}{{ if $img }} style="--voile:{{ $voile }}"{{ end }}>
+  {{- with $img }}
+  <img class="hero-bg" src="{{ . }}" alt="{{ $b.imageAlt | default "" }}"{{ if $.h1 }} fetchpriority="high"{{ else }} loading="lazy"{{ end }}>
+  {{- end }}
+  <div class="container hero-inner">
+    <div class="hero-text">
+      {{- with $badge }}<span class="hero-badge">{{ partial "pbn/annee.html" . }}</span>{{ end }}
+      {{ partial "home/hero-title.html" (dict "page" $page "bloc" $b "tag" (cond .h1 "h1" "h2")) }}
+      {{- with $desc }}<p class="hero-desc">{{ partial "pbn/annee.html" . }}</p>{{ end }}
+      {{- if $b.search }}{{ partial "search.html" $page }}{{ end }}
+      {{- $btns := $b.buttons | default slice -}}
+      {{- with $b.button }}{{ if reflect.IsMap . }}{{ $btns = $btns | append . }}{{ end }}{{ end -}}
+      {{- with $btns }}
+      <p class="hero-buttons">
+        {{- range $i, $x := . }}{{ with $x.url }}
+        <a href="{{ . }}" class="btn btn-{{ $x.style | default (cond (eq $i 0) "accent" "ghost") }}">{{ $x.name }}</a>
+        {{- end }}{{ end }}
+      </p>
+      {{- end }}
+      {{- if $b.stats }}
+      <p class="hero-stats"><span>{{ i18n "articles_count" (dict "Count" (len $articles)) }}</span><span>{{ i18n "categories_count" (dict "Count" (len $cats)) }}</span></p>
+      {{- end }}
+    </div>
+    {{- with $feat }}
+    <div class="hero-featured">
+      {{ partial "cards/card.html" (dict "page" . "variant" "image" "heading" (cond $.h1 "h2" "h3")) }}
+    </div>
+    {{- end }}
+  </div>
+</section>

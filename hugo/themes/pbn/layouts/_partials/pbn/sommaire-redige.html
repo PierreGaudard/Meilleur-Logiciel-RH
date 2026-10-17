@@ -1,0 +1,8 @@
+{{- /* L'article porte-t-il déjà son propre sommaire ? Intertitre (h2 à h4) « Sommaire », « Table des matières »,
+     « Au sommaire », « Contents », « Table of contents », « Inhalt », « Inhaltsverzeichnis », « Índice », « Indice »,
+     « Sommario », ou élément de classe ou d'identifiant toc, sommaire, table-des-matieres dans le contenu. Le sommaire
+     automatique est alors omis. Renvoie un booléen. Contexte : la page. */ -}}
+{{- $c := string .Content -}}
+{{- $titres := `(?i)<h[2-4][^>]*>\s*(au\s+)?(sommaire|table\s+des\s+mati[eè]res|contents|table\s+of\s+contents|inhalt|inhaltsverzeichnis|[íi]ndice|sommario)\s*:?\s*</h[2-4]>` -}}
+{{- $blocs := `(?i)<(nav|div|section|aside|ol|ul)[^>]+(class|id)="[^"]*\b(toc|sommaire|table-des-matieres|table-of-contents)\b` -}}
+{{- return (or (gt (len (findRE $titres $c 1)) 0) (gt (len (findRE $blocs $c 1)) 0)) -}}

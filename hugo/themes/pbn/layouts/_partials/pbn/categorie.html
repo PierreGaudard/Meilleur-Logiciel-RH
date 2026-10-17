@@ -24,5 +24,7 @@
 {{- end -}}
 {{- if not $out -}}
   {{- with $p.GetTerms (site.Params.pbn.categoryTaxonomy | default "categories") }}{{ $out = index . 0 }}{{ end -}}
+  {{- /* Terme sans fichier rapproché de sa page documentée (accent ou apostrophe) : la page documentée. */ -}}
+  {{- with $out }}{{ with partial "pbn/cat-doc.html" . }}{{ $out = . }}{{ end }}{{ end -}}
 {{- end -}}
 {{- return $out -}}

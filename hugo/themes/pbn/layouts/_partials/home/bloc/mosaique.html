@@ -1,0 +1,23 @@
+{{- /* Bloc mosaïque : articles à la une en tuiles photo, une grande puis les autres en grille. Champs : title, kicker,
+     text, count (défaut 5), rubrique, section, featured (défaut true : articles featured: true d'abord), lien (défaut
+     true : « Voir tout »), fond, align. Contexte : dict "page" "bloc". */ -}}
+{{- $b := .bloc -}}
+{{- $sel := partial "pbn/bloc-articles.html" (dict "bloc" (merge (dict "featured" true) $b) "page" .page) -}}
+{{- $list := first (int ($b.count | default 5)) $sel.pages -}}
+{{- with $list }}
+{{- $lien := "" }}{{ if ne $b.lien false }}{{ $lien = $sel.rubrique | default (partial "pbn/blog-page.html" $.page) }}{{ end -}}
+{{- $s := partial "home/bloc/section.html" (dict "bloc" $b "page" $.page "lien" $lien "intro" $b.text) -}}
+{{ $s.open | safeHTML }}
+  {{- $reste := after 1 . -}}
+  <div class="mosaique{{ if not $reste }} mosaique-seule{{ end }}">
+    {{ partial "cards/tuile.html" (dict "page" (index . 0) "heading" "h3" "grand" true) }}
+    {{- with $reste }}
+    <div class="mosaique-side" style="--cols:{{ cond (gt (len .) 2) 2 1 }}">
+      {{- range . }}
+      {{ partial "cards/tuile.html" (dict "page" . "heading" "h3") }}
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</div></section>
+{{- end }}

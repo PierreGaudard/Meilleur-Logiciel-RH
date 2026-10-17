@@ -1,0 +1,10 @@
+{{- /* Crédit photo dans la langue de la page : un crédit rédigé en français (« Photo par X via Pexels », « Photo de X sur
+     Unsplash », « Auteur inconnu ») est traduit sur une page d'une autre langue (clés photo_by, photo_on,
+     unknown_author). Les noms propres ne changent pas. Contexte : la chaîne du crédit. */ -}}
+{{- $s := string (. | default "") -}}
+{{- if and $s (ne site.Language.Lang "fr") -}}
+  {{- $s = replaceRE `^(?i)(cr[ée]dit\s*(photo)?\s*:\s*|photo\s+(par|de|d['’])\s*|photographie\s+(par|de)\s+)` (printf "%s " (i18n "photo_by")) $s -}}
+  {{- $s = replaceRE `\s+sur\s+(Pexels|Unsplash|Pixabay|Flickr|Wikimedia|Rawpixel|Freepik)\b` (printf " %s $1" (i18n "photo_on")) $s -}}
+  {{- $s = replaceRE `(?i)auteur\s+inconnu` (i18n "unknown_author") $s -}}
+{{- end -}}
+{{- return $s -}}

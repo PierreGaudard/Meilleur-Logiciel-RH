@@ -1,0 +1,41 @@
+{{- /* Colonne latérale des accueils search et editorial : « À découvrir » (articles featured: true, puis les plus récents
+     non affichés à côté) et catégories avec leur nombre d'articles. Jamais presque vide : rien n'est rendu s'il n'y a
+     rien à y mettre. Contexte : dict "page" <accueil> "exclus" <articles déjà affichés> "n" <cartes, défaut 2>
+     "categories" <bool> "ordre" <"cartes" | "categories" en premier>. */ -}}
+{{- $articles := partialCached "pbn/articles.html" .page site.Language.Lang -}}
+{{- $ex := slice }}{{ range .exclus }}{{ $ex = $ex | append .RelPermalink }}{{ end -}}
+{{- $cands := slice -}}
+{{- range $articles }}{{ if and .Params.featured (not (in $ex .RelPermalink)) }}{{ $cands = $cands | append . }}{{ end }}{{ end -}}
+{{- range $articles }}{{ if and (not .Params.featured) (not (in $ex .RelPermalink)) }}{{ $cands = $cands | append . }}{{ end }}{{ end -}}
+{{- $cartes := first (int (.n | default 2)) $cands -}}
+{{- $cats := slice }}{{ if .categories }}{{ $cats = partialCached "pbn/categories.html" .page site.Language.Lang }}{{ end -}}
+{{- $blocCartes := "" -}}
+{{- $blocCats := "" -}}
+{{- if or $cartes $cats }}
+<aside class="home-aside">
+  {{- if eq .ordre "categories" }}{{ with $cats }}
+  <p class="aside-title">{{ i18n "categories" }}</p>
+  <ul class="cat-list">
+    {{- range . }}
+    <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}{{ if partial "pbn/cat-comptable.html" . }}<span>{{ len (partial "pbn/cat-articles.html" .) }}</span>{{ end }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}{{ end }}
+  {{- with $cartes }}
+  <p class="aside-title">{{ i18n "featured" }}</p>
+  <div class="aside-cards">
+    {{- range . }}
+    {{ partial "cards/card.html" (dict "page" . "variant" "image" "heading" "h3") }}
+    {{- end }}
+  </div>
+  {{- end }}
+  {{- if ne .ordre "categories" }}{{ with $cats }}
+  <p class="aside-title">{{ i18n "categories" }}</p>
+  <ul class="cat-list">
+    {{- range . }}
+    <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}{{ if partial "pbn/cat-comptable.html" . }}<span>{{ len (partial "pbn/cat-articles.html" .) }}</span>{{ end }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}{{ end }}
+</aside>
+{{- end }}

@@ -1,0 +1,24 @@
+{{- /* Couleur de texte lisible sur un fond : la première des couleurs candidates dont le contraste (WCAG) avec le fond
+     atteint le seuil (défaut 4.5, petit texte), sinon la plus contrastée, sinon le noir ou le blanc. Une couleur qui
+     n'est pas en #rgb ou #rrggbb ne se mesure pas : la première candidate est alors gardée telle quelle.
+     Contexte : dict "fond" <couleur> "candidats" <liste> "seuil" <nombre>. */ -}}
+{{- $seuil := float (.seuil | default 4.5) -}}
+{{- $cands := .candidats -}}
+{{- $lf := partial "pbn/luminance.html" .fond -}}
+{{- $out := index $cands 0 -}}
+{{- if ge $lf 0.0 -}}
+  {{- $trouve := "" -}}
+  {{- $meilleur := "" }}{{ $best := 0.0 -}}
+  {{- range $cands -}}
+    {{- $l := partial "pbn/luminance.html" . -}}
+    {{- if ge $l 0.0 -}}
+      {{- $r := div (add (math.Max $l $lf) 0.05) (add (math.Min $l $lf) 0.05) -}}
+      {{- if and (not $trouve) (ge $r $seuil) }}{{ $trouve = . }}{{ end -}}
+      {{- if gt $r $best }}{{ $best = $r }}{{ $meilleur = . }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $trouve }}{{ $out = $trouve -}}
+  {{- else if ge $best 3.0 }}{{ $out = $meilleur -}}
+  {{- else }}{{ $out = cond (gt $lf 0.18) "#1B1F24" "#FFFFFF" }}{{ end -}}
+{{- end -}}
+{{- return $out -}}

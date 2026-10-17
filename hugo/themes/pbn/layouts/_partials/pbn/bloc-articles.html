@@ -1,0 +1,18 @@
+{{- /* Articles d'un bloc d'accueil : ceux de la rubrique (champ rubrique : nom, titre ou slug) ou de la section (champ
+     section) du bloc, sinon tous ; avec featured = true, les articles marqués featured: true d'abord. Renvoie dict
+     "pages" (liste, du plus récent au plus ancien) "rubrique" (page de la rubrique ou ""). Contexte : dict "bloc" "page". */ -}}
+{{- $b := .bloc -}}
+{{- $articles := partialCached "pbn/articles.html" .page site.Language.Lang -}}
+{{- $rub := "" -}}
+{{- with $b.rubrique | default $b.category -}}
+  {{- with partial "pbn/trouve-categorie.html" (string .) }}{{ $rub = . }}{{ $articles = (partial "pbn/cat-articles.html" .).ByDate.Reverse }}
+  {{- else }}{{ warnf "params.pbn.homeBlocs : rubrique « %s » introuvable" . }}{{ $articles = slice }}{{ end -}}
+{{- end -}}
+{{- with $b.section }}{{ $articles = where $articles "Section" (string .) }}{{ end -}}
+{{- if $b.featured -}}
+  {{- $tri := slice -}}
+  {{- range $articles }}{{ if .Params.featured }}{{ $tri = $tri | append . }}{{ end }}{{ end -}}
+  {{- range $articles }}{{ if not .Params.featured }}{{ $tri = $tri | append . }}{{ end }}{{ end -}}
+  {{- $articles = $tri -}}
+{{- end -}}
+{{- return (dict "pages" $articles "rubrique" $rub) -}}

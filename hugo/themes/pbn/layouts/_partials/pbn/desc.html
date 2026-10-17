@@ -1,2 +1,5 @@
-{{- /* Description d'une page (.Description), jetons d'année remplacés. Contexte : la page. */ -}}
-{{- return (partial "pbn/annee.html" .Description) -}}
+{{- /* Description d'une page (.Description), jetons d'année remplacés. Terme de catégorie sans fichier : description de
+     sa page documentée (pbn/cat-doc.html). Contexte : la page. */ -}}
+{{- $d := .Description -}}
+{{- if and (not $d) (eq .Kind "term") (not .File) }}{{ with partial "pbn/cat-doc.html" . }}{{ $d = .Description }}{{ end }}{{ end -}}
+{{- return (partial "pbn/annee.html" $d) -}}

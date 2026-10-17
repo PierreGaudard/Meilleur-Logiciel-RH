@@ -1,0 +1,9 @@
+{{- /* Grille de cartes de catégorie, colonnes équilibrées sur le nombre de cartes (pbn/colonnes.html), dernière ligne
+     centrée, hauteurs égales. Contexte : dict "pages" <liste> "max" <colonnes au plus>. */ -}}
+{{- with .pages }}
+<div class="cat-grid" style="--cols:{{ partial "pbn/colonnes.html" (dict "n" (len .) "max" ($.max | default 5)) }}">
+  {{- range . }}
+  {{ partial "cards/category.html" . }}
+  {{- end }}
+</div>
+{{- end }}

@@ -1,8 +1,48 @@
 (function () {
-  // Ferme les menus déroulants (langue, navigation) au clic extérieur.
+  var mobile = window.matchMedia('(max-width: 980px)');
+
+  // Ferme les menus déroulants (navigation, menu mobile) au clic extérieur.
   document.addEventListener('click', function (e) {
-    document.querySelectorAll('details.lang-switcher[open], details.nav-group[open], details.mobile-menu[open]').forEach(function (d) {
+    document.querySelectorAll('details.nav-group[open], details.mobile-menu[open]').forEach(function (d) {
       if (!d.contains(e.target)) d.removeAttribute('open');
+    });
+  });
+
+  // En-tête : le menu tient sur une ligne, sinon il passe dans le menu repliable (bouton à trois traits).
+  var header = document.querySelector('.site-header');
+  var nav = header && header.querySelector('.site-nav');
+  function ajusterMenu() {
+    if (!header || !nav) return;
+    header.classList.remove('nav-collapsed', 'header-compact');
+    var interieur = header.querySelector('.header-inner');
+    if (getComputedStyle(nav).display === 'none') {
+      // Petit écran : si le logo, les langues et le bouton du menu ne tiennent pas, les langues passent dans le menu.
+      var nom = header.querySelector('.site-logo-text');
+      if ((interieur && interieur.scrollWidth > interieur.clientWidth + 1) || (nom && nom.scrollWidth > nom.clientWidth + 1)) header.classList.add('header-compact');
+      return;
+    }
+    var trop = nav.scrollWidth > nav.clientWidth + 1;
+    if (!trop && interieur) trop = interieur.scrollWidth > interieur.clientWidth + 1;
+    if (trop) header.classList.add('nav-collapsed');
+  }
+  var attente = null;
+  function planifier() { if (attente) cancelAnimationFrame(attente); attente = requestAnimationFrame(ajusterMenu); }
+  ajusterMenu();
+  window.addEventListener('resize', planifier);
+  // Les polices Google arrivent après le premier rendu : nouvelle mesure quand elles sont chargées.
+  if (document.fonts) {
+    if (document.fonts.ready) document.fonts.ready.then(planifier);
+    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', planifier);
+  }
+  window.addEventListener('load', planifier);
+
+  // Sous-menus de l'en-tête : jamais hors de l'écran.
+  document.querySelectorAll('.site-nav details.nav-group').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      var dd = d.querySelector('.nav-dropdown');
+      if (!dd || !d.open) return;
+      dd.classList.remove('is-flipped');
+      if (dd.getBoundingClientRect().right > document.documentElement.clientWidth - 8) dd.classList.add('is-flipped');
     });
   });
 
@@ -16,6 +56,40 @@
         setTimeout(function () { btn.textContent = prev; }, 1600);
       });
     });
+  });
+
+  // Tableaux du contenu : conteneur à défilement horizontal, ombre sur le bord qui reste à voir, indice au-dessus.
+  var indice = document.documentElement.getAttribute('data-table-hint') || '';
+  document.querySelectorAll('.prose table').forEach(function (t) {
+    if (t.closest('.table-scroll-inner')) return;
+    var wrap = document.createElement('div'); wrap.className = 'table-scroll';
+    var hint = document.createElement('p'); hint.className = 'table-scroll-hint'; hint.textContent = indice;
+    var box = document.createElement('div'); box.className = 'table-scroll-box';
+    var inner = document.createElement('div'); inner.className = 'table-scroll-inner';
+    inner.setAttribute('tabindex', '0');
+    t.parentNode.insertBefore(wrap, t);
+    wrap.appendChild(hint); wrap.appendChild(box); box.appendChild(inner); inner.appendChild(t);
+    var row = t.rows && t.rows[0];
+    if (row && row.cells.length >= 4) wrap.classList.add('is-wide');
+    function maj() {
+      var max = inner.scrollWidth - inner.clientWidth;
+      wrap.classList.toggle('is-scrollable', max > 2);
+      wrap.classList.toggle('can-left', inner.scrollLeft > 2);
+      wrap.classList.toggle('can-right', inner.scrollLeft < max - 2);
+    }
+    inner.addEventListener('scroll', maj, { passive: true });
+    window.addEventListener('resize', maj);
+    maj();
+  });
+
+  // Sommaire : replié par défaut sur petit écran, collant seulement s'il tient dans la hauteur de l'écran.
+  document.querySelectorAll('details.toc').forEach(function (toc) {
+    if (mobile.matches) toc.open = false;
+    toc.setAttribute('data-toc-init', '');
+    function collant() { toc.classList.toggle('toc-sticky', !mobile.matches && toc.offsetHeight < window.innerHeight - 110); }
+    collant();
+    window.addEventListener('resize', collant);
+    toc.addEventListener('toggle', collant);
   });
 
   // Sommaire : entrée active au défilement.
@@ -38,6 +112,19 @@
     var list = box.querySelector('[data-search-list]');
     var empty = box.querySelector('[data-search-empty]');
     var data = null, loading = null;
+    // Texte d'aide raccourci quand le champ est trop étroit pour l'afficher en entier.
+    var longPh = input.getAttribute('placeholder') || '', shortPh = input.getAttribute('data-placeholder-short') || '';
+    function placeholder() {
+      if (!shortPh) return;
+      var c = document.createElement('canvas').getContext('2d'), st = getComputedStyle(input);
+      c.font = st.fontWeight + ' ' + st.fontSize + ' ' + st.fontFamily;
+      var dispo = input.clientWidth - parseFloat(st.paddingLeft) - parseFloat(st.paddingRight) - 12;
+      input.setAttribute('placeholder', c.measureText(longPh).width > dispo ? shortPh : longPh);
+    }
+    placeholder();
+    window.addEventListener('resize', placeholder);
+    window.addEventListener('load', placeholder);
+    if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', placeholder);
     function norm(s) { return (s || '').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
     function load() {
       if (!loading) loading = fetch(url).then(function (r) { return r.json(); }).then(function (j) { data = j; return j; }).catch(function () { data = []; });

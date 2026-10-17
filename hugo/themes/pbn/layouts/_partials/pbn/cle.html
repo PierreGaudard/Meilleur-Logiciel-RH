@@ -1,0 +1,16 @@
+{{- /* Clé de rapprochement d'un nom ou d'un chemin de catégorie : minuscules, sans accents, sans apostrophes (droites ou
+     typographiques), tout autre signe ramené à un tiret. « Matières et tissus », « matieres-et-tissus »,
+     « Boucles d'oreilles », « Boucles d’oreilles » et « boucles-doreilles » donnent la même clé. Contexte : une chaîne. */ -}}
+{{- $s := lower (string (. | default "")) -}}
+{{- $s = replaceRE `[àáâãäåā]` "a" $s -}}
+{{- $s = replaceRE `[çćč]` "c" $s -}}
+{{- $s = replaceRE `[èéêëēę]` "e" $s -}}
+{{- $s = replaceRE `[ìíîïī]` "i" $s -}}
+{{- $s = replaceRE `[ñń]` "n" $s -}}
+{{- $s = replaceRE `[òóôõöøō]` "o" $s -}}
+{{- $s = replaceRE `[ùúûüū]` "u" $s -}}
+{{- $s = replaceRE `[ýÿ]` "y" $s -}}
+{{- $s = replace $s "œ" "oe" | replaceRE `æ` "ae" | replaceRE `ß` "ss" -}}
+{{- $s = replaceRE "['’‘´\x60]" "" $s -}}
+{{- $s = replaceRE `[^a-z0-9]+` "-" $s -}}
+{{- return strings.Trim $s "-" -}}

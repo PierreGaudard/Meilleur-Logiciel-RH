@@ -1,6 +1,6 @@
 {{- /* Balise title : seoTitle (ou seo_title) tel quel s'il existe (suivi de « | Site » si params.pbn.seoTitleSuffixe), sinon « Titre | Site » (titre suivi de l'année si
      yearSuffix: true ; le titre du site seul sur l'accueil). Jetons d'année remplacés. */ -}}
-{{- $titre := .Title -}}
+{{- $titre := partial "pbn/titre.html" . -}}
 {{- if .Params.yearSuffix }}{{ $titre = printf "%s %d" $titre now.Year }}{{ end -}}
 {{- $t := printf "%s | %s" $titre site.Title -}}
 {{- if .IsHome }}{{ $t = site.Title }}{{ end -}}

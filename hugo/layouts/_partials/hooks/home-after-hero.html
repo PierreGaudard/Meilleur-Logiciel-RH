@@ -1,7 +1,38 @@
-{{- /* Propre au site : appel vers le questionnaire « Trouver mon logiciel », sous le héros de l'accueil. */ -}}
-<section class="home-quiz-cta">
+{{- /* Propre au site : suite du héros de l'accueil, sur le même fond sombre que lui (bloc hero de homeBlocs) : appel vers le
+     questionnaire « Trouver mon logiciel », trois repères, tableau comparatif dans une maquette de navigateur et barre
+     « Outils couverts » (noms seuls, sans lien), comme l'ancien accueil. Styles : assets/css/site.css (mlrh-*). */ -}}
+<section class="mlrh-hero-suite">
   <div class="container">
-    <a class="btn btn-accent home-quiz-btn" href="{{ "trouver-mon-logiciel.html" | relURL }}">Trouver mon logiciel en 2 min</a>
-    <p class="home-quiz-sub">Gratuit, sans inscription, données 2026</p>
+    <div class="mlrh-quiz">
+      <a class="btn btn-accent home-quiz-btn" href="{{ "trouver-mon-logiciel.html" | relURL }}">Trouver mon logiciel en 2 min</a>
+      <p class="home-quiz-sub">Gratuit, sans inscription, données 2026</p>
+    </div>
+    <ul class="mlrh-reperes">
+      <li>Comparatifs détaillés</li>
+      <li>Prix publics des éditeurs</li>
+      <li>Recommandation sur mesure</li>
+    </ul>
+    <div class="mlrh-mockup">
+      <div class="mlrh-mockup-bar" aria-hidden="true"><span></span><span></span><span></span><em>meilleur-logiciel-rh.fr/comparatifs</em></div>
+      <div class="mlrh-mockup-table">
+        <table>
+          <thead><tr><th>Logiciel</th><th>Prix / salarié</th><th>Paie DSN</th><th>SIRH</th><th>Cible</th><th>Verdict</th></tr></thead>
+          <tbody>
+            <tr><td class="nm">PayFit</td><td>6-9 €/mois</td><td class="ck">✓</td><td class="cr">-</td><td>TPE &lt;50</td><td><span class="mp">Paie auto</span></td></tr>
+            <tr><td class="nm">Factorial</td><td>5-8 €/mois</td><td class="ck">✓</td><td class="ck">✓</td><td>PME 20-300</td><td><span class="mp">SIRH complet</span></td></tr>
+            <tr><td class="nm">Silae</td><td>Sur devis</td><td class="ck">✓</td><td class="cr">-</td><td>Cabinets</td><td><span class="mp or">Paie experte</span></td></tr>
+            <tr><td class="nm">Lucca</td><td>Modulaire</td><td class="ck">✓</td><td class="ck">✓</td><td>PME 50-200</td><td><span class="mp">Modulaire FR</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </section>
+<div class="mlrh-outils">
+  <div class="container">
+    <span class="mlrh-outils-titre">Outils couverts :</span>
+    {{- range slice (slice "PayFit" "#1A56DB") (slice "Factorial" "#FF5C35") (slice "Silae" "#7c3aed") (slice "Lucca" "#0891b2") (slice "Skello" "#15803d") (slice "Sage Paie" "#dc2626") (slice "Nibelis" "#d97706") (slice "Kelio" "#0f766e") }}
+    <span class="mlrh-outil"><span style="background:{{ index . 1 | safeCSS }}"></span>{{ index . 0 }}</span>
+    {{- end }}
+  </div>
+</div>

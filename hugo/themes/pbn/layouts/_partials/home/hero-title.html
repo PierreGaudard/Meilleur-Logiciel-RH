@@ -1,13 +1,20 @@
-{{- /* Titre du héros : front matter de l'accueil (heroTitle, ou heroTitlePre + heroAccent + heroTitlePost), sinon params.pbn.hero.
+{{- /* Titre du héros : champs du bloc de héros (homeBlocs) s'il y en a, sinon front matter de l'accueil (heroTitle, ou
+     heroTitlePre + heroAccent + heroTitlePost), sinon params.pbn.hero.
      Une espace sépare les morceaux, sauf si le morceau suivant commence par une ponctuation qui se colle au mot
      précédent (virgule, point, point-virgule, points de suspension, parenthèse ou crochet fermant, apostrophe, trait
      d'union ; aussi ! ? : hors français) ou par une espace, et sauf si le morceau précédent finit par une apostrophe,
-     une parenthèse ou un crochet ouvrant, un trait d'union ou une espace. Ex. accent "Désir", titlePost ", sans tabou". */ -}}
+     une parenthèse ou un crochet ouvrant, un trait d'union ou une espace. Ex. accent "Désir", titlePost ", sans tabou".
+     Contexte : la page d'accueil, ou dict "page" <accueil> "bloc" <bloc de héros> "tag" <h1|h2>. */ -}}
+{{- $page := . -}}
+{{- $bl := dict -}}
+{{- $tag := "h1" -}}
+{{- if reflect.IsMap . }}{{ $page = .page }}{{ $bl = .bloc | default dict }}{{ $tag = .tag | default "h1" }}{{ end -}}
 {{- $h := site.Params.pbn.hero | default dict -}}
-{{- $title := .Params.heroTitle | default $h.title -}}
-{{- $pre := .Params.heroTitlePre | default $h.titlePre -}}
-{{- $acc := .Params.heroAccent | default $h.accent -}}
-{{- $post := .Params.heroTitlePost | default $h.titlePost -}}
+{{- $title := $page.Params.heroTitle | default $h.title -}}
+{{- $pre := $page.Params.heroTitlePre | default $h.titlePre -}}
+{{- $acc := $page.Params.heroAccent | default $h.accent -}}
+{{- $post := $page.Params.heroTitlePost | default $h.titlePost -}}
+{{- if or $bl.title $bl.titlePre $bl.accent $bl.titlePost }}{{ $title = $bl.title }}{{ $pre = $bl.titlePre }}{{ $acc = $bl.accent }}{{ $post = $bl.titlePost }}{{ end -}}
 {{- $colle := `^[\s,.;…)\]'’/-]` -}}
 {{- if ne site.Language.Lang "fr" }}{{ $colle = `^[\s,.;…)\]'’/!?:-]` }}{{ end -}}
 {{- $finit := `[\s'’(\[/-]$` -}}
@@ -15,7 +22,7 @@
 {{- with $pre }}{{ $parts = $parts | append (dict "t" (partial "pbn/annee.html" .) "acc" false) }}{{ end -}}
 {{- with $acc }}{{ $parts = $parts | append (dict "t" (partial "pbn/annee.html" .) "acc" true) }}{{ end -}}
 {{- with $post }}{{ $parts = $parts | append (dict "t" (partial "pbn/annee.html" .) "acc" false) }}{{ end -}}
-<h1 class="hero-title">
+{{ printf "<%s class=\"hero-title\">" $tag | safeHTML }}
 {{- if $title }}{{ partial "pbn/annee.html" $title }}{{ else if $parts }}
   {{- $prev := "" -}}
   {{- range $i, $p := $parts -}}
@@ -24,4 +31,4 @@
     {{- $prev = $p.t -}}
   {{- end -}}
 {{- else }}{{ site.Title }}{{ end -}}
-</h1>
+{{ printf "</%s>" $tag | safeHTML }}

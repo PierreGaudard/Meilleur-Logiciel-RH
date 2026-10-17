@@ -92,3 +92,11 @@ llms_languages: "Languages"
 fiches_count:
   one: "{{ .Count }} product sheet"
   other: "{{ .Count }} product sheets"
+
+# 1.6.0 : crédit photo traduit, indice de défilement des tableaux, recherche en mobile
+photo_by: "Photo by"
+photo_on: "on"
+unknown_author: "Unknown author"
+table_scroll: "Scroll the table to see it all"
+search_placeholder_short: "Search articles"
+languages: "Languages"

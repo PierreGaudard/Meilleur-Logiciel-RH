@@ -1,0 +1,21 @@
+{{- /* Ouverture commune d'un bloc d'accueil : classes (type, fond, alignement), ancre, en-tête (surtitre, titre,
+     introduction en Markdown, lien « Voir tout »). Contexte : dict "bloc" <bloc> "page" <accueil> "lien" <page ou "">
+     "titreDefaut" <chaîne> "intro" <Markdown sous le titre>. Renvoie dict "open" (HTML d'ouverture) ; la fermeture est "</div></section>". */ -}}
+{{- $b := .bloc -}}
+{{- $fond := lower (string ($b.fond | default "auto")) -}}
+{{- $cls := printf "home-section bloc bloc-%s fond-%s" $b.type $fond -}}
+{{- with $b.align }}{{ $cls = printf "%s align-%s" $cls . }}{{ end -}}
+{{- with $b.class }}{{ $cls = printf "%s %s" $cls . }}{{ end -}}
+{{- $titre := $b.title | default .titreDefaut | default "" -}}
+{{- $head := "" -}}
+{{- if or $titre $b.kicker .intro .lien -}}
+  {{- $h := "" -}}
+  {{- with $b.kicker }}{{ $h = printf `%s<p class="bloc-kicker">%s</p>` $h (partial "pbn/annee.html" . | htmlEscape) }}{{ end -}}
+  {{- with $titre }}{{ $h = printf `%s<h2 class="section-title">%s</h2>` $h (partial "pbn/annee.html" . | htmlEscape) }}{{ end -}}
+  {{- with $h }}{{ $h = printf `<div class="section-head-text">%s</div>` . }}{{ end -}}
+  {{- with .lien }}{{ $h = printf `%s<a href="%s" class="section-link">%s</a>` $h .RelPermalink (i18n "view_all") }}{{ end -}}
+  {{- $head = printf `<div class="section-head">%s</div>` $h -}}
+  {{- with .intro }}{{ $head = printf `%s<div class="bloc-intro prose">%s</div>` $head ($.page.RenderString (dict "display" "block") (partial "pbn/annee.html" .)) }}{{ end -}}
+{{- end -}}
+{{- $id := "" }}{{ with $b.id }}{{ $id = printf ` id="%s"` (anchorize .) }}{{ end -}}
+{{- return (dict "open" (printf `<section class="%s"%s><div class="container">%s` $cls $id $head)) -}}

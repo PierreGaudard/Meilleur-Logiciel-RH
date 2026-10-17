@@ -1,0 +1,27 @@
+{{- /* Bloc d'appel : titre, texte (Markdown) et bouton(s). Champs : title, kicker, text, button (name, url, style) ou
+     buttons (liste), image (à côté du texte), imageAlt, fond (défaut primaire), align (défaut center). Sans bouton
+     renseigné : bouton vers la page de tous les articles (libellé « Voir tout »). Contexte : dict "page" "bloc". */ -}}
+{{- $b := merge (dict "fond" "primaire" "align" "center") .bloc -}}
+{{- $page := .page -}}
+{{- $btns := $b.buttons | default slice -}}
+{{- with $b.button }}{{ if reflect.IsMap . }}{{ $btns = $btns | append . }}{{ end }}{{ end -}}
+{{- if not $btns }}{{ with partial "pbn/blog-page.html" $page }}{{ $btns = slice (dict "name" (i18n "view_all") "url" .RelPermalink) }}{{ end }}{{ end -}}
+{{- $img := "" }}{{ with $b.image }}{{ $img = partial "pbn/img-src.html" (dict "src" . "page" $page) }}{{ end -}}
+{{- $s := partial "home/bloc/section.html" (dict "bloc" (merge $b (dict "title" "" "kicker" "")) "page" $page) -}}
+{{ $s.open | safeHTML }}
+  <div class="appel{{ if $img }} appel-image{{ end }}">
+    <div class="appel-text">
+      {{- with $b.kicker }}<p class="bloc-kicker">{{ . }}</p>{{ end }}
+      {{- with $b.title }}<h2 class="section-title">{{ partial "pbn/annee.html" . }}</h2>{{ end }}
+      {{- with $b.text }}<div class="appel-desc">{{ $page.RenderString (dict "display" "block") (partial "pbn/annee.html" .) }}</div>{{ end }}
+      {{- with $btns }}
+      <p class="appel-buttons">
+        {{- range $i, $x := . }}{{ with $x.url }}
+        <a href="{{ . }}" class="btn btn-{{ $x.style | default (cond (eq $i 0) "accent" "ghost") }}">{{ $x.name }}</a>
+        {{- end }}{{ end }}
+      </p>
+      {{- end }}
+    </div>
+    {{- with $img }}<img class="appel-img" src="{{ . }}" alt="{{ $b.imageAlt | default "" }}" loading="lazy">{{ end }}
+  </div>
+</div></section>

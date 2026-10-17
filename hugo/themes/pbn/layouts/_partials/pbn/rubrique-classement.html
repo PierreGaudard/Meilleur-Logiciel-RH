@@ -1,0 +1,5 @@
+{{- /* Page de catégorie ou de rubrique qui est elle-même un classement (type B) : son _index.md porte classement: true
+     (la page affiche alors la mention et le disclaimer de classement, ex. rubriques de modedurable qui classent des
+     marques). Commande la mention « Publication sponsorisée » sur la carte ou la tuile de la rubrique ; une rubrique qui
+     ne fait que regrouper des articles n'en porte jamais. Renvoie un booléen. Contexte : la page de catégorie. */ -}}
+{{- return (eq (printf "%v" .Params.classement) "true") -}}

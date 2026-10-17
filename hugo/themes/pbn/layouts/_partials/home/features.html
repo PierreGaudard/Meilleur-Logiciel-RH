@@ -2,7 +2,7 @@
 {{- with site.Params.pbn.features }}
 <section class="home-section home-features">
   <div class="container">
-    {{- with site.Params.pbn.featuresTitle }}<h2 class="section-title">{{ . }}</h2>{{ end }}
+    {{- with site.Params.pbn.featuresTitle }}<div class="section-head"><h2 class="section-title">{{ . }}</h2></div>{{ end }}
     <div class="features">
       {{- range . }}
       <div class="feature"><h3>{{ .title }}</h3><p>{{ .text }}</p></div>

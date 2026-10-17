@@ -92,3 +92,11 @@ llms_languages: "Idiomas"
 fiches_count:
   one: "{{ .Count }} ficha"
   other: "{{ .Count }} fichas"
+
+# 1.6.0 : crédit photo traduit, indice de défilement des tableaux, recherche en mobile
+photo_by: "Foto de"
+photo_on: "en"
+unknown_author: "Autor desconocido"
+table_scroll: "Desliza la tabla para verla entera"
+search_placeholder_short: "Buscar artículos"
+languages: "Idiomas"

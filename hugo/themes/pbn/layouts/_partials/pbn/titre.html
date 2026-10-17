@@ -1,2 +1,5 @@
-{{- /* Titre d'une page (.Title), jetons d'année remplacés. Contexte : la page. */ -}}
-{{- return (partial "pbn/annee.html" .Title) -}}
+{{- /* Titre d'une page (.Title), jetons d'année remplacés. Page de taxonomie sans fichier : pbn/titre-auto.html.
+     Contexte : la page. */ -}}
+{{- $t := .Title -}}
+{{- if and (not .File) (in (slice "term" "taxonomy") .Kind) }}{{ with partialCached "pbn/titre-auto.html" . .Path }}{{ $t = .title }}{{ end }}{{ end -}}
+{{- return (partial "pbn/annee.html" $t) -}}

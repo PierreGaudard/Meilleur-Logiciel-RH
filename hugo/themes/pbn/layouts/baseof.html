@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.Locale | default site.Language.Lang }}" class="scheme-{{ site.Params.pbn.colors.scheme | default "light" }}">
+<html lang="{{ site.Language.Locale | default site.Language.Lang }}" class="scheme-{{ site.Params.pbn.colors.scheme | default "light" }}" data-table-hint="{{ i18n "table_scroll" }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="theme-color" content="{{ site.Params.pbn.colors.headerBackground | default site.Params.pbn.colors.background | default "#FFFFFF" }}">
 <title>{{ partial "pbn/title.html" . }}</title>
 {{- partial "head/meta.html" . }}

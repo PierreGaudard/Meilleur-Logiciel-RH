@@ -1,0 +1,8 @@
+{{- /* Nombre de colonnes d'une grille de cartes, équilibré sur le nombre de cartes : pas de carte orpheline sur une
+     dernière ligne, pas de colonne vide (4 cartes : 4 colonnes ; 6 : 3 ; 7 : 4 + 3 ; 9 : 5 + 4 ; 11 : 4 + 4 + 3).
+     Contexte : dict "n" <nombre de cartes> "max" <colonnes au plus, défaut 5>. */ -}}
+{{- $n := int (.n | default 1) -}}
+{{- $max := int (.max | default 5) -}}
+{{- if lt $n 1 }}{{ $n = 1 }}{{ end -}}
+{{- $rangs := int (math.Ceil (div (float $n) $max)) -}}
+{{- return (int (math.Ceil (div (float $n) $rangs))) -}}

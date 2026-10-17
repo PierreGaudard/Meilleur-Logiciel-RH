@@ -4,11 +4,7 @@
     <div class="section-head">
       <h2 class="section-title">{{ i18n "explore_categories" }}</h2>
     </div>
-    <div class="cat-grid">
-      {{- range . }}
-      {{ partial "cards/category.html" . }}
-      {{- end }}
-    </div>
+    {{ partial "cards/category-grid.html" (dict "pages" .) }}
   </div>
 </section>
 {{- end }}

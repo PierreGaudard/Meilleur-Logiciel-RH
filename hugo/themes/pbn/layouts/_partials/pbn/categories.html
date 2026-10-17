@@ -1,4 +1,7 @@
-{{- /* Pages de catégories de la langue courante. Seules les catégories documentées (_index.md) si elles existent. */ -}}
+{{- /* Pages de catégories de la langue courante. Seules les catégories documentées (_index.md) si elles existent, plus,
+     avec params.pbn.categoriesToutes = true, les termes sans _index.md qui ne se rapprochent d'aucune page documentée.
+     Une catégorie sans article (terme ou rubrique, pbn/cat-comptable.html) est écartée (accueil, pied de page, plan du site, llms.txt, index des catégories), sauf
+     params.pbn.categoriesVides = true. */ -}}
 {{- $tax := site.Params.pbn.categoryTaxonomy | default "categories" -}}
 {{- $out := slice -}}
 {{- /* Rubriques gérées en sections (params.pbn.categorySections) : elles priment sur la taxonomie, triées par poids puis titre. */ -}}
@@ -10,7 +13,19 @@
   {{- $all := .Pages -}}
   {{- $doc := slice -}}
   {{- range $all }}{{ if .File }}{{ $doc = $doc | append . }}{{ end }}{{ end -}}
-  {{- $out = cond (gt (len $doc) 0) $doc $all -}}
+  {{- if gt (len $doc) 0 -}}
+    {{- $out = $doc -}}
+    {{- if site.Params.pbn.categoriesToutes -}}
+      {{- range $all }}{{ if and (not .File) (not (partial "pbn/cat-doc.html" .)) }}{{ $out = $out | append . }}{{ end }}{{ end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $out = $all -}}
+  {{- end -}}
 {{- end -}}
+{{- end -}}
+{{- if not site.Params.pbn.categoriesVides -}}
+  {{- $pleines := slice -}}
+  {{- range $out }}{{ if or (not (partial "pbn/cat-comptable.html" .)) (gt (len (partial "pbn/cat-articles.html" .)) 0) }}{{ $pleines = $pleines | append . }}{{ end }}{{ end -}}
+  {{- $out = $pleines -}}
 {{- end -}}
 {{- return $out -}}

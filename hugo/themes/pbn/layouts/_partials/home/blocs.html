@@ -1,0 +1,48 @@
+{{- /* Accueil composé par la configuration : params.pbn.homeBlocs (liste de blocs, par langue possible), rendus dans
+     l'ordre. Types : hero, mosaique, rubriques, chiffres, appel, texte, articles, faq, arguments, hook, partial (alias
+     anglais acceptés : mosaic, categories, stats, cta, text, latest, features). Points d'extension conservés :
+     home-after-hero après le premier héros, home-after-categories après le premier bloc de rubriques (sinon avant la
+     fin), home-end à la fin, sauf s'ils sont placés par un bloc hook. Documentation : README, « Accueil par blocs ».
+     Contexte : la page d'accueil. */ -}}
+{{- $page := . -}}
+{{- $alias := dict "mosaic" "mosaique" "categories" "rubriques" "stats" "chiffres" "cta" "appel" "text" "texte" "latest" "articles" "derniers" "articles" "features" "arguments" -}}
+{{- $blocs := slice -}}
+{{- range site.Params.pbn.homeBlocs -}}
+  {{- if reflect.IsMap . -}}
+    {{- $t := lower (string (.type | default "")) -}}
+    {{- $t = index $alias $t | default $t -}}
+    {{- $b := merge . (dict "type" $t) -}}
+    {{- if and (eq $t "categories") (not .style) }}{{ $b = merge $b (dict "style" "cartes") }}{{ end -}}
+    {{- $blocs = $blocs | append $b -}}
+  {{- end -}}
+{{- end -}}
+{{- /* Points d'extension placés explicitement par un bloc hook. */ -}}
+{{- $places := slice -}}
+{{- range $blocs }}{{ if eq .type "hook" }}{{ $places = $places | append (string .name) }}{{ end }}{{ end -}}
+{{- $heros := where $blocs "type" "hero" -}}
+{{- $apresHero := false -}}
+{{- $apresCat := false -}}
+{{- if not $heros }}<h1 class="sr-only">{{ site.Title }}</h1>{{ end -}}
+{{- if and (not $heros) (not (in $places "home-after-hero")) }}{{ partial "hooks/home-after-hero.html" $page }}{{ $apresHero = true }}{{ end -}}
+{{- range $i, $b := $blocs -}}
+  {{- $ctx := dict "page" $page "bloc" $b "index" $i -}}
+  {{- if eq $b.type "hero" -}}
+    {{- partial "home/bloc/hero.html" (merge $ctx (dict "h1" (not $apresHero))) -}}
+    {{- if and (not $apresHero) (not (in $places "home-after-hero")) }}{{ partial "hooks/home-after-hero.html" $page }}{{ end -}}
+    {{- $apresHero = true -}}
+    {{- if and site.Params.pbn.homeIntro (not (where $blocs "contenu" true)) }}{{ with $page.Content }}
+<section class="list-intro home-intro"><div class="container prose">{{ . }}</div></section>
+    {{- end }}{{ end -}}
+  {{- else if eq $b.type "hook" -}}
+    {{- with $b.name }}{{ $n := strings.TrimSuffix ".html" (strings.TrimPrefix "hooks/" (string .)) }}{{ if templates.Exists (printf "_partials/hooks/%s.html" $n) }}{{ partial (printf "hooks/%s.html" $n) $page }}{{ end }}{{ end -}}
+  {{- else if eq $b.type "partial" -}}
+    {{- with $b.name }}{{ $n := strings.TrimSuffix ".html" (string .) }}{{ if templates.Exists (printf "_partials/%s.html" $n) }}{{ partial (printf "%s.html" $n) $page }}{{ end }}{{ end -}}
+  {{- else if templates.Exists (printf "_partials/home/bloc/%s.html" $b.type) -}}
+    {{- partial (printf "home/bloc/%s.html" $b.type) $ctx -}}
+    {{- if and (eq $b.type "rubriques") (not $apresCat) (not (in $places "home-after-categories")) }}{{ partial "hooks/home-after-categories.html" $page }}{{ $apresCat = true }}{{ end -}}
+  {{- else -}}
+    {{- warnf "params.pbn.homeBlocs : type de bloc inconnu « %s » (bloc %d)" $b.type (add $i 1) -}}
+  {{- end -}}
+{{- end -}}
+{{- if and (not $apresCat) (not (in $places "home-after-categories")) }}{{ partial "hooks/home-after-categories.html" $page }}{{ end -}}
+{{- if not (in $places "home-end") }}{{ partial "hooks/home-end.html" $page }}{{ end -}}

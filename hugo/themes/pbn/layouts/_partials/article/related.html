@@ -1,14 +1,24 @@
+{{- /* Articles similaires : les articles liés de Hugo (related), complétés jusqu'à 3 par les articles de la même
+     catégorie puis les plus récents, sans la page elle-même ni les pages de relatedExclude. Cartes avec image (image de
+     l'article, sinon image par défaut du site, sinon carte sans zone image). */ -}}
+{{- $p := . -}}
 {{- $sections := site.Params.pbn.articleSections | default (slice "blog") -}}
-{{- $related := where (site.RegularPages.Related .) "Section" "in" $sections -}}
-{{- with .Params.relatedExclude -}}
-  {{- $ex := . }}{{ $keep := slice -}}
-  {{- range $related }}{{ if not (partial "pbn/exclu.html" (dict "page" . "liste" $ex)) }}{{ $keep = $keep | append . }}{{ end }}{{ end -}}
-  {{- $related = $keep -}}
+{{- $ex := .Params.relatedExclude -}}
+{{- $cands := slice -}}
+{{- range where (site.RegularPages.Related .) "Section" "in" $sections }}{{ $cands = $cands | append . }}{{ end -}}
+{{- with partial "pbn/categorie.html" . }}{{ range (partial "pbn/cat-articles.html" .).ByDate.Reverse }}{{ $cands = $cands | append . }}{{ end }}{{ end -}}
+{{- range first 12 (partialCached "pbn/articles.html" site site.Language.Lang) }}{{ $cands = $cands | append . }}{{ end -}}
+{{- $vus := slice $p.RelPermalink -}}
+{{- $related := slice -}}
+{{- range $cands -}}
+  {{- if and (lt (len $related) 3) (not (in $vus .RelPermalink)) -}}
+    {{- $vus = $vus | append .RelPermalink -}}
+    {{- if not (and $ex (partial "pbn/exclu.html" (dict "page" . "liste" $ex))) }}{{ $related = $related | append . }}{{ end -}}
+  {{- end -}}
 {{- end -}}
-{{- $related = first 3 $related -}}
 {{- with $related }}
 <aside class="related">
   <h2 class="related-title">{{ i18n "related_articles" }}</h2>
-  {{ partial "cards/grid.html" (dict "pages" . "variant" "text" "heading" "h3") }}
+  {{ partial "cards/grid.html" (dict "pages" . "variant" "image" "heading" "h3") }}
 </aside>
 {{- end }}

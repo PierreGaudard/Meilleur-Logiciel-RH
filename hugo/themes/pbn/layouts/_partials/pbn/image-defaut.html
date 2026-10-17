@@ -1,0 +1,15 @@
+{{- /* Image par défaut du site pour une carte sans image : params.pbn.imageDefaut, sinon params.default_og_image, si le
+     fichier existe (static/ ou assets/). Chaîne vide si params.pbn.cartesSansImage = "texte" ou sans image par défaut :
+     la carte est alors rendue sans zone image. Appel : partialCached "pbn/image-defaut.html" site. */ -}}
+{{- $out := "" -}}
+{{- if ne site.Params.pbn.cartesSansImage "texte" -}}
+  {{- with site.Params.pbn.imageDefaut | default site.Params.default_og_image | default site.Params.pbn.ogImage -}}
+    {{- $s := string . -}}
+    {{- if or (hasPrefix $s "http://") (hasPrefix $s "https://") }}{{ $out = $s -}}
+    {{- else -}}
+      {{- $c := strings.TrimPrefix "/" $s -}}
+      {{- if or (fileExists (printf "static/%s" $c)) (resources.Get $c) }}{{ $out = $s }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

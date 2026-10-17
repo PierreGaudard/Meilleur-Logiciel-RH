@@ -115,7 +115,7 @@ Disallow: /hugo/"""
   [params.pbn.style]
     radius = "10px"
     headingWeight = "800"
-    headingTracking = "-0.02em"
+    headingTracking = "-0.01em"
     logoTracking = "0"
 
 [languages]
@@ -135,6 +135,108 @@ Disallow: /hugo/"""
           titlePre = "Tous les logiciels RH"
           accent = "comparés pour vous"
           description = "MLRH analyse les meilleurs outils RH et paie du marché français. Pas besoin de chercher pendant des heures : on compare, vous choisissez."
+        # Accueil par blocs (1.6.0) : héros sombre centré, suivi du questionnaire, du tableau en maquette et des outils
+        # couverts (hooks/home-after-hero.html) ; « Comment pouvons-nous vous aider ? » ; une rangée par rubrique comme
+        # l'ancien accueil ; « Pourquoi MLRH » et FAQ (texte de content/fr/_index.md). Retouches : site.css (mlrh-*).
+        [[languages.fr.params.pbn.homeBlocs]]
+          type = "hero"
+          class = "mlrh-hero"
+        [[languages.fr.params.pbn.homeBlocs]]
+          type = "rubriques"
+          style = "cartes"
+          kicker = "Notre contenu"
+          title = "Comment pouvons-nous vous aider ?"
+          text = "Choisissez le type de contenu qui correspond à votre situation."
+          align = "center"
+          max = 3
+          class = "mlrh-aide"
+          fond = "clair"
+        [[languages.fr.params.pbn.homeBlocs]]
+          type = "appel"
+          title = "Outils RH gratuits"
+          text = "Calculateurs et simulateurs : salaire brut et net, rupture conventionnelle, chômage, indemnité de licenciement, SMIC, coût d'un salarié."
+          fond = "alt"
+          class = "mlrh-outils-appel"
+          [languages.fr.params.pbn.homeBlocs.button]
+            name = "Calculer"
+            url = "/outils/"
+        [[languages.fr.params.pbn.homeBlocs]]
+          type = "articles"
+          rubrique = "comparatifs"
+          kicker = "Comparatifs 2026"
+          title = "Le face-à-face le plus recherché"
+          text = "Prix publics, tableau complet et verdict selon votre profil."
+          count = 8
+          variant = "horizontal"
+          align = "left"
+          class = "mlrh-rangee"
+          fond = "alt"
+        [[languages.fr.params.pbn.homeBlocs]]
+          type = "articles"
+          rubrique = "guides"
+          kicker = "Guides pratiques"
+          title = "Tout pour bien choisir votre logiciel RH"
+          count = 8
+          variant = "horizontal"
+          align = "left"
+          class = "mlrh-rangee"
+          fond = "clair"
+        [[languages.fr.params.pbn.homeBlocs]]
+          type = "articles"
+          rubrique = "alternatives"
+          kicker = "Alternatives"
+          title = "Déçu de votre outil actuel ?"
+          count = 6
+          variant = "horizontal"
+          align = "left"
+          class = "mlrh-rangee"
+          fond = "alt"
+        [[languages.fr.params.pbn.homeBlocs]]
+          type = "articles"
+          rubrique = "avis"
+          kicker = "Avis 2026"
+          title = "Nos avis sur les logiciels RH"
+          count = 6
+          variant = "horizontal"
+          align = "left"
+          class = "mlrh-rangee"
+          fond = "clair"
+        [[languages.fr.params.pbn.homeBlocs]]
+          type = "texte"
+          contenu = true
+          largeur = "large"
+          class = "mlrh-pourquoi"
+          fond = "alt"
+        [[languages.fr.params.pbn.headerButtons]]
+          name = "Trouver mon logiciel"
+          url = "/trouver-mon-logiciel.html"
+          style = "primary"
+        [languages.fr.params.pbn.footer]
+          [[languages.fr.params.pbn.footer.columns]]
+            title = "Rubriques"
+            type = "categories"
+          [[languages.fr.params.pbn.footer.columns]]
+            title = "Ressources"
+            [[languages.fr.params.pbn.footer.columns.links]]
+              name = "Outils RH gratuits"
+              url = "/outils/"
+            [[languages.fr.params.pbn.footer.columns.links]]
+              name = "Trouver mon logiciel"
+              url = "/trouver-mon-logiciel.html"
+            [[languages.fr.params.pbn.footer.columns.links]]
+              name = "PayFit vs Factorial"
+              url = "/comparatifs/payfit-vs-factorial.html"
+          [[languages.fr.params.pbn.footer.columns]]
+            title = "Le site"
+            [[languages.fr.params.pbn.footer.columns.links]]
+              name = "À propos"
+              url = "/a-propos.html"
+            [[languages.fr.params.pbn.footer.columns.links]]
+              name = "Contact"
+              url = "/contact.html"
+            [[languages.fr.params.pbn.footer.columns.links]]
+              name = "Plan du site"
+              url = "/plan-du-site.html"
 
 [[languages.fr.menus.main]]
   name = "Comparatifs"
@@ -160,7 +262,3 @@ Disallow: /hugo/"""
   name = "Outils"
   url = "/outils/"
   weight = 6
-[[languages.fr.menus.main]]
-  name = "Trouver mon logiciel"
-  url = "/trouver-mon-logiciel.html"
-  weight = 7

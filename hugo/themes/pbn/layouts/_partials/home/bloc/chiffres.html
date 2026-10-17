@@ -1,0 +1,21 @@
+{{- /* Bloc chiffres : bande de chiffres clés. Champs : items (liste de value, label ; value accepte {articles},
+     {rubriques}, {langues}, {annee}), title, kicker, text, fond (défaut sombre), align. Aucune allégation : des
+     chiffres vérifiables sur le site (nombre d'articles, de rubriques, de langues). Contexte : dict "page" "bloc". */ -}}
+{{- $b := merge (dict "fond" "sombre") .bloc -}}
+{{- $n := dict
+  "{articles}" (string (len (partialCached "pbn/articles.html" .page site.Language.Lang)))
+  "{rubriques}" (string (len (partialCached "pbn/categories.html" .page site.Language.Lang)))
+  "{langues}" (string (len hugo.Sites))
+  "{annee}" (string now.Year) -}}
+{{- with $b.items }}
+{{- $s := partial "home/bloc/section.html" (dict "bloc" $b "page" $.page "intro" $b.text) -}}
+{{ $s.open | safeHTML }}
+  <dl class="chiffres" style="--cols:{{ partial "pbn/colonnes.html" (dict "n" (len .) "max" 5) }}">
+    {{- range . }}
+    {{- $v := string (.value | default "") -}}
+    {{- range $k, $x := $n }}{{ $v = replace $v $k $x }}{{ end }}
+    <div class="chiffre"><dt>{{ .label }}</dt><dd>{{ $v }}</dd></div>
+    {{- end }}
+  </dl>
+</div></section>
+{{- end }}

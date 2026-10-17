@@ -1,0 +1,27 @@
+{{- /* Index des catégories de la taxonomie params.pbn.categoryTaxonomy, langue courante : dict "docs" (clé → page
+     documentée par un _index.md) et "termes" (clé → liste des pages de terme sans fichier). Une catégorie écrite avec un
+     accent ou une apostrophe dans le front matter (« Matières et tissus ») et son dossier sans accent
+     (content/categories/matieres-et-tissus/_index.md) donnent deux pages pour Hugo : la clé (pbn/cle.html) les rapproche.
+     Appel : partialCached "pbn/cat-index.html" site site.Language.Lang. */ -}}
+{{- $tax := site.Params.pbn.categoryTaxonomy | default "categories" -}}
+{{- $docs := dict -}}
+{{- $termes := dict -}}
+{{- with site.GetPage (printf "/%s" $tax) -}}
+  {{- range .Pages -}}
+    {{- if .File -}}
+      {{- $k := partial "pbn/cle.html" (path.Base .Path) -}}
+      {{- if not (index $docs $k) }}{{ $docs = merge $docs (dict $k .) }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- range .Pages -}}
+    {{- if .File -}}
+      {{- $k := partial "pbn/cle.html" .Title -}}
+      {{- if not (index $docs $k) }}{{ $docs = merge $docs (dict $k .) }}{{ end -}}
+    {{- else -}}
+      {{- $k := partial "pbn/cle.html" (string .Data.Term) -}}
+      {{- $l := index $termes $k | default slice -}}
+      {{- $termes = merge $termes (dict $k ($l | append .)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return (dict "docs" $docs "termes" $termes) -}}

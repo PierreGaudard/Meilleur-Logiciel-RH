@@ -10,6 +10,13 @@
 {{- $accent := $c.accent | default $primary -}}
 {{- $paper := $c.paper | default $bg -}}
 {{- $paperText := $c.paperText | default $text -}}
+{{- /* Couleur d'accent lisible (contraste WCAG 4.5 contrôlé au build, pbn/couleur-lisible.html) : sur la feuille de
+     lecture (entrée active du sommaire, rubrique de l'article) et sur les cartes. Repli : lien, principale, texte. */ -}}
+{{- $paperLink := $c.paperLink | default $c.link | default $primary -}}
+{{- $inkPaper := partial "pbn/couleur-lisible.html" (dict "fond" $paper "candidats" (slice $accent $paperLink $primary $paperText)) -}}
+{{- $inkCard := partial "pbn/couleur-lisible.html" (dict "fond" $surface "candidats" (slice $accent ($c.link | default $primary) $primary $text)) -}}
+{{- /* Accent lisible sur fond sombre (blocs fond = "sombre", héros sur photo) : accent, accent du héros, sinon blanc cassé. */ -}}
+{{- $inkDark := partial "pbn/couleur-lisible.html" (dict "fond" "#16181C" "candidats" (slice $accent ($c.heroAccent | default $accent) "#F4F5F7")) -}}
 {{- $stack := `system-ui, -apple-system, "Segoe UI", Roboto, sans-serif` -}}
 {{- $fBody := cond (ne ($f.body | default "") "") (printf `"%s", %s` $f.body $stack) $stack -}}
 {{- $fHeading := cond (ne ($f.heading | default "") "") (printf `"%s", %s` $f.heading $stack) $fBody -}}
@@ -35,6 +42,7 @@
 --nav-transform:{{ $s.navCase | default "none" | safeCSS }};--nav-tracking:{{ $s.navTracking | default "0" | safeCSS }};
 --logo-transform:{{ $s.logoCase | default "none" | safeCSS }};--logo-tracking:{{ $s.logoTracking | default "-0.01em" | safeCSS }};
 --accent-style:{{ $s.accentStyle | default "normal" | safeCSS }};
+--c-accent-ink:{{ $inkPaper | safeCSS }};--c-accent-ink-card:{{ $inkCard | safeCSS }};--c-accent-dark:{{ $inkDark | safeCSS }};
 color-scheme:{{ $c.scheme | default "light" | safeCSS }};}</style>
 {{- $css := slice (resources.Get "css/main.css") -}}
 {{- with resources.Get "css/site.css" }}{{ $css = $css | append . }}{{ end -}}

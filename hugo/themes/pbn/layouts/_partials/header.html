@@ -5,11 +5,14 @@
       {{ partial "nav-items.html" . }}
     </nav>
     <div class="header-tools">
+      {{- partial "header-boutons.html" (dict "class" "header-buttons") }}
       {{ partial "lang-switcher.html" . }}
       <details class="mobile-menu">
         <summary aria-label="{{ i18n "menu" }}"><span class="burger" aria-hidden="true"></span></summary>
         <nav class="mobile-nav" aria-label="{{ i18n "menu" }}">
           {{ partial "nav-items.html" . }}
+          {{- partial "header-boutons.html" (dict "class" "mobile-buttons") }}
+          {{- partial "lang-switcher.html" (dict "page" . "class" "lang-switcher-mobile") }}
         </nav>
       </details>
     </div>

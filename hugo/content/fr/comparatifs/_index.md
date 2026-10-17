@@ -8,4 +8,3 @@ description: "Tous nos comparatifs logiciels RH, paie et SIRH pour PME français
 lastmod: "2026-10-15T16:49:03+02:00"
 ---
 
-Tous nos face-à-face avec tableaux détaillés, prix réels et verdict selon votre profil d'entreprise.

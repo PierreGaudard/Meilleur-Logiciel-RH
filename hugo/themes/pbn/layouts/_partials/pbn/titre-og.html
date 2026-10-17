@@ -1,6 +1,6 @@
 {{- /* Titre Open Graph et Twitter : seoTitle (ou seo_title), sinon le titre (suivi de l'année si yearSuffix: true).
      Jetons d'année remplacés. Contexte : la page. */ -}}
-{{- $t := .Title -}}
+{{- $t := partial "pbn/titre.html" . -}}
 {{- if .Params.yearSuffix }}{{ $t = printf "%s %d" $t now.Year }}{{ end -}}
 {{- with .Params.seoTitle | default .Params.seo_title }}{{ $t = . }}{{ end -}}
 {{- return (partial "pbn/annee.html" $t) -}}

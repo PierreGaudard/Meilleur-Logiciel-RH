@@ -7,16 +7,6 @@ jsonldExtra:
   - "{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"Quel est le meilleur logiciel de paie pour une PME en 2026 ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"PayFit est souvent adapté pour une PME de moins de 50 salariés sans DRH. Pour un SIRH complet, Factorial ou Lucca sont plus pertinents.\"}}, {\"@type\": \"Question\", \"name\": \"Quelle différence entre logiciel de paie et SIRH ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Un logiciel de paie gère les bulletins et la DSN. Un SIRH couvre tout le cycle RH : recrutement, congés, formation, entretiens et paie.\"}}, {\"@type\": \"Question\", \"name\": \"Combien coûte un logiciel RH pour 20 salariés ?\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"Entre 150 et 400 euros par mois selon l'outil et les modules choisis.\"}}]}"
 ---
 
-<div class="home-compare"><table>
-<thead><tr><th>Logiciel</th><th>Prix / salarié</th><th>Paie DSN</th><th>SIRH</th><th>Cible</th><th>Verdict</th></tr></thead>
-<tbody>
-<tr><td class="nm">PayFit</td><td>6-9 €/mois</td><td class="ck">✓</td><td class="cr">-</td><td>TPE &lt;50</td><td><span class="mp">Paie auto</span></td></tr>
-<tr><td class="nm">Factorial</td><td>5-8 €/mois</td><td class="ck">✓</td><td class="ck">✓</td><td>PME 20-300</td><td><span class="mp">SIRH complet</span></td></tr>
-<tr><td class="nm">Silae</td><td>Sur devis</td><td class="ck">✓</td><td class="cr">-</td><td>Cabinets</td><td><span class="mp or">Paie experte</span></td></tr>
-<tr><td class="nm">Lucca</td><td>Modulaire</td><td class="ck">✓</td><td class="ck">✓</td><td>PME 50-200</td><td><span class="mp">Modulaire FR</span></td></tr>
-</tbody>
-</table></div>
-
 <div class="eg">
 <div>
 <div class="lb">Pourquoi MLRH ?</div>

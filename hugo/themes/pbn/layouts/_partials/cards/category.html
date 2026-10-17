@@ -1,30 +1,21 @@
-{{- /* Carte de catégorie. Contexte : la page de terme ou de rubrique. Image (params image ou cover), sinon icône
-     (params icon), sinon initiale ; avec params.pbn.categoryCardText = true, une catégorie sans image ni icône a une
-     carte texte (titre en avant, description). */ -}}
+{{- /* Carte de catégorie. Contexte : la page de terme ou de rubrique. Visuel : pbn/visuel-categorie.html (image de la
+     catégorie, sinon de son dernier article illustré), ou icône (params icon) ; sans
+     visuel (ou avec params.pbn.categoryCardText = true), carte texte. Jamais de grosse lettre seule. Le nombre d'articles
+     est toujours affiché (catégorie que le thème sait compter, pbn/cat-comptable.html). */ -}}
 {{- $n := len (partial "pbn/cat-articles.html" .) -}}
-{{- /* Rubrique qui classe des marques (classement: true dans son _index.md) : mention « Publication sponsorisée » sur sa carte. */ -}}
-{{- $mention := eq (printf "%v" .Params.classement) "true" -}}
-{{- $img := .Params.image | default .Params.cover -}}
-{{- if or $img .Params.icon (not site.Params.pbn.categoryCardText) -}}
-<a href="{{ .RelPermalink }}" class="cat-card">
+{{- $mention := partial "pbn/rubrique-classement.html" . -}}
+{{- $src := "" }}{{ if not .Params.icon }}{{ $src = partialCached "pbn/visuel-categorie.html" . .RelPermalink }}{{ end -}}
+<a href="{{ .RelPermalink }}" class="cat-card{{ if not (or $src .Params.icon) }} cat-card-text{{ end }}">
+  {{- if or $src .Params.icon }}
   <span class="cat-media">
-    {{- with $img }}<img src="{{ partial "pbn/img-src.html" (dict "src" . "page" $) }}" alt="" loading="lazy" width="400" height="260">
-    {{- else }}<span class="cat-icon" aria-hidden="true">{{ .Params.icon | default (substr (partial "pbn/titre-lien.html" .) 0 1) }}</span>{{ end }}
+    {{- with $src }}<img src="{{ . }}" alt="" loading="lazy" width="400" height="260">
+    {{- else }}<span class="cat-icon" aria-hidden="true">{{ $.Params.icon }}</span>{{ end }}
   </span>
+  {{- end }}
   <span class="cat-body">
     {{- if $mention }}{{ partial "conformite/mention.html" (dict "lang" .Language.Lang "small" true) }}{{ end }}
     <span class="cat-title">{{ partial "pbn/titre-lien.html" . }}</span>
     {{- with partial "pbn/desc.html" . }}<span class="cat-desc">{{ . | plainify }}</span>{{ end }}
-    {{- if gt $n 0 }}<span class="cat-count">{{ i18n "articles_count" (dict "Count" $n) }}</span>{{ end }}
+    {{- if partial "pbn/cat-comptable.html" . }}<span class="cat-count">{{ i18n "articles_count" (dict "Count" $n) }}</span>{{ end }}
   </span>
 </a>
-{{- else -}}
-<a href="{{ .RelPermalink }}" class="cat-card cat-card-text">
-  <span class="cat-body">
-    {{- if $mention }}{{ partial "conformite/mention.html" (dict "lang" .Language.Lang "small" true) }}{{ end }}
-    <span class="cat-title">{{ partial "pbn/titre-lien.html" . }}</span>
-    {{- with partial "pbn/desc.html" . }}<span class="cat-desc">{{ . | plainify }}</span>{{ end }}
-    {{- if gt $n 0 }}<span class="cat-count">{{ i18n "articles_count" (dict "Count" $n) }}</span>{{ end }}
-  </span>
-</a>
-{{- end }}

@@ -1,0 +1,49 @@
+{{- /* Bloc rubriques : catégories du site (pbn/categories.html) ou liste choisie (items : noms, titres ou slugs, ou
+     dictionnaires rubrique + image + text). Champs : title (défaut « Explorer par catégorie »), kicker, text, count,
+     style (tuiles : photo plein cadre et titre en surimpression ; cartes : cartes du thème ; liste : liste compacte),
+     max (colonnes au plus, défaut 4 en tuiles, 5 en cartes), fond, align. Contexte : dict "page" "bloc". */ -}}
+{{- $b := .bloc -}}
+{{- $style := lower (string ($b.style | default "tuiles")) -}}
+{{- $items := slice -}}
+{{- if $b.items -}}
+  {{- range $b.items -}}
+    {{- $nom := . }}{{ $img := "" }}{{ $txt := "" -}}
+    {{- if reflect.IsMap . }}{{ $nom = .rubrique | default .name | default "" }}{{ $img = .image | default "" }}{{ $txt = .text | default "" }}{{ end -}}
+    {{- with partial "pbn/trouve-categorie.html" (string $nom) }}{{ $items = $items | append (dict "page" . "image" $img "text" $txt) }}
+    {{- else }}{{ warnf "params.pbn.homeBlocs : rubrique « %s » introuvable" $nom }}{{ end -}}
+  {{- end -}}
+{{- else -}}
+  {{- range partialCached "pbn/categories.html" .page site.Language.Lang }}{{ $items = $items | append (dict "page" . "image" "" "text" "") }}{{ end -}}
+{{- end -}}
+{{- with $b.count }}{{ $items = first (int .) $items }}{{ end -}}
+{{- with $items }}
+{{- $s := partial "home/bloc/section.html" (dict "bloc" $b "page" $.page "titreDefaut" (i18n "explore_categories") "intro" $b.text) -}}
+{{ $s.open | safeHTML }}
+  {{- if eq $style "cartes" }}
+  {{- $pages := slice }}{{ range . }}{{ $pages = $pages | append .page }}{{ end }}
+  {{ partial "cards/category-grid.html" (dict "pages" $pages "max" ($b.max | default 5)) }}
+  {{- else if eq $style "liste" }}
+  <ul class="cat-list cat-list-bloc">
+    {{- range . }}
+    <li><a href="{{ .page.RelPermalink }}">{{ partial "pbn/titre-lien.html" .page }}{{ if partial "pbn/cat-comptable.html" .page }}<span>{{ len (partial "pbn/cat-articles.html" .page) }}</span>{{ end }}</a></li>
+    {{- end }}
+  </ul>
+  {{- else }}
+  <div class="tuiles" style="--cols:{{ partial "pbn/colonnes.html" (dict "n" (len .) "max" ($b.max | default 4)) }}">
+    {{- range . }}
+    {{- $p := .page -}}
+    {{- $src := "" }}{{ with .image }}{{ $src = partial "pbn/img-src.html" (dict "src" . "page" $.page) }}{{ else }}{{ $src = partialCached "pbn/visuel-categorie.html" (dict "page" $p "texte" false) (printf "%s|tuile" $p.RelPermalink) }}{{ end -}}
+    <a href="{{ $p.RelPermalink }}" class="tuile tuile-rubrique{{ if not $src }} tuile-sans-image{{ end }}">
+      {{- with $src }}<img src="{{ . }}" alt="" loading="lazy" width="600" height="450">{{ end }}
+      <span class="tuile-body">
+        {{- if partial "pbn/rubrique-classement.html" $p }}<span class="tuile-meta">{{ partial "conformite/mention.html" (dict "lang" $p.Language.Lang "small" true) }}</span>{{ end }}
+        <span class="tuile-title">{{ partial "pbn/titre-lien.html" $p }}</span>
+        {{- with .text | default (partial "pbn/desc.html" $p) }}{{ if $b.descriptions }}<span class="tuile-desc">{{ . | plainify }}</span>{{ end }}{{ end }}
+        {{- if partial "pbn/cat-comptable.html" $p }}<span class="tuile-count">{{ i18n "articles_count" (dict "Count" (len (partial "pbn/cat-articles.html" $p))) }}</span>{{ end }}
+      </span>
+    </a>
+    {{- end }}
+  </div>
+  {{- end }}
+</div></section>
+{{- end }}

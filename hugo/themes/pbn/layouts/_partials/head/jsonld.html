@@ -16,6 +16,14 @@
   {{- $ws := dict "@context" "https://schema.org" "@type" "WebSite" "@id" (printf "%s#website" $base) "name" site.Title "url" site.Home.Permalink "inLanguage" $lang "publisher" (dict "@id" $orgID) -}}
   {{- with site.Params.description }}{{ $ws = merge $ws (dict "description" .) }}{{ end -}}
   {{- $graph = $graph | append $ws -}}
+  {{- /* Accueil par blocs : FAQPage à partir des blocs faq (items, sinon champ faq de l'accueil). */ -}}
+  {{- $q := slice -}}
+  {{- range site.Params.pbn.homeBlocs -}}
+    {{- if and (reflect.IsMap .) (eq (lower (string (.type | default ""))) "faq") -}}
+      {{- range (.items | default $.Params.faq) }}{{ if reflect.IsMap . }}{{ if and .question .answer }}{{ $q = $q | append (dict "@type" "Question" "name" (partial "pbn/annee.html" .question | plainify) "acceptedAnswer" (dict "@type" "Answer" "text" (partial "pbn/annee.html" .answer | markdownify | plainify))) }}{{ end }}{{ end }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $q }}{{ $graph = $graph | append (dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $q) }}{{ end -}}
 {{- else if $isArticle -}}
   {{- $sig := partial "pbn/signature.html" . -}}
   {{- $art := dict "@context" "https://schema.org" "@type" "Article"
