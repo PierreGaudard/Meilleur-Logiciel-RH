@@ -22,18 +22,18 @@ langues:
     dossier_articles: hugo/content/fr/guides
     url_articles: /guides/
 
-# Rubriques en sections (categorySections) : la rubrique d'un article est son dossier, sans champ categories.
+# Rubriques en sections (categorySections) : la rubrique d'un article est son dossier dans le contentDir (hugo/content/fr/), sans champ categories.
 categories:
   - fr: "Comparatifs"
-    dossier: "hugo/content/fr/comparatifs"
+    dossier: "comparatifs"
   - fr: "Alternatives"
-    dossier: "hugo/content/fr/alternatives"
+    dossier: "alternatives"
   - fr: "Avis"
-    dossier: "hugo/content/fr/avis"
+    dossier: "avis"
   - fr: "Guides"
-    dossier: "hugo/content/fr/guides"
+    dossier: "guides"
   - fr: "Définitions RH"
-    dossier: "hugo/content/fr/definitions-rh"
+    dossier: "definitions-rh"
 
 sujets:
   - "logiciels RH, paie, SIRH et gestion des temps pour les PME françaises"
