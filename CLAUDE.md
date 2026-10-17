@@ -1,5 +1,7 @@
 # CLAUDE.md - Meilleur Logiciel RH (meilleur-logiciel-rh.fr)
 
+> **Publication automatique : gérée uniquement par Damien Borieu** (décision du 2026-10-17). Seul Damien, sur le compte `damien@datashake.fr`, crée, modifie ou teste une routine de publication de PBN. Toute autre personne ne crée jamais de routine pour ce blog ni pour aucun PBN du parc (ni `/schedule`, ni `RemoteTrigger`, ni claude.ai/code/routines, ni tâche planifiée) et publie à la main, selon la procédure « Publier un article » ci-dessous. Pour une publication automatique : demander à Damien.
+
 ## Projet
 
 **Site** : meilleur-logiciel-rh.fr, média de comparatifs, alternatives, avis, guides et définitions sur les logiciels RH, la paie et les SIRH pour les PME françaises, plus des outils de calcul RH gratuits.
