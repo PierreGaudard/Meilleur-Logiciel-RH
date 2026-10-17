@@ -1,0 +1,12 @@
+# GitHub Pages (build legacy, Jekyll) : ne sert que le site construit, jamais les fichiers de travail du dépôt.
+include:
+  - .well-known
+exclude:
+  - CLAUDE.md
+  - README.md
+  - build.sh
+  - pbn.yaml
+  - hugo
+  - scripts
+  - .claude
+  - .github
