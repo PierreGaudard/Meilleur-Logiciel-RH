@@ -12,6 +12,6 @@ hugo --source hugo --gc --minify --destination "$OUT" --logLevel warn
 # Recopie à la racine, en supprimant les pages qui n'existent plus. Ce qui n'est pas produit par Hugo est protégé.
 rsync -a --delete \
   --exclude='/.git/' --exclude='/.github/' --exclude='/.claude/' --exclude='/hugo/' --exclude='/scripts/' \
-  --exclude='/build.sh' --exclude='/CLAUDE.md' --exclude='/README.md' --exclude='/.gitignore' --exclude='.DS_Store' \
+  --exclude='/build.sh' --exclude='/CLAUDE.md' --exclude='/pbn.yaml' --exclude='/README.md' --exclude='/.gitignore' --exclude='.DS_Store' \
   "$OUT"/ ./
 echo "site construit et recopié à la racine ($(find "$OUT" -name '*.html' | wc -l | tr -d ' ') pages HTML)"

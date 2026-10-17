@@ -33,6 +33,11 @@ jobs:
         with:
           ref: main
 
+      - name: Contrôle de conformité
+        run: |
+          hugo --source hugo --gc --minify --destination "${{ runner.temp }}/controle" --logLevel warn
+          python3 hugo/themes/pbn/_controle/controle.py --site hugo --public "${{ runner.temp }}/controle"
+
       - name: Construire et recopier à la racine
         env:
           HUGO_ENVIRONMENT: production

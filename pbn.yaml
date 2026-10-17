@@ -1,0 +1,74 @@
+# pbn.yaml : fiche d'identité éditoriale de ce PBN, lue par les skills du plugin datashake-ai-seo.
+# Format 1. Sens de chaque champ : agent parc-pbn-geo du plugin SEO, CONTEXTE.md section 4, et pbn.yaml.exemple.
+# Uniquement ce qui varie d'un site à l'autre ; jamais une règle commune, jamais une clé.
+format: 1
+
+site:
+  nom: "Meilleur Logiciel RH"
+  slug: "meilleur-logiciel-rh.fr"
+  depot: "PierreGaudard/Meilleur-Logiciel-RH"   # dépôt public, sources Hugo dans hugo/, site construit committé à la racine
+  url: "https://meilleur-logiciel-rh.fr/"
+  type: "B"
+
+mise_en_avant:
+  - client: "Skello"
+    marques: ["Skello"]
+
+marque_editrice: null
+
+# Français seul. Sources dans hugo/content/fr/, un dossier par rubrique (sections) ; URL en .html (uglyURLs) à ne jamais changer.
+langues:
+  - code: fr
+    dossier_articles: hugo/content/fr/guides
+    url_articles: /guides/
+
+# Rubriques en sections (categorySections) : la rubrique d'un article est son dossier, sans champ categories.
+categories:
+  - fr: "Comparatifs"
+    dossier: "hugo/content/fr/comparatifs"
+  - fr: "Alternatives"
+    dossier: "hugo/content/fr/alternatives"
+  - fr: "Avis"
+    dossier: "hugo/content/fr/avis"
+  - fr: "Guides"
+    dossier: "hugo/content/fr/guides"
+  - fr: "Définitions RH"
+    dossier: "hugo/content/fr/definitions-rh"
+
+sujets:
+  - "logiciels RH, paie, SIRH et gestion des temps pour les PME françaises"
+  - "comparatifs, alternatives et avis de logiciels RH"
+  - "guides RH et droit du travail"
+  - "glossaire des définitions RH"
+  - "outils de calcul RH gratuits (simulateurs)"
+
+ton:
+  adresse: vouvoiement
+  style: "pratique et concret, réponse directe dès le premier paragraphe, phrases courtes et longues alternées, exemples chiffrés"
+  public: "dirigeants et RH de PME françaises qui choisissent un logiciel RH ou cherchent une règle RH"
+
+regles_site:
+  - "Ne jamais éditer le HTML de la racine du dépôt : il est produit par ./build.sh depuis hugo/ (le workflow le reconstruit et le committe à chaque push qui touche hugo/). Construire dans un clone, jamais dans un worktree."
+  - "classement: true sur les comparatifs et les alternatives (classements de marques), classement: false sur les guides, définitions et avis."
+  - "Encadré « En bref » par le champ tldr (sans gras ni lien externe), premier paragraphe qui répond directement au H1 (phrase clé en gras), FAQ d'au moins 3 questions dans le champ faq."
+  - "Une image d'en-tête et au moins 2 images différentes dans le corps, dans hugo/static/assets/images/blog/ (ou definitions/), servies sous /assets/images/."
+  - "Encadrés propres au site en HTML brut (info-box, warning-box, case-box, legal-box, compare-table-wrap, related-terms, internal-links), styles par page via le champ css, scripts via le champ js."
+  - "Rubrique Définitions RH : 400 à 650 mots, tldr, encadré « Cas concret », « Cadre légal » pour les définitions juridiques, « Termes liés » (4 définitions existantes), toc: false, jsonldExtra avec le DefinedTerm, et ajout de la définition dans l'index alphabétique de definitions-rh/_index.md."
+  - "Outils et questionnaire « Trouver mon logiciel » : pages hors articles, sans signature ni mention."
+
+disclaimers_defaut: []
+finance_renforcee: false
+
+corpus:
+  folder_id: ""
+
+redaction:
+  format_auto: standard
+  mots_min: 1200
+  en_bref: tldr
+  faq_dans_corps: false   # faqVisible = true : le thème affiche la FAQ du front matter
+
+roadmap:
+  fichier: roadmap.yaml
+  schema: parc
+  cadence: "aucune roadmap ni publication automatique : articles publiés à la main (passer par Damien avant)"
