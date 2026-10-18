@@ -444,21 +444,23 @@ REGLES = {
     'auteur': 'aucun champ author dans le front matter',
     'empreinte': 'aucune trace du réseau dans ce qui est publié',
     'squelette': 'aucun jeton du squelette ({{...}}) dans ce qui est publié',
+    'taxonomie': 'une URL de terme, une seule page : une graphie par terme, dossier de page de terme nommé d\'après le terme',
     'exception': 'exceptions de pbn.yaml justifiées',
 }
 CONSTATS = []  # [regle, niveau 'KO'|'AV', page, extrait, exception]
 DEJA = set()
 
 
-def constat(regle, niveau, page, extrait='', mot=None):
-    """mot : occurrence trouvée ; la même sur la même page n'est rapportée qu'une fois (title, description et h1 se répètent)."""
+def constat(regle, niveau, page, extrait='', mot=None, entier=False):
+    """mot : occurrence trouvée ; la même sur la même page n'est rapportée qu'une fois (title, description et h1 se répètent).
+    entier : message gardé en entier (consigne de correction), sinon extrait coupé à 220 caractères."""
     if mot is not None:
         k = (regle, page, re.sub(r'\s+', ' ', mot.lower()))
         if k in DEJA:
             return
         DEJA.add(k)
     extrait = re.sub(r'\s+', ' ', extrait).strip()
-    CONSTATS.append([regle, niveau, page, extrait[:220], None])
+    CONSTATS.append([regle, niveau, page, extrait if entier else extrait[:220], None])
 
 if YAML_SITE.get('type') and cle(PBN, 'type') and str(YAML_SITE.get('type')).upper() != str(cle(PBN, 'type')).upper():
     constat('exception', 'AV', 'pbn.yaml', f"site.type ({YAML_SITE.get('type')}) diffère de [params.pbn] type ({cle(PBN, 'type')}) : "
@@ -1020,6 +1022,223 @@ for base in sorted(DOSSIERS_CONTENU):
 if auteurs_a:
     constat('auteur', 'AV', 'content/', f'type A : {len(auteurs_a)} fichier(s) avec un champ author (ignoré par le thème, '
             f'à retirer à l\'occasion), ex. {auteurs_a[0]}')
+
+# ------------------------------------------------------------------ termes de taxonomie : une URL, une seule page
+# Hugo range un terme sous une clé (minuscules, blancs changés en tirets, accents, apostrophes et ponctuation gardés) et
+# le publie à une URL d'où removePathAccents retire les accents, et d'où sortent apostrophes et ponctuation.
+# Deux clés pour une URL (« Crédit immobilier » et « credit immobilier », « L'immobilier » et « L’immobilier », terme
+# « Travaux et Rénovation » et page de terme rangée dans content/categories/travaux-et-renovation/) font deux pages
+# pour une seule URL : Hugo publie l'une ou l'autre au hasard d'un build à l'autre, parfois la page vide.
+# Mesuré sur Hugo 0.165 : la casse et « e commerce » / « e-commerce » donnent la même clé, donc un seul terme.
+
+def taxonomies_par_langue():
+    """{langue: {pluriel: singulier}} des taxonomies qui publient des pages de terme."""
+    dk = [str(x).lower() for x in (cle(CONF, 'disableKinds', []) or [])]
+    if 'term' in dk:
+        return {}
+    racine = cle(CONF, 'taxonomies')
+    if racine is None:
+        racine = {'category': 'categories', 'tag': 'tags'}  # défaut de Hugo
+    out = {}
+    for lg in (list(LANGUES) or [DEFAUT_LANGUE]):
+        t = cle(cle(LANGUES, lg, {}) or {}, 'taxonomies')
+        t = racine if t is None else t
+        out[lg] = {str(v).lower(): str(k) for k, v in (t or {}).items()}
+    return out
+
+
+DEFAUT_LANGUE = str(cle(CONF, 'defaultContentLanguage', '') or (next(iter(LANGUES)) if LANGUES else 'en')).lower()
+SANS_ACCENTS_URL = cle(CONF, 'removePathAccents') is True
+DANS_SOUS_DOSSIER = cle(CONF, 'defaultContentLanguageInSubdir') is True
+
+
+def racines_contenu():
+    """[(dossier absolu, langue ou None)] : contentDir des langues et montages vers content (lang, sites.matrix)."""
+    out = []
+    for lg, lc in LANGUES.items():
+        cd = cle(lc, 'contentDir')
+        if cd:
+            out.append((os.path.join(SITE, cd), lg))
+        for m in (cle(cle(lc, 'module', {}) or {}, 'mounts', []) or []):
+            if isinstance(m, dict) and str(cle(m, 'target', '')).startswith('content') and cle(m, 'source'):
+                out.append((os.path.join(SITE, cle(m, 'source')), lg))
+    for m in (cle(cle(CONF, 'module', {}) or {}, 'mounts', []) or []):
+        if not (isinstance(m, dict) and str(cle(m, 'target', '')).startswith('content') and cle(m, 'source')):
+            continue
+        lg = cle(m, 'lang')
+        mat = liste(cle(cle(cle(m, 'sites', {}) or {}, 'matrix', {}) or {}, 'languages'))
+        if not lg and len(mat) == 1:
+            lg = mat[0]
+        out.append((os.path.join(SITE, cle(m, 'source')), lg or None))
+    out.append((os.path.join(SITE, cle(CONF, 'contentDir', 'content') or 'content'), None))
+    vus, res = set(), []
+    for d, lg in out:
+        d = os.path.normpath(d)
+        if d not in vus and os.path.isdir(d):
+            vus.add(d); res.append((d, lg))
+    return res
+
+
+def cle_terme(s):
+    """Clé Hugo d'un terme ou d'un dossier de page de terme."""
+    return re.sub(r'\s', '-', unicodedata.normalize('NFC', s.strip('\n')).lower())
+
+
+def url_terme(k):
+    """Segment d'URL publié pour une clé (accents retirés si removePathAccents, ponctuation et apostrophes retirées)."""
+    if SANS_ACCENTS_URL:
+        k = unicodedata.normalize('NFC', sans_accents(k))
+    return ''.join(c for c in k if c.isalnum() or c in '-_./#+~@')
+
+
+def valeurs_front_matter(t, nom):
+    """(valeurs du champ `nom` du front matter, brouillon ?) pour YAML, TOML ou JSON ; liste vide si absent."""
+    if t.startswith('---'):
+        fm, sep = t[3:].split('\n---', 1)[0], ':'
+    elif t.startswith('+++'):
+        fm, sep = t[3:].split('\n+++', 1)[0], '='
+    elif t.lstrip().startswith('{'):
+        try:
+            d, _ = json.JSONDecoder().raw_decode(t.lstrip())
+        except ValueError:
+            return [], False
+        v = cle(d, nom)
+        return ([str(x) for x in v] if isinstance(v, list) else [str(v)] if isinstance(v, str) else []), cle(d, 'draft') is True
+    else:
+        return [], False
+    brouillon = bool(re.search(r'^draft\s*' + re.escape(sep) + r'\s*["\']?true\b', fm, re.M | re.I))
+    lignes = fm.split('\n')
+    for i, l in enumerate(lignes):
+        m = re.match(r'^' + re.escape(nom) + r'\s*' + re.escape(sep) + r'[ \t]*(.*)$', l, re.I)
+        if not m:
+            continue
+        v = m.group(1).strip()
+        if v.startswith('['):
+            j = i
+            while ']' not in re.sub(r'"(?:[^"\\]|\\.)*"|\'[^\']*\'', '', v) and j + 1 < len(lignes):
+                j += 1; v += ' ' + lignes[j].strip()
+            corps = v[1:v.rfind(']')] if ']' in v else v[1:]
+            vals = []
+            for q in re.finditer(r'"((?:[^"\\]|\\.)*)"|\'((?:[^\']|\'\')*)\'|([^,\s][^,]*)', corps):
+                if q.group(1) is not None:
+                    vals.append(q.group(1).replace('\\"', '"').replace('\\\\', '\\'))
+                elif q.group(2) is not None:
+                    vals.append(q.group(2).replace("''", "'"))
+                elif q.group(3).strip() and not q.group(3).strip().startswith('#'):
+                    vals.append(q.group(3).strip())
+            return vals, brouillon
+        if v and not v.startswith('#'):
+            s = scalaire(v) if sep == ':' else (v[1:-1] if v[:1] in '"\'' and v[-1:] == v[:1] else None)
+            return ([str(s)] if s not in (None, '') and not isinstance(s, (bool, list)) else []), brouillon
+        vals = []
+        for l2 in lignes[i + 1:]:
+            if not l2.strip() or l2.lstrip().startswith('#'):
+                continue
+            m2 = re.match(r'^\s*-\s+(.*)$', l2) or re.match(r'^\s*-$', l2)
+            if not m2 or not l2[:1].isspace() and not l2.startswith('-'):
+                break
+            s = scalaire(m2.group(1)) if m2.groups() else None
+            if s not in (None, '') and not isinstance(s, (bool, list)):
+                vals.append(str(s))
+        return vals, brouillon
+    return [], brouillon
+
+
+def controle_taxonomies():
+    taxos = taxonomies_par_langue()
+    if not any(taxos.values()):
+        return
+    racines = racines_contenu()
+    noms_langues = {str(x).lower() for x in LANGUES}
+    # (langue, pluriel) -> clé -> {'graphies': {graphie: [fichiers]}, 'pages': [fichiers _index.md], 'url': url forcée}
+    termes = {}
+    vus = set()
+    for base, _ in sorted(racines, key=lambda r: len(r[0])):
+        for d, ds, fs in os.walk(base):
+            ds[:] = [x for x in ds if not x.startswith('.')]
+            for f in fs:
+                if not f.endswith(('.md', '.markdown', '.html')):
+                    continue
+                p = os.path.join(d, f)
+                rp = os.path.realpath(p)
+                if rp in vus:
+                    continue
+                vus.add(rp)
+                racine, lg = max(((r, l) for r, l in racines if p.startswith(r + os.sep)), key=lambda x: len(x[0]))
+                m = re.search(r'\.([a-z]{2}(?:-[a-z]+)?)\.(?:md|markdown|html)$', f, re.I)
+                if m and m.group(1).lower() in noms_langues:
+                    lg = m.group(1).lower()
+                lg = (lg or DEFAUT_LANGUE).lower()
+                plur = taxos.get(lg) or taxos.get(DEFAUT_LANGUE) or {}
+                rel_racine = os.path.relpath(p, racine).replace(os.sep, '/').split('/')
+                rel = os.path.relpath(p, SITE)
+                t = lire(p)
+                # page de terme : <racine>/<pluriel>/<dossier>/_index.md
+                if len(rel_racine) == 3 and rel_racine[0].lower() in plur and re.match(r'_index(\.[\w-]+)?\.(md|markdown|html)$', f):
+                    k = cle_terme(rel_racine[1])
+                    e = termes.setdefault((lg, rel_racine[0].lower()), {}).setdefault(k, {'graphies': {}, 'pages': [], 'url': None})
+                    e['pages'].append(rel)
+                    u, _ = valeurs_front_matter(t, 'url')
+                    sl, _ = valeurs_front_matter(t, 'slug')
+                    if u:
+                        e['url'] = u[0].strip('/').lower()
+                    elif sl:
+                        e['url'] = rel_racine[0].lower() + '/' + url_terme(cle_terme(sl[0]))
+                    continue
+                if rel_racine[0].lower() in plur:
+                    continue  # index de la taxonomie
+                for pl in plur:
+                    vals, brouillon = valeurs_front_matter(t, pl)
+                    if brouillon:
+                        break
+                    for v in vals:
+                        if not v.strip():
+                            continue
+                        e = termes.setdefault((lg, pl), {}).setdefault(cle_terme(v), {'graphies': {}, 'pages': [], 'url': None})
+                        e['graphies'].setdefault(v, []).append(rel)
+    for (lg, pl), cles_ in sorted(termes.items()):
+        par_url = {}
+        for k, e in cles_.items():
+            par_url.setdefault(e['url'] or pl + '/' + url_terme(k), []).append(k)
+        for u, ks in sorted(par_url.items()):
+            if len(ks) < 2:
+                g = cles_[ks[0]]['graphies']
+                if len(g) > 1:
+                    # casse, blancs ou tirets : Hugo fusionne en un seul terme (une page), libellé choisi par le thème
+                    detail = ' ; '.join(f'« {x} » ({len(f)} page(s) : {", ".join(f[:2])}{" ..." if len(f) > 2 else ""})'
+                                        for x, f in sorted(g.items(), key=lambda x: -len(x[1])))
+                    constat('taxonomie', 'AV', f'/{u}/', f'{pl} : graphies d\'un même terme, fusionnées par Hugo (une seule '
+                            f'page) : {detail}. À unifier à l\'occasion sur la plus fréquente.', entier=True)
+                continue
+            prefixe = '' if (lg == DEFAUT_LANGUE and not DANS_SOUS_DOSSIER) or not LANGUES else f'/{lg}'
+            url = f'{prefixe}/{u}/' if not u.endswith('.html') else f'{prefixe}/{u}'
+            n = {k: sum(len(x) for x in cles_[k]['graphies'].values()) for k in ks}
+            avec_articles = [k for k in ks if n[k]]
+            garder = max(avec_articles or ks, key=lambda k: (n[k], bool(cles_[k]['pages'])))
+            garder_g = max(cles_[garder]['graphies'].items(), key=lambda g: len(g[1]))[0] if cles_[garder]['graphies'] else None
+            parts, quoi = [], []
+            for k in sorted(ks, key=lambda k: -n[k]):
+                e = cles_[k]
+                for g, fichiers in sorted(e['graphies'].items(), key=lambda g: -len(g[1])):
+                    ex = '' if k == garder and g == garder_g else ' : ' + ', '.join(fichiers[:3]) + (f' et {len(fichiers) - 3} autre(s)' if len(fichiers) > 3 else '')
+                    parts.append(f'« {g} » ({len(fichiers)} page(s){ex})')
+                for pg in e['pages']:
+                    parts.append(f'page de terme {pg}')
+                    if k != garder:
+                        dossier = os.path.dirname(pg)
+                        cible = os.path.join(os.path.dirname(dossier), garder)
+                        quoi.append(f'nommer le dossier d\'après le terme : git mv « {dossier} » « {cible} » (même URL)'
+                                    if not cles_[garder]['pages'] else
+                                    f'fusionner {pg} dans la page de terme {cles_[garder]["pages"][0]}, puis supprimer « {dossier} »')
+            if any(k != garder and cles_[k]['graphies'] for k in ks):
+                quoi.insert(0, f'unifier la graphie dans le front matter des pages citées : « {garder_g or garder} »'
+                               + (' (et la reporter dans le title de la page de terme s\'il faut une majuscule ou des accents)'
+                                  if cles_[garder]['pages'] else ''))
+            constat('taxonomie', 'KO', url, f'{pl} : ' + ' ; '.join(parts) + f' : même URL pour {len(ks)} pages de terme, Hugo publie '
+                    'l\'une ou l\'autre au hasard d\'un build à l\'autre. Corriger : ' + ' ; '.join(quoi) + '. Une URL qui change garde l\'ancienne en aliases.', entier=True)
+
+
+controle_taxonomies()
 
 # ------------------------------------------------------------------ exceptions de pbn.yaml
 
