@@ -84,6 +84,7 @@ disableKinds = ["taxonomy", "term"]
   logoWidth = 82
   logoHeight = 30
   logoText = false
+  categoryCardLien = true        # 1.7.0 : « Explorer → » en bas des cartes de rubrique (libellé du site : i18n/fr.yaml)
   favicon = "assets/images/favicon-mlrh.png"
   robotsExtra = """
 User-agent: *

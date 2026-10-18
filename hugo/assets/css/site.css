@@ -56,7 +56,7 @@
 /* Surtitres verts en capitales, comme l'ancien accueil */
 .bloc-kicker { color: var(--c-primary); letter-spacing: .1em; }
 .mlrh-aide .cat-card-text { border-top: 1px solid var(--c-border); }
-.mlrh-aide .cat-card-text .cat-body::after { content: "Explorer \2192"; margin-top: .4rem; font-size: .85rem; font-weight: 700; color: var(--c-primary); }
+.cat-more { margin-top: .4rem; font-size: .85rem; font-weight: 700; color: var(--c-primary); }
 .mlrh-outils-appel.bloc { padding: 2.2rem 0; }
 .mlrh-outils-appel .appel { max-width: 860px; }
 .mlrh-outils-appel .section-title { font-size: 1.4rem; }
