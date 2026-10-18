@@ -1,0 +1,17 @@
+{{- /* URL d'un lien écrit dans la configuration (boutons de l'en-tête, barre du haut, colonnes du pied de page, boutons
+     des blocs d'accueil, liens légaux). Rattachée à la base du site pour qu'elle reste juste quand le site est servi
+     dans un sous-dossier (préversion analytics-ds.github.io/<dépôt>/) :
+     - adresse complète (https:, mailto:, tel:…), « // », ancre seule (#…) ou requête seule (?…) : telle quelle ;
+     - chemin absolu « /x/ » : base du site + « x/ » (relURL ; « /en/x/ » s'écrit avec sa langue, comme avant) ;
+     - chemin relatif « x/ » : accueil de la langue + « x/ » (relLangURL), ce que le navigateur faisait sur l'accueil.
+     Sur un site servi à la racine, « /x/ » reste « /x/ ». Contexte : la chaîne. */ -}}
+{{- $u := trim (string .) " " -}}
+{{- $r := $u -}}
+{{- if or (eq $u "") (findRE `^([a-zA-Z][a-zA-Z0-9+.\-]*:|//|#|\?)` $u 1) -}}
+  {{- $r = $u -}}
+{{- else if hasPrefix $u "/" -}}
+  {{- $r = printf "%s%s" (relURL "") (strings.TrimPrefix "/" $u) -}}
+{{- else -}}
+  {{- $r = printf "%s%s" (relLangURL "") (strings.TrimPrefix "./" $u) -}}
+{{- end -}}
+{{- return $r -}}

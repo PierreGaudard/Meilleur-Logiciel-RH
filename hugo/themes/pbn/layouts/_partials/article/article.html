@@ -5,7 +5,12 @@
 {{- $showSig := or $typeB site.Params.pbn.signature -}}
 {{- $sig := partial "pbn/signature.html" . -}}
 {{- $cat := partial "pbn/categorie.html" . -}}
-<article class="post">
+{{- /* En-tête d'article (1.7.0) : params.pbn.articleHeader = "bandeau" (titre, méta et mention sur un aplat
+     colors.bandeauBackground, défaut principale) ou "photo" (titre posé sur l'image de couverture, sous un voile ; sans
+     image, en-tête habituel). */ -}}
+{{- $ah := lower (string (site.Params.pbn.articleHeader | default "")) -}}
+{{- if and (eq $ah "photo") (not .Params.image) }}{{ $ah = "" }}{{ end -}}
+<article class="post{{ with $ah }} post-entete-{{ . }}{{ end }}">
   <div class="container">{{ partial "breadcrumb.html" . }}</div>
   <div class="container post-shell">
     <div class="post-paper">

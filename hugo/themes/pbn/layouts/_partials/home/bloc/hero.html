@@ -1,6 +1,7 @@
 {{- /* Bloc héros. Champs : title (ou titlePre, accent, titlePost), badge, text, image (fond), imageAlt, voile (0 à 1,
      défaut 0.55), hauteur (normale | grande | plein), align (center | left), fond, buttons (liste de name, url, style),
-     search (champ de recherche), stats (nombre d'articles et de catégories), featured (carte de l'article à la une).
+     search (champ de recherche), stats (nombre d'articles et de catégories), featured (carte de l'article à la une),
+     points (1.7.0 : liste cochée d'arguments courts sous le texte, Markdown en ligne).
      Sans champ de titre, le titre vient du front matter de l'accueil ou de params.pbn.hero. Contexte : dict "page" "bloc" "h1". */ -}}
 {{- $b := .bloc -}}
 {{- $page := .page -}}
@@ -24,13 +25,18 @@
       {{- with $badge }}<span class="hero-badge">{{ partial "pbn/annee.html" . }}</span>{{ end }}
       {{ partial "home/hero-title.html" (dict "page" $page "bloc" $b "tag" (cond .h1 "h1" "h2")) }}
       {{- with $desc }}<p class="hero-desc">{{ partial "pbn/annee.html" . }}</p>{{ end }}
+      {{- with $b.points }}
+      <ul class="hero-points">
+        {{- range . }}<li>{{ $page.RenderString (partial "pbn/annee.html" (string .)) }}</li>{{ end }}
+      </ul>
+      {{- end }}
       {{- if $b.search }}{{ partial "search.html" $page }}{{ end }}
       {{- $btns := $b.buttons | default slice -}}
       {{- with $b.button }}{{ if reflect.IsMap . }}{{ $btns = $btns | append . }}{{ end }}{{ end -}}
       {{- with $btns }}
       <p class="hero-buttons">
         {{- range $i, $x := . }}{{ with $x.url }}
-        <a href="{{ . }}" class="btn btn-{{ $x.style | default (cond (eq $i 0) "accent" "ghost") }}">{{ $x.name }}</a>
+        <a href="{{ partial "pbn/lien.html" . }}" class="btn btn-{{ $x.style | default (cond (eq $i 0) "accent" "ghost") }}">{{ $x.name }}</a>
         {{- end }}{{ end }}
       </p>
       {{- end }}

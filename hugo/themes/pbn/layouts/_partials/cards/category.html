@@ -1,21 +1,32 @@
 {{- /* Carte de catégorie. Contexte : la page de terme ou de rubrique. Visuel : pbn/visuel-categorie.html (image de la
      catégorie, sinon de son dernier article illustré), ou icône (params icon) ; sans
      visuel (ou avec params.pbn.categoryCardText = true), carte texte. Jamais de grosse lettre seule. Le nombre d'articles
-     est toujours affiché (catégorie que le thème sait compter, pbn/cat-comptable.html). */ -}}
+     est toujours affiché (catégorie que le thème sait compter, pbn/cat-comptable.html).
+     1.7.0 : champ icone du _index.md (pbn/icone.html) en pastille en tête de carte ; sans image ni cover dans le _index.md,
+     la carte est alors une carte texte à icône (l'image du dernier article n'est pas reprise). params.pbn.categoryCardLien
+     = true : « Découvrir → » en bas de la carte. */ -}}
 {{- $n := len (partial "pbn/cat-articles.html" .) -}}
 {{- $mention := partial "pbn/rubrique-classement.html" . -}}
-{{- $src := "" }}{{ if not .Params.icon }}{{ $src = partialCached "pbn/visuel-categorie.html" . .RelPermalink }}{{ end -}}
-<a href="{{ .RelPermalink }}" class="cat-card{{ if not (or $src .Params.icon) }} cat-card-text{{ end }}">
-  {{- if or $src .Params.icon }}
+{{- $icone := partial "pbn/icone.html" . -}}
+{{- $src := "" -}}
+{{- if $icone -}}
+  {{- with .Params.image | default .Params.cover }}{{ $src = partial "pbn/img-src.html" (dict "src" . "page" $) }}{{ end -}}
+{{- else if not .Params.icon -}}
+  {{- $src = partialCached "pbn/visuel-categorie.html" . .RelPermalink -}}
+{{- end -}}
+<a href="{{ .RelPermalink }}" class="cat-card{{ if not (or $src .Params.icon) }} cat-card-text{{ end }}{{ if $icone }} cat-card-icone{{ end }}">
+  {{- if or $src (and .Params.icon (not $icone)) }}
   <span class="cat-media">
     {{- with $src }}<img src="{{ . }}" alt="" loading="lazy" width="400" height="260">
     {{- else }}<span class="cat-icon" aria-hidden="true">{{ $.Params.icon }}</span>{{ end }}
   </span>
   {{- end }}
   <span class="cat-body">
+    {{- with $icone }}{{ . | safeHTML }}{{ end }}
     {{- if $mention }}{{ partial "conformite/mention.html" (dict "lang" .Language.Lang "small" true) }}{{ end }}
     <span class="cat-title">{{ partial "pbn/titre-lien.html" . }}</span>
     {{- with partial "pbn/desc.html" . }}<span class="cat-desc">{{ . | plainify }}</span>{{ end }}
     {{- if partial "pbn/cat-comptable.html" . }}<span class="cat-count">{{ i18n "articles_count" (dict "Count" $n) }}</span>{{ end }}
+    {{- if site.Params.pbn.categoryCardLien }}<span class="cat-more">{{ i18n "discover" }} &rarr;</span>{{ end }}
   </span>
 </a>

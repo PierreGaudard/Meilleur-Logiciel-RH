@@ -1,0 +1,5 @@
+{{- /* Jeu d'icônes Phosphor fourni par le thème (assets/icones/phosphor.json, licence MIT dans le même dossier) :
+     dict "regular" et "fill", nom de l'icône → contenu du SVG (viewBox 0 0 256 256). Appel : partialCached "pbn/icones.html" site. */ -}}
+{{- $d := dict -}}
+{{- with resources.Get "icones/phosphor.json" }}{{ $d = . | transform.Unmarshal }}{{ end -}}
+{{- return $d -}}

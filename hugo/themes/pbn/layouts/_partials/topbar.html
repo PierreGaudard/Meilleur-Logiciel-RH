@@ -1,0 +1,17 @@
+{{- /* Barre au-dessus de l'en-tête (params.pbn.topbar, par langue possible) : text (Markdown en ligne), links (liste de
+     name, url ; URL rattachées à la base du site), align (between par défaut : texte à gauche, liens à droite ; center ;
+     left). Couleurs : colors.topbarBackground (défaut : principale) et colors.topbarText (défaut : texte sur la principale).
+     Pas de lien tiers (règle de conformité, contrôlée au build). Contexte : la page. */ -}}
+{{- with site.Params.pbn.topbar }}{{ if or .text .links }}
+{{- $page := $ -}}
+<div class="topbar topbar-{{ lower (string (.align | default "between")) }}">
+  <div class="container topbar-inner">
+    {{- with .text }}<p class="topbar-text">{{ $page.RenderString (partial "pbn/annee.html" .) }}</p>{{ end }}
+    {{- with .links }}
+    <ul class="topbar-links">
+      {{- range . }}{{ if and .url .name }}<li><a href="{{ partial "pbn/lien.html" .url }}">{{ .name }}</a></li>{{ end }}{{ end }}
+    </ul>
+    {{- end }}
+  </div>
+</div>
+{{- end }}{{ end -}}

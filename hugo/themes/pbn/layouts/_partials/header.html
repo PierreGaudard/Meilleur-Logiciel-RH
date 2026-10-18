@@ -1,11 +1,33 @@
-<header class="site-header">
+{{- /* En-tête. Réglages (params.pbn, par langue possible) : headerButtons, headerLayout (ligne | centre | deux-lignes),
+     headerSearch (loupe qui ouvre la recherche), headerTransparent (posé sur la photo du premier héros de l'accueil),
+     logoSubtitle, logoParts, topbar (barre au-dessus de l'en-tête), darkToggle (bouton clair / sombre). README,
+     « Ajouts 1.7.0 ». Contexte : la page. */ -}}
+{{- $p := site.Params.pbn -}}
+{{- $layout := lower (string ($p.headerLayout | default "ligne")) -}}
+{{- /* En-tête transparent : accueil dont le premier bloc est un héros avec photo. */ -}}
+{{- $transp := false -}}
+{{- if and .IsHome $p.headerTransparent -}}
+  {{- range first 1 ($p.homeBlocs | default slice) }}{{ if and (reflect.IsMap .) (eq (lower (string (.type | default ""))) "hero") .image }}{{ $transp = true }}{{ end }}{{ end -}}
+{{- end -}}
+{{- $search := and $p.headerSearch (site.Home.OutputFormats.Get "searchindex") -}}
+{{- partial "topbar.html" . }}
+<header class="site-header header-{{ $layout }}{{ if $transp }} header-transparent{{ end }}">
   <div class="container header-inner">
-    {{ partial "logo.html" . }}
+    {{ partial "logo.html" (dict "page" . "transparent" $transp) }}
     <nav class="site-nav" aria-label="{{ i18n "nav_main" }}">
       {{ partial "nav-items.html" . }}
     </nav>
     <div class="header-tools">
       {{- partial "header-boutons.html" (dict "class" "header-buttons") }}
+      {{- if $search }}
+      <details class="header-search">
+        <summary aria-label="{{ i18n "search_label" }}" title="{{ i18n "search_label" }}"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></summary>
+        <div class="header-search-panel">{{ partial "search.html" (dict "page" . "id" "header" "force" true) }}</div>
+      </details>
+      {{- end }}
+      {{- if $p.darkToggle }}
+      <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="{{ i18n "theme_dark" }}" title="{{ i18n "theme_dark" }}" data-label-dark="{{ i18n "theme_dark" }}" data-label-light="{{ i18n "theme_light" }}"><svg class="theme-icon-moon" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" focusable="false"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><svg class="theme-icon-sun" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+      {{- end }}
       {{ partial "lang-switcher.html" . }}
       <details class="mobile-menu">
         <summary aria-label="{{ i18n "menu" }}"><span class="burger" aria-hidden="true"></span></summary>

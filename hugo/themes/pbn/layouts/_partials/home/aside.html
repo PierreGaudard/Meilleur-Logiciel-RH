@@ -17,7 +17,8 @@
   <p class="aside-title">{{ i18n "categories" }}</p>
   <ul class="cat-list">
     {{- range . }}
-    <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}{{ if partial "pbn/cat-comptable.html" . }}<span>{{ len (partial "pbn/cat-articles.html" .) }}</span>{{ end }}</a></li>
+    {{- $ic := partial "pbn/icone.html" . }}
+    <li><a href="{{ .RelPermalink }}">{{ if $ic }}<span class="cat-list-nom">{{ $ic | safeHTML }}{{ partial "pbn/titre-lien.html" . }}</span>{{ else }}{{ partial "pbn/titre-lien.html" . }}{{ end }}{{ if partial "pbn/cat-comptable.html" . }}<span>{{ len (partial "pbn/cat-articles.html" .) }}</span>{{ end }}</a></li>
     {{- end }}
   </ul>
   {{- end }}{{ end }}
@@ -33,7 +34,8 @@
   <p class="aside-title">{{ i18n "categories" }}</p>
   <ul class="cat-list">
     {{- range . }}
-    <li><a href="{{ .RelPermalink }}">{{ partial "pbn/titre-lien.html" . }}{{ if partial "pbn/cat-comptable.html" . }}<span>{{ len (partial "pbn/cat-articles.html" .) }}</span>{{ end }}</a></li>
+    {{- $ic := partial "pbn/icone.html" . }}
+    <li><a href="{{ .RelPermalink }}">{{ if $ic }}<span class="cat-list-nom">{{ $ic | safeHTML }}{{ partial "pbn/titre-lien.html" . }}</span>{{ else }}{{ partial "pbn/titre-lien.html" . }}{{ end }}{{ if partial "pbn/cat-comptable.html" . }}<span>{{ len (partial "pbn/cat-articles.html" .) }}</span>{{ end }}</a></li>
     {{- end }}
   </ul>
   {{- end }}{{ end }}

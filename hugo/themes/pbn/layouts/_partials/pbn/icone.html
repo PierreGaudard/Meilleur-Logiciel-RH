@@ -1,0 +1,39 @@
+{{- /* Icône d'une rubrique (champ icone du _index.md de la catégorie ou de la rubrique), rendue en pastille :
+     - nom d'une icône Phosphor fournie par le thème (« house », « briefcase », suffixe « -fill » pour la version pleine,
+       préfixe « ph: » accepté ; liste : phosphoricons.com) : SVG en ligne, couleur du texte ;
+     - chemin d'une image (.svg, .png, .webp, .jpg…) de static/ ou assets/ : image ;
+     - sinon (émoji, caractère) : texte.
+     Couleurs facultatives du _index.md : iconeCouleur (icône), iconeFond (pastille). Chaîne vide sans champ icone.
+     Contexte : la page de catégorie, ou dict "page" <page> "class" <classe en plus>. */ -}}
+{{- $p := . -}}
+{{- $cls := "" -}}
+{{- if reflect.IsMap . }}{{ $p = .page }}{{ $cls = .class | default "" }}{{ end -}}
+{{- $out := "" -}}
+{{- with $p.Params.icone -}}
+  {{- $v := trim (string .) " " -}}
+  {{- $in := "" -}}
+  {{- if findRE `(?i)\.(svg|png|webp|jpe?g|gif|avif)$` $v 1 -}}
+    {{- $src := partial "pbn/img-src.html" (dict "src" $v "page" $p) -}}
+    {{- $in = printf `<img src="%s" alt="" width="28" height="28" loading="lazy">` ($src | htmlEscape) -}}
+  {{- else -}}
+    {{- $n := lower (strings.TrimPrefix "ph:" $v) -}}
+    {{- $jeu := partialCached "pbn/icones.html" site -}}
+    {{- $poids := "regular" -}}
+    {{- if and (hasSuffix $n "-fill") (not (index ($jeu.regular | default dict) $n)) }}{{ $poids = "fill" }}{{ $n = strings.TrimSuffix "-fill" $n }}{{ end -}}
+    {{- $svg := index (index $jeu $poids | default dict) $n -}}
+    {{- if $svg -}}
+      {{- $in = printf `<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false">%s</svg>` $svg -}}
+    {{- else if findRE `^[a-z0-9:-]+$` $v 1 -}}
+      {{- warnf "icone : icône « %s » inconnue (%s)" $v $p.File.Path -}}
+    {{- else -}}
+      {{- $in = printf `<span class="icone-texte">%s</span>` ($v | htmlEscape) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $in -}}
+    {{- $st := "" -}}
+    {{- with $p.Params.iconeCouleur }}{{ $st = printf "%s--icone-couleur:%s;" $st (string .) }}{{ end -}}
+    {{- with $p.Params.iconeFond }}{{ $st = printf "%s--icone-fond:%s;" $st (string .) }}{{ end -}}
+    {{- $out = printf `<span class="icone%s" aria-hidden="true"%s>%s</span>` (cond (ne $cls "") (printf " %s" $cls) "") (cond (ne $st "") (printf ` style="%s"` ($st | htmlEscape)) "") . -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

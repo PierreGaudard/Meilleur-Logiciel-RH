@@ -1,9 +1,9 @@
 {{- /* Boutons d'appel de l'en-tête : params.pbn.headerButtons (liste de name, url, style = primary | accent | ghost),
-     par langue possible. Contexte : dict "class" <classe du conteneur>. */ -}}
+     par langue possible. URL rattachées à la base du site (pbn/lien.html). Contexte : dict "class" <classe du conteneur>. */ -}}
 {{- with site.Params.pbn.headerButtons }}
 <div class="{{ $.class | default "header-buttons" }}">
   {{- range . }}{{ if and .url .name }}
-  <a href="{{ .url }}" class="btn btn-small btn-{{ .style | default "primary" }}">{{ .name }}</a>
+  <a href="{{ partial "pbn/lien.html" .url }}" class="btn btn-small btn-{{ .style | default "primary" }}">{{ .name }}</a>
   {{- end }}{{ end }}
 </div>
 {{- end -}}

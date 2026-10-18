@@ -1,7 +1,8 @@
 {{- /* Bloc rubriques : catégories du site (pbn/categories.html) ou liste choisie (items : noms, titres ou slugs, ou
      dictionnaires rubrique + image + text). Champs : title (défaut « Explorer par catégorie »), kicker, text, count,
      style (tuiles : photo plein cadre et titre en surimpression ; cartes : cartes du thème ; liste : liste compacte),
-     max (colonnes au plus, défaut 4 en tuiles, 5 en cartes), fond, align. Contexte : dict "page" "bloc". */ -}}
+     max (colonnes au plus, défaut 4 en tuiles, 5 en cartes), fond, align. Champ icone des rubriques (1.7.0) affiché en
+     pastille sur les tuiles, les cartes et la liste. Contexte : dict "page" "bloc". */ -}}
 {{- $b := .bloc -}}
 {{- $style := lower (string ($b.style | default "tuiles")) -}}
 {{- $items := slice -}}
@@ -25,7 +26,8 @@
   {{- else if eq $style "liste" }}
   <ul class="cat-list cat-list-bloc">
     {{- range . }}
-    <li><a href="{{ .page.RelPermalink }}">{{ partial "pbn/titre-lien.html" .page }}{{ if partial "pbn/cat-comptable.html" .page }}<span>{{ len (partial "pbn/cat-articles.html" .page) }}</span>{{ end }}</a></li>
+    {{- $ic := partial "pbn/icone.html" .page }}
+    <li><a href="{{ .page.RelPermalink }}">{{ if $ic }}<span class="cat-list-nom">{{ $ic | safeHTML }}{{ partial "pbn/titre-lien.html" .page }}</span>{{ else }}{{ partial "pbn/titre-lien.html" .page }}{{ end }}{{ if partial "pbn/cat-comptable.html" .page }}<span>{{ len (partial "pbn/cat-articles.html" .page) }}</span>{{ end }}</a></li>
     {{- end }}
   </ul>
   {{- else }}
@@ -37,6 +39,7 @@
       {{- with $src }}<img src="{{ . }}" alt="" loading="lazy" width="600" height="450">{{ end }}
       <span class="tuile-body">
         {{- if partial "pbn/rubrique-classement.html" $p }}<span class="tuile-meta">{{ partial "conformite/mention.html" (dict "lang" $p.Language.Lang "small" true) }}</span>{{ end }}
+        {{- with partial "pbn/icone.html" $p }}{{ . | safeHTML }}{{ end }}
         <span class="tuile-title">{{ partial "pbn/titre-lien.html" $p }}</span>
         {{- with .text | default (partial "pbn/desc.html" $p) }}{{ if $b.descriptions }}<span class="tuile-desc">{{ . | plainify }}</span>{{ end }}{{ end }}
         {{- if partial "pbn/cat-comptable.html" $p }}<span class="tuile-count">{{ i18n "articles_count" (dict "Count" (len (partial "pbn/cat-articles.html" $p))) }}</span>{{ end }}

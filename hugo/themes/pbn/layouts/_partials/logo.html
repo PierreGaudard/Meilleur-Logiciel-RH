@@ -1,7 +1,34 @@
-{{- /* Logo : image params.pbn.logo (fichier du site dans static/), ou pastille params.pbn.logoMark, suivie du nom si params.pbn.logoText (défaut true). */ -}}
+{{- /* Logo : image params.pbn.logo (fichier du site dans static/), ou pastille params.pbn.logoMark, suivie du nom si
+     params.pbn.logoText (défaut true). 1.7.0 : logoParts (nom écrit en plusieurs morceaux, le dernier dans la couleur
+     colors.logoAccent, défaut accent ; logoPartsLignes = true pour un morceau par ligne), logoSubtitle (sous-titre sous le
+     nom, par langue), logoInverse (image claire affichée tant que l'en-tête est transparent sur la photo du héros).
+     Contexte : la page, ou dict "page" <page> "transparent" <bool> "footer" <bool> (titre du pied de page). */ -}}
 {{- $p := site.Params.pbn -}}
-<a href="{{ site.Home.RelPermalink }}" class="site-logo" aria-label="{{ site.Title }}">
+{{- $page := . -}}
+{{- $transp := false -}}
+{{- $footer := false -}}
+{{- if reflect.IsMap . }}{{ $page = .page }}{{ $transp = .transparent }}{{ $footer = .footer }}{{ end -}}
+{{- $nom := partial "pbn/name.html" $page -}}
+{{- $texte := "" -}}
+{{- with $p.logoParts -}}
+  {{- $n := len . -}}
+  {{- range $i, $x := . }}{{ $texte = printf `%s<span class="logo-part%s">%s</span>` $texte (cond (and (gt $n 1) (eq (add $i 1) $n)) " logo-part-accent" "") (htmlEscape (string $x)) }}{{ end -}}
+{{- else -}}
+  {{- $texte = htmlEscape $nom -}}
+{{- end -}}
+{{- $cls := "" }}{{ if $p.logoParts }}{{ $cls = cond (eq $p.logoPartsLignes true) " logo-parts logo-parts-lignes" " logo-parts" }}{{ end -}}
+{{- if $footer -}}
+<p class="footer-title{{ $cls }}">{{ $texte | safeHTML }}</p>
+{{- else -}}
+<a href="{{ site.Home.RelPermalink }}" class="site-logo{{ if $p.logoSubtitle }} has-subtitle{{ end }}{{ if and $transp $p.logoInverse }} has-inverse{{ end }}" aria-label="{{ site.Title }}">
 {{- if $p.logoMark }}<span class="site-logo-mark" aria-hidden="true"></span>{{ end -}}
 {{- with $p.logo }}<img class="site-logo-img" src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" width="{{ $p.logoWidth | default 32 }}" height="{{ $p.logoHeight | default 32 }}">{{ end -}}
-{{- if ne $p.logoText false }}<span class="site-logo-text">{{ partial "pbn/name.html" . }}</span>{{ end -}}
+{{- if $transp }}{{ with $p.logoInverse }}<img class="site-logo-img site-logo-inverse" src="{{ strings.TrimPrefix "/" . | relURL }}" alt="" width="{{ $p.logoWidth | default 32 }}" height="{{ $p.logoHeight | default 32 }}">{{ end }}{{ end -}}
+{{- $txt := "" }}{{ if ne $p.logoText false }}{{ $txt = printf `<span class="site-logo-text%s">%s</span>` $cls $texte }}{{ end -}}
+{{- with $p.logoSubtitle -}}
+<span class="site-logo-words">{{ $txt | safeHTML }}<span class="site-logo-sub">{{ partial "pbn/annee.html" . }}</span></span>
+{{- else -}}
+{{ $txt | safeHTML }}
+{{- end -}}
 </a>
+{{- end -}}

@@ -7,7 +7,7 @@
 {{- $f := site.Params.pbn.footer | default dict -}}
 {{- $page := . -}}
 {{- $legaux := slice -}}
-{{- with site.Params.pbn.legalLinks }}{{ range . }}{{ $legaux = $legaux | append (dict "url" .url "name" .name "ext" (hasPrefix .url "http")) }}{{ end -}}
+{{- with site.Params.pbn.legalLinks }}{{ range . }}{{ $legaux = $legaux | append (dict "url" (partial "pbn/lien.html" .url) "name" .name "ext" (hasPrefix .url "http")) }}{{ end -}}
 {{- else -}}
   {{- range $k := slice "about" "contact" "legal" "privacy" "terms" "cookies" }}{{ with index $info $k -}}
     {{- $legaux = $legaux | append (dict "url" .RelPermalink "name" (i18n (index (dict "about" "about" "contact" "contact" "legal" "legal_notice" "privacy" "privacy_policy" "terms" "terms" "cookies" "cookies") $k)) "ext" false) -}}
@@ -24,7 +24,7 @@
         <a href="{{ site.Home.RelPermalink }}" class="footer-logo" aria-label="{{ site.Title }}"><img src="{{ strings.TrimPrefix "/" (string .) | relURL }}" alt="{{ partial "pbn/name.html" $page }}" width="{{ $f.logoWidth | default site.Params.pbn.logoWidth | default 140 }}" height="{{ $f.logoHeight | default site.Params.pbn.logoHeight | default 40 }}" loading="lazy"></a>
         {{- end }}
         {{- else }}
-        <p class="footer-title">{{ partial "pbn/name.html" . }}</p>
+        {{ partial "logo.html" (dict "page" . "footer" true) }}
         {{- end }}
         <p>{{ $f.text | default site.Params.description }}</p>
       </div>
@@ -49,7 +49,7 @@
         </ul>
         {{- else }}
         <ul>
-          {{- range .links }}<li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a></li>{{ end }}
+          {{- range .links }}<li><a href="{{ partial "pbn/lien.html" .url }}"{{ if hasPrefix .url "http" }} rel="noopener"{{ end }}>{{ .name }}</a></li>{{ end }}
         </ul>
         {{- end }}
       </div>

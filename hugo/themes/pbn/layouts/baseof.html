@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{- if site.Params.pbn.darkToggle }}
+{{- /* Mode sombre choisi par le lecteur (bouton de l'en-tête), posé avant l'affichage ; "auto" suit aussi le réglage du système tant que le lecteur n'a rien choisi. Préférence gardée dans le navigateur, jamais transmise. */}}
+<script>(function(d){d.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="sombre"{{ if eq (string site.Params.pbn.darkToggle) "auto" }}||(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){{ end }})d.setAttribute("data-theme","sombre")}catch(e){}})(document.documentElement)</script>
+{{- else }}
 <script>document.documentElement.classList.add("js")</script>
+{{- end }}
 <meta name="theme-color" content="{{ site.Params.pbn.colors.headerBackground | default site.Params.pbn.colors.background | default "#FFFFFF" }}">
 <title>{{ partial "pbn/title.html" . }}</title>
 {{- partial "head/meta.html" . }}

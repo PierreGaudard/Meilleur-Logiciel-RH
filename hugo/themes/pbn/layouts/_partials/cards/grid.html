@@ -1,6 +1,8 @@
-{{- /* Grille de cartes. Contexte : dict "pages" <liste> "variant" <variante> "heading" <h2|h3>. */ -}}
+{{- /* Grille de cartes. Contexte : dict "pages" <liste> "variant" <variante> "heading" <h2|h3> "colonnes" <nombre fixe de
+     colonnes en ordinateur, facultatif>. */ -}}
 {{- $v := .variant | default (site.Params.pbn.cards | default "image") -}}
-<div class="cards cards-{{ $v }}">
+{{- $cols := int (.colonnes | default 0) -}}
+<div class="cards cards-{{ $v }}{{ if gt $cols 0 }} cards-cols{{ end }}"{{ if gt $cols 0 }} style="--cols:{{ $cols }}"{{ end }}>
 {{- range .pages }}
 {{ partial "cards/card.html" (dict "page" . "variant" $v "heading" $.heading) }}
 {{- end }}

@@ -15,9 +15,22 @@
 {{- /* Terme de catégorie sans fichier rapproché de sa page documentée (accent ou apostrophe) : texte de cette page. */ -}}
 {{- $doc := partial "pbn/cat-doc.html" . -}}
 {{- with site.Params.pbn.compteurs }}{{ with index . (lower $.Section) }}{{ $cle = . }}{{ end }}{{ end -}}
-<section class="list-head">
+{{- /* En-tête de liste (1.7.0) : params.pbn.listHeader = "bandeau" (fond colors.bandeauBackground, défaut principale) ou
+     "photo" (image ou cover de la page, sinon image du dernier article illustré de la catégorie, sous un voile ; bandeau
+     sans image). Icône de la rubrique (champ icone du _index.md) au-dessus du titre. */ -}}
+{{- $lh := lower (string (site.Params.pbn.listHeader | default "")) -}}
+{{- $lhImg := "" -}}
+{{- if eq $lh "photo" -}}
+  {{- with .Params.image | default .Params.cover }}{{ $lhImg = partial "pbn/img-src.html" (dict "src" . "page" $) }}{{ end -}}
+  {{- if and (not $lhImg) (or $isRub (eq .Kind "term")) }}{{ $lhImg = partialCached "pbn/visuel-categorie.html" (dict "page" . "texte" false) (printf "%s|entete" .RelPermalink) }}{{ end -}}
+  {{- if not $lhImg }}{{ $lh = "bandeau" }}{{ end -}}
+{{- end -}}
+{{- $icone := partial "pbn/icone.html" (dict "page" ($doc | default .) "class" "list-icone") -}}
+<section class="list-head{{ with $lh }} list-head-{{ . }}{{ end }}">
+  {{- with $lhImg }}<img class="list-head-bg" src="{{ . }}" alt="" fetchpriority="high">{{ end }}
   <div class="container">
     {{ partial "breadcrumb.html" . }}
+    {{- with $icone }}{{ . | safeHTML }}{{ end }}
     <h1 class="list-title">{{ partial "pbn/titre.html" . }}</h1>
     {{- with partial "pbn/desc.html" . }}<p class="list-desc">{{ . }}</p>{{ end }}
     {{- if eq .Kind "taxonomy" }}

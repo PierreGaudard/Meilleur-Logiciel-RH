@@ -1,30 +1,65 @@
 (function () {
   var mobile = window.matchMedia('(max-width: 980px)');
 
-  // Ferme les menus déroulants (navigation, menu mobile) au clic extérieur.
+  // Ferme les menus déroulants (navigation, menu mobile, recherche de l'en-tête) au clic extérieur.
   document.addEventListener('click', function (e) {
-    document.querySelectorAll('details.nav-group[open], details.mobile-menu[open]').forEach(function (d) {
+    document.querySelectorAll('details.nav-group[open], details.mobile-menu[open], details.header-search[open]').forEach(function (d) {
       if (!d.contains(e.target)) d.removeAttribute('open');
     });
   });
 
-  // En-tête : le menu tient sur une ligne, sinon il passe dans le menu repliable (bouton à trois traits).
+  // En-tête : le menu tient sur une ligne ; sinon, en ordinateur, il se resserre, puis passe sur sa propre ligne sous le
+  // logo ; il ne passe dans le menu repliable (bouton à trois traits) que s'il ne tient pas non plus sur cette ligne.
   var header = document.querySelector('.site-header');
   var nav = header && header.querySelector('.site-nav');
+  var ordi = window.matchMedia('(min-width: 981px)');
+  // Débordement mesuré sur les boîtes des éléments (bords gauche et droit), pas sur scrollWidth : un ornement qui dépasse
+  // (chevron tourné d'un sous-menu, ombre) ne compte pas. Tolérance de 2 px pour les arrondis de sous-pixels.
+  function deborde(el) {
+    if (!el || !el.getClientRects().length) return false;
+    var r = el.getBoundingClientRect(), st = getComputedStyle(el);
+    var g = r.left + (parseFloat(st.borderLeftWidth) || 0) + (parseFloat(st.paddingLeft) || 0);
+    var d = r.right - (parseFloat(st.borderRightWidth) || 0) - (parseFloat(st.paddingRight) || 0);
+    var min = Infinity, max = -Infinity;
+    for (var i = 0; i < el.children.length; i++) {
+      var c = el.children[i];
+      if (!c.getClientRects().length) continue;
+      var cr = c.getBoundingClientRect();
+      if (cr.width === 0 && cr.height === 0) continue;
+      if (cr.left < min) min = cr.left;
+      if (cr.right > max) max = cr.right;
+    }
+    if (max === -Infinity) return false;
+    return max - d > 2 || g - min > 2;
+  }
+  // Texte coupé par des points de suspension : le moindre pixel de dépassement se voit, pas de tolérance.
+  function texteCoupe(el) { return !!el && el.scrollWidth > el.clientWidth; }
   function ajusterMenu() {
     if (!header || !nav) return;
-    header.classList.remove('nav-collapsed', 'header-compact');
+    header.classList.remove('nav-collapsed', 'header-compact', 'nav-serre', 'nav-deux-lignes');
     var interieur = header.querySelector('.header-inner');
     if (getComputedStyle(nav).display === 'none') {
       // Petit écran : si le logo, les langues et le bouton du menu ne tiennent pas, les langues passent dans le menu.
-      var nom = header.querySelector('.site-logo-text');
-      if ((interieur && interieur.scrollWidth > interieur.clientWidth + 1) || (nom && nom.scrollWidth > nom.clientWidth + 1)) header.classList.add('header-compact');
+      if (deborde(interieur) || texteCoupe(header.querySelector('.site-logo-text'))) header.classList.add('header-compact');
+      majHauteur();
       return;
     }
-    var trop = nav.scrollWidth > nav.clientWidth + 1;
-    if (!trop && interieur) trop = interieur.scrollWidth > interieur.clientWidth + 1;
-    if (trop) header.classList.add('nav-collapsed');
+    function trop() { return deborde(nav) || deborde(interieur); }
+    if (trop() && ordi.matches) {
+      header.classList.add('nav-serre');
+      if (trop() && !header.classList.contains('header-centre') && !header.classList.contains('header-deux-lignes')) {
+        header.classList.add('nav-deux-lignes');
+        if (trop()) header.classList.remove('nav-deux-lignes');
+      }
+    }
+    if (trop()) {
+      header.classList.remove('nav-serre', 'nav-deux-lignes');
+      header.classList.add('nav-collapsed');
+    }
+    majHauteur();
   }
+  // Hauteur de l'en-tête (en-tête transparent posé sur le héros, sommaire collant).
+  function majHauteur() { if (header) document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px'); }
   var attente = null;
   function planifier() { if (attente) cancelAnimationFrame(attente); attente = requestAnimationFrame(ajusterMenu); }
   ajusterMenu();
@@ -35,6 +70,43 @@
     if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', planifier);
   }
   window.addEventListener('load', planifier);
+
+  // En-tête transparent sur la photo du héros : fond plein dès que la page défile ou qu'un menu est ouvert.
+  if (header && header.classList.contains('header-transparent')) {
+    var plein = function () {
+      var ouvert = header.querySelector('details[open]');
+      header.classList.toggle('is-solid', window.scrollY > 24 || !!ouvert);
+    };
+    window.addEventListener('scroll', plein, { passive: true });
+    header.querySelectorAll('details').forEach(function (d) { d.addEventListener('toggle', plein); });
+    plein();
+  }
+
+  // Recherche de l'en-tête : le champ prend le focus à l'ouverture.
+  document.querySelectorAll('details.header-search').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      var i = d.querySelector('input'); if (i) setTimeout(function () { i.focus(); }, 30);
+    });
+  });
+
+  // Mode sombre au choix du lecteur : préférence gardée dans le navigateur (jamais transmise).
+  document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+    var html = document.documentElement;
+    function maj() {
+      var sombre = html.getAttribute('data-theme') === 'sombre';
+      b.setAttribute('aria-pressed', sombre ? 'true' : 'false');
+      var l = b.getAttribute(sombre ? 'data-label-light' : 'data-label-dark') || '';
+      b.setAttribute('aria-label', l); b.setAttribute('title', l);
+    }
+    b.addEventListener('click', function () {
+      var sombre = html.getAttribute('data-theme') !== 'sombre';
+      if (sombre) html.setAttribute('data-theme', 'sombre'); else html.removeAttribute('data-theme');
+      try { localStorage.setItem('theme', sombre ? 'sombre' : 'clair'); } catch (e) {}
+      maj();
+    });
+    maj();
+  });
 
   // Sous-menus de l'en-tête : jamais hors de l'écran.
   document.querySelectorAll('.site-nav details.nav-group').forEach(function (d) {
@@ -149,6 +221,10 @@
     input.addEventListener('input', render);
     box.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); render(); });
     var q = new URLSearchParams(window.location.search).get('q');
-    if (q) { input.value = q; render(); }
+    var enTete = box.hasAttribute('data-search-header');
+    if (q && (!enTete || !document.querySelector('[data-search]:not([data-search-header])'))) {
+      input.value = q; render();
+      if (enTete) { var d = box.closest('details'); if (d) d.open = true; }
+    }
   });
 })();

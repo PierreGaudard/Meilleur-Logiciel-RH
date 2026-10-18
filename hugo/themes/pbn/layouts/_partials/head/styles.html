@@ -43,7 +43,42 @@
 --logo-transform:{{ $s.logoCase | default "none" | safeCSS }};--logo-tracking:{{ $s.logoTracking | default "-0.01em" | safeCSS }};
 --accent-style:{{ $s.accentStyle | default "normal" | safeCSS }};
 --c-accent-ink:{{ $inkPaper | safeCSS }};--c-accent-ink-card:{{ $inkCard | safeCSS }};--c-accent-dark:{{ $inkDark | safeCSS }};
-color-scheme:{{ $c.scheme | default "light" | safeCSS }};}</style>
+{{- /* 1.7.0 : jetons posés seulement quand le réglage existe (sinon les valeurs par défaut de la feuille s'appliquent). */ -}}
+{{- with $s.navSize }}--nav-size:{{ . | safeCSS }};{{ end }}{{ with $s.navGap }}--nav-gap:{{ . | safeCSS }};{{ end }}{{ with $s.navWeight }}--nav-weight:{{ . | safeCSS }};{{ end }}
+{{- with $c.topbarBackground }}--c-topbar-bg:{{ . | safeCSS }};{{ end }}{{ with $c.topbarText }}--c-topbar-text:{{ . | safeCSS }};{{ end }}
+{{- with $c.logoAccent }}--c-logo-accent:{{ . | safeCSS }};{{ end }}
+{{- /* Bandeau des en-têtes de liste et d'article : texte lisible sur le fond, contrôlé au build (WCAG 4.5). */ -}}
+{{- if or site.Params.pbn.listHeader site.Params.pbn.articleHeader -}}
+{{- $bb := $c.bandeauBackground | default $primary -}}
+--c-bandeau-bg:{{ $bb | safeCSS }};--c-bandeau-text:{{ partial "pbn/couleur-lisible.html" (dict "fond" $bb "candidats" (slice ($c.bandeauText | default ($c.onPrimary | default "#FFFFFF")) $text "#FFFFFF")) | safeCSS }};
+{{- end -}}
+color-scheme:{{ $c.scheme | default "light" | safeCSS }};}
+{{- /* Mode sombre au choix du lecteur (params.pbn.darkToggle) : palette params.pbn.colorsDark, sinon palette sombre
+     neutre qui garde la principale et l'accent du site ; couleurs de lien et d'accent lisibles recalculées au build. */ -}}
+{{- if site.Params.pbn.darkToggle -}}
+{{- $d := site.Params.pbn.colorsDark | default dict -}}
+{{- $dbg := $d.background | default "#121417" -}}
+{{- $dtext := $d.text | default "#ECEEF1" -}}
+{{- $dsurface := $d.surface | default "#1B1E23" -}}
+{{- $dprimary := $d.primary | default $primary -}}
+{{- $daccent := $d.accent | default $accent -}}
+{{- $dpaper := $d.paper | default $dsurface -}}
+{{- $dlink := $d.link | default (partial "pbn/couleur-lisible.html" (dict "fond" $dbg "candidats" (slice ($c.link | default $primary) $accent $primary "#8EB0FF"))) -}}
+{{- $dinkPaper := partial "pbn/couleur-lisible.html" (dict "fond" $dpaper "candidats" (slice $daccent $dlink $dtext)) -}}
+{{- $dinkCard := partial "pbn/couleur-lisible.html" (dict "fond" $dsurface "candidats" (slice $daccent $dlink $dtext)) }}
+html[data-theme="sombre"]{
+--c-bg:{{ $dbg | safeCSS }};--c-text:{{ $dtext | safeCSS }};--c-surface:{{ $dsurface | safeCSS }};--c-surface-alt:{{ $d.surfaceAlt | default "#171A1E" | safeCSS }};
+--c-muted:{{ $d.muted | default "#A6ADB6" | safeCSS }};--c-border:{{ $d.border | default "#2B3037" | safeCSS }};
+--c-primary:{{ $dprimary | safeCSS }};--c-on-primary:{{ $d.onPrimary | default ($c.onPrimary | default "#FFFFFF") | safeCSS }};
+--c-accent:{{ $daccent | safeCSS }};--c-on-accent:{{ $d.onAccent | default ($c.onAccent | default "#FFFFFF") | safeCSS }};--c-link:{{ $dlink | safeCSS }};
+--c-hero-bg:{{ $d.heroBackground | default ($d.surfaceAlt | default "#171A1E") | safeCSS }};--c-hero-text:{{ $d.heroText | default $dtext | safeCSS }};--c-hero-accent:{{ $d.heroAccent | default $dinkPaper | safeCSS }};
+--c-header-bg:{{ $d.headerBackground | default $dbg | safeCSS }};--c-header-text:{{ $d.headerText | default $dtext | safeCSS }};
+--c-paper:{{ $dpaper | safeCSS }};--c-paper-text:{{ $d.paperText | default $dtext | safeCSS }};--c-paper-muted:{{ $d.paperMuted | default ($d.muted | default "#A6ADB6") | safeCSS }};--c-paper-border:{{ $d.paperBorder | default ($d.border | default "#2B3037") | safeCSS }};--c-paper-link:{{ $d.paperLink | default $dlink | safeCSS }};
+--c-footer-bg:{{ $d.footerBackground | default "#0E1013" | safeCSS }};--c-footer-text:{{ $d.footerText | default $dtext | safeCSS }};
+--c-accent-ink:{{ $dinkPaper | safeCSS }};--c-accent-ink-card:{{ $dinkCard | safeCSS }};
+color-scheme:dark;}
+{{- end -}}
+</style>
 {{- $css := slice (resources.Get "css/main.css") -}}
 {{- with resources.Get "css/site.css" }}{{ $css = $css | append . }}{{ end -}}
 {{- /* Feuille publiée sous un nom neutre propre au site (empreinte du contenu et de l'URL du site), sans attribut

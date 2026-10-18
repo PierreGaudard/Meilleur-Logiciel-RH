@@ -17,7 +17,7 @@
       {{- with $btns }}
       <p class="appel-buttons">
         {{- range $i, $x := . }}{{ with $x.url }}
-        <a href="{{ . }}" class="btn btn-{{ $x.style | default (cond (eq $i 0) "accent" "ghost") }}">{{ $x.name }}</a>
+        <a href="{{ partial "pbn/lien.html" . }}" class="btn btn-{{ $x.style | default (cond (eq $i 0) "accent" "ghost") }}">{{ $x.name }}</a>
         {{- end }}{{ end }}
       </p>
       {{- end }}
