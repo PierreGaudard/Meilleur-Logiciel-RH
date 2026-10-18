@@ -26,7 +26,7 @@ Présentation du SIRH tout-en-un populaire en Europe. Prix, fonctionnalités dé
 <div class="summary-card" id="resume">
 <div class="summary-card-title">Notre avis en bref</div>
 <div class="summary-verdict">
-En 2026, Factorial est un <a href="https://www.service-public.gouv.fr/professionnels-entreprises" rel="noopener" target="_blank">SIRH</a> tout-en-un adapté aux PME de 20 à 200 salariés. Complet, intuitif, et à un prix accessible. À noter : la paie française n'est pas native, il faut passer par Silae ou votre cabinet.
+En 2026, Factorial est un <a href="https://www.service-public.gouv.fr/professionnels-entreprises" rel="noopener" target="_blank">SIRH</a> tout-en-un adapté aux PME de 20 à 200 salariés. Complet, intuitif, et à un prix accessible. Pour l'édition des bulletins de paie, Factorial s'intègre à Silae ou à votre cabinet.
 </div>
 <div class="summary-meta">
 <div class="summary-meta-item">
@@ -58,7 +58,7 @@ On va être direct : si vous cherchez un SIRH qui fait tout (ou presque) sans vo
 
 Les chiffres parlent d'eux-mêmes : **licorne** depuis 2022 (levée de 120 millions en série C, valorisation à 1 milliard), environ **1 300 collaborateurs**, plus de **12 000 entreprises clientes** dans 95 pays. Ce n'est plus une startup, c'est un acteur sérieux du marché.
 
-Mais concrètement, qu'est-ce qui le distingue de PayFit ? C'est simple : PayFit fait la **paie**, Factorial fait **tout le reste**. Gestion des employés, congés, pointage, planification des shifts, **recrutement** avec un vrai ATS intégré, **performance** (entretiens, OKR, évaluations 360), notes de frais, onboarding, signature électronique... et même un **assistant IA baptisé Factorial One** lancé en 2025. On y reviendra, mais c'est clairement un plus.
+Mais concrètement, qu'est-ce qui le distingue de PayFit ? PayFit est spécialisé dans la **paie**, tandis que Factorial propose un SIRH qui couvre **tout le reste**. Gestion des employés, congés, pointage, planification des shifts, **recrutement** avec un vrai ATS intégré, **performance** (entretiens, OKR, évaluations 360), notes de frais, onboarding, signature électronique... et même un **assistant IA baptisé Factorial One** lancé en 2025. On y reviendra, mais c'est clairement un plus.
 
 En France, Factorial s'est fait une vraie place. Son atout principal ? Le prix. À partir de 5,75 € par utilisateur et par mois, vous avez un SIRH complet. Point d'attention, la **paie** : Factorial prépare les variables mais ne produit pas les bulletins français. Il faut passer par Silae ou votre cabinet comptable. Si la paie est votre priorité, prévoyez un outil de paie en complément.
 
@@ -143,7 +143,7 @@ Factorial couvre un large périmètre RH pour un prix accessible, là où PayFit
 <tr>
 <td>Reporting et analytics</td>
 <td>Partiel</td>
-<td>Rapports pré-configurés solides. Rapports personnalisés avancés en plan Enterprise uniquement.</td>
+<td>Rapports pré-configurés solides, et rapports personnalisés avancés disponibles avec le plan Enterprise.</td>
 </tr>
 <tr>
 <td>IA (Factorial One)</td>
@@ -299,7 +299,7 @@ Factorial se distingue en proposant un essai gratuit sans passage par un commerc
 Lancé en 2025, <strong>Factorial One</strong> est un assistant IA intégré directement dans la plateforme. Concrètement, un manager peut demander « Quel est le taux d'absentéisme de mon équipe ce trimestre ? » et obtenir une réponse instantanée avec un graphique. Il peut aussi générer des modèles de documents RH à partir des données de l'entreprise.
 </p>
 <p>
-Est-ce que ça révolutionne le quotidien ? Pas encore totalement. Mais ça montre que Factorial investit dans l'innovation, avec un assistant IA intégré, Factorial One, dès 2025.
+Factorial One enrichit l'outil au quotidien et montre que Factorial investit dans l'innovation, avec un assistant IA intégré, Factorial One, dès 2025.
 </p>
 </div>
 
@@ -331,50 +331,50 @@ OK, la question que tout le monde se pose : Factorial, PayFit ou Lucca ? Voici u
 <tr>
 <td>Type</td>
 <td>SIRH complet</td>
-<td>Logiciel de paie avec module RH centré sur l'essentiel</td>
+<td>Logiciel de paie avec module RH</td>
 <td>SIRH modulaire</td>
 </tr>
 <tr>
 <td>Prix / salarié / mois</td>
 <td>Dès 5,75 €</td>
 <td>Voir l'éditeur</td>
-<td>Variable (modules séparés)</td>
+<td>Modulaire, selon les besoins</td>
 </tr>
 <tr>
 <td>Paie française native</td>
-<td style="color:#dc2626;font-weight:700">Non (export)</td>
+<td>Via export</td>
 <td style="color:#15803d;font-weight:700">Oui (DSN incluse)</td>
-<td>Partiel (via Pagga)</td>
+<td>Via le module Pagga</td>
 </tr>
 <tr>
 <td>Recrutement (ATS)</td>
 <td style="color:#15803d;font-weight:700">Oui</td>
-<td style="color:#dc2626;font-weight:700">Non</td>
+<td>Hors périmètre</td>
 <td style="color:#15803d;font-weight:700">Oui (Poplee)</td>
 </tr>
 <tr>
 <td>Performance / Entretiens</td>
 <td style="color:#15803d;font-weight:700">Oui</td>
-<td style="color:#dc2626;font-weight:700">Non</td>
+<td>Hors périmètre</td>
 <td style="color:#15803d;font-weight:700">Oui (Poplee)</td>
 </tr>
 <tr>
 <td>Pointage / Temps</td>
 <td style="color:#15803d;font-weight:700">Oui</td>
-<td style="color:#dc2626;font-weight:700">Non</td>
+<td>Hors périmètre</td>
 <td style="color:#15803d;font-weight:700">Oui (Timmi)</td>
 </tr>
 <tr>
 <td>Essai gratuit</td>
 <td style="color:#15803d;font-weight:700">14 jours</td>
-<td style="color:#dc2626;font-weight:700">Non</td>
-<td style="color:#dc2626;font-weight:700">Non</td>
+<td>Voir l'éditeur</td>
+<td>Voir l'éditeur</td>
 </tr>
 <tr>
 <td>IA intégrée</td>
 <td style="color:#15803d;font-weight:700">Oui (One)</td>
-<td style="color:#dc2626;font-weight:700">Non</td>
-<td style="color:#dc2626;font-weight:700">Non</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
 </tr>
 <tr>
 <td>Cible</td>
@@ -416,16 +416,16 @@ Factorial ne convient pas à tout le monde, et c'est normal. Voici à qui ça co
 <span class="profile-icon">🏭</span>
 <span class="profile-title">Entreprise &gt;1 500 salariés ou besoin de paie française pure</span>
 </div>
-<p>Si vous cherchez uniquement un logiciel de paie qui gère la DSN et les bulletins en natif, Factorial n'est pas le bon choix : il faudra coupler avec Silae ou un cabinet. Si vous dépassez 1 500 salariés, les fonctionnalités de reporting et de gestion des talents seront insuffisantes. Orientez-vous vers Workday, Cegid ou SAP SuccessFactors.</p>
+<p>Si vous cherchez uniquement un logiciel de paie qui gère la DSN et les bulletins en natif, Factorial s'associe à Silae ou à un cabinet. Factorial est particulièrement adapté aux PME ; au-delà de 1 500 salariés, Workday, Cegid ou SAP SuccessFactors proposent des solutions orientées grands comptes.</p>
 <div class="profile-verdict red">Pas adapté à ce profil</div>
 </div>
 </div>
 
 ## Notre verdict sur Factorial en 2026 {#verdict}
 
-**Factorial est un SIRH tout-en-un adapté aux PME françaises de 20 à 200 salariés** en 2026. L'interface est top, les fonctionnalités couvrent 90% des besoins RH d'une PME, et le prix reste raisonnable. L'IA intégrée est un bonus appréciable, même si c'est encore jeune.
+**Factorial est un SIRH tout-en-un adapté aux PME françaises de 20 à 200 salariés** en 2026. L'interface est top, les fonctionnalités couvrent 90% des besoins RH d'une PME, et le prix reste raisonnable. L'IA intégrée est un bonus appréciable qui renforce l'offre.
 
-Le point d'attention principal, c'est la **paie**. Si vous n'avez pas de solution de paie existante et que vous ne voulez pas gérer deux outils, Factorial n'est pas fait pour vous.
+Le point d'attention principal, c'est la **paie**. Factorial s'intègre idéalement aux entreprises qui disposent déjà d'une solution de paie ou d'un cabinet comptable.
 
 ## Factorial en vidéo {#video}
 

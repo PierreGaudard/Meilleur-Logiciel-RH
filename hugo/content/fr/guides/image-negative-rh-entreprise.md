@@ -72,11 +72,11 @@ Qui décide des augmentations ? Sur quels critères ? Pourquoi votre collègue a
 
 ### 3. La com' hors-sol
 
-Newsletters euphoriques pendant que les équipes sont au bord du burn-out. Un label ne suffit pas à lui seul : il doit s'accompagner d'actions concrètes au quotidien. Chaque initiative "bien-être" qui sonne creux renforce la défiance envers **tout** le service RH.
+Une communication interne doit rester alignée sur le vécu des équipes. Un label ne suffit pas à lui seul : il doit s'accompagner d'actions concrètes au quotidien. Chaque initiative "bien-être" qui sonne creux renforce la défiance envers **tout** le service RH.
 
 ### 4. Le traitement des signalements
 
-Beaucoup de salariés ont le sentiment qu'un commercial qui ramène 2 millions d'euros de CA, même s'il malmène son équipe, a plus de poids qu'un chargé de projet junior.
+Beaucoup de salariés attendent que les signalements soient traités de la même façon, quel que soit le poids du collaborateur concerné, ce que des procédures formalisées permettent de garantir.
 
 ## Le vrai problème que personne ne veut voir : qui paie les RH ? {#structurel}
 
@@ -107,7 +107,7 @@ La défiance n'est pas une fatalité. Des entreprises françaises ont retourné 
 
 ### Les RH de terrain
 
-Chez **Decathlon**, des "RH de proximité" sont présents en magasin, accessibles sans rendez-vous. Résultat : **57 % de confiance** envers le service RH, contre **31 %** dans le retail (enquête interne 2024). **Michelin** a intégré des RH business partners dans les équipes opérationnelles. **La MAIF** a supprimé l'entretien annuel classique au profit de points trimestriels courts. Le point commun : rapprocher physiquement les RH du terrain.
+Chez **Decathlon**, des "RH de proximité" sont présents en magasin, accessibles sans rendez-vous. Résultat : **57 % de confiance** envers le service RH (enquête interne 2024). **Michelin** a intégré des RH business partners dans les équipes opérationnelles. **La MAIF** a supprimé l'entretien annuel classique au profit de points trimestriels courts. Le point commun : rapprocher physiquement les RH du terrain.
 
 ### La data contre le "feeling"
 
@@ -124,7 +124,7 @@ Vous lisez cet article et vous vous demandez si [travailler dans les ressources 
 
 Le secteur recrute. Les [salaires dans les RH](/guides/combien-gagne-rh.html) ont progressé de **5,87 %** en 2025, la plus forte hausse toutes fonctions confondues selon Robert Half. Un responsable RH confirmé gagne entre **50 000 et 65 000 euros bruts annuels**. Un [DRH](/guides/parcours-directeur-rh.html) dépasse 90 000. Les parcours d'accès se sont diversifiés : master, alternance, [reconversion via titre professionnel](/guides/formation-rh-sans-bac.html).
 
-Les salariés ne détestent pas "les RH" en tant que personnes. Ils détestent un système qui leur paraît **opaque, distant et biaisé**. Votre réputation individuelle n'est pas la réputation collective du métier. Si vous entrez dans la fonction avec la volonté de faire autrement (transparence, proximité, données plutôt que feeling), vous trouverez un terrain où tout est à construire.
+Les salariés ne détestent pas "les RH" en tant que personnes. Ils attendent des pratiques RH plus **transparentes, proches du terrain et équitables**. Votre réputation individuelle n'est pas la réputation collective du métier. Si vous entrez dans la fonction avec la volonté de faire autrement (transparence, proximité, données plutôt que feeling), vous trouverez un terrain où tout est à construire.
 
 **Ma conviction :** c'est précisément parce que la fonction a une mauvaise image qu'il y a un espace pour ceux qui veulent faire différemment. La nouvelle génération de professionnels RH connaît les critiques, elle a grandi avec. Son ambition n'est pas de reproduire le modèle qui a creusé le fossé, mais de le repenser.
 

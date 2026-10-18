@@ -60,7 +60,7 @@ Le positionnement de PayFit est clair : c'est avant tout un **outil de paie**. L
 
 Au fil des années, PayFit a élargi son périmètre fonctionnel en ajoutant la gestion des congés et absences, les notes de frais, la **signature électronique** des documents RH, un espace salarié en libre-service et un organigramme d'entreprise. L'ambition affichée est de devenir un **SIRH complet**, mais la paie reste le coeur du produit et la raison principale pour laquelle les entreprises choisissent PayFit.
 
-En 2026, PayFit a levé **plus de 400 millions d'euros** et emploie environ 1 200 collaborateurs. L'entreprise est régulièrement citée dans les classements des startups B2B les plus prometteuses en Europe. Son principal atout face à un logiciel de paie traditionnel comme **Silae** ou **Sage Paie**, c'est la simplicité d'utilisation : un dirigeant sans compétence comptable peut produire ses bulletins de paie et transmettre sa DSN en quelques clics. Les solutions historiques sont conçues pour des professionnels de la paie, alors que PayFit vise les dirigeants non spécialistes.
+En 2026, PayFit a levé **plus de 400 millions d'euros** et emploie environ 1 200 collaborateurs. L'entreprise est régulièrement citée dans les classements des startups B2B les plus prometteuses en Europe. **Silae** et **Sage Paie** sont des solutions de paie historiques reconnues ; le principal atout de PayFit, c'est la simplicité d'utilisation : un dirigeant sans compétence comptable peut produire ses bulletins de paie et transmettre sa DSN en quelques clics. Les solutions historiques sont pensées pour les professionnels de la paie, et PayFit propose une approche complémentaire pour les dirigeants non spécialistes.
 
 <figure class="article-screenshot">
 <img alt="Capture d'écran de l'interface PayFit pour la création automatisée d'un bulletin de paie" height="884" loading="lazy" src="/assets/images/screenshots/payfit-bulletin-paie.webp" title="Interface PayFit - bulletin de paie automatise" width="1200"/>
@@ -347,7 +347,7 @@ Comment PayFit se positionne-t-il face aux principales alternatives du **marché
 <td>6 euros / sal. / mois</td>
 <td>5 euros / sal. / mois</td>
 <td>Variable (via cabinet)</td>
-<td>~8 euros / sal. / mois</td>
+<td>~8 euros / sal. / mois, SIRH modulaire</td>
 </tr>
 </tbody>
 </table>

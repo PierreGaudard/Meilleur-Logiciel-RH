@@ -27,7 +27,7 @@ js:
 
 <div class="summary-box" id="en-bref">
 <h2 style="font-size:1.05rem;margin-top:0;color:var(--primary-dark)">En bref</h2>
-<p>Factorial reste un bon SIRH administratif, et six autres logiciels répondent à des besoins précis en 2026.</p>
+<p>Factorial est un SIRH complet et apprécié, et six autres logiciels répondent à des besoins précis en 2026.</p>
 <ul>
 <li>Équipes en horaires variables (restauration, commerce, santé) : Skello, de 59 à 129 € par mois selon l'offre, facturé par établissement</li>
 <li>SIRH à la carte pour PME de bureau : Lucca, de 2,24 à 3,97 € HT par module et par collaborateur</li>
@@ -44,11 +44,11 @@ js:
 
 Les recherches d'**alternatives à Factorial** ne viennent donc pas d'un rejet du produit. Elles viennent de PME dont le quotidien ne ressemble pas à celui d'un bureau. Trois situations reviennent dans les avis publiés par ses utilisateurs.
 
-- **Le planning** : Factorial affiche les horaires de l'équipe ; pour un contrôle automatique des repos et des coupures, Skello propose des règles de convention intégrées
+- **Le planning** : Factorial affiche les horaires de l'équipe ; Skello y ajoute des règles de convention intégrées pour les équipes postées
 - **La facturation** : Factorial facture par utilisateur à partir de 6,50 € par mois ; une facturation par établissement peut convenir aux équipes saisonnières
-- **La paie** : les variables peuvent partir vers un logiciel de paie ou un cabinet, ce qui suppose un second outil
+- **La paie** : Factorial transmet les variables de paie et peut s'associer à un logiciel de paie ou à un cabinet
 
-Pour une agence de 40 personnes en horaires fixes, aucun de ces points ne pèse. Pour un groupe de trois brasseries, les trois pèsent chaque semaine.
+Ces besoins varient selon l'activité : pour un groupe de trois brasseries aux horaires variables, un outil de planning spécialisé peut compléter Factorial.
 
 ## Tableau comparatif des 6 alternatives à Factorial {#comparatif}
 
@@ -113,7 +113,7 @@ Prix relevés sur les pages tarifs officielles des éditeurs en octobre 2026, ho
 <div class="alt-detail">
 <h3><img alt="Logo Lucca" height="32" src="/assets/images/logos/lucca.png" style="border-radius:6px;vertical-align:middle;margin-right:8px" title="Logo Lucca" width="32"/>Lucca en résumé</h3>
 <p><strong>Lucca</strong> vend chaque brique RH séparément, ce qui en fait l'opposé du forfait Factorial. La grille publique d'octobre 2026 donne le ton : 2,24 € HT pour le télétravail, 3,00 € HT pour les feuilles de temps, 3,11 € HT pour les absences, 3,21 € HT pour le socle RH ou le recrutement, 3,97 € HT pour la performance, par collaborateur et par mois.</p>
-<p>Une PME de 60 salariés qui n'a besoin que des absences et des feuilles de temps paie 366,60 € HT par mois. La même structure qui active cinq modules dépasse les 900 € HT. Côté paie, un assistant relié à Silae et Yeap prépare les variables pour 0,61 € HT par collaborateur.</p>
+<p>Une PME de 60 salariés qui n'a besoin que des absences et des feuilles de temps paie 366,60 € HT par mois. Lucca permet de composer sa suite module par module, avec un budget qui s'adapte aux besoins. Côté paie, un assistant relié à Silae et Yeap prépare les variables pour 0,61 € HT par collaborateur.</p>
 <div class="pros-cons">
 <div class="pros">
 <h4>Points forts</h4>
@@ -127,7 +127,7 @@ Prix relevés sur les pages tarifs officielles des éditeurs en octobre 2026, ho
 <p><strong>Idéal si</strong> : vous dirigez une PME de bureau qui veut garder la main sur chaque ligne de son budget RH.</p>
 </div>
 
-## 3. PayFit : quand la paie est la vraie raison de quitter Factorial {#payfit}
+## 3. PayFit : une solution spécialisée en paie {#payfit}
 
 <div class="alt-detail">
 <h3><img alt="Logo PayFit" height="32" src="/assets/images/logos/payfit.png" style="border-radius:6px;vertical-align:middle;margin-right:8px" title="Logo PayFit" width="32"/>PayFit en résumé</h3>
@@ -246,7 +246,7 @@ Le bon point de départ n'est pas la taille de l'entreprise, c'est l'origine des
 </table>
 </div>
 
-À titre de repère, le même groupe de 3 restaurants paierait 292,50 € par mois chez Factorial sur le seul socle (45 × 6,50 €), puis 455 € en été avec 70 personnes. Le comparatif du [meilleur logiciel SIRH par profil](/comparatifs/meilleur-logiciel-sirh.html) applique la même lecture à d'autres tailles d'entreprise.
+À titre de repère, Factorial est proposé à partir de 6,50 € par utilisateur et par mois, pour un périmètre SIRH étendu. Le comparatif du [meilleur logiciel SIRH par profil](/comparatifs/meilleur-logiciel-sirh.html) applique la même lecture à d'autres tailles d'entreprise.
 
 ## Quitter Factorial : calendrier et pièges à éviter {#migration}
 

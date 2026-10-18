@@ -9,7 +9,7 @@ imageAlt: "Comparatif PayFit vs Factorial sur deux ecrans cote a cote"
 classement: true
 faq:
   - question: "PayFit ou Factorial : lequel est moins cher ?"
-    answer: "Pour moins de 15 salariés, PayFit est souvent légèrement moins cher grâce à son tarif d'entrée à partir de 6 euros par salarié par mois. Factorial devient plus compétitif à partir de 20 salariés, notamment avec son module paie inclus dans l'offre SIRH complète. Dans les deux cas, demandez un devis personnalisé car les tarifs affichés sont rarement ceux négociés en pratique."
+    answer: "Pour moins de 15 salariés, PayFit est souvent légèrement moins cher grâce à son tarif d'entrée à partir de 6 euros par salarié par mois. Factorial devient plus compétitif à partir de 20 salariés, notamment avec son module paie inclus dans l'offre SIRH complète. Dans les deux cas, demandez un devis personnalisé : les deux éditeurs adaptent leurs tarifs à la taille de l'entreprise et à la durée d'engagement."
   - question: "Factorial gère-t-il la paie en France ?"
     answer: "Oui, depuis 2022, Factorial propose un module de paie pour la France. Il couvre la DSN, les bulletins de salaire et les principales conventions collectives. Pour les paies complexes ou multi-établissements, PayFit et Silae offrent une grande maturité, Factorial progressant rapidement sur ce terrain."
   - question: "Peut-on migrer de PayFit vers Factorial facilement ?"
@@ -17,7 +17,7 @@ faq:
   - question: "PayFit convient-il aux PME de 50 salariés ?"
     answer: "PayFit fonctionne jusqu'à environ 200 salariés, mais son positionnement idéal reste les entreprises de 5 à 50 salariés sans DRH dédié. Au-delà, PayFit peut être complété par des outils spécialisés pour le recrutement et la gestion des compétences. Pour une PME de 50 salariés avec un RH, Factorial ou Lucca sont également des options pertinentes."
   - question: "Quelle est la durée d'engagement chez PayFit et Factorial ?"
-    answer: "PayFit propose des contrats annuels avec paiement mensuel ou annuel. Il n'y a pas d'engagement mensuel disponible en direct. Factorial fonctionne également en abonnement annuel, avec des remises importantes à l'engagement pluriannuel. Les deux éditeurs négocient au cas par cas pour les grands comptes."
+    answer: "PayFit propose des contrats annuels avec paiement mensuel ou annuel. Factorial fonctionne également en abonnement annuel, avec des remises importantes à l'engagement pluriannuel. Les deux éditeurs négocient au cas par cas pour les grands comptes."
   - question: "PayFit ou Factorial : lequel est le plus simple à prendre en main ?"
     answer: "PayFit est particulièrement simple à prendre en main. Sa philosophie est de rendre la paie accessible à n'importe qui, même sans formation comptable ou RH. Un dirigeant peut gérer sa paie seul après quelques heures. Factorial est puissant et sa richesse fonctionnelle en fait un outil idéalement confié à un profil RH dédié pour en tirer tout le potentiel."
   - question: "PayFit et Factorial sont-ils conformes au RGPD ?"
@@ -111,7 +111,7 @@ Aujourd'hui, PayFit compte près de **10 000 entreprises clientes**, majoritaire
 
 C'est le terrain de jeu originel de **PayFit**. L'outil gère automatiquement les bulletins de salaire, la **DSN mensuelle** et de substitution, les cotisations sociales, les soldes de tout compte et les arrêts maladie. La mise à jour des **conventions collectives** est prise en charge par PayFit sans intervention de votre part. Pour une entreprise sans comptable ou sans DRH, c'est un gain de temps considérable.
 
-**Factorial** a lancé son module de paie français en **2022**. Il couvre les principaux cas de figure : bulletins, DSN, congés payés, primes. Il continue d'étendre sa couverture des cas plus complexes.
+**Factorial** a lancé son module de paie français en **2022**. Il couvre les principaux cas de figure : bulletins, DSN, congés payés, primes. Il s'enrichit régulièrement.
 
 <div class="info-box">
 Si la paie est votre priorité absolue et que votre entreprise a moins de 50 salariés, PayFit est particulièrement adapté. Si vous cherchez un SIRH complet avec un module paie intégré, Factorial est idéal.
@@ -143,13 +143,13 @@ Si la paie est votre priorité absolue et que votre entreprise a moins de 50 sal
 
 **PayFit** est conçu pour être utilisé par quelqu'un qui n'est pas expert en paie. L'interface est épurée, les **étapes guidées pas à pas**. Un dirigeant de startup peut gérer sa paie seul après quelques heures de prise en main.
 
-**Factorial** est plus dense, ce qui reflète la richesse de ses fonctionnalités. L'outil devient très efficace une fois maîtrisé et convient idéalement à un profil RH dédié.
+**Factorial** offre une interface riche, à la mesure de ses fonctionnalités. L'outil devient très efficace une fois maîtrisé et convient idéalement à un profil RH dédié.
 
 ### L'onboarding et la mise en place
 
 **PayFit** promet une **mise en production en moins d'une semaine** pour une PME sans paie complexe. Un chargé de compte vous accompagne pour importer vos données salariés, paramétrer les conventions collectives et lancer le premier bulletin. La première DSN est générée automatiquement.
 
-**Factorial** nécessite un déploiement plus long : comptez **2 à 4 semaines** en raison du nombre de modules à configurer (congés, recrutement, temps, paie). Un projet manager dédié est généralement alloué pour les comptes de plus de 30 salariés. L'investissement initial est plus élevé, mais la **productivité gagnée** sur l'ensemble des processus RH compense rapidement.
+**Factorial** propose un déploiement de **2 à 4 semaines**, adapté à la richesse des modules à configurer (congés, recrutement, temps, paie). Un projet manager dédié est généralement alloué pour les comptes de plus de 30 salariés. L'investissement initial est plus élevé, mais la **productivité gagnée** sur l'ensemble des processus RH compense rapidement.
 
 ### Sécurité des données et conformité RGPD
 
@@ -184,7 +184,7 @@ Les données de paie sont parmi les plus sensibles qu'une entreprise manipule. S
 <tr>
 <td>Conventions collectives</td>
 <td>350+, mises à jour auto</td>
-<td>Principales CCN couvertes</td>
+<td>Principales CCN couvertes, couverture en extension</td>
 </tr>
 <tr>
 <td>Gestion des congés</td>
@@ -198,12 +198,12 @@ Les données de paie sont parmi les plus sensibles qu'une entreprise manipule. S
 </tr>
 <tr>
 <td>Recrutement</td>
-<td>Non (intégration tierce)</td>
+<td>Via intégration</td>
 <td>Oui, pipeline natif</td>
 </tr>
 <tr>
 <td>Gestion de la formation</td>
-<td>Non</td>
+<td>Via intégration</td>
 <td>Oui</td>
 </tr>
 <tr>
@@ -338,7 +338,7 @@ Ces tarifs sont indicatifs. PayFit et Factorial négocient leurs prix selon les 
 
 **PayFit** et **Factorial** répondent à des besoins différents, et c'est ce qui explique qu'on ne peut pas désigner un gagnant absolu. PayFit est idéal pour les entreprises qui veulent une **paie automatisée** avec le minimum d'effort. L'équipe fondatrice a mis des années à construire un moteur de paie capable de gérer les subtilités du droit du travail français, et ça se ressent dans la robustesse du produit.
 
-**Factorial**, de son côté, a compris que la paie n'est qu'un élément dans la vie d'un salarié. Son approche **SIRH globale** séduira les RH qui veulent un seul outil pour tout gérer, sans jongler entre cinq logiciels différents. Son module paie progresse rapidement et devient crédible pour les entreprises dont la paie n'est pas particulièrement complexe.
+**Factorial**, de son côté, a compris que la paie n'est qu'un élément dans la vie d'un salarié. Son approche **SIRH globale** séduira les RH qui veulent un seul outil pour tout gérer, sans jongler entre cinq logiciels différents. Son module paie s'enrichit rapidement et convient très bien aux entreprises dont la paie est standard.
 
 Si nous devions trancher : choisissez **PayFit si vous avez moins de 20 salariés** et que la paie est votre obsession. Choisissez **Factorial si vous avez entre 20 et 300 salariés** et qu'un RH dédié a besoin d'un SIRH structurant au quotidien.
 

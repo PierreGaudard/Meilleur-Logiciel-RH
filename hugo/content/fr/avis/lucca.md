@@ -13,7 +13,7 @@ faq:
   - question: "Lucca fait-il la paie ?"
     answer: "Oui mais avec une nuance. Le module Pagga gère la paie en s'appuyant sur Silae en backend pour le calcul. Lucca a fait ce choix d'intégration parce que faire un moteur paie maison aussi solide que Silae prendrait des années. Donc Pagga, c'est l'expérience utilisateur Lucca avec le moteur Silae derrière. C'est une combinaison qui marche très bien, mais qui change la mécanique tarifaire (engagement souvent plus long, devis plutôt que prix au salarié)."
   - question: "Quels sont les modules les plus utiles de Lucca ?"
-    answer: "Pour une PME qui démarre, le combo Figgo (congés) plus Timmi (temps de travail) plus Cleemy (notes de frais, désormais Pagga Notes de frais) couvre les usages quotidiens des collaborateurs. Pour une entreprise structurée qui veut piloter ses RH, ajoute Poplee Entretiens et Poplee Talents. Pagga (paie) ne se justifie qu'avec une équipe RH qui veut centraliser le SIRH et la paie au même endroit."
+    answer: "Pour une PME qui démarre, le combo Figgo (congés) plus Timmi (temps de travail) plus Cleemy (notes de frais, désormais Pagga Notes de frais) couvre les usages quotidiens des collaborateurs. Pour une entreprise structurée qui veut piloter ses RH, ajoute Poplee Entretiens et Poplee Talents. Pagga (paie) est particulièrement pertinent pour une équipe RH qui veut centraliser le SIRH et la paie au même endroit."
   - question: "Lucca convient-il aux TPE de moins de 20 salariés ?"
     answer: "Lucca est pensé pour des PME structurées de 50 à 5 000 salariés avec un service RH dédié. Pour les TPE, PayFit et Factorial proposent des offres adaptées à leur taille."
   - question: "Combien de temps prend la mise en place de Lucca ?"
@@ -155,7 +155,7 @@ L'autre point qui mérite d'être souligné : la **gestion des congés** dans Fi
 
 Côté périmètre, Lucca se concentre sur le cœur RH et s'intègre via API aux principaux ATS du marché pour le **recrutement**.
 
-## Tarifs Lucca 2026 : combien ça coûte vraiment ? {#tarifs}
+## Tarifs Lucca 2026 : modules et budgets indicatifs {#tarifs}
 
 Les **tarifs** Lucca dépendent fortement des modules choisis et de la durée d'engagement. Voici des ordres de grandeur pour différentes tailles d'entreprise. Le **coût** tient compte d'un engagement annuel standard.
 
@@ -246,7 +246,7 @@ Pour situer le budget mensuel total selon la taille d'**entreprise** et la stack
 </div>
 
 <div class="warning-box">
-<strong>Bon à savoir :</strong> ces tarifs sont indicatifs. Lucca négocie au cas par cas, surtout au-delà de 200 collaborateurs. Demande systématiquement plusieurs devis modules par modules. Et n'oublie pas le coût d'<strong>intégrateur</strong> partenaire pour le déploiement (entre 5 000 et 25 000 € selon le périmètre), qui est rarement inclus dans la facture Lucca elle-même.
+<strong>Bon à savoir :</strong> ces tarifs sont indicatifs. Lucca négocie au cas par cas, surtout au-delà de 200 collaborateurs. Demande systématiquement plusieurs devis modules par modules. Le déploiement s'appuie sur un <strong>intégrateur</strong> partenaire, qui sécurise la mise en route (entre 5 000 et 25 000 € selon le périmètre, à budgéter en plus des modules).
 </div>
 
 **Selon** le périmètre choisi, on est entre 8 et 22 € par salarié et par **mois**. Lucca offre une profondeur fonctionnelle sur chaque brique, avec une tarification adaptée aux modules réellement utilisés.
@@ -331,14 +331,14 @@ Sur le marché des SIRH PME et ETI en France, Lucca a quatre concurrents directs
 <td>Prix indicatif moyen</td>
 <td>9 à 22 € / sal / mois</td>
 <td>5 à 12 € / sal / mois</td>
-<td>15 à 25 € / sal / mois, tout inclus</td>
+<td>15 à 25 € / sal / mois, offre complète tout inclus</td>
 <td>6 à 15 € / sal / mois</td>
 </tr>
 </tbody>
 </table>
 </div>
 
-Lucca est un excellent choix pour piloter la performance et les talents d'une PME ou d'une ETI française. Factorial et Personio proposent des solutions tout-en-un intégrant le recrutement, pour les entreprises qui recherchent ce périmètre. Si ton budget est serré et que tu démarres ta structuration RH, Eurécia est une alternative française modulaire, adaptée aux budgets serrés.
+Lucca est un excellent choix pour piloter la performance et les talents d'une PME ou d'une ETI française. Factorial et Personio proposent des solutions tout-en-un intégrant le recrutement. Eurécia est une alternative française modulaire appréciée des PME.
 
 <div class="info-box">
 Pour creuser, lis notre guide des <a href="/alternatives/lucca.html" style="color:#15803d;font-weight:600">alternatives à Lucca</a> ou notre <a href="/alternatives/factorial.html" style="color:#15803d;font-weight:600">comparatif des alternatives à Factorial</a>.
@@ -411,7 +411,7 @@ Les **avantages** sont clairs. Si tu es la cible (PME structurée 50-500 salari�
 </div>
 
 <div class="cta-box">
-<h3>Lucca ne te correspond pas ? Trouve le bon SIRH</h3>
+<h3>Compare Lucca avec d'autres solutions SIRH</h3>
 <p>Si tu cherches une suite RH plus légère ou plus calibrée pour ton effectif, on a un outil de recommandation rapide et un guide complet des alternatives.</p>
 <div class="cta-buttons">
 <a class="btn btn-primary" href="/trouver-mon-logiciel.html">

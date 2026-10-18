@@ -171,7 +171,7 @@ Voici la couverture réelle des cinq outils, étape par étape. Les tarifs des l
 <div class="alt-detail">
 <h3>Trouver un profil qualifié pour ce soir</h3>
 <p>Extracadabra met en relation les établissements avec des profils qualifiés en restauration, hôtellerie, vente et logistique. La publication d'une demande de mission est gratuite pour l'employeur, qui précise le poste recherché, les dates et les horaires. Une partie des profils exerce sous statut d'auto-entrepreneur, l'autre en intérim.</p>
-<p>Extracadabra est un excellent outil pour pourvoir rapidement un service, la gestion administrative pouvant être assurée par un logiciel dédié.</p>
+<p>Extracadabra est un excellent outil pour pourvoir rapidement un service avec des profils qualifiés.</p>
 <div class="pros-cons">
 <div class="pros">
 <h4>Points forts</h4>
@@ -192,7 +192,7 @@ Voici la couverture réelle des cinq outils, étape par étape. Les tarifs des l
 <figure>
 <img alt="Barman préparant un cocktail derrière le comptoir d'un bar" class="article-img" height="540" loading="lazy" src="/assets/images/blog/extras-restauration-bar.jpg" title="Le barman extra, profil très recherché en renfort de service" width="960"/>
 </figure>
-<p>Brigad est particulièrement adaptée aux missions réellement ponctuelles et autonomes.</p>
+<p>Brigad offre une grande souplesse et une disponibilité rapide pour les missions ponctuelles.</p>
 <div class="pros-cons">
 <div class="pros">
 <h4>Points forts</h4>
@@ -208,7 +208,7 @@ Voici la couverture réelle des cinq outils, étape par étape. Les tarifs des l
 ## 4. Alloextra : le jobboard à l'annonce {#alloextra}
 
 <div class="alt-detail">
-<h3>La solution la moins chère pour un besoin rare</h3>
+<h3>Une solution simple et accessible pour les recrutements ponctuels</h3>
 <p>Alloextra est un jobboard spécialisé hôtellerie-restauration. L'espace recruteur donne accès au dépôt d'annonces, avec une première annonce offerte, et à une base de CV du secteur.</p>
 <p>Le modèle convient à l'établissement qui recrute quelques fois par an et ne veut pas d'abonnement. Il convient très bien aux recrutements planifiés à l'avance.</p>
 <div class="pros-cons">
@@ -228,7 +228,7 @@ Voici la couverture réelle des cinq outils, étape par étape. Les tarifs des l
 <div class="alt-detail">
 <h3>Solide sur la gestion des équipes terrain</h3>
 <p>Combo adresse le même terrain que Skello, le planning et la gestion RH des équipes opérationnelles en hôtellerie-restauration et en retail. Le contrat, la DPAE, le planning, le pointage et la préparation de la paie sont couverts.</p>
-<p>Combo se concentre sur le planning, le pointage et la paie, et se combine avec un outil de sourcing. Pour un établissement qui dispose déjà de son vivier d'extras, l'outil fait le travail.</p>
+<p>Combo est une solution solide pour le planning, le pointage et la paie, et s'associe facilement à l'outil de sourcing de votre choix. Pour un établissement qui dispose déjà de son vivier d'extras, l'outil fait le travail.</p>
 <div class="pros-cons">
 <div class="pros">
 <h4>Points forts</h4>

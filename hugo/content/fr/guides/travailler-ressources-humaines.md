@@ -134,7 +134,7 @@ La licence pro GRH (Gestion des Ressources Humaines) à l'IAE, c'est le parcours
 
 ### Bac+5 : le ticket pour les postes de responsable
 
-Master GRH, droit social, management des RH. Les intitulés changent, le fond reste le même. Cinq ans d'études et beaucoup de droit du travail. Les écoles de commerce proposent des cursus reconnus, avec des frais de 8 000 à 15 000 euros l'année, tandis que les IAE offrent une voie plus économique, à moins de 500 euros. Ce qui compte, c'est l'expérience terrain.
+Master GRH, droit social, management des RH. Les intitulés changent, le fond reste le même. Cinq ans d'études et beaucoup de droit du travail. Les écoles de commerce proposent des cursus reconnus (8 000 à 15 000 euros l'année), et les IAE une voie universitaire reconnue (moins de 500 euros l'année). Ce qui compte, c'est l'expérience terrain.
 
 <div class="info-box">
 <strong>Le conseil que je donne à tout le monde :</strong> faites de l'alternance. Les alternants RH ont un taux d'insertion proche de 100 %. Les entreprises qui forment un alternant pendant 2 ans l'embauchent 7 fois sur 10. Le master en alternance dans un IAE est une option particulièrement intéressante, au même titre que les cursus proposés par les écoles de commerce.

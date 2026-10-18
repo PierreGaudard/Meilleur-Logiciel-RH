@@ -87,7 +87,7 @@ Le prix affiché par salarié et par mois ne représente qu'une partie du coût 
 <div class="critere-card">
 <h3><span class="critere-num">7</span> La facilité de prise en main</h3>
 <p>
-Un logiciel de paie puissant mais complexe à utiliser sera sous-exploité ou mal utilisé, ce qui augmente le risque d'erreurs. La <strong>prise en main</strong> doit être évaluée du point de vue de l'utilisateur quotidien, pas uniquement du décideur qui participe à la démo commerciale. Testez l'outil avec un scénario réel : saisie d'un bulletin complet, gestion d'une absence maladie, génération d'un solde de tout compte. Mesurez le temps nécessaire et le nombre de clics pour chaque opération. Les solutions les plus ergonomiques, comme <strong>PayFit</strong>, permettent à un dirigeant sans expertise paie de produire des bulletins corrects après quelques heures de formation. D'autres outils, comme <strong>Silae</strong> ou <strong>Sage Paie</strong>, sont des solutions très complètes, particulièrement adaptées aux gestionnaires de paie expérimentés et aux cabinets comptables. Adaptez le choix au profil de l'utilisateur final : un outil simple pour un dirigeant autonome, un outil complet pour un service RH structuré.
+Un logiciel de paie puissant mais complexe à utiliser sera sous-exploité ou mal utilisé, ce qui augmente le risque d'erreurs. La <strong>prise en main</strong> doit être évaluée du point de vue de l'utilisateur quotidien, pas uniquement du décideur qui participe à la démo commerciale. Testez l'outil avec un scénario réel : saisie d'un bulletin complet, gestion d'une absence maladie, génération d'un solde de tout compte. Mesurez le temps nécessaire et le nombre de clics pour chaque opération. Les solutions les plus ergonomiques, comme <strong>PayFit</strong>, permettent à un dirigeant sans expertise paie de produire des bulletins corrects après quelques heures de formation. <strong>Silae</strong> et <strong>Sage Paie</strong> proposent des solutions très complètes, appréciées des gestionnaires de paie et des cabinets comptables pour leur richesse fonctionnelle. Adaptez le choix au profil de l'utilisateur final : un outil simple pour un dirigeant autonome, un outil complet pour un service RH structuré.
 </p>
 </div>
 
@@ -190,7 +190,7 @@ Voici **six logiciels de paie** couramment utilisés par les PME françaises en 
 <td>Conventions collectives</td>
 <td>350+</td>
 <td>600+</td>
-<td>Principales CCN, paie intégrée à un SIRH complet</td>
+<td>Principales CCN couvertes, paie intégrée à un SIRH complet</td>
 <td>200+</td>
 <td>400+</td>
 <td>500+</td>
@@ -207,7 +207,7 @@ Voici **six logiciels de paie** couramment utilisés par les PME françaises en 
 <tr>
 <td>Support</td>
 <td>Chat + email, FR</td>
-<td>Via un réseau de cabinets comptables partenaires</td>
+<td>Accompagnement de proximité via un réseau de cabinets comptables partenaires</td>
 <td>Chat + email, FR/EN</td>
 <td>Chat + tel, FR</td>
 <td>Tel + email, FR</td>
@@ -257,12 +257,12 @@ Une question revient fréquemment au moment de choisir un logiciel de paie : fau
 <tr>
 <td>Profondeur de la paie</td>
 <td>Très avancée</td>
-<td>Adaptée aux paies courantes</td>
+<td>Couvre efficacement les paies courantes, intégrée à la gestion RH</td>
 </tr>
 <tr>
 <td>Conventions collectives</td>
 <td>Couverture large (350 à 600+)</td>
-<td>Couverture variable (50 à 200+)</td>
+<td>Couverture en extension (50 à 200+)</td>
 </tr>
 <tr>
 <td>Facilité d'utilisation</td>
@@ -293,7 +293,7 @@ Une question revient fréquemment au moment de choisir un logiciel de paie : fau
 </table>
 </div>
 
-En pratique, la tendance en 2026 est à la convergence. **PayFit**, historiquement un pur logiciel de paie, ajoute progressivement des fonctionnalités RH (congés, notes de frais, dossier salarié). **Factorial** et **Lucca**, initialement des SIRH, ont développé des modules paie de plus en plus robustes. Le choix dépendra donc de votre priorité immédiate : si la conformité de la paie est critique (conventions collectives complexes, multi-établissements, historique de redressement URSSAF), privilégiez un spécialiste de la paie. Si vous souhaitez centraliser toute votre gestion RH dans un seul outil et que vos paies sont relativement standards, un SIRH avec module paie sera plus efficace à long terme.
+En pratique, la tendance en 2026 est à la convergence. **PayFit**, historiquement un pur logiciel de paie, ajoute progressivement des fonctionnalités RH (congés, notes de frais, dossier salarié). **Factorial** et **Lucca**, initialement des SIRH, proposent aujourd'hui des modules paie complets. Le choix dépendra donc de votre priorité immédiate : si la conformité de la paie est critique (conventions collectives complexes, multi-établissements, historique de redressement URSSAF), privilégiez un spécialiste de la paie. Si vous souhaitez centraliser toute votre gestion RH dans un seul outil et que vos paies sont relativement standards, un SIRH avec module paie sera plus efficace à long terme.
 
 - **Logiciel de paie pur** : idéal si la paie est votre seul besoin (PayFit, Silae, Sage Paie)
 - **SIRH avec module paie** : idéal si vous voulez centraliser toute la gestion RH (Factorial, Lucca)
@@ -441,7 +441,7 @@ Le budget à prévoir dépend principalement de la taille de votre entreprise, d
 </table>
 </div>
 
-Le budget mensuel bas correspond à une formule accessible centrée sur la paie (par exemple le plan de base de **PayFit** ou **Factorial**). Le budget moyen inclut un logiciel polyvalent avec DSN, gestion des congés et support standard. Le budget haut correspond à une solution premium avec accompagnement dédié, conventions collectives étendues et modules complémentaires (**Silae** via cabinet, Sage Paie, Nibelis).
+Le budget mensuel bas correspond à une formule accessible centrée sur la paie (par exemple le plan de base de **PayFit** ou **Factorial**). Le budget moyen inclut un logiciel polyvalent avec DSN, gestion des congés et support standard. Le budget haut correspond à une solution premium avec accompagnement dédié, conventions collectives étendues et modules complémentaires, comme le proposent **Silae** (via cabinet), Sage Paie ou Nibelis.
 
 <div class="warning-box">
 <strong>À ne pas oublier :</strong> aux budgets ci-dessus, ajoutez les frais de première année. Le paramétrage initial coûte entre 500 et 3 000 euros selon la complexité. La formation des utilisateurs représente généralement 1 à 3 jours, soit 500 à 1 500 euros. L'import et la vérification des données historiques peut nécessiter un budget supplémentaire de 500 à 2 000 euros si l'historique est volumineux ou mal structuré.

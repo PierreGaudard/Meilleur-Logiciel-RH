@@ -107,7 +107,7 @@ Des DRH viennent du droit du travail français. Ils ont commencé comme juristes
 
 ### La voie "business"
 
-Des directeurs de magasin, des DAF, des responsables d'opérations deviennent DRH par reconversion interne. C'est le profil qui monte le plus depuis 2024. **L'Oréal, Danone, Schneider Electric** recrutent volontairement des DRH sans background RH. Pourquoi ? Un ancien directeur de production qui devient DRH sait ce que vivent les managers. Il ne construit pas de politiques RH en chambre.
+Des directeurs de magasin, des DAF, des responsables d'opérations deviennent DRH par reconversion interne. C'est le profil qui monte le plus depuis 2024. **L'Oréal, Danone, Schneider Electric** recrutent volontairement des DRH sans background RH. Pourquoi ? Un ancien directeur de production qui devient DRH sait ce que vivent les managers. Il construit des politiques RH ancrées dans la réalité opérationnelle.
 
 ### La voie conseil
 

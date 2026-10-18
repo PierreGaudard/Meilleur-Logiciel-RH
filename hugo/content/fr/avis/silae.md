@@ -210,7 +210,7 @@ Concrètement, pour une PME de 20 **salariés** en convention Syntec sans comple
 <strong>Bon à savoir :</strong> beaucoup de <strong>cabinets</strong> proposent un forfait dégressif au-delà de 30 ou 50 bulletins. Les négociations sont possibles, surtout si tu apportes des comptes annuels propres et un suivi salarié déjà en place. À l'inverse, si la paie est mal tenue à l'arrivée (variables manuelles, congés non comptés, contrats incomplets), attends-toi à une majoration de mise en route.
 </div>
 
-**La comparaison avec PayFit** mérite un mot. PayFit affiche 6 à 8 euros par salarié par mois, ce qui peut sembler compétitif. Mais PayFit, c'est un outil que **tu** utilises, et tu fais la paie toi-même. Avec Silae via cabinet, tu paies pour le logiciel *plus* le travail du gestionnaire. Le bon réflexe : comparer le coût Silae+cabinet avec PayFit+ton temps. Sur 10 salariés, PayFit répond à une logique d'autonomie. À 50 salariés avec une paie un peu complexe, le cabinet Silae devient compétitif et te dégage du temps.
+**La comparaison avec PayFit** mérite un mot. PayFit affiche 6 à 8 euros par salarié par mois et convient aux dirigeants qui souhaitent gérer leur paie en autonomie : c'est un outil que **tu** utilises. Avec Silae via cabinet, tu paies pour le logiciel *plus* le travail du gestionnaire. Le bon réflexe : comparer le coût Silae+cabinet avec PayFit+ton temps. Sur 10 salariés, PayFit répond à une logique d'autonomie. À 50 salariés avec une paie un peu complexe, le cabinet Silae devient compétitif et te dégage du temps.
 
 Pour **externaliser** intelligemment la paie, il faut aussi regarder ce que le cabinet propose **en compte** : conseil social inclus ou facturé en plus, gestion des contrôles URSSAF, accompagnement sur les ruptures conventionnelles, etc. C'est rarement compris dans le tarif au bulletin, et ça pèse sur le coût réel annuel.
 
@@ -219,7 +219,7 @@ Pour **externaliser** intelligemment la paie, il faut aussi regarder ce que le c
 <div class="point-card">
 <h3>1. Une couverture conventionnelle complète</h3>
 <p>
-C'est un argument central. Silae couvre toutes les conventions collectives françaises sans exception, et applique nativement les règles spécifiques de chaque grille. BTP avec primes de panier, transport routier avec amplitude horaire, hôtellerie-restauration avec coupures, intermittents du spectacle, modulation annuelle du temps de travail : pas besoin de bidouille. Pour un cabinet qui sert plusieurs secteurs, c'est ce qui évite de jongler avec trois logiciels différents. Silae se distingue par la profondeur de sa couverture conventionnelle native, tandis que Sage Paie, Cegid et PayFit répondent à d'autres besoins.
+C'est un argument central. Silae couvre toutes les conventions collectives françaises sans exception, et applique nativement les règles spécifiques de chaque grille. BTP avec primes de panier, transport routier avec amplitude horaire, hôtellerie-restauration avec coupures, intermittents du spectacle, modulation annuelle du temps de travail : pas besoin de bidouille. Pour un cabinet qui sert plusieurs secteurs, c'est ce qui évite de jongler avec trois logiciels différents. Silae se distingue par la profondeur de sa couverture conventionnelle native ; Sage Paie, Cegid et PayFit sont des solutions reconnues, chacune adaptée à des profils d'entreprise différents.
 </p>
 </div>
 
@@ -283,23 +283,23 @@ Quand on parle paie en France, on parle vite de Silae, PayFit, Sage Paie et Cegi
 </tr>
 <tr>
 <td>Couverture conventionnelle</td>
-<td>Totale <span class="badge-rec">Top</span></td>
+<td>Totale</td>
 <td>350+ conventions</td>
-<td>Très bonne</td>
-<td>Bonne, paramétrage sur mesure</td>
+<td>Large</td>
+<td>Paramétrage sur mesure</td>
 </tr>
 <tr>
 <td>Paies complexes (BTP, transport, HCR)</td>
 <td>Excellent <span class="badge-rec">Top</span></td>
-<td>Paies standard</td>
+<td>Paies courantes, prise en main rapide</td>
 <td>Bon</td>
 <td>Bon</td>
 </tr>
 <tr>
 <td>SIRH complet</td>
 <td>Non</td>
-<td>Limité</td>
-<td>Non (Sage HR à part)</td>
+<td>Module RH</td>
+<td>Via Sage HR</td>
 <td>Oui <span class="badge-rec">Complet</span></td>
 </tr>
 <tr>

@@ -17,13 +17,13 @@ faq:
   - question: "Peut-on migrer de Silae vers PayFit ?"
     answer: "Oui, la migration est possible mais demande une préparation soigneuse. Il faut exporter les données salariés et l’historique de paie depuis Silae, puis les réimporter dans PayFit. Privilégiez un changement en début d’exercice pour éviter les complications de DSN en cours d’année. PayFit propose un accompagnement dédié pour faciliter la transition."
   - question: "Silae convient-il aux TPE de moins de 10 salariés ?"
-    answer: "Silae peut techniquement gérer des petites structures, mais son modèle de distribution (via partenaire uniquement) le destine plutôt aux structures disposant d’un gestionnaire de paie ou d’un cabinet. Pour une TPE sans gestionnaire de paie dédié, PayFit est particulièrement adapté, simple à prendre en main et économique."
+    answer: "Silae s’adresse en priorité aux cabinets et aux structures disposant d’un gestionnaire de paie, avec une distribution via partenaire. Pour une TPE sans gestionnaire de paie dédié, PayFit est particulièrement adapté, simple à prendre en main et économique."
   - question: "Quel logiciel choisir pour une paie multi-établissements ?"
-    answer: "Silae est particulièrement adapté à la gestion multi-établissements. Son moteur de paie gère nativement les structures complexes avec plusieurs entités, des conventions collectives différentes et des paramétrages spécifiques par établissement. PayFit gère plusieurs entités, tandis que Silae offre une couverture plus étendue sur ce type de configuration."
+    answer: "Silae est particulièrement adapté à la gestion multi-établissements. Son moteur de paie gère nativement les structures complexes avec plusieurs entités, des conventions collectives différentes et des paramétrages spécifiques par établissement. PayFit et Silae gèrent tous deux plusieurs entités, Silae étant particulièrement orienté vers les structures très complexes."
   - question: "PayFit et Silae sont-ils conformes au RGPD ?"
     answer: "Oui, les deux logiciels sont conformes au RGPD et hébergent leurs données en France. PayFit est certifié ISO 27001. Silae poursuit une démarche de certification SecNumCloud. Les deux éditeurs proposent un DPA (accord de traitement des données) et des outils pour vous accompagner dans vos obligations RGPD. Pour les secteurs sensibles, les deux sont adaptés."
   - question: "Combien de temps faut-il pour mettre en place PayFit ou Silae ?"
-    answer: "PayFit promet une mise en production en moins d’une semaine pour les cas simples, avec un onboarding guidé inclus dans le tarif. Silae nécessite généralement 2 à 6 semaines de déploiement, car le paramétrage est réalisé par un partenaire certifié qui configure l’outil selon vos conventions collectives et vos spécificités. Ce paramétrage permet un résultat personnalisé et adapté aux cas complexes."
+    answer: "PayFit promet une mise en production en moins d’une semaine pour les cas simples, avec un onboarding guidé inclus dans le tarif. Silae propose un déploiement sur mesure de 2 à 6 semaines en général, avec un paramétrage réalisé par un partenaire certifié qui configure l’outil selon vos conventions collectives et vos spécificités. Ce paramétrage permet un résultat personnalisé et adapté aux cas complexes."
 css: "comparatifs-payfit-vs-silae"
 js:
   - "comparatifs-payfit-vs-silae"
@@ -57,7 +57,7 @@ D'un côté la startup qui a démocratisé la paie en ligne. De l'autre, le mote
 
 On compare souvent PayFit et Silae comme s’ils étaient interchangeables. En réalité, ces deux logiciels ne jouent pas dans la même catégorie. **PayFit** a été créé en 2016 à Paris par des ingénieurs qui voulaient permettre à n’importe quel dirigeant de gérer sa paie sans passer par un cabinet comptable. Le pari était audacieux : transformer un sujet réputé imbuvable en quelque chose d’aussi simple qu’une déclaration d’impôts en ligne.
 
-**Silae**, c’est une autre histoire. Fondé il y a plus de 20 ans, le logiciel s’est imposé comme le **moteur de paie des experts-comptables** en France. Plus de 7,5 millions de bulletins de paie sont édités chaque mois avec Silae. C’est un outil de professionnel, conçu pour des professionnels, et cela se reflète dans son modèle : impossible d’acheter une licence Silae en direct, il faut passer par un **partenaire certifié**.
+**Silae**, c’est une autre histoire. Fondé il y a plus de 20 ans, le logiciel s’est imposé comme le **moteur de paie des experts-comptables** en France. Plus de 7,5 millions de bulletins de paie sont édités chaque mois avec Silae. C’est un outil de professionnel, conçu pour des professionnels, et cela se reflète dans son modèle : Silae est distribué via un réseau de **partenaires certifiés**, qui accompagnent le déploiement et le paramétrage.
 
 <div class="tools-comparison">
 <div class="tool-card">
@@ -111,12 +111,12 @@ Aujourd’hui, PayFit revendique près de **10 000 entreprises clientes** en Fra
 
 ### Le moteur de paie : le vrai sujet
 
-Autant le dire tout de suite : sur la **puissance brute du moteur de paie**, Silae est particulièrement puissant. Et c’est logique. Le logiciel a été conçu dès le départ pour des gestionnaires de paie professionnels qui traitent des centaines de bulletins par mois. Silae gère plus de **900 conventions collectives**, mises à jour chaque semaine par une équipe juridique dédiée. Les cas les plus tordus — intermittents du spectacle, HCR, BTP, intérim, DOETH — sont couverts nativement.
+Autant le dire tout de suite : sur la **puissance brute du moteur de paie**, Silae est particulièrement puissant. Et c’est logique. Le logiciel a été conçu dès le départ pour des gestionnaires de paie professionnels qui traitent des centaines de bulletins par mois. Silae gère plus de **900 conventions collectives**, mises à jour chaque semaine par une équipe juridique dédiée. Les cas les plus spécifiques (intermittents du spectacle, HCR, BTP, intérim, DOETH) sont couverts nativement.
 
-**PayFit** couvre environ **350 conventions collectives**, ce qui représente la très grande majorité des entreprises françaises. La paie est automatisée de bout en bout : saisie des variables, calcul des cotisations, génération des bulletins, envoi de la DSN. Pour une TPE avec une convention standard (Syntec, commerce, métallurgie...), PayFit fait le travail sans accroc. Pour les conventions rares, les modulations de temps partiel ou les particularités sectorielles, Silae offre une couverture plus étendue.
+**PayFit** couvre environ **350 conventions collectives**, ce qui répond aux besoins de la très grande majorité des entreprises françaises. La paie est automatisée de bout en bout : saisie des variables, calcul des cotisations, génération des bulletins, envoi de la DSN. Pour une TPE avec une convention standard (Syntec, commerce, métallurgie...), PayFit fait le travail sans accroc. Pour les conventions rares, les modulations de temps partiel ou les particularités sectorielles, Silae offre une couverture plus étendue.
 
 <div class="info-box">
-<strong>Le point clé :</strong> Si votre convention collective est parmi les plus courantes et que votre paie ne présente pas de cas spéciaux, PayFit suffit largement. Si vous avez la moindre complexité (multi-établissements, conventions rares, secteurs réglementés), Silae est particulièrement adapté.
+<strong>Le point clé :</strong> Si votre convention collective est parmi les plus courantes et que votre paie ne présente pas de cas spéciaux, PayFit répond pleinement à vos besoins. Pour les cas les plus spécifiques (multi-établissements, conventions rares, secteurs réglementés), Silae est particulièrement adapté.
 </div>
 
 <figure class="article-screenshot">
@@ -128,7 +128,7 @@ Autant le dire tout de suite : sur la **puissance brute du moteur de paie**, Sil
 
 La DSN (Déclaration Sociale Nominative) est le nerf de la guerre. Silae est **un acteur du déploiement de la DSN en France** depuis 2019. Le logiciel gère tous les types de DSN (mensuelles, de substitution, événementielles) avec une fiabilité éprouvée sur des millions de déclarations.
 
-PayFit gère également la DSN de manière native et automatisée. Pour une PME classique, la qualité de la DSN PayFit est comparable à celle de Silae. Silae offre une souplesse supplémentaire sur les cas limites et les DSN correctrices sur des périodes antérieures.
+PayFit gère également la DSN de manière native et automatisée. Pour une PME classique, la qualité de la DSN PayFit est comparable à celle de Silae. Silae propose en outre des options avancées pour les cas particuliers et les DSN correctrices sur des périodes antérieures.
 
 ### Les modules RH complémentaires
 
@@ -145,7 +145,7 @@ PayFit gère également la DSN de manière native et automatisée. Pour une PME 
 
 **PayFit est particulièrement simple à utiliser**. C’est même son principal argument de vente. Un fondateur de startup qui n’a jamais ouvert un bulletin de paie peut gérer sa première paie en quelques heures. Chaque étape est guidée, les termes techniques sont expliqués, et le risque d’erreur est minimisé par des contrôles automatiques.
 
-**Silae** propose une interface qui reflète la richesse fonctionnelle de l’outil, pensée pour des utilisateurs experts. Une fois la logique intégrée et les automatismes en place, les gains de productivité sont spectaculaires. Un gestionnaire de paie formé à Silae peut passer de **300 à 500 bulletins par mois**, un volume adapté aux cabinets, tandis que PayFit cible les TPE et PME.
+**Silae** propose une interface riche, pensée pour répondre aux besoins précis des professionnels de la paie. Une fois la logique intégrée et les automatismes en place, les gains de productivité sont spectaculaires. Un gestionnaire de paie formé à Silae peut passer de **300 à 500 bulletins par mois**, un volume adapté aux cabinets, tandis que PayFit cible les TPE et PME.
 
 <figure class="article-screenshot">
 <img alt="Capture d’écran de l’interface PayFit pour la gestion des contrats de travail" height="884" loading="lazy" src="/assets/images/screenshots/payfit-contrat-travail.webp" title="Interface PayFit - gestion des contrats de travail" width="1200"/>
@@ -216,7 +216,7 @@ Les deux éditeurs prennent la sécurité des données au sérieux. **PayFit** h
 <tr>
 <td>Notes de frais</td>
 <td>Oui</td>
-<td>Non natif</td>
+<td>Hors périmètre</td>
 </tr>
 <tr>
 <td>Coffre-fort numérique</td>
@@ -236,7 +236,7 @@ Les deux éditeurs prennent la sécurité des données au sérieux. **PayFit** h
 <tr>
 <td>Prise en main</td>
 <td>Très simple</td>
-<td>Formation nécessaire</td>
+<td>Accompagnement par un partenaire certifié</td>
 </tr>
 <tr>
 <td>Productivité (bulletins/mois)</td>
@@ -301,7 +301,7 @@ Tarifs sur devis uniquement, via partenaire certifié. Demandez un devis à jour
 </div>
 
 <div class="warning-box">
-<strong>À prévoir avec Silae :</strong> Silae fonctionne sur devis. Prévoyez, en plus des licences, des frais de paramétrage, de formation et de migration, à détailler avec votre partenaire certifié. PayFit inclut l’onboarding dans son tarif.
+<strong>À prévoir avec Silae :</strong> Silae fonctionne sur devis et propose un accompagnement sur mesure (paramétrage, formation, migration), détaillé par votre partenaire certifié. PayFit inclut l’onboarding dans son tarif.
 </div>
 
 ## Quel outil selon votre profil ? {#profils}

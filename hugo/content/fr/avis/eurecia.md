@@ -56,7 +56,7 @@ Eurécia est un SIRH français complet, calibré pour les PME de 20 à 200 colla
 
 **Eurécia** est un éditeur SIRH français basé à Toulouse, fondé en 2003 par Pascal Grémiaux. La société compte environ 150 collaborateurs en 2026 et équipe plus de 2 000 entreprises clientes (essentiellement des PME françaises de 20 à 500 salariés). C'est l'un des plus anciens acteurs du SIRH SaaS en France, qui a beaucoup gagné en visibilité depuis 2022.
 
-Le positionnement d'Eurécia tient en deux mots : **tout-en-un** français pour PME. Là où Lucca pousse une logique modulaire pure et où Factorial vise une logique tout-en-un internationalisée, Eurécia propose une suite intégrée pensée pour les **ressources humaines** d'une PME française classique. Tu paies par utilisateur et par module, mais l'ensemble est conçu pour fonctionner cohérent dès la mise en place.
+Le positionnement d'Eurécia tient en deux mots : **tout-en-un** français pour PME. Lucca propose une logique modulaire et Factorial une approche tout-en-un internationale ; Eurécia propose une suite intégrée pensée pour les **ressources humaines** d'une PME française classique. Tu paies par utilisateur et par module, mais l'ensemble est conçu pour fonctionner cohérent dès la mise en place.
 
 Concrètement, la suite Eurécia couvre cinq grandes briques. La **gestion du temps** avec congés, absences, planning, suivi du temps. Les **notes de frais** avec scan justificatifs et workflow de validation. Le module **Talents** avec recrutement (ATS basique), entretiens annuels et plan de formation. La **paie** via partenaires (Silae, Sage Paie, ADP). Et un module **communication interne** avec annuaire, organigramme et messagerie.
 
@@ -306,7 +306,7 @@ Sur le segment des SIRH PME français en 2026, Eurécia a quatre concurrents dir
 </table>
 </div>
 
-Si tu cherches le SIRH français le plus mature avec une vraie profondeur sur les entretiens et la paie, Lucca est devant. Si tu veux un tout-en-un avec recrutement natif et un budget contenu, Eurécia est une bonne option. Si tu vises un SIRH international moderne, Personio ou Factorial. Eurécia est le bon choix quand tu privilégies l'accompagnement français et un rapport qualité-prix sur la suite complète.
+Si tu cherches un SIRH français mature avec une vraie profondeur sur les entretiens et la paie, Lucca est une solution reconnue. Si tu veux un tout-en-un avec recrutement natif et un budget contenu, Eurécia est une bonne option. Si tu vises un SIRH international moderne, Personio ou Factorial. Eurécia est le bon choix quand tu privilégies l'accompagnement français et un rapport qualité-prix sur la suite complète.
 
 <div class="info-box">
 Pour creuser, lis notre <a href="/alternatives/lucca.html" style="color:#15803d;font-weight:600">comparatif des alternatives à Lucca</a> et notre <a href="/alternatives/factorial.html" style="color:#15803d;font-weight:600">guide des alternatives à Factorial</a>.

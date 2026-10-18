@@ -15,7 +15,7 @@ tldr:
   - "Principaux acteurs du marché français : Silae, Sage, PayFit, Nibelis, ADP"
 faq:
   - question: "Quelle différence entre logiciel de paie et SIRH ?"
-    answer: "Un logiciel de paie se limite au calcul des bulletins et à la DSN. Un SIRH est plus large : paie + congés + notes de frais + recrutement + entretiens + formation + reporting RH. Certains SIRH incluent la paie nativement (PayFit, Factorial), d'autres la laissent au prestataire externe (Lucca, Elevo). Le choix dépend de la taille et de la maturité RH."
+    answer: "Un logiciel de paie se limite au calcul des bulletins et à la DSN. Un SIRH est plus large : paie + congés + notes de frais + recrutement + entretiens + formation + reporting RH. Certains SIRH incluent la paie nativement (PayFit, Factorial), d'autres s'intègrent à un outil de paie dédié (Lucca, Elevo). Le choix dépend de la taille et de la maturité RH."
   - question: "Peut-on changer de logiciel de paie en cours d'année ?"
     answer: "Oui, techniquement c'est possible à tout moment. En pratique, le plus simple reste de basculer au 1er janvier pour repartir sur une année civile propre (bilans, DSN annuelle, compteurs de congés). Sinon, basculer en milieu d'année demande une reprise d'historique soignée côté nouveau prestataire et une synchro propre avec la DSN."
   - question: "Combien coûte un logiciel de paie pour une PME ?"
@@ -41,9 +41,9 @@ Ce qu'un logiciel de paie ne fait pas en général : recrutement, onboarding str
 
 Les acteurs historiques : **Silae** (prisé des cabinets d'expertise comptable, très puissant techniquement et adapté aux utilisateurs qui recherchent un paramétrage fin), **Sage Paie** (historique, installé sur PC ou cloud), **ADP** et **Cegid** pour les grands comptes.
 
-Les nouveaux entrants SaaS pour PME : **PayFit** (le plus connu, très orienté UX), **Factorial** (SIRH complet incluant la paie), **Lucca** (pureté paie + modules RH en add-on), **Nibelis** (ETI et BTP). Le choix dépend de la taille, de la convention collective (certaines sont bien mieux gérées par Silae, d'autres par PayFit), et du degré d'internalisation souhaité.
+Les nouveaux entrants SaaS pour PME : **PayFit** (le plus connu, très orienté UX), **Factorial** (SIRH complet incluant la paie), **Lucca** (modules RH à la carte, paie via Pagga), **Nibelis** (ETI et BTP). Le choix dépend de la taille, de la convention collective (Silae et PayFit proposent chacun un paramétrage adapté à de nombreuses conventions), et du degré d'internalisation souhaité.
 
-<div class="case-box"><div class="case-box-title">Cas concret</div><p>Une PME de 25 personnes dans l'événementiel utilisait Excel + un cabinet comptable externe pour sa paie : 850 euros par mois de prestation externe plus 4 heures de saisie mensuelle en interne. Passage en 2024 sur PayFit en self-service : 270 euros par mois, 30 minutes de validation mensuelle par la fondatrice. Gain annuel : près de 8 000 euros plus du temps humain économisé. Contrepartie : prise en charge interne des erreurs, donc besoin d'une bonne formation initiale (assurée par l'éditeur).</p></div>
+<div class="case-box"><div class="case-box-title">Cas concret</div><p>Une PME de 25 personnes dans l'événementiel utilisait Excel + un cabinet comptable externe pour sa paie : 850 euros par mois de prestation externe plus 4 heures de saisie mensuelle en interne. Passage en 2024 sur PayFit en self-service : 270 euros par mois, 30 minutes de validation mensuelle par la fondatrice. Gain annuel : près de 8 000 euros plus du temps humain économisé. L'éditeur assure une formation initiale qui permet à l'entreprise de gérer sa paie en autonomie.</p></div>
 
 <div class="related-terms">
 <div class="related-terms-title">Termes liés</div>

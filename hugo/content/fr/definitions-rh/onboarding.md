@@ -53,7 +53,7 @@ Concrètement, un onboarding digne de ce nom va bien au-delà du café de bienve
 
 ## Les outils qui changent la donne
 
-Un bon SIRH prend en charge 80 % de la partie administrative : contrat à signer électroniquement, documents à transmettre, tâches à cocher pour le manager, formation aux outils internes. Sur le marché français, les solutions les plus utilisées par les PME pour automatiser ce parcours sont PayFit (module onboarding intégré), Factorial (workflows personnalisables) et Lucca (séquences multi-étapes avec notifications).
+Un bon SIRH prend en charge 80 % de la partie administrative : contrat à signer électroniquement, documents à transmettre, tâches à cocher pour le manager, formation aux outils internes. Sur le marché français, parmi les solutions couramment utilisées par les PME pour automatiser ce parcours, on trouve PayFit (module onboarding intégré), Factorial (workflows personnalisables) et Lucca (séquences multi-étapes avec notifications).
 
 Pour les entreprises qui ne veulent pas investir dans un SIRH complet, une simple checklist partagée sur Notion ou Trello, plus un template de mail automatisé, fait déjà une grosse différence. Le vrai luxe, c'est d'avoir du temps humain dédié, pas forcément des outils sophistiqués.
 

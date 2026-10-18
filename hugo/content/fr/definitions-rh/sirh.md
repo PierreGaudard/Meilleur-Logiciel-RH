@@ -50,13 +50,13 @@ Au-delà du stockage, un bon SIRH automatise ce qui doit l'être : la DSN est en
 
 ## SIRH intégré ou composite : le vrai débat
 
-Le SIRH **intégré**, c'est un seul éditeur qui couvre tout. PayFit, Factorial, Lucca en version complète, BambooHR aux US. L'avantage : une seule interface, une seule data, un seul interlocuteur. À noter : le niveau de chaque module dépend de l'éditeur, qui peut être plus ou moins approfondi selon les besoins spécifiques de l'entreprise.
+Le SIRH **intégré**, c'est un seul éditeur qui couvre tout. PayFit, Factorial, Lucca en version complète, BambooHR aux US. L'avantage : une seule interface, une seule data, un seul interlocuteur. Chaque éditeur propose des modules adaptables aux besoins de l'entreprise.
 
-Le SIRH **composite**, c'est la philosophie "best-of-breed". Un outil pour la paie (Silae), un autre pour le recrutement (Welcome Kit), un troisième pour les entretiens (Elevo), le tout relié par API. Une approche qui offre une grande flexibilité et permet de choisir un outil spécialisé pour chaque brique, avec un pilotage à prévoir. C'est le modèle des boîtes de 200+ personnes avec une équipe RH structurée.
+Le SIRH **composite**, c'est la philosophie "best-of-breed". Un outil pour la paie (Silae), un autre pour le recrutement (Welcome Kit), un troisième pour les entretiens (Elevo), le tout relié par API. Une approche qui offre une grande flexibilité et permet de choisir un outil spécialisé et performant pour chaque brique. C'est le modèle des boîtes de 200+ personnes avec une équipe RH structurée.
 
 <div class="case-box">
 <div class="case-box-title">Cas concret</div>
-<p>Une startup de 35 personnes à Paris utilisait Silae pour la paie, Google Forms pour les congés, un Notion pour les entretiens et Excel pour les notes de frais. En 2024 elle bascule sur Factorial (SIRH intégré) : 6 semaines de déploiement, un gain estimé de 2 jours par mois pour l'office manager, et une visibilité enfin unifiée sur les effectifs. Coût annuel : 12 euros par salarié et par mois, soit environ 5 000 euros par an contre 3 500 euros avec la config précédente, mais du temps économisé qui vaut largement la différence.</p>
+<p>Une startup de 35 personnes à Paris gérait ses congés, ses entretiens et ses notes de frais dans des outils séparés (Google Forms, Notion, Excel), en plus de son logiciel de paie. En 2024 elle bascule sur Factorial (SIRH intégré) : 6 semaines de déploiement, un gain estimé de 2 jours par mois pour l'office manager, et une visibilité enfin unifiée sur les effectifs. Coût annuel : 12 euros par salarié et par mois, soit environ 5 000 euros par an contre 3 500 euros avec la config précédente, mais du temps économisé qui vaut largement la différence.</p>
 </div>
 
 <div class="stat-row">

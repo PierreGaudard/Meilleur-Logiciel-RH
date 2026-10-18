@@ -43,10 +43,10 @@ Elevo est un outil reconnu pour les entretiens et le feedback en entreprise. Voi
 
 Certaines équipes RH cherchent toutefois un périmètre différent :
 
-- **La formation** : Elevo se concentre sur les objectifs de développement ; pour gérer aussi le plan de formation, on peut le compléter par un outil spécialisé
-- **La gestion administrative RH** : congés, paie et dossiers salariés relèvent d'un autre outil. Si vous cherchez à centraliser, on peut coupler Elevo à un autre outil
+- **La formation** : Elevo est centré sur les objectifs de développement et peut s'associer à un outil spécialisé pour le plan de formation
+- **La gestion administrative RH** : Elevo est spécialisé dans la gestion des talents et s'associe à un outil dédié pour les congés, la paie et les dossiers salariés
 - **Les entretiens professionnels obligatoires** : Elevo propose des entretiens professionnels ; Empowill est un spécialiste de la conformité légale (entretien tous les 2 ans, bilan à 6 ans)
-- **Le reporting** : Elevo propose des tableaux de bord ; Empowill va plus loin dans le croisement des données entre entretiens et formation
+- **Le reporting** : Elevo propose des tableaux de bord clairs ; Empowill croise en plus les données entre entretiens et formation
 
 Si l'un de ces points vous parle, la suite devrait vous aider à trouver l'outil qui colle mieux à vos besoins. Et pour cadrer votre réflexion en amont, notre [guide pour choisir son logiciel RH](/guides/choisir-logiciel-paie.html) peut être un bon point de départ. Voici également une autre analyse intéressante des alternatives à Elevo qui aborde le sujet sous un angle différent.
 
@@ -79,12 +79,12 @@ Avant de plonger dans le détail de chaque solution, voici une vue d'ensemble de
 </tr>
 <tr>
 <td class="nm">Entretiens professionnels</td>
-<td>Basique</td>
+<td>Disponible</td>
 <td class="ck">✓ Complet</td>
 <td class="ck">✓</td>
 <td>Partiel</td>
 <td class="ck">✓</td>
-<td>Basique</td>
+<td>Disponible</td>
 </tr>
 <tr>
 <td class="nm">Feedback 360</td>
@@ -92,17 +92,17 @@ Avant de plonger dans le détail de chaque solution, voici une vue d'ensemble de
 <td class="ck">✓</td>
 <td class="ck">✓</td>
 <td class="ck">✓</td>
-<td>Basique</td>
-<td class="cr">✗</td>
+<td>Disponible</td>
+<td>Hors périmètre</td>
 </tr>
 <tr>
 <td class="nm">Plan de formation</td>
-<td class="cr">✗</td>
+<td>Hors périmètre</td>
 <td class="ck">✓ Natif</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
 <td>Via module</td>
-<td>Basique</td>
+<td>Disponible</td>
 </tr>
 <tr>
 <td class="nm">OKR / objectifs</td>
@@ -115,28 +115,28 @@ Avant de plonger dans le détail de chaque solution, voici une vue d'ensemble de
 </tr>
 <tr>
 <td class="nm">Engagement / sondages</td>
-<td>Basique</td>
+<td>Disponible</td>
 <td class="ck">✓</td>
-<td>Basique</td>
+<td>Disponible</td>
 <td class="ck">✓ Complet</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
 </tr>
 <tr>
 <td class="nm">SIRH / admin RH</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
 <td class="ck">✓</td>
 <td class="ck">✓</td>
 </tr>
 <tr>
 <td class="nm">Paie integree</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
 <td>Via Silae</td>
 <td class="ck">✓</td>
 </tr>
@@ -166,7 +166,7 @@ Avant de plonger dans le détail de chaque solution, voici une vue d'ensemble de
 
 <div class="alt-detail">
 <h3><img alt="Logo Empowill" height="32" src="/assets/images/logos/empowill.png" style="border-radius:6px;vertical-align:middle;margin-right:8px" title="Logo Empowill" width="32"/>Empowill en résumé</h3>
-<p><strong>Empowill</strong> est l'alternative la plus naturelle à Elevo pour les PME qui souhaitent une gestion des talents complète. Là où Elevo mise avant tout sur le feedback et les people reviews, Empowill va plus loin en intégrant nativement la <strong>gestion de la formation professionnelle</strong> : recueil des besoins, plan de formation, suivi budgétaire, et conformité avec les obligations légales. C'est un vrai différenciant.</p>
+<p><strong>Empowill</strong> est l'alternative la plus naturelle à Elevo pour les PME qui souhaitent une gestion des talents complète. Elevo est apprécié pour le feedback et les people reviews ; Empowill intègre en plus nativement la <strong>gestion de la formation professionnelle</strong> : recueil des besoins, plan de formation, suivi budgétaire, et conformité avec les obligations légales. C'est un vrai différenciant.</p>
 <p>Sur les entretiens, Empowill est au moins aussi solide qu'Elevo. Les <strong>entretiens professionnels obligatoires</strong> (tous les 2 ans) sont gérés de manière rigoureuse : trames conformes au Code du travail, alertes automatiques sur les échéances, génération du bilan à 6 ans. Pour les RH qui passaient des heures à traquer les retards dans un tableur Excel, le gain de temps est immédiat.</p>
 <p>L'outil propose aussi des campagnes de feedback 360, un suivi des objectifs, et des tableaux de bord qui croisent entretiens et formation. C'est cette vision globale du développement des collaborateurs qui fait la différence.</p>
 <table class="comp-table">
@@ -205,7 +205,7 @@ Avant de plonger dans le détail de chaque solution, voici une vue d'ensemble de
 <h3><img alt="Logo Javelo" height="32" src="/assets/images/logos/javelo.png" style="border-radius:6px;vertical-align:middle;margin-right:8px" title="Logo Javelo" width="32"/>Javelo en résumé</h3>
 <p><strong>Javelo</strong> est le concurrent le plus frontal d'Elevo. Les deux outils partagent un ADN commun : digitaliser les campagnes d'entretiens, favoriser le feedback continu, et structurer le management de la performance. Sur le papier, le périmètre est quasi identique.</p>
 <p>Là où Javelo tire son épingle du jeu, c'est sur le <strong>prix</strong> et la <strong>simplicité de déploiement</strong>. Avec un tarif qui démarre à 3 euros par salarié par mois, c'est l'une des solutions les plus accessibles du marché. Le paramètre est rapide, les RH sont autonomes sur la création des campagnes, et l'adoption par les managers est généralement bonne grâce à une interface épurée.</p>
-<p>Javelo est idéal pour la performance et les entretiens ; pour un périmètre plus large, il peut être complété par d'autres outils.</p>
+<p>Javelo est idéal pour la performance et les entretiens ; il s'intègre bien à un écosystème d'outils RH.</p>
 <table class="comp-table">
 <thead><tr><th>Critère</th><th>Détail</th></tr></thead>
 <tbody>
@@ -276,7 +276,7 @@ Avant de plonger dans le détail de chaque solution, voici une vue d'ensemble de
 <div class="alt-detail">
 <h3><img alt="Logo Lucca" height="32" src="/assets/images/logos/lucca.png" style="border-radius:6px;vertical-align:middle;margin-right:8px" title="Logo Lucca" width="32"/>Lucca en résumé</h3>
 <p><strong>Lucca</strong> n'est pas un concurrent direct d'Elevo sur le talent management pur. Mais son module <strong>Poplee Entretiens</strong> couvre les campagnes d'entretiens, le suivi des objectifs et les people reviews. Et surtout, Lucca propose, en plus, une <strong>suite RH complète</strong> autour (congés avec Figgo, notes de frais avec Cleemy, temps avec Timmi, paie avec Pagga).</p>
-<p>C'est l'option à considérer si votre frustration avec Elevo vient justement du fait que vous devez maintenir deux, trois voire quatre outils différents pour couvrir tout votre périmètre RH. Lucca centralise tout, avec une expérience collaborateur soignée.</p>
+<p>C'est l'option à considérer si vous souhaitez couvrir tout votre périmètre RH dans un seul outil, au-delà de la gestion des talents. Lucca centralise tout, avec une expérience collaborateur soignée.</p>
 <p>Lucca propose une suite modulaire que l'on compose selon ses besoins, avec un feedback 360 et un module formation disponibles.</p>
 <table class="comp-table">
 <thead><tr><th>Critère</th><th>Détail</th></tr></thead>

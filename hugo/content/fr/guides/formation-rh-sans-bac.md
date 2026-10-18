@@ -67,9 +67,9 @@ Pas la fac (qui demande le bac à l'inscription). Voici des organismes proposant
 
 **CNAM** : certificats de compétences GRH en cours du soir ou à distance. Modulaire : vous validez à votre rythme en 12 à 18 mois. Environ 150 € par unité d'enseignement. Vous gardez votre salaire pendant la transition.
 
-**IFOCOP** : 4 mois de formation intensive puis 4 mois de stage. Taux de retour à l'emploi : 82 % à 6 mois (promotions 2024). Présent en Île-de-France et dans quelques grandes villes.
+**IFOCOP** : 4 mois de formation intensive puis 4 mois de stage. Taux de retour à l'emploi : 82 % à 6 mois (promotions 2024). Présent en Île-de-France et dans plusieurs grandes villes.
 
-**Studi** : titre pro assistant RH 100 % à distance. Environ 3 500 €, éligible CPF. **OpenClassrooms** : parcours similaire avec mentorat hebdomadaire par un pro RH en poste. 300 €/mois. Les deux proposent une formation 100 % en ligne, flexible et compatible avec un emploi, pour les candidats autonomes.
+**Studi** : titre pro assistant RH 100 % à distance. Environ 3 500 €, éligible CPF. **OpenClassrooms** : parcours similaire avec mentorat hebdomadaire par un pro RH en poste. 300 €/mois. Les deux proposent une formation 100 % en ligne, flexible et compatible avec un emploi.
 
 <div class="compare-table-wrap">
 <table class="compare-table">

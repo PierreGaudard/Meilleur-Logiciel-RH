@@ -215,7 +215,7 @@ Les tarifs affichés ne représentent qu'une partie de la facture de la premièr
 <th>Modèle de tarification</th>
 <th>Fonctionnement</th>
 <th>Exemples</th>
-<th>Ce qui s'ajoute</th>
+<th>À noter</th>
 </tr>
 </thead>
 <tbody>
@@ -229,13 +229,13 @@ Les tarifs affichés ne représentent qu'une partie de la facture de la premièr
 <td class="nm">Par collaborateur</td>
 <td>Montant unitaire mensuel, souvent dégressif</td>
 <td>Lucca, à partir de 7,40 €</td>
-<td>La facture suit les embauches</td>
+<td>Le tarif s'ajuste à la taille réelle de l'équipe</td>
 </tr>
 <tr>
 <td class="nm">Sur devis</td>
 <td>Prix négocié par modules et par volume</td>
 <td>Factorial, PayFit, Silae, Empowill</td>
-<td>Coût de mise en service et durée d'engagement</td>
+<td>Tarif personnalisé selon les modules et le volume, accompagnement à la mise en service</td>
 </tr>
 </tbody>
 </table>

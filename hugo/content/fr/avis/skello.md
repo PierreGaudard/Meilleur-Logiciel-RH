@@ -127,7 +127,7 @@ Voici le détail de Skello module par module.
 <tr>
 <td>Demandes de congés et absences</td>
 <td>Bon</td>
-<td>Workflow correct, soldes affichés. Moins poussé qu'un Lucca Figgo dédié.</td>
+<td>Workflow de validation, soldes affichés.</td>
 </tr>
 <tr>
 <td>Reporting RH côté direction</td>
@@ -245,7 +245,7 @@ C'est le coeur de l'<strong>offre</strong> Skello, et c'est mérité. La constru
 <div class="point-card">
 <h3>2. La gestion native HCR et conventions terrain</h3>
 <p>
-Beaucoup de logiciels de planning savent faire un planning. Très peu savent gérer les contraintes de la convention HCR (hôtels-cafés-restaurants) sans bidouille. Coupures, indemnités de panier, blanchissage, primes de dimanche, repos compensateur, modulation annuelle des heures : tout est géré nativement. Pour un restaurateur, c'est précisément ça qui fait gagner les heures les plus dures (préparation des éléments variables de paie, contrôle des dépassements). Factorial, SIRH généraliste, couvre un périmètre plus large, tandis que Skello approfondit la convention HCR.
+Beaucoup de logiciels de planning savent faire un planning. Très peu savent gérer les contraintes de la convention HCR (hôtels-cafés-restaurants) sans bidouille. Coupures, indemnités de panier, blanchissage, primes de dimanche, repos compensateur, modulation annuelle des heures : tout est géré nativement. Pour un restaurateur, c'est précisément ça qui fait gagner les heures les plus dures (préparation des éléments variables de paie, contrôle des dépassements). Factorial est un SIRH généraliste complet qui couvre un large périmètre RH, et Skello approfondit la convention HCR.
 </p>
 </div>
 
@@ -302,23 +302,23 @@ Sur le segment du planning RH pour les **équipes de terrain**, Skello a trois c
 </tr>
 <tr>
 <td>Convention HCR native</td>
-<td>Excellente <span class="badge-rec">Top</span></td>
-<td>Très bonne</td>
-<td>Bonne</td>
+<td>Excellente</td>
+<td>Disponible</td>
+<td>Disponible</td>
 <td>SIRH généraliste complet</td>
 </tr>
 <tr>
 <td>Application mobile</td>
-<td>Excellente <span class="badge-rec">Top</span></td>
-<td>Très bonne</td>
-<td>Bonne</td>
+<td>Excellente</td>
+<td>Disponible</td>
+<td>Disponible</td>
 <td>Disponible</td>
 </tr>
 <tr>
 <td>Préparation paie / connecteurs</td>
 <td>Excellente</td>
-<td>Très bonne</td>
-<td>Bonne</td>
+<td>Disponible</td>
+<td>Disponible</td>
 <td>Paie native FR</td>
 </tr>
 <tr>
@@ -332,7 +332,7 @@ Sur le segment du planning RH pour les **équipes de terrain**, Skello a trois c
 </table>
 </div>
 
-Pour un restaurant ou un hôtel français en 2026, Skello est un choix pertinent. Combo est une alternative crédible, surtout sur le retail et la coiffure. Snapshift obtient de bons retours sur les petites brasseries et convient aux structures de taille modeste. Factorial est un SIRH généraliste complet, qui propose aussi un module de planning en complément de ses autres fonctions.
+Pour un restaurant ou un hôtel français en 2026, Skello est un choix pertinent. Combo est une alternative crédible, surtout sur le retail et la coiffure. Snapshift obtient de bons retours, notamment auprès des brasseries, et propose une solution adaptée à la restauration. Factorial est un SIRH généraliste complet, qui propose aussi un module de planning en complément de ses autres fonctions.
 
 <div class="info-box">
 Pour creuser, lis notre guide des <a href="/alternatives/skello.html" style="color:#15803d;font-weight:600">alternatives à Skello</a> ou notre <a href="/guides/choisir-logiciel-paie.html" style="color:#15803d;font-weight:600">guide pour choisir un logiciel de planning RH</a>.

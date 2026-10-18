@@ -140,7 +140,7 @@ Si les jours n'apparaissent pas sur votre bulletin alors que les conditions sont
 
 ## Gérer le fractionnement avec un logiciel RH {#logiciel-rh}
 
-Côté RH, le calcul du fractionnement est une source d'erreurs classique. Entre les compteurs de congé principal et de 5e semaine, les dates de prise, les cas de renonciation, le suivi manuel sur Excel finit toujours par planter. Un salarié qui réclame ses jours aux prud'hommes deux ans après, ça arrive plus souvent qu'on ne le croit.
+Côté RH, le calcul du fractionnement est une source d'erreurs classique. Entre les compteurs de congé principal et de 5e semaine, les dates de prise, les cas de renonciation, le suivi manuel sur tableur demande une vigilance particulière, qu'un logiciel dédié permet d'alléger. Un salarié qui réclame ses jours aux prud'hommes deux ans après, ça arrive plus souvent qu'on ne le croit.
 
 Les logiciels comme [PayFit](/avis/payfit.html) ou [Factorial](/avis/factorial.html) automatisent le suivi du fractionnement : séparation congé principal / 5e semaine, calcul automatique des jours acquis, alerte en cas de renonciation manquante, et affichage correct sur le bulletin. Pour une PME qui gère plus de 20 salariés, c'est un gain de temps et de conformité. Notre [guide pour choisir votre logiciel de paie](/guides/choisir-logiciel-paie.html) détaille les critères à vérifier.
 

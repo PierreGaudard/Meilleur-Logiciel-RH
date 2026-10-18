@@ -94,15 +94,15 @@ Voici le panorama des cinq outils. Données issues des sites officiels en juin 2
 <td class="ck">✓ 100+ jobboards</td>
 <td class="ck">✓</td>
 <td class="ck">✓</td>
-<td class="cr">✗ (audience propre)</td>
+<td>Audience propre</td>
 </tr>
 <tr>
 <td class="nm">Lien avec le planning</td>
 <td class="ck">✓ Natif</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
-<td class="cr">✗</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
+<td>Hors périmètre</td>
 </tr>
 <tr>
 <td class="nm">Vivier de candidats</td>
@@ -136,13 +136,13 @@ Voici le panorama des cinq outils. Données issues des sites officiels en juin 2
 
 <div class="alt-detail">
 <h3><img alt="Logo Skello" height="32" src="/assets/images/logos/skello-logo.png" style="border-radius:6px;vertical-align:middle;margin-right:8px" title="Logo Skello" width="32"/>Skello en résumé</h3>
-<p><strong>Skello</strong>, éditeur français né en 2016, outille les équipes de terrain en planning et gestion des temps, avec une présence forte en hôtellerie-restauration. Son module Recrutement, en cours de lancement sur skello.io avec une liste d'attente ouverte, prend le problème par un bout que personne d'autre ne couvre : la fin du processus.</p>
+<p><strong>Skello</strong>, éditeur français né en 2016, outille les équipes de terrain en planning et gestion des temps, avec une présence forte en hôtellerie-restauration. Son module Recrutement, en cours de lancement sur skello.io avec une liste d'attente ouverte, se distingue par son lien direct avec la fin du processus : contrat, DPAE et planning.</p>
 <p>Le parcours annoncé tient en trois temps. Une annonce créée une fois part sur plus de 15 plateformes d'emploi. Les candidatures se gèrent dans un espace unique, entretiens et messages compris. Et au moment du oui, les informations du candidat basculent dans Skello sans ressaisie : contrat généré, DPAE envoyée, premier shift posé au planning. L'éditeur annonce 10 fois plus de candidats par offre grâce à la multidiffusion et 42 % de temps de recrutement gagné en moyenne, sur plus de 1,9 million d'offres déjà publiées via la plateforme de diffusion.</p>
 <div class="pros-cons">
 <div class="pros">
 <h4>Points forts</h4>
 <ul>
-<li>Seul outil du panel qui enchaîne embauche, contrat, DPAE et planning</li>
+<li>Chaîne intégrée de l'embauche au contrat, à la DPAE et au planning</li>
 <li>Multidiffusion sur 15+ plateformes en un clic</li>
 <li>Pas de nouvel outil à apprendre pour les équipes déjà sur Skello</li>
 <li>Pensé pour les métiers à shifts (CHR, commerce, santé)</li>
@@ -225,7 +225,7 @@ Voici le panorama des cinq outils. Données issues des sites officiels en juin 2
 </ul>
 </div>
 </div>
-<p><strong>Idéal si</strong> : vous cherchez un profil précis de salle ou de cuisine et que le volume de candidatures n'est pas votre problème.</p>
+<p><strong>Idéal si</strong> : vous cherchez un profil précis de salle ou de cuisine auprès d'une audience dédiée au secteur.</p>
 </div>
 
 ## Quel logiciel de recrutement selon votre établissement {#quiz}

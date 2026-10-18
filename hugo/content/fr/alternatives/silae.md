@@ -43,11 +43,11 @@ Silae est un moteur de paie très complet. Pour une PME qui gère sa paie en int
 
 En 2026, plusieurs situations peuvent amener les entreprises à regarder d'autres solutions :
 
-- **Tarification sur devis** : Silae propose une grille tarifaire sur devis, adaptée à chaque profil d'entreprise via son réseau d'intégrateurs.
-- **Interface orientée gestionnaires de paie** : Silae propose une interface orientée gestionnaires de paie, avec un paramétrage très fin.
-- **Moteur de paie spécialisé** : Silae est un moteur de paie spécialisé qui peut être associé à un SIRH au choix pour couvrir les entretiens, la formation, le recrutement ou les compétences.
+- **Tarification sur devis** : Silae propose une tarification personnalisée, adaptée à chaque profil d'entreprise via son réseau d'intégrateurs.
+- **Interface orientée gestionnaires de paie** : Silae propose une interface experte pensée pour les gestionnaires de paie, avec un paramétrage très fin.
+- **Moteur de paie spécialisé** : Silae est un moteur de paie spécialisé, qui s'associe librement au SIRH de votre choix pour couvrir les entretiens, la formation, le recrutement ou les compétences.
 - **Écosystème d'intégrateurs** : Silae s'appuie sur un large écosystème d'intégrateurs et de cabinets comptables qui accompagnent la mise en place.
-- **Besoin de simplicité** : pour les PME de moins de 100 salariés avec une paie relativement standard, Silae répond aux besoins de paie avancée ; les PME à paie standard peuvent opter pour des solutions plus simples.
+- **Besoin de simplicité** : Silae répond aux besoins de paie avancée ; pour les PME de moins de 100 salariés avec une paie relativement standard, d'autres options s'adaptent aussi à ce profil.
 
 Si vous vous retrouvez dans l'une de ces situations, notre [guide pour choisir son logiciel de paie](/guides/choisir-logiciel-paie.html) détaille les critères à analyser avant de se lancer.
 
@@ -90,38 +90,38 @@ Ce tableau résume les caractéristiques clés des **5 alternatives** face à Si
 <tr>
 <td class="nm">Multi-sociétés</td>
 <td class="ck">Oui</td>
-<td class="cr">Non</td>
+<td>Hors périmètre</td>
 <td class="ck">Oui</td>
 <td class="ck">Oui</td>
 <td class="ck">Oui</td>
-<td class="cr">Non</td>
+<td>Hors périmètre</td>
 </tr>
 <tr>
 <td class="nm">SIRH intégré</td>
-<td class="cr">Non</td>
-<td>Basique</td>
-<td class="cr">Non</td>
+<td>Hors périmètre</td>
+<td>Disponible</td>
+<td>Hors périmètre</td>
 <td class="ck">Oui</td>
-<td class="cr">Non</td>
+<td>Hors périmètre</td>
 <td class="ck">Oui</td>
 </tr>
 <tr>
 <td class="nm">App mobile</td>
-<td class="cr">Non</td>
+<td>Hors périmètre</td>
 <td class="ck">Oui</td>
-<td class="cr">Non</td>
+<td>Hors périmètre</td>
 <td class="ck">Oui</td>
-<td class="cr">Non</td>
+<td>Hors périmètre</td>
 <td class="ck">Oui</td>
 </tr>
 <tr>
 <td class="nm">Mode expert paie</td>
 <td class="ck">Oui</td>
-<td class="cr">Non</td>
+<td>Hors périmètre</td>
 <td class="ck">Oui</td>
 <td class="ck">Oui</td>
 <td>N/A (externalisé)</td>
-<td class="cr">Non</td>
+<td>Hors périmètre</td>
 </tr>
 <tr>
 <td class="nm">Prix / salarié / mois</td>
@@ -398,7 +398,7 @@ Avant de vous décider, testez au minimum deux solutions avec vos données réel
 
 ## Migration depuis Silae : les 5 étapes clés {#migration}
 
-Migrer depuis Silae demande un peu plus de préparation que pour un logiciel SaaS classique, car vos données transitent souvent par un intégrateur. Voici les étapes à suivre.
+Migrer depuis Silae s'organise avec l'appui de votre intégrateur, par lequel transitent souvent vos données. Voici les étapes à suivre.
 
 ### 1. Choisissez le bon timing
 
