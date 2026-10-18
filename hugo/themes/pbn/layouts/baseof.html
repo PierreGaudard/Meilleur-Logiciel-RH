@@ -4,8 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{- if site.Params.pbn.darkToggle }}
-{{- /* Mode sombre choisi par le lecteur (bouton de l'en-tête), posé avant l'affichage ; "auto" suit aussi le réglage du système tant que le lecteur n'a rien choisi. Préférence gardée dans le navigateur, jamais transmise. */}}
-<script>(function(d){d.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="sombre"{{ if eq (string site.Params.pbn.darkToggle) "auto" }}||(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){{ end }})d.setAttribute("data-theme","sombre")}catch(e){}})(document.documentElement)</script>
+{{- /* Mode clair / sombre choisi par le lecteur (bouton de l'en-tête), posé avant l'affichage ; "auto" suit aussi le réglage du système tant que le lecteur n'a rien choisi. Site sombre par défaut (colors.scheme = "dark") : le bouton propose le clair. Préférence gardée dans le navigateur, jamais transmise. */}}
+{{- $auto := eq (string site.Params.pbn.darkToggle) "auto" }}
+{{- if eq (site.Params.pbn.colors.scheme | default "light") "dark" }}
+<script>(function(d){d.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="clair"{{ if $auto }}||(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches){{ end }})d.setAttribute("data-theme","clair")}catch(e){}})(document.documentElement)</script>
+{{- else }}
+<script>(function(d){d.classList.add("js");try{var t=localStorage.getItem("theme");if(t==="sombre"{{ if $auto }}||(!t&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){{ end }})d.setAttribute("data-theme","sombre")}catch(e){}})(document.documentElement)</script>
+{{- end }}
 {{- else }}
 <script>document.documentElement.classList.add("js")</script>
 {{- end }}

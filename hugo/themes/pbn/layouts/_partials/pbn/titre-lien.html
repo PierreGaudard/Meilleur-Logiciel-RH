@@ -1,5 +1,5 @@
 {{- /* Titre court d'une page (.LinkTitle : cartes, fil d'Ariane, listes), jetons d'année remplacés. Page de taxonomie
      sans fichier : pbn/titre-auto.html. Contexte : la page. */ -}}
 {{- $t := .LinkTitle -}}
-{{- if and (not .File) (in (slice "term" "taxonomy") .Kind) }}{{ with partialCached "pbn/titre-auto.html" . .Path }}{{ $t = .link }}{{ end }}{{ end -}}
+{{- if and (not .File) (in (slice "term" "taxonomy" "section") .Kind) }}{{ with partialCached "pbn/titre-auto.html" . .Path }}{{ $t = .link }}{{ end }}{{ end -}}
 {{- return (partial "pbn/annee.html" $t) -}}

@@ -1,18 +1,46 @@
 {{- /* Titre d'une page générée par Hugo sans fichier (index ou terme de taxonomie), à la place du titre automatique mis
      en capitales à chaque mot (« Matières Et Tissus ») ou laissé en anglais (« Categories »). Terme : titre de sa page
-     documentée (pbn/cat-doc.html), sinon le terme tel qu'écrit dans le front matter. Index : libellé traduit
-     (i18n categories ou tags). Renvoie dict "title" "link", ou une chaîne vide si la page a un fichier.
+     documentée (pbn/cat-doc.html), sinon le terme tel qu'écrit dans le front matter (1.7.1 : lu sur la première page qui le porte, casse et accents compris). Index : libellé traduit
+     (i18n categories ou tags). Index des rubriques en section sans _index.md (1.7.1) : libellé traduit. Renvoie dict "title" "link", ou une chaîne vide si la page a un fichier.
      Appel : partialCached "pbn/titre-auto.html" . .Path. */ -}}
 {{- $out := "" -}}
 {{- if not .File -}}
   {{- if eq .Kind "term" -}}
     {{- with partial "pbn/cat-doc.html" . }}{{ $out = dict "title" .Title "link" .LinkTitle }}
-    {{- else }}{{ with .Data.Term }}{{ $out = dict "title" (string .) "link" (string .) }}{{ end }}{{ end -}}
+    {{- else -}}
+      {{- /* 1.7.1 : terme tel qu'écrit dans le front matter (casse et accents) : .Data.Term n'en garde que la forme en
+           minuscules. Graphies lues sur les pages qui le portent : la première qui a une majuscule (nom propre, sigle),
+           sinon la première trouvée. */ -}}
+      {{- $cle := lower (string .Data.Term) -}}
+      {{- $t := string .Data.Term -}}
+      {{- $premiere := "" }}{{ $majuscule := "" -}}
+      {{- range .Pages -}}
+        {{- if not $majuscule -}}
+          {{- with index .Params $.Data.Plural -}}
+            {{- range (cond (reflect.IsSlice .) . (slice .)) -}}
+              {{- $v := string . -}}
+              {{- if eq (lower $v) $cle -}}
+                {{- if not $premiere }}{{ $premiere = $v }}{{ end -}}
+                {{- if and (not $majuscule) (ne $v (lower $v)) }}{{ $majuscule = $v }}{{ end -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+      {{- $t = $majuscule | default $premiere | default $t -}}
+      {{- with $t }}{{ $out = dict "title" . "link" . }}{{ end -}}
+    {{- end -}}
   {{- else if eq .Kind "taxonomy" -}}
     {{- $l := "" -}}
     {{- if eq .Data.Plural (site.Params.pbn.categoryTaxonomy | default "categories") }}{{ $l = i18n "categories" }}
     {{- else if eq .Data.Plural "tags" }}{{ $l = i18n "tags" }}{{ end -}}
     {{- with $l }}{{ $out = dict "title" . "link" . }}{{ end -}}
+  {{- else if eq .Kind "section" -}}
+    {{- /* 1.7.1 : index des rubriques (section de params.pbn.categorySections dont les sous-sections sont les rubriques)
+         sans _index.md : libellé traduit (i18n categories) au lieu du titre automatique de Hugo (« Categories »). */ -}}
+    {{- if and (in (site.Params.pbn.categorySections | default slice) (strings.TrimPrefix "/" .Path)) (gt (len .Sections) 0) -}}
+      {{- $l := i18n "categories" }}{{ $out = dict "title" $l "link" $l -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- return $out -}}

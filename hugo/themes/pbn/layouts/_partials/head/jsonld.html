@@ -37,7 +37,7 @@
       "publisher" (dict "@type" "Organization" "@id" $orgID "name" site.Title)
       "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink) -}}
   {{- with .Params.image }}{{ $art = merge $art (dict "image" (dict "@type" "ImageObject" "url" (partial "pbn/img-src.html" (dict "src" . "page" $ "abs" true)))) }}{{ end -}}
-  {{- with .Params.tags }}{{ $art = merge $art (dict "keywords" .) }}{{ end -}}
+  {{- with partial "pbn/libelles-termes.html" (dict "page" . "taxo" "tags") }}{{ $art = merge $art (dict "keywords" .) }}{{ end -}}
   {{- $graph = $graph | append $art -}}
   {{- $cat := partial "pbn/categorie.html" . -}}
   {{- with .Parent }}{{ if and (not .IsHome) (not (and $cat (eq .RelPermalink $cat.RelPermalink))) }}{{ $crumbs = $crumbs | append (dict "name" (partial "pbn/titre.html" .) "item" .Permalink) }}{{ end }}{{ end -}}

@@ -1,0 +1,18 @@
+{{- /* Libellés des termes d'une page pour une taxonomie (1.7.1) : titre de la page de terme quand elle existe
+     (content/<taxonomie>/<terme>/_index.md), sinon le terme tel qu'écrit dans le front matter, sans la mise en
+     majuscule de chaque mot que Hugo applique aux titres automatiques (pbn/titre-lien.html, pbn/titre-auto.html).
+     Taxonomie désactivée : valeurs brutes du front matter. Sert aux pastilles « # » de l'article, aux balises
+     article:tag et au champ keywords du JSON-LD. Contexte : dict "page" <page> "taxo" <nom, défaut tags>.
+     Renvoie une liste de chaînes. */ -}}
+{{- $p := .page -}}
+{{- $tax := .taxo | default "tags" -}}
+{{- $out := slice -}}
+{{- $terms := $p.GetTerms $tax -}}
+{{- if $terms -}}
+  {{- range $terms }}{{ $out = $out | append (partial "pbn/titre-lien.html" .) }}{{ end -}}
+{{- else -}}
+  {{- with index $p.Params $tax -}}
+    {{- if reflect.IsSlice . }}{{ range . }}{{ $out = $out | append (string .) }}{{ end }}{{ else }}{{ $out = $out | append (string .) }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

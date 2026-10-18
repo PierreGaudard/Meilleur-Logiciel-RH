@@ -514,7 +514,7 @@ button, input { font: inherit; }
 .hero-image::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0, 0, 0, calc(var(--voile) * 0.55)) 0%, rgba(0, 0, 0, var(--voile)) 55%, rgba(0, 0, 0, calc(var(--voile) + 0.15)) 100%); }
 .hero-image.align-left::before { background: linear-gradient(90deg, rgba(0, 0, 0, calc(var(--voile) + 0.15)) 0%, rgba(0, 0, 0, var(--voile)) 45%, rgba(0, 0, 0, calc(var(--voile) * 0.3)) 100%); }
 .hero-image .hero-title, .hero-image .hero-desc { text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35); }
-.hero-image .hero-badge { background: rgba(255, 255, 255, 0.18); }
+:where(.hero-image) .hero-badge { background: rgba(255, 255, 255, 0.18); }
 .hero-image .hero-desc { opacity: 0.95; }
 .hero-image .hero-accent { color: var(--c-accent-dark); }
 .hero-image .search-form { background: #FFFFFF; border-color: transparent; }
@@ -557,7 +557,7 @@ button, input { font: inherit; }
 
 /* Bloc chiffres */
 .chiffres { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 1.5rem; margin: 0; }
-.chiffre { display: flex; flex-direction: column-reverse; align-items: center; gap: 0.35rem; text-align: center; }
+.chiffre { display: flex; flex-direction: column-reverse; justify-content: flex-end; align-items: center; gap: 0.35rem; text-align: center; }
 .chiffre dd { margin: 0; font-family: var(--f-heading); font-weight: var(--h-weight); font-size: clamp(2.1rem, 4.6vw, 3.3rem); line-height: 1; letter-spacing: var(--h-tracking); color: var(--c-accent); }
 .fond-primaire .chiffre dd, .fond-accent .chiffre dd { color: inherit; }
 .chiffre dt { font-family: var(--f-ui); font-size: 0.92rem; opacity: 0.82; }
@@ -679,8 +679,8 @@ button, input { font: inherit; }
 .header-search-panel { position: absolute; right: 0; top: calc(100% + 12px); z-index: 60; width: min(560px, calc(100vw - 32px)); padding: 0.6rem; background: var(--c-bg); color: var(--c-text); border: 1px solid var(--c-border); border-radius: var(--radius); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18); }
 .header-search-panel .search { max-width: none; margin: 0; }
 .theme-icon-sun { display: none; }
-html[data-theme="sombre"] .theme-icon-sun { display: block; }
-html[data-theme="sombre"] .theme-icon-moon { display: none; }
+html[data-theme="sombre"] .theme-icon-sun, html.scheme-dark:not([data-theme="clair"]) .theme-icon-sun { display: block; }
+html[data-theme="sombre"] .theme-icon-moon, html.scheme-dark:not([data-theme="clair"]) .theme-icon-moon { display: none; }
 html[data-theme="sombre"] .tuile-sans-image, html[data-theme="sombre"] .card-media { background-color: var(--c-surface); }
 
 /* En-tête transparent sur la photo du premier héros de l'accueil (params.pbn.headerTransparent) : texte blanc sur un
@@ -756,4 +756,44 @@ html[data-theme="sombre"] .tuile-sans-image, html[data-theme="sombre"] .card-med
   .header-search { position: static; }
   .header-search-panel { left: 16px; right: 16px; top: 100%; width: auto; }
   .header-search > summary, .theme-toggle { width: 34px; height: 34px; }
+}
+
+/* 1.7.1 : défauts relevés au contrôle visuel final du 2026-10-18 (rapports final-lot1 à 3), corrigés d'office. */
+
+/* Écart des grilles de rubriques et des tuiles : --gap déclaré longueur, « 0 » sans unité accepté (0px). La largeur des
+   cartes se calcule sur --gap : un site change l'écart par --gap, pas par gap seul. */
+@property --gap { syntax: "<length-percentage>"; inherits: true; initial-value: 0px; }
+
+/* Cartes de rubrique : un mot long passe à la ligne (césure, sinon coupure) au lieu d'être rogné ; taille adaptée en
+   deux colonnes compactes. */
+.cat-title, .tuile-title { overflow-wrap: break-word; }
+@media (max-width: 760px) {
+  .cat-title { font-size: clamp(0.88rem, 3.9vw, 1rem); -webkit-hyphens: auto; hyphens: auto; }
+}
+
+/* Blocs d'accueil avec « Voir tout » : lien à droite du titre (centré ou à gauche), jamais avant l'introduction, en
+   ordinateur comme en mobile. */
+.section-head.section-head-lien { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1.2rem; }
+.section-head-lien > .section-head-text { grid-column: 1; min-width: 0; }
+.section-head-lien > .section-link { grid-column: 2; justify-self: end; align-self: last baseline; }
+:where(.home-magazine .bloc:not(.align-left), .bloc.align-center) .section-head.section-head-lien { grid-template-columns: 1fr auto 1fr; }
+:where(.home-magazine .bloc:not(.align-left), .bloc.align-center) .section-head-lien > .section-head-text { grid-column: 2; }
+:where(.home-magazine .bloc:not(.align-left), .bloc.align-center) .section-head-lien > .section-link { grid-column: 3; }
+
+/* En-tête d'article en bandeau : pastille de la signature inversée, visible sur la couleur principale. */
+.post-entete-bandeau .byline-avatar { background: var(--c-bandeau-text, var(--c-on-primary)); color: var(--c-bandeau-bg, var(--c-primary)); }
+
+/* Ligne de signature réduite à la date de mise à jour (type A sans signature) : sans filet, alignée à gauche. */
+.post-byline.post-byline-date { padding-top: 0; margin-top: 0.6rem; border-top: 0; }
+.post-byline-date .byline-updated { margin-left: 0; }
+
+/* Gabarit classic avec sommaire latéral : titre, chapô et image alignés sur la colonne du texte. */
+@media (min-width: 981px) {
+  .article-classic .post-sommaire:not(.post-entete-bandeau):not(.post-entete-photo) .post-header-text { max-width: 780px; margin-left: calc(260px + 3rem); margin-right: 0; }
+  .article-classic .post-sommaire:not(.post-entete-bandeau):not(.post-entete-photo) .post-image { max-width: 780px; margin-left: calc(260px + 3rem); margin-right: 0; }
+}
+
+/* En-tête sur deux lignes (headerLayout = "deux-lignes") : marge de la ligne du logo, comme la disposition centre. */
+@media (min-width: 761px) {
+  .header-deux-lignes .site-logo { padding: 0.9rem 0 0.5rem; }
 }

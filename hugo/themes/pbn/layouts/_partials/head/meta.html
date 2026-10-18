@@ -53,7 +53,7 @@
 {{- range .Params.categories }}
 <meta property="article:section" content="{{ . }}">
 {{- end }}
-{{- range .Params.tags }}
+{{- range partial "pbn/libelles-termes.html" (dict "page" . "taxo" "tags") }}
 <meta property="article:tag" content="{{ . }}">
 {{- end }}
 {{- end }}

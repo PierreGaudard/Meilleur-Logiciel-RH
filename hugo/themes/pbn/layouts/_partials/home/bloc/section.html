@@ -14,7 +14,9 @@
   {{- with $titre }}{{ $h = printf `%s<h2 class="section-title">%s</h2>` $h (partial "pbn/annee.html" . | htmlEscape) }}{{ end -}}
   {{- with $h }}{{ $h = printf `<div class="section-head-text">%s</div>` . }}{{ end -}}
   {{- with .lien }}{{ $h = printf `%s<a href="%s" class="section-link">%s</a>` $h .RelPermalink (i18n "view_all") }}{{ end -}}
-  {{- $head = printf `<div class="section-head">%s</div>` $h -}}
+  {{- /* 1.7.1 : avec un lien « Voir tout », classe section-head-lien (lien à droite du titre, jamais avant l'introduction). */ -}}
+  {{- $cl := "" }}{{ with .lien }}{{ $cl = " section-head-lien" }}{{ end -}}
+  {{- $head = printf `<div class="section-head%s">%s</div>` $cl $h -}}
   {{- with .intro }}{{ $head = printf `%s<div class="bloc-intro prose">%s</div>` $head ($.page.RenderString (dict "display" "block") (partial "pbn/annee.html" .)) }}{{ end -}}
 {{- end -}}
 {{- $id := "" }}{{ with $b.id }}{{ $id = printf ` id="%s"` (anchorize .) }}{{ end -}}

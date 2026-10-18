@@ -38,9 +38,17 @@
     if (!header || !nav) return;
     header.classList.remove('nav-collapsed', 'header-compact', 'nav-serre', 'nav-deux-lignes');
     var interieur = header.querySelector('.header-inner');
+    var logoTexte = header.querySelector('.site-logo-text');
+    if (logoTexte) logoTexte.style.fontSize = '';
     if (getComputedStyle(nav).display === 'none') {
       // Petit écran : si le logo, les langues et le bouton du menu ne tiennent pas, les langues passent dans le menu.
-      if (deborde(interieur) || texteCoupe(header.querySelector('.site-logo-text'))) header.classList.add('header-compact');
+      if (deborde(interieur) || texteCoupe(logoTexte)) header.classList.add('header-compact');
+      // Nom encore coupé (outil ajouté dans l'en-tête : loupe, bouton de thème) : il est réduit, jusqu'à 72 % de sa
+      // taille, avant d'être tronqué.
+      if (texteCoupe(logoTexte)) {
+        var base = parseFloat(getComputedStyle(logoTexte).fontSize) || 16, taille = base, min = Math.max(12, base * 0.72);
+        while (texteCoupe(logoTexte) && taille > min) { taille = Math.max(min, taille - 0.5); logoTexte.style.fontSize = taille + 'px'; }
+      }
       majHauteur();
       return;
     }
@@ -90,18 +98,26 @@
     });
   });
 
-  // Mode sombre au choix du lecteur : préférence gardée dans le navigateur (jamais transmise).
+  // Mode clair / sombre au choix du lecteur : préférence gardée dans le navigateur (jamais transmise). Site clair par
+  // défaut : data-theme="sombre" pose la palette sombre ; site sombre par défaut (classe scheme-dark) : data-theme="clair"
+  // pose la palette claire. Le libellé du bouton annonce toujours le mode proposé.
   document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
     var html = document.documentElement;
+    var sombreDefaut = html.classList.contains('scheme-dark');
+    function estSombre() {
+      var t = html.getAttribute('data-theme');
+      return t === 'sombre' || (sombreDefaut && t !== 'clair');
+    }
     function maj() {
-      var sombre = html.getAttribute('data-theme') === 'sombre';
+      var sombre = estSombre();
       b.setAttribute('aria-pressed', sombre ? 'true' : 'false');
       var l = b.getAttribute(sombre ? 'data-label-light' : 'data-label-dark') || '';
       b.setAttribute('aria-label', l); b.setAttribute('title', l);
     }
     b.addEventListener('click', function () {
-      var sombre = html.getAttribute('data-theme') !== 'sombre';
-      if (sombre) html.setAttribute('data-theme', 'sombre'); else html.removeAttribute('data-theme');
+      var sombre = !estSombre();
+      if (sombre === sombreDefaut) html.removeAttribute('data-theme');
+      else html.setAttribute('data-theme', sombre ? 'sombre' : 'clair');
       try { localStorage.setItem('theme', sombre ? 'sombre' : 'clair'); } catch (e) {}
       maj();
     });

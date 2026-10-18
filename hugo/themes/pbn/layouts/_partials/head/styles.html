@@ -53,9 +53,13 @@
 --c-bandeau-bg:{{ $bb | safeCSS }};--c-bandeau-text:{{ partial "pbn/couleur-lisible.html" (dict "fond" $bb "candidats" (slice ($c.bandeauText | default ($c.onPrimary | default "#FFFFFF")) $text "#FFFFFF")) | safeCSS }};
 {{- end -}}
 color-scheme:{{ $c.scheme | default "light" | safeCSS }};}
-{{- /* Mode sombre au choix du lecteur (params.pbn.darkToggle) : palette params.pbn.colorsDark, sinon palette sombre
-     neutre qui garde la principale et l'accent du site ; couleurs de lien et d'accent lisibles recalculées au build. */ -}}
+{{- /* Mode clair / sombre au choix du lecteur (params.pbn.darkToggle). Site clair par défaut : palette sombre
+     params.pbn.colorsDark, sinon palette sombre neutre qui garde la principale et l'accent du site. Site sombre par défaut
+     (colors.scheme = "dark", 1.7.1) : palette claire params.pbn.colorsLight, sinon palette claire neutre. Couleurs de lien,
+     d'accent et de la principale lisibles recalculées au build. Barre du haut (1.7.1) : topbarBackground et topbarText de
+     la palette, en mode sombre par défaut le fond et le texte du pied de page sombre. */ -}}
 {{- if site.Params.pbn.darkToggle -}}
+{{- if ne ($c.scheme | default "light") "dark" -}}
 {{- $d := site.Params.pbn.colorsDark | default dict -}}
 {{- $dbg := $d.background | default "#121417" -}}
 {{- $dtext := $d.text | default "#ECEEF1" -}}
@@ -65,7 +69,9 @@ color-scheme:{{ $c.scheme | default "light" | safeCSS }};}
 {{- $dpaper := $d.paper | default $dsurface -}}
 {{- $dlink := $d.link | default (partial "pbn/couleur-lisible.html" (dict "fond" $dbg "candidats" (slice ($c.link | default $primary) $accent $primary "#8EB0FF"))) -}}
 {{- $dinkPaper := partial "pbn/couleur-lisible.html" (dict "fond" $dpaper "candidats" (slice $daccent $dlink $dtext)) -}}
-{{- $dinkCard := partial "pbn/couleur-lisible.html" (dict "fond" $dsurface "candidats" (slice $daccent $dlink $dtext)) }}
+{{- $dinkCard := partial "pbn/couleur-lisible.html" (dict "fond" $dsurface "candidats" (slice $daccent $dlink $dtext)) -}}
+{{- $dfooter := $d.footerBackground | default "#0E1013" -}}
+{{- $dfooterText := $d.footerText | default $dtext }}
 html[data-theme="sombre"]{
 --c-bg:{{ $dbg | safeCSS }};--c-text:{{ $dtext | safeCSS }};--c-surface:{{ $dsurface | safeCSS }};--c-surface-alt:{{ $d.surfaceAlt | default "#171A1E" | safeCSS }};
 --c-muted:{{ $d.muted | default "#A6ADB6" | safeCSS }};--c-border:{{ $d.border | default "#2B3037" | safeCSS }};
@@ -74,9 +80,38 @@ html[data-theme="sombre"]{
 --c-hero-bg:{{ $d.heroBackground | default ($d.surfaceAlt | default "#171A1E") | safeCSS }};--c-hero-text:{{ $d.heroText | default $dtext | safeCSS }};--c-hero-accent:{{ $d.heroAccent | default $dinkPaper | safeCSS }};
 --c-header-bg:{{ $d.headerBackground | default $dbg | safeCSS }};--c-header-text:{{ $d.headerText | default $dtext | safeCSS }};
 --c-paper:{{ $dpaper | safeCSS }};--c-paper-text:{{ $d.paperText | default $dtext | safeCSS }};--c-paper-muted:{{ $d.paperMuted | default ($d.muted | default "#A6ADB6") | safeCSS }};--c-paper-border:{{ $d.paperBorder | default ($d.border | default "#2B3037") | safeCSS }};--c-paper-link:{{ $d.paperLink | default $dlink | safeCSS }};
---c-footer-bg:{{ $d.footerBackground | default "#0E1013" | safeCSS }};--c-footer-text:{{ $d.footerText | default $dtext | safeCSS }};
+--c-footer-bg:{{ $dfooter | safeCSS }};--c-footer-text:{{ $dfooterText | safeCSS }};
+--c-topbar-bg:{{ $d.topbarBackground | default $dfooter | safeCSS }};--c-topbar-text:{{ $d.topbarText | default $dfooterText | safeCSS }};
+{{- with $d.logoAccent }}--c-logo-accent:{{ . | safeCSS }};{{ end }}
 --c-accent-ink:{{ $dinkPaper | safeCSS }};--c-accent-ink-card:{{ $dinkCard | safeCSS }};
 color-scheme:dark;}
+{{- else -}}
+{{- $l := site.Params.pbn.colorsLight | default dict -}}
+{{- $lbg := $l.background | default "#FFFFFF" -}}
+{{- $ltext := $l.text | default "#1B1F24" -}}
+{{- $lsurface := $l.surface | default "#F6F7F9" -}}
+{{- $lprimary := $l.primary | default (partial "pbn/couleur-lisible.html" (dict "fond" $lbg "candidats" (slice $primary $accent ($c.link | default $primary) $ltext))) -}}
+{{- $lonPrimary := $l.onPrimary | default (partial "pbn/couleur-lisible.html" (dict "fond" $lprimary "candidats" (slice ($c.onPrimary | default "#FFFFFF") "#FFFFFF" $ltext))) -}}
+{{- $laccent := $l.accent | default (partial "pbn/couleur-lisible.html" (dict "fond" $lbg "candidats" (slice $accent $lprimary $ltext) "seuil" 3)) -}}
+{{- $lonAccent := $l.onAccent | default (partial "pbn/couleur-lisible.html" (dict "fond" $laccent "candidats" (slice ($c.onAccent | default "#FFFFFF") "#FFFFFF" $ltext))) -}}
+{{- $lpaper := $l.paper | default $lbg -}}
+{{- $llink := $l.link | default (partial "pbn/couleur-lisible.html" (dict "fond" $lbg "candidats" (slice ($c.link | default $primary) $accent $lprimary "#1F4FBF"))) -}}
+{{- $linkPaper := partial "pbn/couleur-lisible.html" (dict "fond" $lpaper "candidats" (slice $laccent $llink $ltext)) -}}
+{{- $linkCard := partial "pbn/couleur-lisible.html" (dict "fond" $lsurface "candidats" (slice $laccent $llink $ltext)) }}
+html[data-theme="clair"]{
+--c-bg:{{ $lbg | safeCSS }};--c-text:{{ $ltext | safeCSS }};--c-surface:{{ $lsurface | safeCSS }};--c-surface-alt:{{ $l.surfaceAlt | default "#F1F2F4" | safeCSS }};
+--c-muted:{{ $l.muted | default "#5E6772" | safeCSS }};--c-border:{{ $l.border | default "#E3E6EA" | safeCSS }};
+--c-primary:{{ $lprimary | safeCSS }};--c-on-primary:{{ $lonPrimary | safeCSS }};
+--c-accent:{{ $laccent | safeCSS }};--c-on-accent:{{ $lonAccent | safeCSS }};--c-link:{{ $llink | safeCSS }};
+--c-hero-bg:{{ $l.heroBackground | default ($l.surfaceAlt | default "#F1F2F4") | safeCSS }};--c-hero-text:{{ $l.heroText | default $ltext | safeCSS }};--c-hero-accent:{{ $l.heroAccent | default $linkPaper | safeCSS }};
+--c-header-bg:{{ $l.headerBackground | default $lbg | safeCSS }};--c-header-text:{{ $l.headerText | default $ltext | safeCSS }};
+--c-paper:{{ $lpaper | safeCSS }};--c-paper-text:{{ $l.paperText | default $ltext | safeCSS }};--c-paper-muted:{{ $l.paperMuted | default ($l.muted | default "#5E6772") | safeCSS }};--c-paper-border:{{ $l.paperBorder | default ($l.border | default "#E3E6EA") | safeCSS }};--c-paper-link:{{ $l.paperLink | default $llink | safeCSS }};
+--c-footer-bg:{{ $l.footerBackground | default $lsurface | safeCSS }};--c-footer-text:{{ $l.footerText | default $ltext | safeCSS }};
+{{- with $l.topbarBackground }}--c-topbar-bg:{{ . | safeCSS }};{{ end }}{{ with $l.topbarText }}--c-topbar-text:{{ . | safeCSS }};{{ end }}
+{{- with $l.logoAccent }}--c-logo-accent:{{ . | safeCSS }};{{ end }}
+--c-accent-ink:{{ $linkPaper | safeCSS }};--c-accent-ink-card:{{ $linkCard | safeCSS }};
+color-scheme:light;}
+{{- end -}}
 {{- end -}}
 </style>
 {{- $css := slice (resources.Get "css/main.css") -}}

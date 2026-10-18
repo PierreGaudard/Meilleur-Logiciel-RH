@@ -10,7 +10,14 @@
      image, en-tête habituel). */ -}}
 {{- $ah := lower (string (site.Params.pbn.articleHeader | default "")) -}}
 {{- if and (eq $ah "photo") (not .Params.image) }}{{ $ah = "" }}{{ end -}}
-<article class="post{{ with $ah }} post-entete-{{ . }}{{ end }}">
+{{- $toc := .TableOfContents }}
+{{- /* Sommaire automatique : absent avec toc: false, ou quand l'article porte déjà son propre sommaire (intertitre
+     « Sommaire », « Table des matières », « Contents »… ou bloc de classe ou d'identifiant toc, sommaire). */ -}}
+{{- $hasToc := and (ne .Params.toc false) (in $toc "<li>") (not (partial "pbn/sommaire-redige.html" .)) }}
+{{- /* Ligne de signature (1.7.1) : seulement s'il y a une signature ou une date de mise à jour ; date seule (type A sans
+     signature) : classe post-byline-date, sans filet, alignée à gauche. */ -}}
+{{- $maj := ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02") -}}
+<article class="post{{ with $ah }} post-entete-{{ . }}{{ end }}{{ if $hasToc }} post-sommaire{{ end }}">
   <div class="container">{{ partial "breadcrumb.html" . }}</div>
   <div class="container post-shell">
     <div class="post-paper">
@@ -26,15 +33,17 @@
           {{- with partial "pbn/desc.html" . }}<p class="post-desc">{{ . }}</p>{{ end }}
           {{- if $ranking }}{{ partial "conformite/ranking-block.html" . }}{{ end }}
           {{ partial "conformite/disclaimers.html" . }}
-          <div class="post-byline">
+          {{- if or $showSig $maj }}
+          <div class="post-byline{{ if not $showSig }} post-byline-date{{ end }}">
             {{- if $showSig }}
             <span class="byline-avatar" aria-hidden="true">{{ substr (partial "pbn/name.html" .) 0 1 }}</span>
             <span class="byline-name">{{ $sig }}</span>
             {{- end }}
-            {{- if ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02") }}
+            {{- if $maj }}
             <span class="byline-updated">{{ i18n "updated_on" }} {{ partial "pbn/date.html" .Lastmod }}</span>
             {{- end }}
           </div>
+          {{- end }}
         </div>
         {{- with .Params.image }}
         <figure class="post-image">
@@ -46,10 +55,6 @@
         {{- end }}
       </header>
 
-      {{- $toc := .TableOfContents }}
-      {{- /* Sommaire automatique : absent avec toc: false, ou quand l'article porte déjà son propre sommaire (intertitre
-           « Sommaire », « Table des matières », « Contents »… ou bloc de classe ou d'identifiant toc, sommaire). */ -}}
-      {{- $hasToc := and (ne .Params.toc false) (in $toc "<li>") (not (partial "pbn/sommaire-redige.html" .)) }}
       {{- /* Intertitres déjà numérotés (« 1. … », « 2) … ») : pas de numérotation de liste en plus. */ -}}
       {{- $tocNum := and (in $toc "<ol>") (not (findRE `<a href="#[^"]*">\s*\d+\s*[.)\-:]` $toc 1)) }}
       <div class="post-layout{{ if $hasToc }} has-toc{{ end }}">
@@ -78,7 +83,7 @@
           {{ partial "hooks/article-after-content.html" . }}
           {{- with .GetTerms "tags" }}
           <ul class="post-tags">
-            {{- range . }}<li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>{{ end }}
+            {{- range . }}<li><a href="{{ .RelPermalink }}">#{{ partial "pbn/titre-lien.html" . }}</a></li>{{ end }}
           </ul>
           {{- end }}
           {{- if site.Params.pbn.share }}{{ partial "article/share.html" . }}{{ end }}
